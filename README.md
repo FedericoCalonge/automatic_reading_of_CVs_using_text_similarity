@@ -1,6 +1,8 @@
 # Lectura automática de CVs usando Text Similarity (en desarrollo)
 
->Proyecto de Tesis (Universidad Nacional de Avellaneda).  
+>Proyecto de Tesis, Universidad Nacional de Avellaneda.
+>
+>Carrera Ingeniería en Informática.
 >
 >Autor: Federico Calonge.
 
@@ -10,7 +12,7 @@ Esta comparación se realizará utilizando y comparando diferentes técnicas que
 
 Las técnicas que se utilizarán basadas en **text similariy** serán: 
 * Cosine Similarity.
-* Word Mover's Distance (WMD).  
+* Word Mover's Distance (WMD).
 
 Previamente se debe utilizar algún **algoritmo de vectorización** que permita representar las palabras de nuestros textos a un espacio vectorial de forma que Cosine Similarity y WMD puedan interpretarlos de la mejor manera. 
 
