@@ -2,7 +2,7 @@
 
 >Proyecto de Tesis, Universidad Nacional de Avellaneda.
 >
->Carrera Ingeniería en Informática.
+>Carrera: Ingeniería en Informática.
 >
 >Autor: Federico Calonge.
 

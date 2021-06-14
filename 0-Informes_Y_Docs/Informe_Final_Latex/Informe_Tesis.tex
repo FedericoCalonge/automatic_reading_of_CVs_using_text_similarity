@@ -1,0 +1,140 @@
+% ----------------------------------
+% 1-Preambulo.
+% ----------------------------------
+\documentclass[12pt,a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[procnames]{listings} 	%Para escribir códigos.
+% OJO: se agregaron procnames para usarlos en Python (VER).
+
+\usepackage[bottom]{footmisc} 	 	%Para poner las footnote al final de cada página.
+\usepackage[hidelinks]{hyperref} 	%Para que el indice pueda ser linkeado.
+\usepackage{amssymb}			 	%Para ecuaciones matemáticas.
+\usepackage{amsmath}				%Para matrices.
+\usepackage{mathtools}
+\usepackage{amsfonts} 
+\usepackage{verbatim}				%Para usar comentarios.
+\parskip 0.1in 						%Distancia parrafos.
+
+%Biliografías:
+%\usepackage[style=authoryear]{biblatex}
+%\addbibresource{bibliografias.bib}
+
+\usepackage{float} 							%Para que no se muevan las imágenes de lugar.
+
+\usepackage[
+  separate-uncertainty = true,
+  multi-part-units = repeat
+]{siunitx} 									%Para el \SI del +- .
+
+\usepackage[margin=0.984252in]{geometry} 	%Para los márgenes.
+\usepackage{subcaption}
+\usepackage{appendix} 						%Para los anexos.
+
+% ----------------------------------
+% 1.1-Anexos.
+% ----------------------------------
+
+%begin anexos
+\makeatletter
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}  	%"\@seccntformat" es un comando auxiliar.
+   {\csname the#1\endcsname\quad}  					%Default.
+   {\csname #1@cntformat\endcsname}					%Enable individual control.
+}
+
+\let\oldappendix\appendix 							%Guarda la definicion vigente de \appendix
+\renewcommand\appendix{%
+    \oldappendix
+    \newcommand{\section@cntformat}{\appendixname~\thesection\quad}
+}
+\makeatother
+%\renewcommand{\appendixname}{Anexos}
+%\renewcommand{\appendixtocname}{Anexos}
+%\renewcommand{\appendixpagename}{Anexos}
+%end anexos
+
+% ----------------------------------
+% 1.2-Para código Python. 
+% ----------------------------------
+\usepackage{color}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+% ----------------------------------
+% 1.3-Índice. 
+% ----------------------------------
+
+\setcounter{secnumdepth}{3} 		%Para que ponga 1.1.1.1.
+\setcounter{tocdepth}{4} 			%Para que añadir las secciones en el Índice.
+\usepackage{chngcntr}				%Para que el número de las figuras esten acordes a la sección.
+\counterwithin{figure}{section}
+
+\author{
+  Calonge, Federico Matias\\
+  \text{calongefederico@gmail.com}
+}
+
+\title{
+  Tesis \\
+  \large Automatización de lectura de Currículum Vitae  \\
+    para selección de personal}
+    
+%Para modificar los parrafos y para que se pueda poner subsections:
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+            {-2.5ex\@plus -1ex \@minus -.25ex}
+            {1.25ex \@plus .25ex}
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{4} 	%How many sectioning levels to assign numbers to.
+\setcounter{tocdepth}{4}    	%How many sectioning levels to show in ToC.
+
+% ----------------------------------
+% 2-Documento
+% ----------------------------------
+
+\begin{document}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.2\textwidth]{images/undav-logo} 	%Incluyendo logo de la Undav.
+  %\caption{Mi Figura}
+  \label{fig:undav-logo}
+\end{figure}
+\maketitle       		%Para generar el título definido arriba.
+
+\thinspace
+
+\cleardoublepage
+\tableofcontents 		%Para insertar el índice general.
+\cleardoublepage
+%\listoffigures
+%\cleardoublepage
+
+\section{Introducción}
+
+Texto Introducción 
+
+\subsection{Alcance del proyecto}
+
+Texto Alcance del proyecto
+
+\section{Sección 2}
+
+Texto Sección 2
+
+\end{document}

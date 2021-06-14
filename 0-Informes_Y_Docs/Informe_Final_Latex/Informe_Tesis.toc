@@ -1,0 +1,4 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducción}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Alcance del proyecto}{3}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Sección 2}{3}{section.2}%
