@@ -1,0 +1,15 @@
+URLS para corpus ingles:
+https://en.wikipedia.org/wiki/Machine_learning
+https://en.wikipedia.org/wiki/Deep_learning
+https://en.wikipedia.org/wiki/Data_science
+https://en.wikipedia.org/wiki/Programmer
+https://en.wikipedia.org/wiki/Software_engineer
+https://en.wikipedia.org/wiki/Software_development
+
+URLS para corpus español:
+https://es.wikipedia.org/wiki/Aprendizaje_profundo
+https://es.wikipedia.org/wiki/Aprendizaje_autom%C3%A1tico
+https://es.wikipedia.org/wiki/Ciencia_de_datos
+https://es.wikipedia.org/wiki/Programador
+https://es.wikipedia.org/wiki/Ingenier%C3%ADa_de_software
+https://es.wikipedia.org/wiki/Desarrollador_de_software
