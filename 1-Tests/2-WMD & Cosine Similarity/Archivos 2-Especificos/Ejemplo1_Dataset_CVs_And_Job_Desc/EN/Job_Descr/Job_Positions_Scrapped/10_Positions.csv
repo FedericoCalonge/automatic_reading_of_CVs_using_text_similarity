@@ -1,22 +1,29 @@
 job_title,job_description
 
-Machine Learning Engineer,"Prenuvo is an innovative medical technology company specializing in whole body diagnostic imaging. Our mission is to eliminate advanced cancer and disease.
+Machine Learning Engineer,"Leveraging the latest machine and deep learning techniques to challenge the current practices across the business units.
+    Enhancing the internal collaboration between business units through alignment of people, processes, and technologies with business goals
+    Proposing best practices to optimize business unit’s cloud presence, performance, security, and cost
+    Develop new specs, documentation; and partake in the development of technical procedures and user support guides
+    Carry out debugging, troubleshooting, modifications, and unit testing of custom solutions built on the organization platform
+    Managing the code and artifacts, including models, algorithms, templates, tools, policies, guidelines, etc.
+    Measuring performance and comparing the results to similar efforts across the organization and the industry
+    Working with different business organizations across the company to understand their needs and help identify new opportunities.
+    Mentoring, coaching, training, and managing fellow data
 
-We're looking for a Machine Learning expert to lay the foundation for developing applications for radiologists and consumers.
-
-Successful candidate will need to be ambitious, self-driven and organized. We value speed of execution over perfection. We hire for passion, work ethic and proven ability to deliver.
-
-Required experience
-BSc/MSc/PhD in Physics, Mathematics, Biomedical/Software engineering or computer science.
-3+ years of experience developing Image Processing / Machine Learning products and pipelines.
-Advantage
-Familiarity with web development (e.g., Flask, Serverless) and deployment (e.g., Docker) and cloud services (e.g., AWS).
-Entrepreneurial experience and/or passion for working in small teams
-Peer-reviewed academic publications
-
-To apply: Please reach out with a short paragraph about yourself and a link/pdf to your resume.
-
-Powered by JazzHR"
+    Master’s degree in Computer Science, Software Engineering, Applied Mathematics, , Statistics, Business Analytics, Agribusiness, Accounting, Finance, Economics, etc. or equivalent experience
+    Proficient in machine learning particularly Deep Learning
+    Knowledge about Cloud Environment such as AWS and GCP
+    Experience with BI Tools
+    Expertise in computer vision-based projects
+    Highly proficient in Python and SQL
+    Solid technical hands-on skills in machine learning (regression, classification, clustering, dimensionality reduction), deep learning (CNN, RNN/LSTM, GAN), time-series data, anomaly detection, statistical algorithms, data mining, and data engineering
+    Knowledge in Keras, TensorFlow, PyTorch, and cloud computing infrastructures (AWS, Azure, GCP)
+    Strong ability to use logic and excellent problem-solving skills
+    Ability to work independently and be flexible
+    Ability to thrive in a fast-paced, highly dynamic environment
+    Demonstrated experience with agile or other rapid development methods
+    Passion for innovation and “can do” attitude
+    Experience in the agricultural industry projects at the edge is a plus."
 Machine Learning Engineer 2,"We are seeking for a Machine Learning Engineer to develop machine learning models related to predicting the outcome of computational biology and chemistry simulations, as well as the relationship between experimental measurements and related computational simulations. The successful candidate will be working in a multidisciplinary team to explore and create methods for better understanding the correlation between the computationally predicted structure of proteins with the corresponding experimentally derived structures.
 Reporting to the Chief Technology Officer, the Machine Learning Engineer will work with a diverse-skilled team including software engineers, geneticists, biochemists, and other machine learning engineers to understand and predict relationships between genomic and proteomic simulations and experimental studies.
 Please note this is a one-year term with a possibility for permanent conversion.
@@ -253,14 +260,11 @@ Experience:
 Language:
 
     English (Required)"
-HCM Consultant,"Delivery Consultant – HCM Time & Labor / Absence Management-20000C9N
-
-Preferred Qualifications
+HCM Consultant,"Delivery Consultant – HCM Time & Labor / Absence Management
 
 The Oracle Cloud HCM Absence Consultant will be responsible for ensuring the successful implementation of the Oracle’s Fusion solution.
 As the Senior Consultant, you will work with your clients to understand their business processes, provide solutions based in product and consultative expertise and drive adoption of Oracle’s modern best practices processes.
 
-Key Areas of Responsibility
 Lead business process workshops and advise client on the impacts of adopting the Oracle Cloud Absence Management solution
 Lead requirements gathering sessions and support clients in defining relevant processes and obtain sign off to ensure client alignment of proposed solution
 Understand Oracle’s Implementation Methodology and use it on all engagements
@@ -287,50 +291,46 @@ Due to the nature of the clients and the work, US Citizens and Green Card Holder
 Oracle is an Equal Employment Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability and protected veteran’s status or any other characteristic protected by law.
 
 At Oracle, we don’t just value differences—we celebrate them. We’re committed to creating a workplace where all kinds of people work together. We believe innovation starts with diversity and inclusion."
-HCM Consultant 2,"Your Role and Responsibilities
-IBM Global Business Services (GBS) helps our clients fundamentally redesign experiences to create new sources of value, digitally reinvent their operations for great efficiency and transform their entire enterprises through cognitive. We invite you to consider joining IBM's global reach, outcome-focused methodologies, domain skills and deep industry expertise that are helping transform the way we live and work.
-IBM's state-of-the-art Client Innovation Centre (CIC) opened in Nova Scotia in March 2013 and is the first of its kind in Canada. The Centre weaves together IBM’s business insights and industry-leading software portfolio and is ideally suited for any client that needs flexible access to emerging or niche skills that may not be cost effective to grow internally. In addition, our focus on our team is unparalleled as demonstrated by the following:
-The CIC NS is one of IBM’s highest performing delivery centres worldwide – for retention, client satisfaction and utilization. Our employees are empowered to stay and grow within IBM.
-We are very focused on continuous skill development – staff training is our third largest annual Centre investment. Employees are immersed in a culture of learning and constant growth.
-Investment in key partnership with universities, government and private sector groups which has resulted in IBM having a key influencing role in Nova Scotia’s ICT industry, especially in talent development.
-We are currently recruiting for top talent in SAP Practice - If you are on top of your profession and possess the following key skills, we invite you to apply to our openings of a Senior HCM Time Consultant:
+HCM Consultant 2,"
+ 4+ years of experience in PeopleSoft or Oracle EBS Implementation & Support (HCM modules) projects and minimum of 2+ years of experience in Oracle HCM cloud Implementation projects. Minimum of 1 year of experience in Oracle HCM Cloud Core HR, Benefits, Recruitment & Compensation.
 
-Your responsibilities will include:
-Conducting Fit/Gap analysis and business /process modeling
-Assessing the business and application requirements
-Designing robust business processes considering accepted industry practices
-Configuring and testing the software
-Driving the development of functional and systems specifications
-Writing and maintaining necessary documentation
-Actively performing knowledge transfer to client team members
-Communicate and work with people of all levels in a team environment
-Provide support to deployment as necessary
-Mandatory Qualification
-6+ years of SAP HCM Time management
-Module skills might include personnel administration, recruitment, organizational management, personnel development, health and safety, training & events, payroll, time management, compensation management, portal, or self-service.
-Have completed a minimum of 3 full life cycle implementation of SAP
-Strong ability to understand and analyze HR management process
-Customer service-oriented and excellent interpersonal skills
-Proven ability to adapt to changing environments and demonstrate sound judgment in the face of complex challenges
-Ability to work under pressure on simultaneous assignments
-Demonstrated project management experience is an asset
-Previous consulting experience is an asset
-Must be located on-site at IBM office in Bedford, NS.
+Required Skills:
 
+* Minimum of 4+ years of experience in PS or Oracle EBS Implementation & Support projects (HCM modules)
 
+* Minimum of 2+ years of experience in Oracle HCM Cloud implementation & support project. Experience in Core HR, Benefits, Recruitment & Compensation
 
+* Certified in Oracle HCM Cloud SaaS application
 
-Required Technical and Professional Expertise
-At least 6 years of SAP HCM Time management
+* Should have experience in HDL, HCM Data Extract, BI Publisher, Fast Formula, Flex fields & OIC
 
-Preferred Technical and Professional Expertise
-N/A
+* Should be a hands-on person who owns and delivers project deliverables (Both technical and functional deliverables)
 
-About Business Unit
-IBM Services is a team of business, strategy and technology consultants that design, build, and run foundational systems and services that is the backbone of the world's economy. IBM Services partners with the world's leading companies in over 170 countries to build smarter business by reimagining and reinventing through technology, with its outcome-focused methodologies, industry-leading portfolio and world class research and operations expertise leading to results-driven innovation and enduring excellence.
+* Experience in entire development life cycle activities – Requirement gathering, design the solution, development and unit testing, SIT testing, UAT support, PROD migration support and Warranty support
 
-Your Life @ IBM
-What matters to you when you’re looking for your next career challenge?"
+* Must have excellent communication skills both written and verbal as this position will require constant interaction with project stakeholders (end users + project management team + senior management team) on a regular basis
+
+* Should possess good documentation skill to prepare all the project deliverables
+
+* Provide input on best practices to clients on Oracle cloud application solution and its utilization to effectively address the project requirements
+
+* Experience in management activities: Initiation, Planning, Execution, Tracking & Monitoring & Closure
+
+* Task allocation to team, tracking and monitoring the progress and reporting the status promptly to required project stakeholders
+
+* Timely communication on identified risks and mitigation plan, reporting the progress
+
+* Ability to manage senior management team’s expectations, proactively identify the risks and mitigate them before its occurrence
+
+Roles and Responsibilities:
+
+    Configuration specialist and expert in the implementation of Oracle Core HR, Talent management including Performance Management, Goal Management, Onboarding, Offboarding,
+    Knowledge on Oracle Recruiting Cloud, Learning Management Systems, Oracle Offboarding, Oracle Time and Labor.
+    Responsible for overall Functional Delivery and responsible for onshore interaction.
+    Responsible for solution designing and the fit-gap analysis for all the HCM modules in scope.
+    Report HCM status to the Leadership via status reports.
+    Experience in various HCM phases including Blue Printing, Prototyping, Requirement gathering, configuration, implementation, and data migration and user-end support.
+    Identifying and analyzing the existing business process/requirements of the Client and mapping into the system and Co-ordinate with the Technical Team. "
 Security Specialist,"Key Role:
 Work in a fast-paced environment that combine technical security operations talent with consulting expertise to deliver high-value client IT security solutions. Lead enterprise and system focused network and application penetration test engagements for a wide variety of clients, including federal government and commercial clients across multiple market sectors, working with a team of 10+ seasoned security testing professionals to enhance existing services offerings and security testing capabilities and conduct hands on technical testing beyond automated tool validation, including full exploitation and leveraging of access within multiple environments, such as Windows and nix. Conduct scenario-based security testing or red teaming to identify gaps in detection and response capabilities of client networks and develop comprehensive and accurate reports and presentations for both technical and executive audiences. Communicate findings and strategy effectively to client stakeholders, including technical staff, executive leadership, and legal counsel. Apply security testing and penetration testing techniques and mindset to a wide range of projects. Act as the primary interface and lead for small penetration test teams ranging from 1-3 additional testers and manage the delivery of staff assignments, as needed. Become part of a team of security enthusiasts that perform cutting-edge research and promote an environment of innovation and knowledge-sharing. This position is open to remote delivery from any location in the U.S., to include the District of Columbia.
 

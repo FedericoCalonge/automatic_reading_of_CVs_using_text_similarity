@@ -1,11 +1,29 @@
 job_title,job_description
 
-Machine Learning Engineer,"BSc/MSc/PhD in Physics, Mathematics, Biomedical/Software engineering or computer science.
-3+ years of experience developing Image Processing / Machine Learning products and pipelines.
-Advantage
-Familiarity with web development (e.g., Flask, Serverless) and deployment (e.g., Docker) and cloud services (e.g., AWS).
-Entrepreneurial experience and/or passion for working in small teams.
-Peer-reviewed academic publications."
+Machine Learning Engineer,"Leveraging the latest machine and deep learning techniques to challenge the current practices across the business units.
+    Enhancing the internal collaboration between business units through alignment of people, processes, and technologies with business goals
+    Proposing best practices to optimize business unit’s cloud presence, performance, security, and cost
+    Develop new specs, documentation; and partake in the development of technical procedures and user support guides
+    Carry out debugging, troubleshooting, modifications, and unit testing of custom solutions built on the organization platform
+    Managing the code and artifacts, including models, algorithms, templates, tools, policies, guidelines, etc.
+    Measuring performance and comparing the results to similar efforts across the organization and the industry
+    Working with different business organizations across the company to understand their needs and help identify new opportunities.
+    Mentoring, coaching, training, and managing fellow data
+
+    Master’s degree in Computer Science, Software Engineering, Applied Mathematics, , Statistics, Business Analytics, Agribusiness, Accounting, Finance, Economics, etc. or equivalent experience
+    Proficient in machine learning particularly Deep Learning
+    Knowledge about Cloud Environment such as AWS and GCP
+    Experience with BI Tools
+    Expertise in computer vision-based projects
+    Highly proficient in Python and SQL
+    Solid technical hands-on skills in machine learning (regression, classification, clustering, dimensionality reduction), deep learning (CNN, RNN/LSTM, GAN), time-series data, anomaly detection, statistical algorithms, data mining, and data engineering
+    Knowledge in Keras, TensorFlow, PyTorch, and cloud computing infrastructures (AWS, Azure, GCP)
+    Strong ability to use logic and excellent problem-solving skills
+    Ability to work independently and be flexible
+    Ability to thrive in a fast-paced, highly dynamic environment
+    Demonstrated experience with agile or other rapid development methods
+    Passion for innovation and “can do” attitude
+    Experience in the agricultural industry projects at the edge is a plus."
 Machine Learning Engineer 2,"Collaborate with a multidisciplinary team to gain insight into complex biochemical systems.
 Design computational models to study various interactions such as interactions between genomes, proteins, and binding sites
 Extract various features from the computational models and communicate the results back to the team.
@@ -88,7 +106,7 @@ Keeps up to date with the latest technology trends and methods by staying abreas
 Identifies issues and risks, develops action plans, and takes corrective actions as needed
 Undertakes special projects or assignments as required
 Performs other related duties as required"
-Full Stack Web Developer,"
+Web Developer Full Stack,"
 
     Graduate Degree in Information Technology or similar ones.
     Relevant professional certifications.
@@ -111,7 +129,7 @@ Full Stack Web Developer,"
 
 Connectivity: your internet connectivity is sufficiently maintained, allowing you to hold online meetings and research-related tasks.
 "
-Full Stack Web Developer 2,"
+Web Developer Full Stack 2,"
 · Enter existing website codebases and extend functionality for scoped features while maintaining an efficient and quality-driven timeline.
 
 · Implement context-switching to other technologies, platforms, and server stacks.
@@ -189,29 +207,42 @@ Excellent verbal and written communication skills
 Business analysis and requirements gathering abilities
 Experience with multiple HCM applications a plus
 Ability to travel up to 70% of the time if needed"
-HCM Consultant 2,"
-Conducting Fit/Gap analysis and business /process modeling
-Assessing the business and application requirements
-Designing robust business processes considering accepted industry practices
-Configuring and testing the software
-Driving the development of functional and systems specifications
-Writing and maintaining necessary documentation
-Actively performing knowledge transfer to client team members
-Communicate and work with people of all levels in a team environment
-Provide support to deployment as necessary
+HCM Consultant 2,"4+ years of experience in PeopleSoft or Oracle EBS Implementation & Support (HCM modules) projects and minimum of 2+ years of experience in Oracle HCM cloud Implementation projects. Minimum of 1 year of experience in Oracle HCM Cloud Core HR, Benefits, Recruitment & Compensation.
 
-6+ years of SAP HCM Time management
-Module skills might include personnel administration, recruitment, organizational management, personnel development, health and safety, training & events, payroll, time management, compensation management, portal, or self-service.
-Have completed a minimum of 3 full life cycle implementation of SAP
-Strong ability to understand and analyze HR management process
-Customer service-oriented and excellent interpersonal skills
-Proven ability to adapt to changing environments and demonstrate sound judgment in the face of complex challenges
-Ability to work under pressure on simultaneous assignments
-Demonstrated project management experience is an asset
-Previous consulting experience is an asset
-Must be located on-site at IBM office in Bedford, NS.
+* Minimum of 4+ years of experience in PS or Oracle EBS Implementation & Support projects (HCM modules)
 
-At least 6 years of SAP HCM Time management"
+* Minimum of 2+ years of experience in Oracle HCM Cloud implementation & support project. Experience in Core HR, Benefits, Recruitment & Compensation
+
+* Certified in Oracle HCM Cloud SaaS application
+
+* Should have experience in HDL, HCM Data Extract, BI Publisher, Fast Formula, Flex fields & OIC
+
+* Should be a hands-on person who owns and delivers project deliverables (Both technical and functional deliverables)
+
+* Experience in entire development life cycle activities – Requirement gathering, design the solution, development and unit testing, SIT testing, UAT support, PROD migration support and Warranty support
+
+* Must have excellent communication skills both written and verbal as this position will require constant interaction with project stakeholders (end users + project management team + senior management team) on a regular basis
+
+* Should possess good documentation skill to prepare all the project deliverables
+
+* Provide input on best practices to clients on Oracle cloud application solution and its utilization to effectively address the project requirements
+
+* Experience in management activities: Initiation, Planning, Execution, Tracking & Monitoring & Closure
+
+* Task allocation to team, tracking and monitoring the progress and reporting the status promptly to required project stakeholders
+
+* Timely communication on identified risks and mitigation plan, reporting the progress
+
+* Ability to manage senior management team’s expectations, proactively identify the risks and mitigate them before its occurrence
+
+Roles and Responsibilities:
+
+    Configuration specialist and expert in the implementation of Oracle Core HR, Talent management including Performance Management, Goal Management, Onboarding, Offboarding,
+    Knowledge on Oracle Recruiting Cloud, Learning Management Systems, Oracle Offboarding, Oracle Time and Labor.
+    Responsible for overall Functional Delivery and responsible for onshore interaction.
+    Responsible for solution designing and the fit-gap analysis for all the HCM modules in scope.
+    Report HCM status to the Leadership via status reports.
+    Experience in various HCM phases including Blue Printing, Prototyping, Requirement gathering, configuration, implementation, and data migration and user-end support."
 Security Specialist,"Work in a fast-paced environment that combine technical security operations talent with consulting expertise to deliver high-value client IT security solutions. Lead enterprise and system focused network and application penetration test engagements for a wide variety of clients, including federal government and commercial clients across multiple market sectors, working with a team of 10+ seasoned security testing professionals to enhance existing services offerings and security testing capabilities and conduct hands on technical testing beyond automated tool validation, including full exploitation and leveraging of access within multiple environments, such as Windows and nix. Conduct scenario-based security testing or red teaming to identify gaps in detection and response capabilities of client networks and develop comprehensive and accurate reports and presentations for both technical and executive audiences. Communicate findings and strategy effectively to client stakeholders, including technical staff, executive leadership, and legal counsel. Apply security testing and penetration testing techniques and mindset to a wide range of projects. Act as the primary interface and lead for small penetration test teams ranging from 1-3 additional testers and manage the delivery of staff assignments, as needed. Become part of a team of security enthusiasts that perform cutting-edge research and promote an environment of innovation and knowledge-sharing. This position is open to remote delivery from any location in the U.S., to include the District of Columbia.
 
     Experience with using, administering, and troubleshooting at least two major flavors of Linux, Ubuntu preferred
