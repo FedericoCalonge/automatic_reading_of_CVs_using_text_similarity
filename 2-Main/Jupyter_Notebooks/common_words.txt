@@ -66,6 +66,7 @@ city
 state
 etc
 a
+â
 b
 d
 e
@@ -84,6 +85,9 @@ p
 q
 s
 t
+u
+v
+w
 x
 y
 z
