@@ -7,39 +7,45 @@
 \BOOKMARK [1][-]{section.2}{Reclutamiento laboral en IT.}{}% 7
 \BOOKMARK [2][-]{subsection.2.1}{Introducci\363n.}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.2}{Problem\341ticas.}{section.2}% 9
-\BOOKMARK [2][-]{subsection.2.3}{Sistemas de lectura y an\341lisis de CV.}{section.2}% 10
-\BOOKMARK [1][-]{section.3}{Natural Language Processing.}{}% 11
+\BOOKMARK [2][-]{subsection.2.3}{Sistemas de lectura y an\341lisis de CV : Estado del arte.}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Aprendizaje supervisado y no supervisado en Machine Learning.}{}% 11
 \BOOKMARK [2][-]{subsection.3.1}{Introducci\363n.}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.2}{Preprocesamiento de textos.}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.3}{Similitud entre textos.}{section.3}% 14
-\BOOKMARK [2][-]{subsection.3.4}{T\351cnicas para medir Similitud entre textos.}{section.3}% 15
-\BOOKMARK [3][-]{subsubsection.3.4.1}{Cosine Similarity.}{subsection.3.4}% 16
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Word Mover's Distance \(WMD\).}{subsection.3.4}% 17
-\BOOKMARK [2][-]{subsection.3.5}{Algoritmos de vectorizaci\363n.}{section.3}% 18
-\BOOKMARK [3][-]{subsubsection.3.5.1}{TF-IDF.}{subsection.3.5}% 19
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Word Embeddings.}{subsection.3.5}% 20
-\BOOKMARK [4][-]{paragraph.3.5.2.1}{\277C\363mo entrenar Word Embeddings?}{subsubsection.3.5.2}% 21
-\BOOKMARK [1][-]{section.4}{Desarrollo.}{}% 22
-\BOOKMARK [2][-]{subsection.4.1}{Esquema del sistema.}{section.4}% 23
-\BOOKMARK [2][-]{subsection.4.2}{Set de Datos.}{section.4}% 24
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Curriculum Vitae.}{subsection.4.2}% 25
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Descripciones Puestos Laborales.}{subsection.4.2}% 26
-\BOOKMARK [2][-]{subsection.4.3}{Medici\363n de similitud entre textos.}{section.4}% 27
-\BOOKMARK [3][-]{subsubsection.4.3.1}{FALTA: Pasos de las pruebas que hice: "Mejorando\203/-1ex .31- \317mplementaci\363n de\203/-1ex .31- "Problemas al\203".}{subsection.4.3}% 28
-\BOOKMARK [2][-]{subsection.4.4}{Resultados Obtenidos.}{section.4}% 29
-\BOOKMARK [2][-]{subsection.4.5}{Conclusiones.}{section.4}% 30
-\BOOKMARK [2][-]{subsection.4.6}{Agregando funcionalidades.}{section.4}% 31
-\BOOKMARK [3][-]{subsubsection.4.6.1}{Base de datos.}{subsection.4.6}% 32
-\BOOKMARK [3][-]{subsubsection.4.6.2}{Framework Web.}{subsection.4.6}% 33
-\BOOKMARK [3][-]{subsubsection.4.6.3}{Roles y Usuarios.}{subsection.4.6}% 34
-\BOOKMARK [3][-]{subsubsection.4.6.4}{Manejo de los datos.}{subsection.4.6}% 35
-\BOOKMARK [4][-]{paragraph.4.6.4.1}{Modelado.}{subsubsection.4.6.4}% 36
-\BOOKMARK [4][-]{paragraph.4.6.4.2}{Filtrado.}{subsubsection.4.6.4}% 37
-\BOOKMARK [4][-]{paragraph.4.6.4.3}{Visualizaci\363n.}{subsubsection.4.6.4}% 38
-\BOOKMARK [2][-]{subsection.4.7}{Caso de Uso.}{section.4}% 39
-\BOOKMARK [2][-]{subsection.4.8}{Limitaciones del sistema.}{section.4}% 40
-\BOOKMARK [1][-]{section.5}{Pr\363ximos pasos.}{}% 41
-\BOOKMARK [1][-]{section.6}{Glosario.}{}% 42
-\BOOKMARK [1][-]{section.7}{Anexo.}{}% 43
-\BOOKMARK [1][-]{section.8}{Bibliograf\355a.}{}% 44
-\BOOKMARK [1][-]{section.9}{Agradecimientos.}{}% 45
+\BOOKMARK [2][-]{subsection.3.2}{K-Nearest Neighbor \(KNN\).}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{K-Means.}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Elbow Method.}{subsection.3.3}% 15
+\BOOKMARK [1][-]{section.4}{Natural Language Processing.}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Introducci\363n.}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{Preprocesamiento de textos.}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.3}{Similitud entre textos.}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.4}{T\351cnicas para medir Similitud entre textos.}{section.4}% 20
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Cosine Similarity.}{subsection.4.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Word Mover's Distance \(WMD\).}{subsection.4.4}% 22
+\BOOKMARK [2][-]{subsection.4.5}{Algoritmos de vectorizaci\363n.}{section.4}% 23
+\BOOKMARK [3][-]{subsubsection.4.5.1}{TF-IDF.}{subsection.4.5}% 24
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Word Embeddings.}{subsection.4.5}% 25
+\BOOKMARK [4][-]{paragraph.4.5.2.1}{\277C\363mo entrenar Word Embeddings?}{subsubsection.4.5.2}% 26
+\BOOKMARK [1][-]{section.5}{Desarrollo.}{}% 27
+\BOOKMARK [2][-]{subsection.5.1}{Introducci\363n.}{section.5}% 28
+\BOOKMARK [2][-]{subsection.5.2}{Esquema del sistema.}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.3}{Set de datos.}{section.5}% 30
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Curriculum Vitae.}{subsection.5.3}% 31
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Descripciones Puestos Laborales.}{subsection.5.3}% 32
+\BOOKMARK [2][-]{subsection.5.4}{Medici\363n de similitud entre textos.}{section.5}% 33
+\BOOKMARK [3][-]{subsubsection.5.4.1}{FALTA: Pasos de las pruebas que hice: "Mejorando\203/-1ex .31- \317mplementaci\363n de\203/-1ex .31- "Problemas al\203".}{subsection.5.4}% 34
+\BOOKMARK [2][-]{subsection.5.5}{Resultados Obtenidos.}{section.5}% 35
+\BOOKMARK [2][-]{subsection.5.6}{Conclusiones.}{section.5}% 36
+\BOOKMARK [2][-]{subsection.5.7}{Agregando funcionalidades.}{section.5}% 37
+\BOOKMARK [3][-]{subsubsection.5.7.1}{Base de datos.}{subsection.5.7}% 38
+\BOOKMARK [3][-]{subsubsection.5.7.2}{Framework Web.}{subsection.5.7}% 39
+\BOOKMARK [3][-]{subsubsection.5.7.3}{Roles y Usuarios.}{subsection.5.7}% 40
+\BOOKMARK [3][-]{subsubsection.5.7.4}{Manejo de los datos.}{subsection.5.7}% 41
+\BOOKMARK [4][-]{paragraph.5.7.4.1}{Modelado.}{subsubsection.5.7.4}% 42
+\BOOKMARK [4][-]{paragraph.5.7.4.2}{Filtrado.}{subsubsection.5.7.4}% 43
+\BOOKMARK [4][-]{paragraph.5.7.4.3}{Visualizaci\363n.}{subsubsection.5.7.4}% 44
+\BOOKMARK [2][-]{subsection.5.8}{Caso de Uso.}{section.5}% 45
+\BOOKMARK [2][-]{subsection.5.9}{Limitaciones del sistema.}{section.5}% 46
+\BOOKMARK [1][-]{section.6}{Pr\363ximos pasos.}{}% 47
+\BOOKMARK [1][-]{section.7}{Glosario.}{}% 48
+\BOOKMARK [1][-]{section.8}{Anexo.}{}% 49
+\BOOKMARK [1][-]{section.9}{Bibliograf\355a.}{}% 50
+\BOOKMARK [1][-]{section.10}{Agradecimientos.}{}% 51

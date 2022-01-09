@@ -92,7 +92,7 @@
 \title{
   Tesis \\
   \large Automatización de lectura de Currículum Vitae  \\
-    para selección de personal}
+    para selección de personal en el Sector IT}
     
 %Para modificar los parrafos y para que se pueda poner subsections:
 \makeatletter
@@ -125,8 +125,8 @@
     
 \end{center}
 
-En la Tesis de Ingeniería que se presenta, se diseña un \textit{sistema de lectura automática de Curriculum Vitae}. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales que tenga disponible mediante una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y keywords que referencian a los puestos laborales por el otro.
-El sistema estará desarrollado utilizando el lenguaje de programación Python, y permitirá verificar la teoría desarrollada.
+En la Tesis de Ingeniería que se presenta, se diseña un \textit{sistema de lectura automática de Curriculum Vitae}. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales que tenga disponible mediante una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de puestos laborales por el otro.
+El sistema esta desarrollado utilizando el lenguaje de programación Python, permitiendo verificar la teoría desarrollada.
 
 \begin{center}
     \Large
@@ -134,7 +134,7 @@ El sistema estará desarrollado utilizando el lenguaje de programación Python, 
     \textbf{Abstract}
 \end{center}
 
-This Engineering Thesis introduces an \textit{automatic Curriculum Vitae reading system}. The purpose of it is to help the job recruiter to choose the best candidates for the available job positions by means of a measurement of similarity between texts: Curriculum Vitae of the candidates on the one hand, and keywords that refer to job positions on the other. The system will be developed using Python programming language and will allow to verify the developed theory. 
+This Engineering Thesis introduces an \textit{automatic Curriculum Vitae reading system}. The purpose of it is to help the job recruiter to choose the best candidates for the available job positions by means of a measurement of similarity between texts: Curriculum Vitae of the candidates on the one hand, and job descriptions on the other. The system is developed using the Python programming language allowing to verify the developed theory.
 
 \cleardoublepage    %Nueva página
 
@@ -143,19 +143,48 @@ This Engineering Thesis introduces an \textit{automatic Curriculum Vitae reading
 \cleardoublepage    %Nueva página
 
 \section{Introducción.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+El proceso de \textbf{selección de personal} se ha vuelto crucial para el manejo de recursos humanos en el mundo laboral moderno. Con la transformación digital de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textbf{Sector IT}. 
+
+En estos últimos años se implementaron una gran cantidad de \textbf{herramientas de Software que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva e inteligente}. Gracias a la ayuda de este tipo de sistemas, el reclutador consigue a los candidatos más cualificados para cada puesto.
+
+El tema de este Proyecto de Tesis será desarrollar un \textbf{Sistema de lectura automática de Curriculum Vitae} que ayude al reclutador laboral a elegir a los mejores candidatos para los puestos laborales que tenga disponible mediante una \textbf{medición de similitud} entre textos: los Curriculum Vitae de los candidatos por un lado, y las descripciones de puestos laborales por el otro.
+
+La medición de similitudes de documentos es uno de los problemas más cruciales del \textbf{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios, tales como recomendación de películas, libros o artículos similares, identificación de documentos plagiados o documentos legales, etc. 
+
+Para que las máquinas puedan descubrir esta similitud entre documentos, se necesita definir una forma de medir matemáticamente la similitud, la cual debe ser comparable para que la máquina pueda identificar qué documentos son más similares (o menos). Previamente a esto necesitamos representar el texto de los documentos en una forma cuantificable (que suele ser en forma vectorial), de modo que podamos realizar cálculos de similitud sobre él.
+
+Por lo tanto, los pasos necesarios para que las máquinas puedan medir la similitud entre documentos son:
+\begin{enumerate}
+\item Convertir un documento en un objeto matemático (vector).
+\item Definir y emplear una medida de similitud.
+\end{enumerate}
+
+Para el primer paso se utilizarán los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}; y para el segundo paso se emplearán las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover's Distance -WMD-}.
+
+\cleardoublepage    %Nueva página
 
 \subsection{Objetivos del Proyecto.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
 
 \subsubsection{Objetivo general.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+El objetivo de este Proyecto de Tesis es lograr la implementación de un Sistema de lectura automática de Curriculum Vitae accesible vía Web, que servirá para la elección de los mejores candidatos para cada puesto laboral; basándose en la \textbf{similitud} entre el Currículum Vitae del candidato y el puesto laboral. 
 
 \subsubsection{Objetivos específicos.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+Los objetivos específicos de este Proyecto de Tesis son:
+\begin{itemize}
+\item Describir el estado del arte actual de los Sistemas de lectura y análisis de Curriculum Vitae en Recruiting. 
+\item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral determinado.  
+\item Aprender los conceptos y técnicas principales utilizadas dentro del procesamiento de lenguaje natural (NLP) aplicando técnicas de preprocesamiento y limpieza de textos.
+\item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes algoritmos de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
+\item Evaluar los resultados de cada técnica y algoritmo e implementar la mejor solución en el Sistema.
+\item Evaluar los Frameworks disponibles para tener una UI accesible vía web e integrar el mismo al Sistema.
+\item Almacenar datos de Candidatos, Reclutadores y puestos laborales en una base de datos; contando con un sistema de login y registración para los mismos.
+\end{itemize} 
+
+
+\cleardoublepage    %Nueva página
 
 \subsection{Alcance del Proyecto.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, algoritmos de vectorización y técnicas para medir la similitud entre textos, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
 
 \subsection{Organización.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
@@ -169,8 +198,23 @@ Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto
 \subsection{Problemáticas.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
 
-\subsection{Sistemas de lectura y análisis de CV.}
+\subsection{Sistemas de lectura y análisis de CV : Estado del arte.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+
+\section{Aprendizaje supervisado y no supervisado en Machine Learning.}
+
+\subsection{Introducción.}
+Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+Los métodos que utilizaremos en este Proyecto de Tesis serán...
+
+\subsection{K-Nearest Neighbor (KNN).}
+K-Nearest Neighbor (o K Vecinos más Próximos en español), blablabal....
+
+\subsection{K-Means.}
+K-Means (o K-Medias en español), blablaba...
+
+\subsubsection{Elbow Method.}
+Elbow Method (o Método del codo en español), blablaba...
 
 \section{Natural Language Processing.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
@@ -208,11 +252,30 @@ Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto
 \section{Desarrollo.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
 
-\subsection{Esquema del sistema.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+\subsection{Introducción.}
+El desarrollo de este Sistema se realizó en Python...
 
-\subsection{Set de Datos.}
-Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
+\subsection{Esquema del sistema.}
+Como podemos ver en la figura \ref{fig:FlowCoreSystem}, blablaba. \\
+
+\begin{figure}[h]    %[h] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/flow-core.png} 	%Incluyendo imagen Flow Core.
+  \caption{Flow del Core del Sistema}  
+  \label{fig:FlowCoreSystem}
+\end{figure}
+
+\subsection{Set de datos.}
+Un Set o conjunto de datos es una tabla de una base de datos o, matemáticamente, una matriz estadística de datos. Cada columna de la tabla representa una variable del Data Set; y cada fila representa a un miembro determinado del conjunto de datos.
+
+Previamente a utilizar algoritmos de ......
+necesitamos que los datos estén limpios, por esta razón es importantísimo manipular y analizar estos
+datos en una primera instancia para luego si, meter estos datos limpios en los algoritmos y que estos
+funcionen correctamente; ya que de lo contrario las máquinas podrían clasificar o predecir de forma
+errónea. Este análisis previo sobre los datos debe ser minucioso ya que puede haber valores
+incoherentes o absurdos.
+
+Para este Proyecto utilizamos dos grandes sets de datos, descriptos a continuación.
 
 \subsubsection{Curriculum Vitae.}
 Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo. Texto ejemplo.
