@@ -5,14 +5,15 @@
 \contentsline {subsubsection}{\numberline {1.1.2}Objetivos específicos.}{6}{subsubsection.1.1.2}%
 \contentsline {subsection}{\numberline {1.2}Alcance del Proyecto.}{7}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Organización.}{7}{subsection.1.3}%
-\contentsline {section}{\numberline {2}Reclutamiento laboral en IT.}{9}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Introducción.}{9}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Problemáticas.}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Sistemas de lectura y análisis de CV : Estado del arte.}{9}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Aprendizaje supervisado y no supervisado en Machine Learning.}{9}{section.3}%
+\contentsline {section}{\numberline {2}Reclutamiento laboral en IT.}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Introducción.}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Sistemas de lectura y análisis de CV : Estado del arte.}{8}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Problemáticas.}{9}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Trabajos relacionados.}{9}{subsubsection.2.2.2}%
+\contentsline {section}{\numberline {3}Algoritmos de Machine Learning.}{9}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Introducción.}{9}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}K-Nearest Neighbor (KNN).}{9}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}K-Means.}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}K-Means.}{10}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Elbow Method.}{10}{subsubsection.3.3.1}%
 \contentsline {section}{\numberline {4}Natural Language Processing.}{10}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Introducción.}{10}{subsection.4.1}%
@@ -20,36 +21,34 @@
 \contentsline {subsection}{\numberline {4.3}Similitud entre textos.}{10}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Técnicas para medir Similitud entre textos.}{10}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Cosine Similarity.}{10}{subsubsection.4.4.1}%
-\contentsline {subsubsection}{\numberline {4.4.2}Word Mover's Distance (WMD).}{10}{subsubsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.5}Algoritmos de vectorización.}{10}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}TF-IDF.}{10}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Word Mover's Distance (WMD).}{11}{subsubsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.5}Algoritmos de vectorización.}{11}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}TF-IDF.}{11}{subsubsection.4.5.1}%
 \contentsline {subsubsection}{\numberline {4.5.2}Word Embeddings.}{11}{subsubsection.4.5.2}%
 \contentsline {paragraph}{\numberline {4.5.2.1}¿Cómo entrenar Word Embeddings?}{11}{paragraph.4.5.2.1}%
-\contentsline {section}{\numberline {5}Desarrollo.}{11}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Obtención del modelo predictivo.}{11}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{11}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{11}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{11}{subsubsection.5.1.3}%
-\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{12}{paragraph.5.1.3.1}%
-\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{12}{paragraph.5.1.3.2}%
+\contentsline {section}{\numberline {5}Implementación.}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Obtención del modelo predictivo.}{12}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{12}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{12}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{13}{subsubsection.5.1.3}%
+\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{13}{paragraph.5.1.3.1}%
+\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{13}{paragraph.5.1.3.2}%
 \contentsline {subsubsection}{\numberline {5.1.4}Preprocesamiento y limpieza de datos.}{13}{subsubsection.5.1.4}%
-\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{13}{subsubsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{14}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Armado del modelo predictivo KNN.}{14}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Predicción de nuevas muestras y resultados obtenidos.}{14}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{14}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Framework Web.}{15}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Base de datos.}{15}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Roles y Usuarios.}{15}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Manejo de los datos.}{15}{subsubsection.5.5.4}%
-\contentsline {paragraph}{\numberline {5.5.4.1}Modelado.}{15}{paragraph.5.5.4.1}%
-\contentsline {paragraph}{\numberline {5.5.4.2}Filtrado.}{15}{paragraph.5.5.4.2}%
-\contentsline {paragraph}{\numberline {5.5.4.3}Visualización.}{15}{paragraph.5.5.4.3}%
-\contentsline {subsection}{\numberline {5.6}Conclusiones.}{15}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Caso de Uso.}{15}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Limitaciones del sistema.}{15}{subsection.5.8}%
-\contentsline {section}{\numberline {6}Próximos pasos.}{16}{section.6}%
-\contentsline {section}{\numberline {7}Glosario.}{16}{section.7}%
-\contentsline {section}{\numberline {8}Anexo.}{16}{section.8}%
-\contentsline {section}{\numberline {9}Bibliografía.}{16}{section.9}%
-\contentsline {section}{\numberline {10}Agradecimientos.}{16}{section.10}%
+\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{14}{subsubsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Armado del modelo predictivo KNN.}{16}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Predicción de nuevas muestras y resultados obtenidos.}{16}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{16}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{16}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{16}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{19}{subsubsection.5.5.3}%
+\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{19}{paragraph.5.5.3.1}%
+\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{19}{paragraph.5.5.3.2}%
+\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{19}{paragraph.5.5.3.3}%
+\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{19}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Conclusiones.}{20}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Caso de Uso.}{20}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Limitaciones del sistema.}{20}{subsection.5.9}%
+\contentsline {section}{\numberline {6}Próximos pasos.}{20}{section.6}%
+\contentsline {section}{\numberline {7}Glosario.}{20}{section.7}%
+\contentsline {section}{\numberline {8}Anexos.}{20}{section.8}%
