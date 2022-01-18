@@ -474,7 +474,6 @@ Como mencionamos previamente, como algoritmos de vectorización se utilizarán T
 
 Como mencionamos, el Sistema se integrará a un framework para tener una UI accesible.
 El framework Web utilizado será..... COMPLETAR.
-E
 
 
 ; y se tendrán 2 tipos de usuario: 
@@ -485,7 +484,56 @@ Y los Candidatos …..COMPLETAR.
 
 
 \subsubsection{Base de datos.}
-\colorbox{red}{FALTA}
+
+La base de datos que se utilizó para representar nuestros datos fue \colorbox{red}{FALTA}. \\
+\colorbox{red}{Sacar la mayoría del documento modelo-entidad-relacion-case-method-richar-barker.pdf} 
+     
+Para comprender los datos que se manejan en dicha base de datos, los representaremos utilizando un diagrama entidad relación \footnote{Un modelo entidad-relación es una herramienta para el modelo de datos, la cual facilita la representación de entidades de una base de datos.}.
+Previamente a esto explicaremos los elementos del diagrama de entidad relación: \\
+\colorbox{red}{FALTA PONER IMAGEN CON LOS ELEMENTOS: Entidad rectángulo, Unión entre entidades son} \\ \colorbox{red}{las lineas que puede ser obligatoria u opcional, cardinalidad son los 1:M / 1:1 / M:M}
+
+\begin{itemize}
+\item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo una entidad puede ser un alumno, un cliente, una empresa, etc. Dentro de las entidades estan los atributos, atributos principales o clave primaria (PK) y atributos foraneos o clave secundaria (FK).  Las entidades que necesitamos para crear nuestra BD son: Candidato, Puesto, Reclutador y Candidato\_Puesto -entidad intermedia entre Candidato y Puesto-.
+\item Unión entre entidades: pueden ser obligatorias u opcionales. En nuestro diagrama nuestras uniones son todas opcionales, ya que el reclutador puede o no CARGAR un Puesto, el Candidato puede o no APLICAR a un Puesto y a su vez el Puesto puede o no ser aplicado por un Candidato. 
+\item Cardinalidad: Relación entre entidades o mapeo. La cardinalidad es el tipo de relación entre entidades. Observando la figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
+
+\begin{enumerate}
+\item Uno a uno: a cada entidad azul le corresponde solo una entidad naranja.
+\item Uno a muchos: a cada entidad azul le corresponde una o varias entidades naranjas.
+\item Muchos a uno: a cada entidad naranja le corresponde una o varias entidades azules.
+\item Muchos a muchos: las entidades azules pueden tener varias entidades naranjas y las entidades naranjas también pueden tener varias entidades azules.
+\end{enumerate}
+\end{itemize}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/Cardinalidad.png}
+  \caption{Tipos de cardinalidad.}  
+  \label{fig:Cardinalidad}
+\end{figure}
+
+La cardinalidad entre nuestras entidades son:
+\begin{itemize}
+\item Entre Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un Candidato puede aplicar a M Puestos y un Puestos puede ser aplicado por M Candidatos. Es por esto que se creó la tabla intermedia Candidato\_Puesto conllevando dos relaciones uno a muchos (1:M) con Puesto y Candidato.
+\item Entre Reclutador y Puesto existe una relación de uno a muchos (1:M), ya que un Reclutador puede cargar M Puestos, y un Puesto pertenece a un solo Reclutador.
+\end{itemize}
+
+En cuanto a las claves pueden haber dos tipos. Por un lado está la clave primaria o atributo principal (PK)  es única y toda entidad debe tener la suya. Pueden haber múltiples PKs; estas se llaman PKs compuestas. Y por el otro está la clave secundaria o atributo foráneo (FK). Estas claves identifican a una entidad externa en otra, utilizándose para generar relaciones entre nuestras entidades. Si tenemos una clave FK en una entidad, significa que dicha clave FK es clave PK en otra entidad.
+
+
+El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la figura \ref{fig:Entity_Relation}.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/BD_Entity_Relation.png}
+  \caption{Diagrama de relación utilizado.}  
+  \label{fig:Entity_Relation}
+\end{figure}
+
+
+
+
+
 
 \subsubsection{Secciones del sistema}
 
