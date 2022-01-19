@@ -185,7 +185,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes algoritmos de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
 \item Evaluar los resultados de cada técnica y algoritmo e implementar la mejor solución en el Sistema.
 \item Evaluar los Frameworks disponibles para tener una UI accesible vía web e integrar el mismo al Sistema.
-\item Almacenar datos de Candidatos, Reclutadores y puestos laborales en una base de datos; contando con un sistema de login y registración para los mismos.
+\item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos; contando con un sistema de login y registración para los mismos.
 \end{itemize} 
 
 \cleardoublepage    %Nueva página
@@ -194,42 +194,56 @@ Los objetivos específicos de este Proyecto de Tesis son:
 El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, algoritmos de vectorización y técnicas para medir la similitud entre textos, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
 
 \subsection{Organización.}
-Este Proyecto de Tesis consiste en tres grandes secciones:
-\begin{enumerate}
+Este Proyecto de Tesis fue organizado para trabajarlo en tres secciones:
 
-\item Análisis e investigación inicial. Esta sección abarca principalmente la parte teórica del trabajo, haciendo hincapié en el análisis e investigación de:
+\begin{enumerate}
+\item Análisis e investigación inicial. \\
+
+Esta sección abarca principalmente la parte teórica del trabajo, haciendo hincapié en el análisis e investigación de:
 \begin{itemize}
 	\item El estado del arte (actual y pasado) de los sistemas de lectura y análisis de Curriculum Vitae.
 	\item Técnicas usadas para el procesamiento del lenguaje natural (NLP).
 	\item Técnicas para medir similitudes entre textos: Cosine Similarity y WMD.
-	\item Algoritmos de Vectorización: .... y .... .
+	\item Algoritmos de Vectorización: TF-IDF y Word Embeddings.
 	\item Algoritmos de Machine Learning de aprendizaje supervisado (KNN) y no supervisado (K-means).
 \end{itemize} 
 
-\item Investigación e implementación del algoritmo core del sistema. Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, la cual abarca:
+Esta primera sección abarca los capítulos \textit{\nameref{2.ReclutamientolaboralenIT}}, \textit{\nameref{3.AlgoritmosdeMachineLearning}} y \textit{\nameref{4.NaturalLanguageProcessing}} de este Informe de Tesis. \\
+
+\item Investigación e implementación de distintas técnicas y algoritmos para la obtención del modelo predictivo KNN. \\
+
+Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo predictivo KNN capaz de predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles.  Esta sección abarca los siguientes items:
+
 \begin{itemize}
 	\item Obtención de sets de datos: curriculums vitaes y descripciones laborales. 
 	\item Preprocesamiento de los textos.
-	\item Implementación del algoritmo CORE: utilizando las técnicas para medir similitudes entre textos (... y ....), algoritmos de vectorización (... y ...) y los algoritmos de ... (KNN y K-means).
-	\item Pruebas entre distintas técnicas y librerías disponibles. 
+	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
+	\item Obtención del modelo predictivo KNN utilizando el algoritmo K-means en base a las mediciones de similitud previamente realizadas.
 	\item Análisis y primeras visualizaciones de los resultados.
 \end{itemize} 
-	
-\item Investigación e implementación de la parte funcional del sistema. Esta última sección abarca lo que es la interfaz de usuario y su integración a un sistema web capaz de manejar las actividades entre los Candidatos y Reclutadores dentro del sistema. Los items principales son:
+ 
+Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \textit{\nameref{5.1.Obtenciondelmodelopredictivo}} hasta \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}) de este Informe de Tesis. \\
+
+\item Investigación e integración al sistema web.\\
+
+Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
+y su integración a un sistema web capaz de manejar las actividades entre los Candidatos y Reclutadores dentro del sistema. Los items principales son:
 \begin{itemize}
-	\item Definición de usuarios y roles.
+	\item Definición de los usuarios que accederán al sistema.
+	\item Definición de los datos que se almacenarán.
 	\item Integración de frameworks y bases de datos.  
 	\item Modelado, filtrado y visualización de los datos.
+	\item Evaluación del funcionamiento de todo el Sistema integrado.
 \end{itemize} 
 
 \end{enumerate}
 
-\colorbox{red}{VER si poner de primero hacer análisis en Jupyter notebooks -sección 2-}\\
-\colorbox{red}{y despues la parte web en django integrando estos jupyters -sección 3-}\\
+Esta última sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \textit{\nameref{5.5.IntegracionalSistemaWeb}} hasta el final del capítulo) de este Informe de Tesis.
 
 \cleardoublepage    %Nueva página
 
-\section{Reclutamiento laboral en IT.}
+\section{Reclutamiento laboral en IT.}\label{2.ReclutamientolaboralenIT}
+
 En este capítulo se va a realizar una introducción a la historia del Reclutamiento laboral, especialmente en el sector de IT, sus etapas y problemáticas.
 Luego se realizará un análisis del Estado de Arte actual de los Sistemas de lectura y análisis de CV actuales.
 
@@ -256,7 +270,10 @@ Hay varios enfoques para realizar esta tarea:
 El enfoque número 2 será el utilizado para el sistema desarrollado para este Proyecto de Tesis.
 Se decidió utilizar este enfoque...
 
+\cleardoublepage
+
 \subsubsection{Problemáticas.}
+
 \colorbox{red}{FALTA}
 Habiendo realizado la comparación con cualquiera de los enfoques previamente descriptos, los currículums son difíciles de analizar. Esto se debe a que varían en los tipos de información, su orden, estilo de escritura, etc.
 
@@ -280,10 +297,10 @@ A su vez, en el enfoque utilizado, pueden haber muchos más sub-enfoques?: (ver 
             -Enfoque Deep Learning: USE y  BERT... y aca tambien entraría el word movers.--> Granted, if you want to do other tasks such as sentiment analysis or classification, deep learning should suit your job.
 
 
+\cleardoublepage
 
+\section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
-
-\section{Algoritmos de Machine Learning.}
 Para comenzar el marco teórico de esta tesis, es necesario explicar qué es Machine Learning y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje. 
 En este capítulo se va a explicar el objetivo del aprendizaje supervisado y no supervisado en Machine Leanring haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
 
@@ -295,25 +312,40 @@ Los métodos que utilizaremos en este Proyecto de Tesis serán...
 \colorbox{red}{FALTA}
 K-Nearest Neighbor (o K Vecinos más Próximos en español), blablabal....
 
+\cleardoublepage
+
 \subsection{K-Means.}
 \colorbox{red}{FALTA}
 K-Means (o K-Medias en español), blablaba...
+
+\cleardoublepage
 
 \subsubsection{Elbow Method.}
 \colorbox{red}{FALTA}
 Elbow Method (o Método del codo en español), blablaba...
 
-\section{Natural Language Processing.}
+\cleardoublepage
+
+\section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
+
 \colorbox{red}{FALTA}
+
+\cleardoublepage
 
 \subsection{Introducción.}
 \colorbox{red}{FALTA}
 
+\cleardoublepage
+
 \subsection{Preprocesamiento de textos.}
 \colorbox{red}{FALTA}
 
+\cleardoublepage
+
 \subsection{Similitud entre textos.}
 \colorbox{red}{FALTA}
+
+\cleardoublepage
 
 \subsection{Técnicas para medir Similitud entre textos.}
 \colorbox{red}{FALTA}
@@ -323,11 +355,14 @@ Elbow Method (o Método del codo en español), blablaba...
 
 Cosine Similarity se basa en la medición del coseno del ángulo entre dos vectores proyectados en un espacio multidimensional para lograr medir la similitud de los documentos (un menor ángulo indica una mayor similitud). En este contexto, estos dos vectores representan matrices que contienen el recuento de palabras de dos documentos. Una de sus limitaciones es que  no tiene la habilidad de reconocer si las palabras que compara son semánticamente similares.
 
+\cleardoublepage
+
 \subsubsection{Word Mover's Distance (WMD).}
 \colorbox{red}{FALTA}
 
 Anteriormente, mencionamos que una de las limitaciones de Cosine Similarity es que no tiene habilidad de reconocer si las palabras que compara son semánticamente similares. En cambio, Word Mover's Distance (WMD) es un algoritmo más complejo que sí permite reconocer las relaciones semánticas; su limitación son las relaciones sintácticas (VER.........). WMD se basa en word embeddings y permite medir la distancia entre documentos (una menor distancia indica una mayor similitud).
 
+\cleardoublepage
 
 \subsection{Algoritmos de vectorización.}
 \colorbox{red}{FALTA}
@@ -340,23 +375,34 @@ Como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings.
 
 El algoritmo TF-IDF asigna valores numéricos a las palabras en función de la frecuencia con que aparecen en los textos para medir la frecuencia de ocurrencia de un término en la colección de documentos, expresando  cuán relevante es una palabra para un documento en una colección. 
 
+\cleardoublepage
+
 \subsubsection{Word Embeddings.}
 \colorbox{red}{FALTA}
 
 Los Word Embeddings son necesarios para utilizar WMD.
 Los Word Embeddings son una de las variantes más populares para representar textos.  Son vectores previamente entrenados y generados mediante un modelo de red neuronal secuencial; de esta manera son capaces de capturar los contextos de una palabra en el documento llegando a poder contener información semántica y sintáctica. 
 
+\cleardoublepage
+
 \paragraph{¿Cómo entrenar Word Embeddings?}
 \colorbox{red}{FALTA}
 
-\section{Implementación.}
-\colorbox{red}{FALTA}
+\cleardoublepage
+
+\section{Implementación.}\label{5.Implementacion}
+
 La implementación de este Sistema se trabajó en dos grandes partes:
-	1-Obtención del modelo predictivo. En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos Candidatos y Descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de aprendizaje (KNN y K-Means) anteriormente mencionados. De esta manera, el resultado final es la obtención de un modelo predictivo capaz de predecir nuevas muestras (en nuestro caso, predecir nuevos Candidatos para los distintos puestos laborales de IT disponibles).
-		
-	2-Integración al Sistema Web: Esta fue una etapa posterior a la primera parte, donde se integró el modelo junto con la lógica de los algoritmos utilizados, a un Sistema Web. De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre Candidatos y Reclutadores. 
-	
-\subsection{Obtención del modelo predictivo.}
+\begin{enumerate}
+\item Obtención del modelo predictivo. En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).\\
+Por último se obtuvo el modelo predictivo KNN utilizando el algoritmo K-means en base a las mediciones de similitud previamente realizadas. De esta manera, el resultado final es la obtención de un modelo predictivo capaz de predecir nuevas muestras (en nuestro caso, predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles). \\
+Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python; y sirvieron para evaluar el comportamiento del modelo predictivo y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. 
+\item Integración al Sistema Web: Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django \footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
+\end{enumerate}
+
+\cleardoublepage
+
+\subsection{Obtención del modelo predictivo.}\label{5.1.Obtenciondelmodelopredictivo}
 
 \subsubsection{Introducción.}
 Como inicio definamos qué es un modelo. En nuestro caso, un modelo representa ....
@@ -370,9 +416,11 @@ Como podemos ver la figura \ref{fig:FlowCoreSystem} representa el procedimiento 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/flow-core.png} 	%Incluyendo imagen Flow Core.
-  \caption{Pipeline Flow del Core del Sistema}  
+  \caption{Pipeline Flow para la obtención del modelo predictivo KNN}  
   \label{fig:FlowCoreSystem}
 \end{figure}
+
+\cleardoublepage
 
 \subsubsection{Obtención de sets de datos.}
 En primer lugar debemos definir qué es un set o conjunto de datos.
@@ -381,12 +429,12 @@ Un set o conjunto de datos es una tabla de una base de datos o, matemáticamente
 Para este Proyecto utilizamos dos grandes sets de datos que se obtuvieron mediante la recolección de distintos archivos alojados en la Web, los cuales estan descriptos a continuación.
 
 \paragraph{Curriculum Vitae.}
-Los set de datos de Curriculum Vitae de Candidatos se obtuvieron de las siguientes fuentes:
+Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las siguientes fuentes:
 
 \begin{enumerate}
-\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle (https://www.kaggle.com/palaksood97/resume-dataset). Estos pdfs son Candidatos de la India con experiencia en el rubro de IT.
-\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle (https://www.kaggle.com/snehaanbhawal/resume-dataset). Este CSV cuenta con CVs obtenidos del sitio web de postulación de trabajos 'livecareer.com'.
-\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle (https://www.kaggle.com/gauravduttakiit/resume-dataset). Este CSV cuenta con CVs repartidos en distintas categorías de IT.
+\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle\footnote{https://www.kaggle.com/palaksood97/resume-dataset}. Estos pdfs son candidatos de la India con experiencia en el rubro de IT.
+\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle\footnote{https://www.kaggle.com/snehaanbhawal/resume-dataset}. Este CSV cuenta con CVs obtenidos del sitio web de postulación de trabajos 'livecareer.com'.
+\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle\footnote{https://www.kaggle.com/gauravduttakiit/resume-dataset}. Este CSV cuenta con CVs repartidos en distintas categorías de IT.
 \item 10 Curriculums en formato PDF, los cuales los cuales fueron obtenidos como ejemplos mediante una recolección propia de distintos sitios web. 
 \end{enumerate}
 
@@ -395,10 +443,11 @@ Los set de datos de Curriculum Vitae de Candidatos se obtuvieron de las siguient
 Los set de datos de descripciones de puestos laborales se obtuvieron de las siguientes fuentes:
 
 \begin{enumerate}
-\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle (https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom). El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'.
-\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed (https://www.indeed.com/q-USA-jobs.html) para puestos de trabajo de IT.
+\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle\footnote{https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom}. El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'.
+\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed\footnote{https://www.indeed.com/q-USA-jobs.html} para puestos de trabajo de IT.
 \end{enumerate}
- 
+
+\cleardoublepage
 
 \subsubsection{Preprocesamiento y limpieza de datos.}
 Previamente a utilizar las técnicas para medir distancias y obtener similitudes entre textos (WMD y Cosine Similarity) y los algoritmos de aprendizaje (KNN y K-Means) necesitamos que los datos que comparemos e introduzcamos en los algoritmos estén lo más limpios posible; ya que de lo contrario las mismos podrían clasificar o predecir de forma errónea. Este análisis previo sobre los datos debe ser minucioso ya que puede haber valores incoherentes o absurdos.
@@ -418,34 +467,36 @@ El procedimiento para la Limpieza de los Curriculum Vitae y las descripciones de
 
 Luego de aplicar preprocesamiento y limpieza de datos nos quedarán los siguientes tamaños de nuestros datasets:
 \begin{itemize}
-\item 624 CVs de Candidatos (en formato pdf y csv).
-\item 20593 Descripciones de Puestos de IT (en formato csv).
+\item 624 CVs de candidatos (en formato pdf y csv).
+\item 20593 descripciones de puestos de IT (en formato csv).
 \end{itemize}
+
+\cleardoublepage
 
 \subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}
 
-El total de CVs de Candidatos (624) y Descripciones de Puestos de IT (20593) que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el futuro cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word Embeddings (para el futuro cálculo de WMD).
+El total de 624 CVs de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word Embeddings (para el posterior cálculo de WMD).
 
 Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-means y para entrenar a nuestro algoritmo KNN, utilizaremos únicamente una porción de nuestros datasets:
 
 1-Para el cálculo de Cosine Similarity y WMD:
 \begin{itemize}
-\item 301 CVs de Candidatos.
-\item 201 Descripciones de Puestos de IT.
+\item 301 CVs de candidatos.
+\item 201 descripciones de puestos de IT.
 \end{itemize}
 Nota: No obstante, al realizar los cálculos de distancias compararemos cada CV con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Sim.
 
-2-Para el uso de K-means y entrenamiento con KNN (eliminamos un CV y una Descripción de Puesto IT que los utilizamos en '3-'):
+2-Para el uso de K-means y entrenamiento con KNN (eliminamos un CV y una descripción de puesto IT que los utilizamos en '3-'):
 \begin{itemize}
-\item 300 CVs de Candidatos.
-\item 200 Descripciones de Puestos de IT.
+\item 300 CVs de candidatos.
+\item 200 descripciones de puestos de IT.
 \end{itemize}        
 Nota: como se comentó previamente, nos quedarán 3000 filas / puntos para usar en K-means y entrenar KNN; llegando a representar estos 3000 puntos en un plano de 2 dimensiones.
 
 3-Para la clasificación de nuevas muestras prediciendo con KNN:
 \begin{itemize}
-\item 1 CV de Candidatos.
-\item 1 Descripción de Puesto de IT.
+\item 1 CV de candidatos.
+\item 1 descripción de puesto de IT.
 \end{itemize}
 Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.
 
@@ -456,45 +507,57 @@ Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.
 \end{itemize}
 En conclusión, al utilizar solo una porción de nuestros datasets para obtener los distintos cálculos de distancias y entrenar KNN, el cálculo de WMD se podrá realizar en un tiempo finito, y nuestro clasificador KNN funcionará rápida y eficientemente al realizar predicciones.
 
+\cleardoublepage
+
 \subsection{Comparando textos y obteniendo similitudes.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WDM para (-----completar-----) se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
-Como mencionamos previamente, como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings.
+Previamente a utilizar Cosine Similarity y WDM para obtener las medidas de similitud entre los textos, se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings. 
 
+\cleardoublepage
 
 \subsection{Armado del modelo predictivo KNN.}
 \colorbox{red}{FALTA}
 
-\subsection{Predicción de nuevas muestras y resultados obtenidos.}
+Luego de haber obtenido las medidas de similitud entre los textos, se utilizan los algoritmos de aprendizaje KNN y K-means para obtener un modelo predictivo KNN capaz de predecir nuevas muestras (en nuestro caso, predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles).
+
+\cleardoublepage
+
+\subsection{Predicción de nuevas muestras y resultados obtenidos.}\label{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}
+
 \colorbox{red}{FALTA}
 
-\subsection{Integración al Sistema Web.}
+\cleardoublepage
+
+\subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
 \colorbox{red}{FALTA}
 
-Como mencionamos, el Sistema se integrará a un framework para tener una UI accesible.
-El framework Web utilizado será..... COMPLETAR.
+Anteriormente lo que se hizo fue un análisis mediate documentos en Jupyter Notebooks para evaluar el comportamiento del modelo predictivo y los distintos algoritmos de medición de similitudes. \\
+Al observar que los resultados fueron los esperables, lo que se hizo en esta última etapa fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos en la fase previa, para integrar todo esto en el sistema Web. \\
+Como mencionamos previamente, este sistema web está realizado en Django, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. \\
+De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto).  \\
 
+El sistema web contará con 2 tipos de usuario: 
+\begin{itemize}
+\item Candidato: quienes cargarán en el sistema sus Curriculum Vitae y aplicarán a los distintos puestos disponibles.
+\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un TOP de los 'N' mejores candidatos para un puesto específico (siempre y cuando los candidatos hayan aplicado a dicho puesto).
+\end{itemize}
 
-; y se tendrán 2 tipos de usuario: 
-*  Reclutador. 
-*  Candidatos.
-Los Reclutadores cargarán en el Sistema los puestos de trabajo que tengan disponibles.
-Y los Candidatos …..COMPLETAR.
-
+\cleardoublepage
 
 \subsubsection{Base de datos.}
 
-La base de datos que se utilizó para representar nuestros datos fue \colorbox{red}{FALTA}. \\
+Nuestros datos los almacenaremos en una base de datos \colorbox{red}{FALTA definir cual}. \\
+Para modelar y gestionar nuestros datos utilizamos el modelo relacional \footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.}.\\
 \colorbox{red}{Sacar la mayoría del documento modelo-entidad-relacion-case-method-richar-barker.pdf} 
-     
-Para comprender los datos que se manejan en dicha base de datos, los representaremos utilizando un diagrama entidad relación \footnote{Un modelo entidad-relación es una herramienta para el modelo de datos, la cual facilita la representación de entidades de una base de datos.}.
+
+Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación \footnote{Un modelo entidad-relación es una herramienta para el modelo de datos, la cual facilita la representación de entidades de una base de datos.}.
 Previamente a esto explicaremos los elementos del diagrama de entidad relación: \\
 \colorbox{red}{FALTA PONER IMAGEN CON LOS ELEMENTOS: Entidad rectángulo, Unión entre entidades son} \\ \colorbox{red}{las lineas que puede ser obligatoria u opcional, cardinalidad son los 1:M / 1:1 / M:M}
 
 \begin{itemize}
 \item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo una entidad puede ser un alumno, un cliente, una empresa, etc. Dentro de las entidades estan los atributos, atributos principales o clave primaria (PK) y atributos foraneos o clave secundaria (FK).  Las entidades que necesitamos para crear nuestra BD son: Candidato, Puesto, Reclutador y Candidato\_Puesto -entidad intermedia entre Candidato y Puesto-.
-\item Unión entre entidades: pueden ser obligatorias u opcionales. En nuestro diagrama nuestras uniones son todas opcionales, ya que el reclutador puede o no CARGAR un Puesto, el Candidato puede o no APLICAR a un Puesto y a su vez el Puesto puede o no ser aplicado por un Candidato. 
+\item Unión entre entidades: pueden ser obligatorias u opcionales. En nuestro diagrama nuestras uniones son todas opcionales, ya que el reclutador puede o no CARGAR un puesto, el candidato puede o no APLICAR a un puesto y a su vez el puesto puede o no ser aplicado por un candidato. 
 \item Cardinalidad: Relación entre entidades o mapeo. La cardinalidad es el tipo de relación entre entidades. Observando la figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
 
 \begin{enumerate}
@@ -514,8 +577,8 @@ Previamente a esto explicaremos los elementos del diagrama de entidad relación:
 
 La cardinalidad entre nuestras entidades son:
 \begin{itemize}
-\item Entre Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un Candidato puede aplicar a M Puestos y un Puestos puede ser aplicado por M Candidatos. Es por esto que se creó la tabla intermedia Candidato\_Puesto conllevando dos relaciones uno a muchos (1:M) con Puesto y Candidato.
-\item Entre Reclutador y Puesto existe una relación de uno a muchos (1:M), ya que un Reclutador puede cargar M Puestos, y un Puesto pertenece a un solo Reclutador.
+\item Entre Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un candidato puede aplicar a M puestos y un puesto puede ser aplicado por M candidatos. Es por esto que se creó la tabla intermedia Candidato\_Puesto conllevando dos relaciones uno a muchos (1:M) con Puesto y Candidato.
+\item Entre Reclutador y Puesto existe una relación de uno a muchos (1:M), ya que un reclutador puede cargar M puestos, y un puesto pertenece a un solo reclutador.
 \end{itemize}
 
 En cuanto a las claves pueden haber dos tipos. Por un lado está la clave primaria o atributo principal (PK)  es única y toda entidad debe tener la suya. Pueden haber múltiples PKs; estas se llaman PKs compuestas. Y por el otro está la clave secundaria o atributo foráneo (FK). Estas claves identifican a una entidad externa en otra, utilizándose para generar relaciones entre nuestras entidades. Si tenemos una clave FK en una entidad, significa que dicha clave FK es clave PK en otra entidad.
@@ -530,7 +593,7 @@ El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la
   \label{fig:Entity_Relation}
 \end{figure}
 
-
+\cleardoublepage
 
 
 
@@ -570,22 +633,32 @@ Por su parte, el Reclutador tendrá acceso al menú indicado en la figura \ref{f
 
 \colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
 
+\cleardoublepage
+
 \subsubsection{Manejo de los datos.}
 \colorbox{red}{FALTA}
+
+\cleardoublepage
 
 \paragraph{Modelado.}
 \colorbox{red}{FALTA}
 
+\cleardoublepage
+
 \paragraph{Filtrado.}
 \colorbox{red}{FALTA}
+
+\cleardoublepage
 
 \paragraph{Visualización.}
 \colorbox{red}{FALTA}
 
+\cleardoublepage
+
 \subsection{Pipeline Flow final del Sistema.}
 \colorbox{red}{FALTA}
 
-Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado final un TOP de los 3 mejores candidatos para el puesto solicitado (considerando que dichos candidatos hayan aplicado a dicho puesto). 
+Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado final un TOP de los 'N' mejores candidatos para el puesto consultado (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -594,23 +667,31 @@ Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:
   \label{fig:Pipeline_Final}
 \end{figure}
 
+\cleardoublepage
+
 \subsection{Conclusiones.}
 \colorbox{red}{FALTA}
+
+\cleardoublepage
 
 \subsection{Caso de Uso.}
 \colorbox{red}{FALTA}
 
+\cleardoublepage
+
 \subsection{Limitaciones del sistema.}
 \colorbox{red}{FALTA}
- 
+
+\cleardoublepage
+
 \section{Próximos pasos.}  
 \colorbox{red}{FALTA - acá poner mejoras}
 
-\section{Glosario.}
-\colorbox{red}{FALTA}
+\cleardoublepage
 
 \section{Anexos.}
 \colorbox{red}{FALTA}
+
 \cleardoublepage
 
 
@@ -623,9 +704,4 @@ Autor1, \& Autor2. (Año, mes). \textit{TITULO}. Año y conferencia (pp. 0971-09
 
 
 \end{document}
-
-
-%Para poner pie de paginas --> \footnote{Un conjunto de datos, conocido también como dataset, es una colección de datos habitualmente tabulada.})
-
 %Para poner en Las citas del anexo --> información\cite{iot}. 
-
