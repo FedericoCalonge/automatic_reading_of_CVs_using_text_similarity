@@ -125,7 +125,7 @@
     
 \end{center}
 
-En la Tesis de Ingeniería en Informática que se presenta, se diseña un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de Machine Learning y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
+En la Tesis de Ingeniería en Informática que se presenta, se diseña un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de \textit{machine learning} y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
 El sistema esta desarrollado utilizando el lenguaje de programación Python, permitiendo verificar la teoría desarrollada.
 
 \begin{center}
@@ -134,7 +134,7 @@ El sistema esta desarrollado utilizando el lenguaje de programación Python, per
     \textbf{Abstract}
 \end{center}
 
-This Computer Engineering Thesis introduces an \textit{automatic Curriculum Vitae reading system} accesible via the Web. The purpose of it is to help the job recruiter to choose the best candidates for the available IT job positions. This choice is made through the use of Machine Learning algorithms and based mainly on a measurement of similarity between texts: Curriculum Vitae of the candidates on the one hand, and IT job descriptions on the other hand.
+This Computer Engineering Thesis introduces an \textit{automatic Curriculum Vitae reading system} accesible via the Web. The purpose of it is to help the job recruiter to choose the best candidates for the available IT job positions. This choice is made through the use of \textit{machine learning} algorithms and based mainly on a measurement of similarity between texts: Curriculum Vitae of the candidates on the one hand, and IT job descriptions on the other hand.
 The system is developed using the Python programming language allowing to verify the developed theory.
 
 \cleardoublepage    %Nueva página
@@ -162,7 +162,7 @@ Por lo tanto, los pasos necesarios para que las máquinas puedan medir la simili
 
 Para el primer paso se utilizarán los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}; y para el segundo paso se emplearán las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover's Distance -WMD-}.
 
-Una vez obtenidos estos valores de .... lo que se hará es .... (KNN y K-MEANS).
+Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentará a un modelo de clasificación KNN. Finalmente este modelo KNN nos servirá para lograr, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
 \cleardoublepage    %Nueva página
 
@@ -183,7 +183,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral de IT determinado.  
 \item Aprender los conceptos y técnicas principales utilizadas dentro del procesamiento de lenguaje natural (NLP) aplicando técnicas de preprocesamiento y limpieza de textos.
 \item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes algoritmos de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
-\item Evaluar los resultados de cada técnica y algoritmo e implementar la mejor solución en el Sistema.
+\item Conocer, implementar e integrar el algoritmo de clustering K-means junto al algoritmo de clasificación KNN para obtener un modelo de clasificación de candidatos en base a las medidas de similitud entre los textos.
 \item Evaluar los Frameworks disponibles para tener una UI accesible vía web e integrar el mismo al Sistema.
 \item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos; contando con un sistema de login y registración para los mismos.
 \end{itemize} 
@@ -191,13 +191,13 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \cleardoublepage    %Nueva página
 
 \subsection{Alcance del Proyecto.}
-El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, algoritmos de vectorización y técnicas para medir la similitud entre textos, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
+El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, algoritmos de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
 
 \subsection{Organización.}
 Este Proyecto de Tesis fue organizado para trabajarlo en tres secciones:
 
 \begin{enumerate}
-\item Análisis e investigación inicial. \\
+\item Análisis e investigación inicial. 
 
 Esta sección abarca principalmente la parte teórica del trabajo, haciendo hincapié en el análisis e investigación de:
 \begin{itemize}
@@ -205,28 +205,28 @@ Esta sección abarca principalmente la parte teórica del trabajo, haciendo hinc
 	\item Técnicas usadas para el procesamiento del lenguaje natural (NLP).
 	\item Técnicas para medir similitudes entre textos: Cosine Similarity y WMD.
 	\item Algoritmos de Vectorización: TF-IDF y Word Embeddings.
-	\item Algoritmos de Machine Learning de aprendizaje supervisado (KNN) y no supervisado (K-means).
+	\item Algoritmos de Machine Learning para tareas de clasificación (KNN) y clustering (K-means).
 \end{itemize} 
 
 Esta primera sección abarca los capítulos \textit{\nameref{2.ReclutamientolaboralenIT}}, \textit{\nameref{3.AlgoritmosdeMachineLearning}} y \textit{\nameref{4.NaturalLanguageProcessing}} de este Informe de Tesis. \\
 
-\item Investigación e implementación de distintas técnicas y algoritmos para la obtención del modelo predictivo KNN. \\
+\item Investigación e implementación de distintas técnicas y algoritmos para la obtención del modelo de clasificación KNN. 
 
-Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo predictivo KNN capaz de predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles.  Esta sección abarca los siguientes items:
+Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. Esta sección abarca los siguientes items:
 
 \begin{itemize}
 	\item Obtención de sets de datos: curriculums vitaes y descripciones laborales. 
 	\item Preprocesamiento de los textos.
 	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
-	\item Obtención del modelo predictivo KNN utilizando el algoritmo K-means en base a las mediciones de similitud previamente realizadas.
+	\item Obtención del modelo de clasificación KNN utilizando como datos de entrada los clusters devueltos por el algoritmo K-means obtenidos en base a las mediciones de similitud previamente realizadas.
 	\item Análisis y primeras visualizaciones de los resultados.
 \end{itemize} 
  
 Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \textit{\nameref{5.1.Obtenciondelmodelopredictivo}} hasta \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}) de este Informe de Tesis. \\
 
-\item Investigación e integración al sistema web.\\
+\item Investigación e integración al sistema web.
 
-Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
+Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
 y su integración a un sistema web capaz de manejar las actividades entre los Candidatos y Reclutadores dentro del sistema. Los items principales son:
 \begin{itemize}
 	\item Definición de los usuarios que accederán al sistema.
@@ -236,9 +236,8 @@ y su integración a un sistema web capaz de manejar las actividades entre los Ca
 	\item Evaluación del funcionamiento de todo el Sistema integrado.
 \end{itemize} 
 
-\end{enumerate}
-
 Esta última sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \textit{\nameref{5.5.IntegracionalSistemaWeb}} hasta el final del capítulo) de este Informe de Tesis.
+\end{enumerate}
 
 \cleardoublepage    %Nueva página
 
@@ -264,7 +263,7 @@ Hay varios enfoques para realizar esta tarea:
 	-Sistemas de recomendación.
     -Extracción de keywords y comparaciones:...
     -
-    -Comparaciones simples entre los textos de los curriculums y las descripciones de trabajo.
+    -Comparaciones simples entre los textos de los curriculums y las descripciones de puestos.
     -Comparación de similitudes entre textos. / Sistemas que utilicen algoritmos de similitud entre documentos:
     
 El enfoque número 2 será el utilizado para el sistema desarrollado para este Proyecto de Tesis.
@@ -302,7 +301,7 @@ A su vez, en el enfoque utilizado, pueden haber muchos más sub-enfoques?: (ver 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
 Para comenzar el marco teórico de esta tesis, es necesario explicar qué es Machine Learning y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje. 
-En este capítulo se va a explicar el objetivo del aprendizaje supervisado y no supervisado en Machine Leanring haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
+En este capítulo se va a explicar el objetivo del aprendizaje supervisado y no supervisado en Machine Learning haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
 
 \subsection{Introducción.}
 \colorbox{red}{FALTA}
@@ -394,29 +393,38 @@ Los Word Embeddings son una de las variantes más populares para representar tex
 
 La implementación de este Sistema se trabajó en dos grandes partes:
 \begin{enumerate}
-\item Obtención del modelo predictivo. En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).\\
-Por último se obtuvo el modelo predictivo KNN utilizando el algoritmo K-means en base a las mediciones de similitud previamente realizadas. De esta manera, el resultado final es la obtención de un modelo predictivo capaz de predecir nuevas muestras (en nuestro caso, predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles). \\
-Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python; y sirvieron para evaluar el comportamiento del modelo predictivo y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. 
-\item Integración al Sistema Web: Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django \footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
+\item Obtención del modelo de clasificación. 
+
+En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
+
+Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+
+Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python; y sirvieron para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. \\
+
+\item Integración al Sistema Web. 
+
+Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django \footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
+
+De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+
 \end{enumerate}
 
 \cleardoublepage
 
-\subsection{Obtención del modelo predictivo.}\label{5.1.Obtenciondelmodelopredictivo}
+\subsection{Obtención del modelo de clasificación.}\label{5.1.Obtenciondelmodelopredictivo}
 
 \subsubsection{Introducción.}
 Como inicio definamos qué es un modelo. En nuestro caso, un modelo representa ....
 Este modelo se construyó en base a ...
-Que sea predictivo quiere decir que...
 La implementación de este Sistema se realizó en Python...
 
 \subsubsection{Esquema.}
-Como podemos ver la figura \ref{fig:FlowCoreSystem} representa el procedimiento utilizado para la obtención de nuestro modelo predictivo. 
+Como podemos ver la figura \ref{fig:FlowCoreSystem} representa el procedimiento utilizado para la obtención de nuestro modelo de clasificación. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/flow-core.png} 	%Incluyendo imagen Flow Core.
-  \caption{Pipeline Flow para la obtención del modelo predictivo KNN}  
+  \caption{Pipeline Flow para la obtención del modelo de clasificación KNN}  
   \label{fig:FlowCoreSystem}
 \end{figure}
 
@@ -493,7 +501,7 @@ Nota: No obstante, al realizar los cálculos de distancias compararemos cada CV 
 \end{itemize}        
 Nota: como se comentó previamente, nos quedarán 3000 filas / puntos para usar en K-means y entrenar KNN; llegando a representar estos 3000 puntos en un plano de 2 dimensiones.
 
-3-Para la clasificación de nuevas muestras prediciendo con KNN:
+3-Para la clasificación de nuevas muestras mediante KNN:
 \begin{itemize}
 \item 1 CV de candidatos.
 \item 1 descripción de puesto de IT.
@@ -516,14 +524,14 @@ Previamente a utilizar Cosine Similarity y WDM para obtener las medidas de simil
 
 \cleardoublepage
 
-\subsection{Armado del modelo predictivo KNN.}
+\subsection{Armado del modelo de clasificación KNN.}
 \colorbox{red}{FALTA}
 
-Luego de haber obtenido las medidas de similitud entre los textos, se utilizan los algoritmos de aprendizaje KNN y K-means para obtener un modelo predictivo KNN capaz de predecir nuevas muestras (en nuestro caso, predecir valores de similitud de nuevos candidatos para los distintos puestos laborales de IT disponibles).
+Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentarán a un modelo de clasificación KNN. Finalmente, con este modelo KNN lograremos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
 \cleardoublepage
 
-\subsection{Predicción de nuevas muestras y resultados obtenidos.}\label{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}
+\subsection{Clasificación de nuevas muestras y resultados obtenidos.}\label{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}
 
 \colorbox{red}{FALTA}
 
@@ -532,27 +540,34 @@ Luego de haber obtenido las medidas de similitud entre los textos, se utilizan l
 \subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
 \colorbox{red}{FALTA}
 
-Anteriormente lo que se hizo fue un análisis mediate documentos en Jupyter Notebooks para evaluar el comportamiento del modelo predictivo y los distintos algoritmos de medición de similitudes. \\
-Al observar que los resultados fueron los esperables, lo que se hizo en esta última etapa fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo predictivo KNN obtenidos en la fase previa, para integrar todo esto en el sistema Web. \\
-Como mencionamos previamente, este sistema web está realizado en Django, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. \\
-De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto).  \\
+Anteriormente lo que se hizo fue un análisis mediate documentos en Jupyter Notebooks para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes. 
+
+Al observar que los resultados fueron los esperables, lo que se hizo en esta última etapa fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos en la fase previa, para integrar todo esto en el sistema Web. 
+
+Como mencionamos previamente, este sistema web está realizado en Django, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
+
+De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 El sistema web contará con 2 tipos de usuario: 
 \begin{itemize}
 \item Candidato: quienes cargarán en el sistema sus Curriculum Vitae y aplicarán a los distintos puestos disponibles.
-\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un TOP de los 'N' mejores candidatos para un puesto específico (siempre y cuando los candidatos hayan aplicado a dicho puesto).
+\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su similitud con dicho puesto.
+
 \end{itemize}
 
 \cleardoublepage
 
 \subsubsection{Base de datos.}
 
-Nuestros datos los almacenaremos en una base de datos \colorbox{red}{FALTA definir cual}. \\
-Para modelar y gestionar nuestros datos utilizamos el modelo relacional \footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.}.\\
+Nuestros datos los almacenaremos en una base de datos \colorbox{red}{FALTA definir cual}. 
+
+Para modelar y gestionar nuestros datos utilizamos el modelo relacional \footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.}.
+
 \colorbox{red}{Sacar la mayoría del documento modelo-entidad-relacion-case-method-richar-barker.pdf} 
 
 Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación \footnote{Un modelo entidad-relación es una herramienta para el modelo de datos, la cual facilita la representación de entidades de una base de datos.}.
-Previamente a esto explicaremos los elementos del diagrama de entidad relación: \\
+Previamente a esto explicaremos los elementos del diagrama de entidad relación: 
+
 \colorbox{red}{FALTA PONER IMAGEN CON LOS ELEMENTOS: Entidad rectángulo, Unión entre entidades son} \\ \colorbox{red}{las lineas que puede ser obligatoria u opcional, cardinalidad son los 1:M / 1:1 / M:M}
 
 \begin{itemize}
@@ -594,9 +609,6 @@ El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la
 \end{figure}
 
 \cleardoublepage
-
-
-
 
 \subsubsection{Secciones del sistema}
 
@@ -658,7 +670,7 @@ Por su parte, el Reclutador tendrá acceso al menú indicado en la figura \ref{f
 \subsection{Pipeline Flow final del Sistema.}
 \colorbox{red}{FALTA}
 
-Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado final un TOP de los 'N' mejores candidatos para el puesto consultado (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
+Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con todos los candidatos que aplicaron al puesto, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -696,8 +708,10 @@ Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:
 
 
 \begin{thebibliography}{9}
-\bibitem{ejemplo}
-Autor1, \& Autor2. (Año, mes). \textit{TITULO}. Año y conferencia (pp. 0971-0974). IEEE.
+\bibitem{apunte_uba}
+Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \&
+Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. COMPLETAR páginas). 
+
 
 \end{thebibliography}
 
