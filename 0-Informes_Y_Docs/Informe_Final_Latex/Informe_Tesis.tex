@@ -212,7 +212,9 @@ Esta primera sección abarca los capítulos \textit{\nameref{2.Reclutamientolabo
 
 \item Investigación e implementación de distintas técnicas y algoritmos para la obtención del modelo de clasificación KNN. 
 
-Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. Esta sección abarca los siguientes items:
+Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. 
+
+Los items que abarca esta sección son:
 
 \begin{itemize}
 	\item Obtención de sets de datos: curriculums vitaes y descripciones laborales. 
@@ -226,13 +228,15 @@ Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \te
 
 \item Investigación e integración al sistema web.
 
-Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un TOP de los 'N' mejores candidatos para los puestos que el reclutador desee consultar (siempre y cuando los candidatos hayan aplicado a dicho puesto). 
-y su integración a un sistema web capaz de manejar las actividades entre los Candidatos y Reclutadores dentro del sistema. Los items principales son:
+Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
+
+Los items principales de esta sección son:
 \begin{itemize}
 	\item Definición de los usuarios que accederán al sistema.
 	\item Definición de los datos que se almacenarán.
 	\item Integración de frameworks y bases de datos.  
 	\item Modelado, filtrado y visualización de los datos.
+	\item Reutilización e integración al sistema de los algoritmos y del modelo KNN utilizados en la fase previa.	
 	\item Evaluación del funcionamiento de todo el Sistema integrado.
 \end{itemize} 
 
