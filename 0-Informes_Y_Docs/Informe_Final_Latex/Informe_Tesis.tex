@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[procnames]{listings} 	%Para escribir códigos.
+\usepackage[none]{hyphenat}         %Para no recortar las palabras con guión.
 % OJO: se agregaron procnames para usarlos en Python (VER).
 
 \usepackage[bottom]{footmisc} 	 	%Para poner las footnote al final de cada página.
@@ -144,13 +145,29 @@ The system is developed using the Python programming language allowing to verify
 \cleardoublepage    %Nueva página
 
 \section{Introducción.}
-El proceso de \textbf{selección de personal} se ha vuelto crucial para el manejo de recursos humanos en el mundo laboral moderno. Con la transformación digital de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textbf{Sector IT}, donde año a año se van generando nuevos puestos de trabajo. 
+Los procesos de \textit{reclutamiento y selección laboral} se han vuelto cruciales para el manejo de recursos humanos en el mundo moderno. Con las transformaciones digitales de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textit{Sector IT}, donde año tras año se van generando nuevos puestos de trabajo y estos mismos van creciendo en demanda. Este crecimiento de la demanda en distintos puestos del Sector IT lo podemos evidenciar, a modo de resumen, en la figura \ref{fig:Increasing_Jobs}.
 
-En estos últimos años se implementaron una gran cantidad de \textbf{herramientas de Software que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva e inteligente}. Gracias a la ayuda de este tipo de sistemas, el reclutador consigue a los candidatos más cualificados para cada puesto.
+En estos últimos años se implementaron una gran cantidad de herramientas de Software que utilizan algoritmos inteligentes y que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva \cite{trabajos_relacionados_1}\cite{trabajos_relacionados_2}\cite{trabajos_relacionados_3}\cite{trabajos_relacionados_4}\cite{trabajos_relacionados_5}\cite{trabajos_relacionados_6}\cite{trabajos_relacionados_7}\cite{trabajos_relacionados_8}\cite{trabajos_relacionados_9}\cite{trabajos_relacionados_10}\cite{trabajos_relacionados_11} \cite{trabajos_relacionados_12}\cite{trabajos_relacionados_13}\cite{trabajos_relacionados_14}\cite{trabajos_relacionados_15}. La \textit{automatización} se transformó en un factor clave e indispensable para que el reclutador pueda conseguir a los candidatos más relevantes para los puestos que ofrece la empresa en un tiempo muy corto.
+Se espera que para el año 2025 muchas tareas realizadas actualmente por humanos, sean automatizadas por máquinas: esto lo podemos evidenciar en la figura \ref{fig:Automatizacion}.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/Increasing_Jobs.png} 	%Incluyendo imagen Flow Core.
+  \caption{Top 20 demanda de roles laborales en aumento y disminución para el año 2020, por participación de las empresas encuestadas por el \textit{Foro Económico Mundial}\cite{jobs_future}.}  
+  \label{fig:Increasing_Jobs}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/Automatizacion.png} 	%Incluyendo imagen Flow Core.
+  \caption{Porcentaje de tareas realizadas por humanos frente a máquinas, 2020 y 2025 (previsto),
+por participación de las empresas encuestadas por el \textit{Foro Económico Mundial}\cite{jobs_future}.}  
+  \label{fig:Automatizacion}
+\end{figure}
 
 El tema de este Proyecto de Tesis será desarrollar un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de Machine Learning y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
 
-La medición de similitudes de documentos es uno de los problemas más cruciales del \textbf{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios, tales como recomendación de películas, libros o artículos similares, identificación de documentos plagiados o documentos legales, etc. 
+La medición de similitudes de documentos es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios, tales como recomendación de películas, libros o artículos similares, identificación de documentos plagiados o documentos legales, etc. 
 
 Para que las máquinas puedan descubrir esta similitud entre documentos, se necesita definir una forma de medir matemáticamente la similitud, la cual debe ser comparable para que la máquina pueda identificar qué documentos son más similares (o menos). Previamente a esto necesitamos representar el texto de los documentos en una forma cuantificable (que suele ser en forma vectorial), de modo que podamos realizar cálculos de similitud sobre él.
 
@@ -160,9 +177,11 @@ Por lo tanto, los pasos necesarios para que las máquinas puedan medir la simili
 \item Definir y emplear una medida de similitud.
 \end{enumerate}
 
+\cleardoublepage    %Nueva página
+
 Para el primer paso se utilizarán los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}; y para el segundo paso se emplearán las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover's Distance -WMD-}.
 
-Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentará a un modelo de clasificación KNN. Finalmente este modelo KNN nos servirá para lograr, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un \textbf{algoritmo de clustering K-means} que a su vez, con sus datos de salida (4 clusters), alimentará a un \textbf{modelo de clasificación KNN}. Finalmente este modelo KNN nos servirá para lograr, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
 \cleardoublepage    %Nueva página
 
@@ -179,13 +198,13 @@ El objetivo de este Proyecto de Tesis es lograr un desarrollo, tanto teórico co
 \subsubsection{Objetivos específicos.}
 Los objetivos específicos de este Proyecto de Tesis son:
 \begin{itemize}
-\item Describir el estado del arte actual de los Sistemas de lectura y análisis de Curriculum Vitae en Recruiting. 
-\item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral de IT determinado.  
+\item Describir el estado del arte actual de los Sistemas de lectura y análisis de Curriculum Vitae en las fases de reclutamiento y selección laboral. 
+\item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación y medición de similitudes entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral de IT determinado.  
 \item Aprender los conceptos y técnicas principales utilizadas dentro del procesamiento de lenguaje natural (NLP) aplicando técnicas de preprocesamiento y limpieza de textos.
 \item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes algoritmos de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
 \item Conocer, implementar e integrar el algoritmo de clustering K-means junto al algoritmo de clasificación KNN para obtener un modelo de clasificación de candidatos en base a las medidas de similitud entre los textos.
-\item Evaluar los Frameworks disponibles para tener una UI accesible vía web e integrar el mismo al Sistema.
-\item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos; contando con un sistema de login y registración para los mismos.
+\item Evaluar los Frameworks disponibles para tener una UI \footnote{La interfaz de usuario o user inteface (UI) de una página web refiere a todo aquello tangible con lo que los usuarios interactúan de forma directa en la misma.} accesible vía web e integrar el mismo al Sistema.
+\item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos.
 \end{itemize} 
 
 \cleardoublepage    %Nueva página
@@ -214,10 +233,12 @@ Esta primera sección abarca los capítulos \textit{\nameref{2.Reclutamientolabo
 
 Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. 
 
+\cleardoublepage    %Nueva página
+
 Los items que abarca esta sección son:
 
 \begin{itemize}
-	\item Obtención de sets de datos: curriculums vitaes y descripciones laborales. 
+	\item Obtención de sets de datos: curriculums vitae y descripciones laborales. 
 	\item Preprocesamiento de los textos.
 	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
 	\item Obtención del modelo de clasificación KNN utilizando como datos de entrada los clusters devueltos por el algoritmo K-means obtenidos en base a las mediciones de similitud previamente realizadas.
@@ -228,7 +249,7 @@ Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \te
 
 \item Investigación e integración al sistema web.
 
-Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
+Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
 
 Los items principales de esta sección son:
 \begin{itemize}
@@ -245,62 +266,132 @@ Esta última sección abarca el capítulo \textit{\nameref{5.Implementacion}} (d
 
 \cleardoublepage    %Nueva página
 
-\section{Reclutamiento laboral en IT.}\label{2.ReclutamientolaboralenIT}
+\section{Reclutamiento y selección laboral.}\label{2.ReclutamientolaboralenIT}
 
-En este capítulo se va a realizar una introducción a la historia del Reclutamiento laboral, especialmente en el sector de IT, sus etapas y problemáticas.
-Luego se realizará un análisis del Estado de Arte actual de los Sistemas de lectura y análisis de CV actuales.
+En este capítulo se va a realizar una introducción a los procesos de reclutamiento y selección laboral, sus diferencias y diferentes tareas involucradas. Por último, se llevará a cabo un análisis del Estado de Arte actual de los sistemas de cribado (o más conocidos como sistemas de \textit{screening}) y se detallará el enfoque utilizado para este Proyecto.
 
 \subsection{Introducción.}
-\colorbox{red}{FALTA}
 
-El proceso de contratación fue evolucionando a lo largo del tiempo. En el modelo de contratación de primera generación, las empresas anunciaban sus vacantes de puestos laborales en diarios, revistas, radio y televisión. Los candidatos enviaban sus currículums por correo postal y sus currículums se clasificaban manualmente. Una vez preseleccionados los candidatos, el equipo de contratación llamaba a los mismos para realizar rondas de entrevistas. Este fue un procedimiento que llevó mucho tiempo.
-Luego de esto pasamos a la segunda generación. En esta época las empresas comenzaron a crecer y también lo hicieron las necesidades de contratación. Las empresas empezaron a subcontratar su proceso de contratación naciendo de esta manera las consultoras o agencias de contratación. Estas consultoras requerían que los solicitantes cargaran sus currículums en sus sitios web en formatos particulares. Luego, las consultoras revisaban los datos de los candidatos y preseleccionaban a los mismos para la empresa. El gran inconveniente de este proceso fue que habían numerosas consultoras y cada una tenía su propia y única forma de selección.
-Para superar todos los problemas anteriores, se llegó a una tercera generación, en la que estamos actualmente. En esta generación se crearon y siguen creándose sistemas con algoritmos inteligentes que ayudan a las empresas y consultoras a analizar la información de cualquier curriculum vitae y clasificarla en función de los puestos laborales disponibles. De esta manera, cuando el empleador publica una oferta de trabajo, estos sistemas clasifican a los currículums basándose en distintas métricas (por ejemplo palabras clave) mostrando así los candidatos más relevantes para el empleador.
+Los procesos de \textit{reclutamiento y selección laboral} se han vuelto cruciales para el manejo de recursos humanos en el mundo moderno. Con las transformaciones digitales de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textit{Sector IT}, donde año tras año se van generando nuevos puestos de trabajo y estos mismos van creciendo en demanda. 
 
-\subsection{Sistemas de lectura y análisis de CV : Estado del arte.}
-\colorbox{red}{FALTA}
+Los \textit{reclutadores}, dentro de un departamento de recursos humanos, son los encargados de llevar a cabo los procesos de \textit{reclutamiento} y \textit{selección} laboral. Uno de sus objetivos principales es buscar talento humano para cubrir los puestos de trabajo vacantes que tenga la empresa.
 
-Las empresas y agencias de contratación procesan diariamente una gran cantidad de Curriculum Vitae. Esta no es una tarea para humanos: se requiere de un sistema automatizado e inteligente que sea capaz detectar a los mejores candidatos y con ello realizar una clasificación para los distintos puestos laborales disponibles.
+\subsection{Reclutamiento vs selección.}\label{SeleccionYReclutamiento}
 
-Hay varios enfoques para realizar esta tarea:
-	-Métodos simples: 
-	-Sistemas de recomendación.
-    -Extracción de keywords y comparaciones:...
-    -
-    -Comparaciones simples entre los textos de los curriculums y las descripciones de puestos.
-    -Comparación de similitudes entre textos. / Sistemas que utilicen algoritmos de similitud entre documentos:
-    
-El enfoque número 2 será el utilizado para el sistema desarrollado para este Proyecto de Tesis.
-Se decidió utilizar este enfoque...
+El \textbf{reclutamiento} es el proceso de atracción, búsqueda, recolección e identificación de candidatos que encajan con la oferta de trabajo y, en definitiva, con la empresa. El objetivo del reclutamiento es \textit{atraer}, \textit{buscar} e \textit{identificar} a los candidatos más adecuados y mejor calificados para el puesto disponible, según las necesidades de la empresa\cite{seleccion_reclutamiento_2}. 
 
-\cleardoublepage
+El proceso de reclutamiento incluye las siguientes actividades:
+\begin{itemize}
+\item Identificación de las necesidades del puesto a cubrir. 
+\item Análisis de la descripción y especificaciones del puesto.
+\item Identificación de posibles fuentes de candidatos cualificados para el puesto.
+\item Publicacion del puesto vacante en dichas fuentes.
+\item Atracción de candidatos para aplicar al puesto.
+\item Manejo apropiado en las respuestas y en los escrutinios a las postulaciones.
+\end{itemize}
 
-\subsubsection{Problemáticas.}
+\cleardoublepage    %Nueva página
 
-\colorbox{red}{FALTA}
-Habiendo realizado la comparación con cualquiera de los enfoques previamente descriptos, los currículums son difíciles de analizar. Esto se debe a que varían en los tipos de información, su orden, estilo de escritura, etc.
+En cambio, la \textbf{selección} es un proceso posterior al reclutamiento, donde se evalua más detalladamente y se entrevista a los candidatos para el trabajo en particular. El objetivo de la selección es \textit{elegir} y \textit{hacer efectiva la contratación} del candidato más adecuado y mejor calificado para el puesto disponible, según las necesidades de la empresa. Este procedimiento particiona a los candidatos en dos secciones: a los que se les ofrecerán el trabajo, y a los que se descartarán\cite{seleccion_reclutamiento_2}.
 
--Diferentes técnicas para medir similitud de textos. 
+El proceso de selección incluye las siguientes actividades: 
+\begin{itemize}
+\item Recepción de la aplicación al puesto.
+\item Cribado o Screening de los candidatos, lo que permite avanzar con los candidatos adecuados y descartar a los no adecuados para el puesto.
+\item Entrevistas a los candidatos.
+\item Manejo de tests a los candidatos, tales como tests médicos o psicológicos. 
+\item Manejo de exámenes a los candidatos, tales como exámenes técnicos, de aptitud, inteligencia, performance, etc.
+\item Evaluación de las referencias de los candidatos.
+\item Decisión final acerca de la contratación o no contratación del candidato.
+\end{itemize}
 
-\subsubsection{Trabajos relacionados.}
+Como conclusión, podemos decir que en la fase de \textbf{reclutamiento} se trata de encontrar muchos candidatos que cumplan con los requisitos de la oferta; mientras que en la etapa de \textbf{selección} se debe elegir al mejor candidato para las necesidades de la empresa. 
 
-A su vez, hay varios trabajos realizados en este campo. Estos sistemas incluyen:
--
--
--
--
+\cleardoublepage    %Nueva página
 
-La diferencia de este trabajo con el resto de los trabajos anteriormente mencionados es principalmente que se agrega WMD como una de las medidas de similitud entre los textos. WMD es una .... muy reciente y en el futuro puede llegar a .....
-Además, se integró el sistema a una interfaz web, cosa que la mayorpía no realizó.
-Por último, cabe destacar que estos trabajos no tienen un fácil acceso a los datasets ni al código que utilizaron para dichos sistemas, por lo que seguir el trabajo de ellos aplicando las mejoras que mencionan en sus trabajos es una tarea casi imposible. En cambio, este sistema será de código abierto:  los datasets y códigos utilizados estarán disponibles en Github y Git LFS.
+\subsection{Evolución de los procesos de reclutamiento y selección laboral.}
+Los procesos de reclutamiento y selección laboral fueron evolucionando a lo largo del tiempo\cite{trabajos_relacionados_10}:
 
+En los modelos de reclutamiento y selección de \textbf{primera generación}, las empresas anunciaban sus vacantes de puestos laborales en diarios, revistas, radio y en televisión. Los candidatos enviaban sus currículums por correo postal y los mismos se clasificaban manualmente: algo muy tedioso y que llevaba mucho tiempo en realizar. Una vez \\ preseleccionados los candidatos, los reclutadores llamaban a los mismos para realizar las rondas de entrevistas. 
 
-A su vez, en el enfoque utilizado, pueden haber muchos más sub-enfoques?: (ver https://towardsdatascience.com/the-best-document-similarity-algorithm-in-2020-a-beginners-guide-a01b9ef8cf05).
-            -1er enfoque (traditional statistical approach): TF-IDF and Cosine Sim. -> you can easily start your own document similarity on your local laptop. No fancy GPU is necessary. No large memory is                 necessary. With high-quality data, you will still get competitive results.
-            -Enfoque Deep Learning: USE y  BERT... y aca tambien entraría el word movers.--> Granted, if you want to do other tasks such as sentiment analysis or classification, deep learning should suit your job.
+Luego pasamos a la \textbf{segunda generación}. En esta época las empresas comenzaron a crecer y también lo hicieron las necesidades de reclutamiento y selección. Las empresas empezaron a subcontratar sus procesos de reclutamiento y selección, naciendo de esta manera las consultoras o agencias de contratación. Estas consultoras requerían que los candidatos cargaran sus currículums en sus sitios web en formatos particulares. Luego, las consultoras revisaban los datos de los candidatos y preseleccionaban a los mismos para la empresa. El gran inconveniente de este proceso fue que habían numerosas consultoras y cada una tenía su propia y única forma de selección, no era un proceso uniforme.
 
+Para intentar superar los problemas anteriores, se llegó a una \textbf{tercera generación}, en la que estamos actualmente. En esta generación se crearon, y siguen creándose, una gran cantidad de herramientas de Software que utilizan algoritmos inteligentes y permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva. Estos sistemas ayudan a los reclutadores dentro de las empresas y consultoras a analizar la información de cualquier Curriculum Vitae y clasificarlos o listarlos en función de los puestos disponibles. De esta manera, cuando el reclutador publica una oferta de trabajo, estos sistemas clasifican o listan a los currículums basándose en distintas métricas (por ejemplo palabras clave) mostrando así los candidatos más relevantes para la empresa o consultora.
 
-\cleardoublepage
+\cleardoublepage    %Nueva página
+
+\subsection{Cribado o screening.}  
+
+Como vimos anteriormente en \textit{\nameref{SeleccionYReclutamiento}}, el screening (o tambien conocido como cribado) es una etapa del proceso de selección. 
+En esta etapa los reclutadores revisan los Currículums Vitae que fueron recibiendo por parte de los candidatos, y \\ preseleccionan a los que mejor se adapten a los requisitos de la oferta de empleo de la empresa. Este proceso es muy importante dentro del proceso de selección, ya que permite valorar en ese momento si el candidato es apto para continuar en el proceso de selección o, en caso contrario, si el mismo se descarta por no considerarlo adecuado para el puesto.
+
+\subsubsection{Screening manual vs screening automatizado}  
+
+Si el proceso de screening sigue el modelo tradicional y se realiza manualmente, es un proceso muy tedioso y que lleva mucho tiempo por parte del reclutador, el cual tiene que evaluar una gran cantidad de Curriculums Vitae. Existe un estudio\cite{estudio_eye_tracking} relizado en 2018 por Ladders Inc., empresa lider en sitios de carrera, donde se estudió cuánto tiempo en promedio tarda un reclutador en dar una primera vista rápida a un Curriculum Vitae de un candidato. Se descubrió que este tiempo es, en promedio, de 7.4 segundos. Este es el tiempo en el que el reclutador decide inicialmente si el candidato sigue (o no) con el proceso de selección.
+
+Sin embargo, este tiempo es engañoso: ya que este estudio fue realizado con la aplicación de muchos Curriculums vitae que no cumplian con los criterios mínimos para calificar a los puestos; es por esto que los reclutadores realizaban una primer vista rápida y los descartaban (o no) a los pocos segundos. Si las aplicaciones provenieran de Curriculums Vitae que cumplan con los requisitos mínimos del puesto, este tiempo de observación sería mucho mayor, ya que el reclutador examinaría con mayor detalle los curriculums.
+
+Adicionalmente, este estudio tampoco tiene en cuenta el tiempo consumido por el reclutador al comparar el Curriculum Vitae del candidato con la descripción o requisitos del puesto laboral, por lo que el tiempo en realizar un screening manual se incrementaría significativamente.
+
+Otra de las desventajas al considerar el screening como un proceso manual, es que muchos son los factores que pueden influir al reclutador en el momento de tomar la decisión de descarte o selección del candidato, ya sea cansancio por el volumen de los curriculums ya revisados, la estructura, elementos discriminatorios o información incompleta dentro de los mismos, etc. Es por esto que las probabilidades de descartar prematuramente a un candidato válido son muy altas.
+
+Frente a estas desventajas del modelo tradicional y poco eficiente del screening manual existe una solución: la \textit{automatización}. Actualmente existen sistemas automatizados y basados en Inteligencia Artificial que permiten realizar el screening de un volumen importante de curriculums en unos pocos segundos (Ver \textit{\nameref{Estado_del_arte}}). De esta manera, el proceso de screening no estaría afectado a factores externos que puedan influir en la decisión del reclutador, y además la herramienta sería capaz de entregar un listado justificado de los mejores candidatos para la siguiente fase del proceso en un tiempo relativamente corto.
+
+\cleardoublepage    %Nueva página
+
+Uno de los beneficios potenciales de utilizar sistemas automatizados e inteligentes en los procesos de screening es el acortamiento de los ciclos de contratación, lo que hace que la organización responda mejor a los solicitantes y sea más capaz de competir con otras organizaciones por los mejores candidatos\cite{seleccion_reclutamiento_1}.  
+
+Muchos gerentes de recursos humanos depositan sus esperanzas en la tecnología y las herramientas automatizadas e inteligentes: desde el aumento de la eficiencia y la reducción de costos hasta el aumento de las aplicaciones de candidatos y la estandarización de todos sus sistemas de selección\cite{seleccion_reclutamiento_1}.
+
+\subsection{Sistemas de screening: Estado del arte.}\label{Estado_del_arte}
+
+Tal como mencionamos en la sección anterior, un sistema de screening automatizado e inteligente nos permite entregar al reclutador una shortlist con los candidatos que mejor se adaptan a los requisitos de la oferta de empleo de la empresa. De esta manera, al realizar dicha preselección de candidatos, el reclutador podrá seguir con las etapas posteriores de selección o podrá realizar otro screening manual para descartar a otros candidatos.
+
+A continuación detallaremos una serie de trabajos de relevancia (tanto de implementación como de investigación) donde se utilizaron distintos enfoques para desarrollar o sugerir un desarrollo de un sistema de screening de candidatos.
+
+En \cite{trabajos_relacionados_1} utilizaron el \textit{algoritmo KNN} para clasificar los curriculums de los candidatos en diferentes categorías, y luego utilizaron la métrica de similitud \textit{Cosine Similarity} para averiguar qué tan cerca está el curriculum del candidato con respecto a la descripción de los puestos, y realizar un ranking acorde a estos resultados.
+
+En \cite{trabajos_relacionados_2} utilizaron una herramienta inteligente llamada \textit{EXPERT mapping-based candidate screening} que utiliza  \textit{ontology mapping}\footnote{La \textit{ontología (ontology)} permite la especificación explícita de un dominio de discurso, que permite acceder y razonar sobre el conocimiento de un agente. Las ontologías elevan el nivel de especificación del conocimiento, incorporando semántica a los datos.
+El \textit{mapeo de ontologías (ontology mapping)} es el proceso mediante el cual dos ontologías se relacionan semánticamente a nivel conceptual y las instancias de ontología de origen se transforman en entidades de ontología de destino de acuerdo con esas relaciones semánticas.\cite{ontology_mapping} } para crear un sistema automatizado para el screening inteligente de candidatos. 
+
+En \cite{trabajos_relacionados_3} y \cite{trabajos_relacionados_4} también se utilizan sistemas basados en \textit{ontologías} para extraer datos de curriculums y realizar macheos con los puestos disponibles.
+
+En \cite{trabajos_relacionados_5} sugieren un método de matching basado en un \textit{modelo probabilístico} para ser utilizado en la selección y recomendación de candidatos. 
+
+En \cite{trabajos_relacionados_6} se propuso un aistema automatizado de screening de currículums que usa \textit{Vector Space Model}\footnote{Modelo algebraico para representar documentos de textos en lenguaje natural de una manera formal mediante el uso de vectores de identificadores. Es utilizado para la recuperación, filtrado, indexado y cálculo de relevancia de información.} para machear cada curriculum con la descripción del puesto correspondiente y \textit{cosine similarity} como medida de similitud.
+
+\cleardoublepage    %Nueva página
+
+En \cite{trabajos_relacionados_7} y \cite{trabajos_relacionados_8} se propuso un sistema para el screening de candidatos, para el cual se utiliza \textit{cosine similarity}, \textit{KNN} y un \textit{sistema de recomendación basado en contenido (Content Based Filtering, CBF)} para buscar los curriculums más cercanos a la descripción del puesto.
+
+En \cite{trabajos_relacionados_9} se propuso un sistema para el ordenamiento y clasificación de currículums utilizando el concepto de inteligencia artificial (sin especificar qué algoritmos o técnicas específicas se deberían usar). Lo que se propuso fue un esquema de trabajo para luego seguir con la implementación del sistema; el cual permitiría clasificar a todos los currículums de acuerdo con los requisitos de la empresa y los enviaría a Recursos Humanos para su posterior consideración.
+
+En \cite{trabajos_relacionados_10} se diseñó un sistema que ayuda a los reclutadores a seleccionar los curriculums basados en la descripción del trabajo. Ayuda en un proceso de contratación fácil y eficiente al extraer los requisitos automáticamente. Este sistema utiliza un \textit{modelo NER (Named entity recognition)} \footnote{Subtarea de \textit{information extraction (IE)} que permite buscar y categorizar entidades específicas en un cuerpo o cuerpos de textos.}.
+
+En \cite{trabajos_relacionados_11} y \cite{trabajos_relacionados_12} se implementan sistemas basados en \textit{semantic anotation}\footnote{Proceso de etiquetado de documentos con conceptos relevantes. Los documentos se enriquecen con metadatos que permiten vincular el contenido a los conceptos, descritos en un gráfico de conocimiento. Esto hace que el contenido no estructurado sea más fácil de encontrar, interpretar y reutilizar.} y \textit{ontologías}, permitiendo realizar macheos entre las ofertas de trabajo y los curriculums de los candidatos.
+
+En \cite{trabajos_relacionados_13} se utiliza \textit{relevance feedback}\footnote{Característica de algunos sistemas de \textit{information retrieval (IR)}. La idea de relevance feedback es tomar los resultados que se devuelven inicialmente de una consulta/query determinada, recopilar los comentarios de los usuarios y usar información para evaluar si esos resultados son relevantes o no para realizar una nueva consulta/query.} para la implementación de un sistemas que intenta encontrar a los mejores candidatos para las distintas ofertas de trabajo.
+
+\textit{Paul Resnick} y \textit{Hal R. Varian} fueron pioneros en los \textit{sistemas de recomendación}\footnote{Un \textit{sistema de recomendación} es una subclase de los sistemas de \textit{Information filtering (IF)} que busca predecir la calificación o la preferencia que un usuario le puede dar a un artículo. En palabras simples, es un algoritmo que sugiere artículos relevantes para los usuarios.}\cite{sistema_recomendacion}.
+En \cite{trabajos_relacionados_14} y \cite{trabajos_relacionados_15} se utilizaron dichos \textit{sistemas de recomendación} junto a otros algoritmos para implementar aplicaciones de screening y clasificación de candidatos. Esto es debido a que, dado que el perfil del candidato es necesario para un puesto en particular, la forma en que se comparan los curriculums de los candidatos es muy similar a un sistema de recomendación. 
+
+\cleardoublepage    %Nueva página
+
+\subsection{Enfoque del Proyecto.}
+
+Como vimos en la sección anterior, hay cientos de enfoques y combinaciones posibles para realizar un sistema de screening automático e inteligente.
+
+El enfoque elegido para este Proyecto de Tesis fue realizar un sistema híbrido que utilice técnicas de mediciones de similitud entre los curriculums de los candidatos y las descripciones de los puestos disponibles, junto con técnicas de machine learning (de clustering y clasificación). 
+
+Como métricas de medición de similitud se utilizó una de las más comúnmente usadas, \textit{similitud del coseno}, y una métrica que \textbf{no se usó en ninguno de los trabajos anteriores} pero, que sin embargo, es muy reciente y prometedora, y es la principal técnica utilizada para la medición semántica de la distancia entre textos, \textit{Word Mover's Distance (WMD)}. Estas métricas serán explicadas más en detalle en las secciones posteriores (Ver \nameref{Tecnicas_Simil_textos}).
+
+Una vez utilizadas estas mediciones de similitud se utilizaron algoritmos de machine learning: un algoritmo de clustering (K-means), y luego un modelo de clasificación KNN. 
+
+Además del uso de \textit{Word Mover's Distance}, otro aspecto distintivo de este sistema es que se realizó una \textbf{integración a una interfaz web}, la cual la mayoría de los sistemas descriptos anteriormente no poseen. De esta manera, mediante la interfaz web se logra una interacción entre usuarios candidatos y reclutadores y, principalmente, permite que el reclutador sea capaz de visualizar un listado con los N candidatos más similes a un puesto determinado.
+
+Por último, cabe destacar que los trabajos anteriormente mencionados no tienen un fácil acceso a los datasets ni al código que utilizaron para dichos sistemas, por lo que seguir el trabajo de ellos aplicando las mejoras que mencionan en sus artículos es una tarea casi imposible. En cambio, \textbf{este sistema será de código abierto}: los datasets, modelos y códigos utilizados estarán disponibles en Github y Git LFS\footnote{\url{https://github.com/FedericoCalonge/automatic_reading_of_CVs_using_text_similarity}}.
+
+\cleardoublepage    %Nueva página\\
 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
@@ -350,7 +441,7 @@ Elbow Method (o Método del codo en español), blablaba...
 
 \cleardoublepage
 
-\subsection{Técnicas para medir Similitud entre textos.}
+\subsection{Técnicas para medir Similitud entre textos.}\label{Tecnicas_Simil_textos}
 \colorbox{red}{FALTA}
 
 \subsubsection{Cosine Similarity.}
@@ -370,7 +461,7 @@ Anteriormente, mencionamos que una de las limitaciones de Cosine Similarity es q
 \subsection{Algoritmos de vectorización.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WDM para (-----completar-----) se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
+Previamente a utilizar Cosine Similarity y WMD para (-----completar-----) se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
 Como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings.
 
 \subsubsection{TF-IDF.}
@@ -409,7 +500,7 @@ Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Pytho
 
 Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django \footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 \end{enumerate}
 
@@ -444,9 +535,9 @@ Para este Proyecto utilizamos dos grandes sets de datos que se obtuvieron median
 Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las siguientes fuentes:
 
 \begin{enumerate}
-\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle\footnote{https://www.kaggle.com/palaksood97/resume-dataset}. Estos pdfs son candidatos de la India con experiencia en el rubro de IT.
-\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle\footnote{https://www.kaggle.com/snehaanbhawal/resume-dataset}. Este CSV cuenta con CVs obtenidos del sitio web de postulación de trabajos 'livecareer.com'.
-\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle\footnote{https://www.kaggle.com/gauravduttakiit/resume-dataset}. Este CSV cuenta con CVs repartidos en distintas categorías de IT.
+\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/palaksood97/resume-dataset}}. Estos pdfs son candidatos de la India con experiencia en el rubro de IT.
+\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle\footnote{\url{https://www.kaggle.com/snehaanbhawal/resume-dataset}}. Este CSV cuenta con curriculums vitae obtenidos del sitio web de postulación de trabajos 'livecareer.com'.
+\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/gauravduttakiit/resume-dataset}}. Este CSV cuenta con curriculums vitae repartidos en distintas categorías de IT.
 \item 10 Curriculums en formato PDF, los cuales los cuales fueron obtenidos como ejemplos mediante una recolección propia de distintos sitios web. 
 \end{enumerate}
 
@@ -455,8 +546,8 @@ Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las sigu
 Los set de datos de descripciones de puestos laborales se obtuvieron de las siguientes fuentes:
 
 \begin{enumerate}
-\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle\footnote{https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom}. El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'.
-\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed\footnote{https://www.indeed.com/q-USA-jobs.html} para puestos de trabajo de IT.
+\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle\footnote{\url{https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom}}. El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'.
+\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed\footnote{\url{https://www.indeed.com/q-USA-jobs.html}} para puestos de trabajo de IT.
 \end{enumerate}
 
 \cleardoublepage
@@ -479,7 +570,7 @@ El procedimiento para la Limpieza de los Curriculum Vitae y las descripciones de
 
 Luego de aplicar preprocesamiento y limpieza de datos nos quedarán los siguientes tamaños de nuestros datasets:
 \begin{itemize}
-\item 624 CVs de candidatos (en formato pdf y csv).
+\item 624 curriculums vitae de candidatos (en formato pdf y csv).
 \item 20593 descripciones de puestos de IT (en formato csv).
 \end{itemize}
 
@@ -487,27 +578,27 @@ Luego de aplicar preprocesamiento y limpieza de datos nos quedarán los siguient
 
 \subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}
 
-El total de 624 CVs de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word Embeddings (para el posterior cálculo de WMD).
+El total de 624 curriculums vitae de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word Embeddings (para el posterior cálculo de WMD).
 
 Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-means y para entrenar a nuestro algoritmo KNN, utilizaremos únicamente una porción de nuestros datasets:
 
 1-Para el cálculo de Cosine Similarity y WMD:
 \begin{itemize}
-\item 301 CVs de candidatos.
+\item 301 curriculums vitae de candidatos.
 \item 201 descripciones de puestos de IT.
 \end{itemize}
-Nota: No obstante, al realizar los cálculos de distancias compararemos cada CV con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Sim.
+Nota: No obstante, al realizar los cálculos de distancias compararemos cada curriculum vitae con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Sim.
 
-2-Para el uso de K-means y entrenamiento con KNN (eliminamos un CV y una descripción de puesto IT que los utilizamos en '3-'):
+2-Para el uso de K-means y entrenamiento con KNN (eliminamos un curriculum vitae y una descripción de puesto IT que los utilizamos en '3-'):
 \begin{itemize}
-\item 300 CVs de candidatos.
+\item 300 curriculums vitae de candidatos.
 \item 200 descripciones de puestos de IT.
 \end{itemize}        
 Nota: como se comentó previamente, nos quedarán 3000 filas / puntos para usar en K-means y entrenar KNN; llegando a representar estos 3000 puntos en un plano de 2 dimensiones.
 
 3-Para la clasificación de nuevas muestras mediante KNN:
 \begin{itemize}
-\item 1 CV de candidatos.
+\item 1 curriculum vitae de candidatos.
 \item 1 descripción de puesto de IT.
 \end{itemize}
 Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.
@@ -524,7 +615,7 @@ En conclusión, al utilizar solo una porción de nuestros datasets para obtener 
 \subsection{Comparando textos y obteniendo similitudes.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WDM para obtener las medidas de similitud entre los textos, se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings. 
+Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings. 
 
 \cleardoublepage
 
@@ -550,13 +641,12 @@ Al observar que los resultados fueron los esperables, lo que se hizo en esta úl
 
 Como mencionamos previamente, este sistema web está realizado en Django, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 El sistema web contará con 2 tipos de usuario: 
 \begin{itemize}
 \item Candidato: quienes cargarán en el sistema sus Curriculum Vitae y aplicarán a los distintos puestos disponibles.
-\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un listado con todos los candidatos que aplicaron a un puesto determinado, ordenados de mayor a menor en cuanto a su similitud con dicho puesto.
-
+\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}.
 \end{itemize}
 
 \cleardoublepage
@@ -674,7 +764,8 @@ Por su parte, el Reclutador tendrá acceso al menú indicado en la figura \ref{f
 \subsection{Pipeline Flow final del Sistema.}
 \colorbox{red}{FALTA}
 
-Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con todos los candidatos que aplicaron al puesto, ordenados de mayor a menor en cuanto a su \textit{similitud} con dicho puesto. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -696,7 +787,13 @@ Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:
 \cleardoublepage
 
 \subsection{Limitaciones del sistema.}
-\colorbox{red}{FALTA}
+
+Las limitaciones del sistema son las siguientes:
+\begin{itemize}
+\item Solo acepta curriculums en formato PDF.
+\item Curriculums y Puestos de trabajo en idioma inglés. 
+\item Curriculums y Puestos de trabajo de IT. 
+\end{itemize}
 
 \cleardoublepage
 
@@ -712,14 +809,75 @@ Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:
 
 
 \begin{thebibliography}{9}
-\bibitem{apunte_uba}
-Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \&
-Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. COMPLETAR páginas). 
 
+\bibitem{jobs_future}
+World Economic Forum. (2020, Octubre). \textit{The Future of Jobs Report}. (pp. 29-31).
+
+\bibitem{seleccion_reclutamiento_1}
+Derek S. Chapman, \& Jane Webster. (2003, Junio-Septiembre). \textit{The Use of Technologies in the Recruiting, Screening, and Selection Processes for Job Candidates}. International journal of selection and assessment. 11(2/3). (pp. 113-114, 117-119).
+
+\bibitem{seleccion_reclutamiento_2}
+Pshdar Abdalla Hamza, Baban Jabbar Othman, Bayar Gardi, Sarhang Sorguli, Hassan Mahmood Aziz, Shahla Ali Ahmed, Bawan Yassin Sabir, Nechirwan Burhan Ismael, Bayad Jamal Ali, \& Govand Anwar. (2021, Mayo-Junio).
+\textit{Recruitment and Selection: The Relationship between Recruitment and Selection with Organizational Performance}. International journal of Engineering, Business and Management (IJEBM). 5(3). (pp. 1-6).
+
+\bibitem{apunte_uba}
+Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. \colorbox{red}{(pp. COMPLETAR páginas)}. 
+
+\bibitem{estudio_eye_tracking}
+Ladders Company. (2018). \textit{Eye-Tracking Study}. (pp. 2,6).
+
+\bibitem{trabajos_relacionados_1}
+Riza Tanaz Fareed, Sharadadevi Kaganurmath, \& Rajath V. (2021, Agosto). \textit{Resume Classification and Ranking using KNN and Cosine Similarity}. International Journal of Engineering Research \& Technology (IJERT). 10(8). (pp. 192-194).
+
+\bibitem{trabajos_relacionados_2}
+Senthil Kumaran V, \& Annamalai Sankar. (2013, Mayo). \textit{Towards an automated system for intelligent screening of candidates for recruitment using ontology mapping (EXPERT)}. International Journal of Metadata, Semantics and Ontologies. 8(1). (pp. 56-64).
+
+\bibitem{ontology_mapping}
+Nuno Silva, \& Joao Rocha. (2003). \textit{Ontology Mapping for Interoperability in Semantic Web} , IADIS International Conference WWW/Internet (ICWI), Portugal. (pp. 1).
+
+\bibitem{trabajos_relacionados_3}
+Wahiba Ben Abdessalem Karaa, \& Nouha Mhimdi. (2011) \textit{Using ontology for resume annota-tion}. International Journal of Metadata, Semantics and Ontologies. 6(3). (pp. 166-174).
+
+\bibitem{trabajos_relacionados_4}
+Duygu Çelik, Askýn Karakas, Gülsen Bal, Cem Gültunca, Atilla Elçi, Basak Buluz, \& Murat Can Alevli. (2013, Septiembre). \textit{Towards an Information Extraction System Based on Ontology to Match Resumes and Jobs}. Computer Software and Applications Conference Workshops (COMPSACW), IEEE 37th. (pp. 333-338).
+
+\bibitem{trabajos_relacionados_5}
+Frank Färber, Tim Weitzel, \& Tobias Keim. (2003, Agosto). \textit{An automated recommendation approach to selection in personnel recruitment}. 9th Americas Conference on Information Systems (AMCIS), USA. (pp. 1-11).
+
+\bibitem{trabajos_relacionados_6}
+Chirag Daryania, Gurneet Singh Chhabrab, Harsh Patel, Indrajeet Kaur Chhabrad, \& Ruchi Patel. (2020). \textit{An Automated Resume Screening System using Natural Language Processing and Similarity}. Topics In Intelligent Computing And Industry Design. 2(2). (pp. 99-103).
+
+\bibitem{trabajos_relacionados_7}
+Juneja Afzal Ayub Zubeda, Momin Adnan Ayyas Shaheen, Gunduka Rakesh Narsayya Godavari, \& Sayed ZainulAbideen Mohd Sadiq Naseem. (2016, Mayo). \textit{Resume Ranking using NLP and Machine Learning}. Proyecto de Tesis para carrera de grado \textit{Bachiller en Ingeniería}. School of Engineering and Technology Anjuman-I-Islam’s Kalsekar Technical Campus. (pp. 1-3).
+
+\bibitem{trabajos_relacionados_8}
+Jai Janyani, Kartik Agarwal, \& Abhishek Sharma. (2018). \textit{Automated Resume Screening System}. Proyecto de Tesis para carrera de grado \textit{Bachiller en Tecnología}. Rajasthan Technical University. (pp. 5, 9-15).
+
+\bibitem{trabajos_relacionados_9}
+V. V. Dixit, Trisha Patel, Nidhi Deshpande, \& Kamini Sonawane. (2019, Abril). \textit{Resume Sorting using Artificial Intelligence}. International Journal of Research in Engineering, Science and Management. 2(4). (pp. 423-425).
+
+\bibitem{trabajos_relacionados_10}
+Dr. K.Satheesh, A.Jahnavi, L Aishwarya, K.Ayesha, G Bhanu Shekhar, \& K.Hanisha. (2020). \textit{Resume Ranking based on Job Description using SpaCy NER model}. International Research Journal of Engineering and Technology (IRJET). 7(5). (pp. 74-77).
+
+\bibitem{trabajos_relacionados_11}
+Paolo Montuschi, Valentina Gatteschi, Fabrizio Lamberti,   Andrea Sanna, \&  Claudio Demartini. (2014, Septiembre-Octubre). \textit{Job recruitment and job seeking processes: how technology can help}. IT Professional, 16(5). (pp. 41-49).
+
+\bibitem{trabajos_relacionados_12}
+Leila Yahiaoui, Zizette Boufaïda, \& Yannick Prié. (2006). \textit{Semantic Annotation of Documents Applied to E-Recruitment}. SWAP 2006, the 3rd Italian Semantic Web Workshop. (pp. 1-6).
+
+\bibitem{trabajos_relacionados_13}
+Rémy Kessler, Nicolas Béchet, Mathieu Roche, Juan Manuel Torres-Moreno, \& Marc El-Bèze. (2012). \textit{A hybrid approach to managing job offers and candidates}. Information Processing \& Management. 48(6). (pp. 1124-1135).
+
+\bibitem{trabajos_relacionados_14}
+Pradeep Kumar Roy, Sarabjeet Singh Chowdhary, \& Rocky Bhatia. (2020). \textit{A Machine Learning approach for automation of Resume Recommendation system}. International Conference on Computational Intelligence and Data Science (ICCIDS). Procedia Computer Science 167. (pp. 2318-2327).
+
+\bibitem{trabajos_relacionados_15}
+Ioannis Paparrizos, B. Barla Cambazoglu, \& Aristides Gionis. (2011). \textit{Machine learned job recommendation}. 5th ACM Conference on Recommender Systems, ACM. (pp. 325-328).
+
+\bibitem{sistema_recomendacion}
+Paul Resnick, \& Hal R. Varian. (1997). \textit{Recommender Systems}. Communications of the ACM40. (pp. 56-59).
 
 \end{thebibliography}
-
-
 
 \end{document}
 %Para poner en Las citas del anexo --> información\cite{iot}. 
