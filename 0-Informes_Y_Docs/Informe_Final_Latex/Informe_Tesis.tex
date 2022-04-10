@@ -395,30 +395,310 @@ Por último, cabe destacar que los trabajos anteriormente mencionados no tienen 
 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
-Para comenzar el marco teórico de esta tesis, es necesario explicar qué es Machine Learning y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje. 
-En este capítulo se va a explicar el objetivo del aprendizaje supervisado y no supervisado en Machine Learning haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
-
 \subsection{Introducción.}
-\colorbox{red}{FALTA}
-Los métodos que utilizaremos en este Proyecto de Tesis serán...
+Continuando con el marco teórico de esta Tesis, es necesario explicar qué es Machine Learning y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje: haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
 
-\subsection{K-Nearest Neighbor (KNN).}
-\colorbox{red}{FALTA}
-K-Nearest Neighbor (o K Vecinos más Próximos en español), blablabal....
+Además, detallaremos la importancia de la separación de los datos y mencionaremos a grandes rasgos cuáles son los pasos a seguir para implementar un modelo de ML teniendo en cuenta algunos de los problemas clásicos que nos pueden ocurrir.
+
+\subsection{Machine Learning (ML).} 
+
+La \textbf{Inteligencia Artificial (IA)} es una disciplina dentro de las ciencias de la computación que consiste en el desarrollo de algoritmos\footnote{Un algoritmo informático es un conjunto de instrucciones definidas, ordenadas y acotadas para resolver un problema, realizar un cálculo o desarrollar una tarea.} que imiten el razonamiento humano, teniendo la capacidad de solucionar problemas que comúnmente resuelve la inteligencia natural pero de la manera más eficiente posible. 
+Esencialmente, la IA permite que las máquinas puedan actuar e implementar distintas tareas que están fuera del alcance de los humanos \cite{intro_algos_ML}.
+
+\textbf{Machine Learning (ML)} o \textbf{Aprendizaje Automático} es un subconjunto de la Inteligencia Artificial que se encarga de construir algoritmos que aprenden a hacer algo útil a partir de los datos. 
+Como ML es un subconjunto de IA, esto implica que todos los algoritmos de ML son técnicas de inteligencia artificial, pero no todos los métodos de inteligencia artificial califican como algoritmos de ML.
+
+El objetivo principal de ML es permitir que las computadoras aprendan sin intervención o asistencia humana.
+Esencialmente, los algoritmos de ML aprenden \textit{patrones} ocultos basados en datos históricos de entrada, los cuales posteriormente utilizan para aprender a clasificar la información o realizar predicciones relacionadas con el problema que se quiera resolver. 
+
+Los algoritmos de ML hoy en día se usan en todo tipo de aplicaciones: en Amazon para recomendarnos qué productos comprar, en Twitter para recomendarnos qué usuarios seguir, en Google para predecir qué páginas son las más relevantes para una consulta, en Facebook para reconocer qué fotos contienen rostros de personas, en el mercado inmobiliario para predecir los precios de las propiedades, en el mercado de valores para predecir el precio de las acciones, etc. Son tantas las aplicaciones de ML en la industria que se ha producido una verdadera explosión del tema en los últimos años\cite{apunte_uba}.
+
+\cleardoublepage
+\subsubsection{Aprendizaje supervisado y no supervisado.}
+
+Podemos dividir a ML en dos grandes categorías: aprendizaje supervisado y aprendizaje no supervisado. Resumidamente, la diferencia entre estas dos categorías es la existencia de etiquetas (labels) en el subconjunto de datos de entrenamiento (Ver \textit{\nameref{Separacion datos}}).
+
+\begin{itemize}
+\item En el \textbf{aprendizaje supervisado}, el modelo es entrenado utilizando datos que están “etiquetados”. Esto quiere decir que el set de datos que es utilizado para enseñar al algoritmo tiene una etiqueta (o label) que define la respuesta/salida correcta. 
+
+Analizándolo matemáticamente, este proceso puede ser representado por una variable de entrada $x$ y una conocida variable de salida $y$, donde se usa un algoritmo $f$ para que aprenda a predecir resultados para aquellos nuevos datos que no tienen etiqueta.
+
+$$y=f(x)$$
+
+Los algoritmos de aprendizaje supervisado se utilizan para resolver problemas de \textbf{clasificación} y de \textbf{regresión}.
+
+\item El \textbf{aprendizaje no supervisado}, en cambio, se refiere al proceso de entrenamiento de un modelo de Machine Learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
+
+
+El objetivo de este método es experimentar con el conjunto de datos (los cuales contienen muchas características) y luego aprender propiedades útiles de la estructura de dicho conjunto de datos. Matemáticamente se cuenta con un dataset de entrenamiento de variables de entrada $x$ pero no se conoce su salida. 
+
+$$\mbox{¿}?=f(x)$$
+
+Los algoritmos de aprendizaje no supervisado se utilizan para resolver problemas de \textbf{clustering}.
+\end{itemize}
+
+\cleardoublepage
+En la Figura \ref{fig:Clasif_algoritmos} se detalla un resumen de la división en las categorías de ML y su “subdivisión” en modelos de clasificación, regresión y agrupación (clustering). 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=1\textwidth]{images/Clasificacion_algoritmos.png}
+  \caption{Tipos de aprendizaje en ML}  
+  \label{fig:Clasif_algoritmos}
+\end{figure}
+
+\paragraph{Regresión.}
+
+En un problema de regresión se intenta predecir el valor de una variable numérica y continua a partir de un cierto conjunto de datos. 
+
+
+En general contamos con un set de entrenamiento en el cual conocemos el valor de la variable que queremos predecir. El objetivo es entonces construir un modelo que nos permita predecir el valor de nuestra variable de salida a partir de datos nuevos. Dicho de otra forma, lo que se hace es buscar una función que represente los datos de entrenamiento y que permita generalizar correctamente\footnote{Generalizar es la capacidad de nuestro modelo de ML de obtener buenos resultados con datos nuevos reconociendo patrones generales de los datos de entrenamiento en lugar de reconocer particularidades específicas.}.
+
+
+El caso más simple es la regresión lineal (observado previamente en la Figura \ref{fig:Clasif_algoritmos}), en el cual nuestro modelo es una recta, la recta que mejor se ajusta a los puntos de nuestro set de entrenamiento. En este ejemplo se intenta predecir la cantidad de personas en un lugar a una hora determinada. 
+
+
+Los problemas de regresión pueden usarse para realizar distintas predicciones, ya sea el valor de las acciones en el mercado de valores, predecir el costo de una propiedad, estimar las ganancias de un negocio, etc. 
+
+Las claves para identificar un problema de regresión\cite{apunte_uba} son las siguientes:
+\begin{itemize}
+\item Queremos predecir una variable que es numérica y continua.
+\item Contamos con un set de entrenamiento para el cual conocemos el valor de dicha variable.
+\end{itemize}
+
+\cleardoublepage
+\paragraph{Clasificación.}
+
+En los problemas de clasificación la variable que se intenta predecir no es continua sino discreta, frecuentemente tiene pocos valores posibles y en muchos casos los valores posibles son solo dos: clasificación binaria. La idea es la misma que antes, contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
+
+
+Un caso típico de la clasificación binaria es un problema de análisis de sentimiento, donde queremos saber si un cierto texto es positivo o negativo, es decir si habla bien o mal de un cierto tema. Como set de entrenamiento entonces deberíamos contar con textos para los cuales ya conocemos su sentimiento. 
+
+
+Por ejemplo, en la Figura \ref{fig:Clasif_algoritmos}, observamos que tenemos una serie de personas, de las cuales contamos con su peso y altura, y queremos clasificarlas en adultos o niños. Lo que va a hacer un modelo de clasificación es aprender dónde están estos puntos y crear un clasificador que, para nuevos datos de entrada, consiga segmentarlos correctamente en adultos o niños.
+
+
+Otras aplicaciones por ejemplo podrían ser analizar si los reviews de un producto son buenos o malos, medir la actitud del público en general ante determinadas noticias por los comentarios que existen en redes sociales, clasificar si un email es spam o no lo es, etc. 
+
+Las claves para reconocer un problema de clasificación\cite{apunte_uba} son:
+\begin{itemize}
+\item Queremos determinar la clase / grupo  a la que pertenece cada dato.
+\item La clase es una variable discreta con un set de valores posibles limitado y definido.
+\item Contamos con un set de entrenamiento para el cual conocemos los datos y a qué clase pertenecen.
+\end{itemize}
+
+\cleardoublepage
+\paragraph{Agrupación (clustering).}
+
+En un problema de clustering contamos con datos que queremos dividir en grupos de forma automática. Estos datos no tienen etiquetas, no sabemos a qué grupo pertenecen. Lo que hace un algoritmo de clustering es intentar buscar agrupaciones en los datos, creando de esta forma clusters\footnote{Cluster, o grupo, es un conjunto de objetos que son ”similares” entre ellos y ”diferentes” de los objetos que pertenecen a los otros grupos. La palabra cluster viene del inglés y significa agrupación. Desde un punto de vista general, el cluster puede considerarse como la búsqueda automática de una estructura o de una clasificación en una colección de datos no etiquetados.} con características similares. En algunos casos la cantidad de clusters la debemos indicar previamente y en otros el algoritmo es capaz de determinarla por sí mismo.
+
+
+En el ejemplo de la Figura \ref{fig:Clasif_algoritmos}, podemos ver que se agrupan los puntos de la misma forma que en el problema de clasificación. La diferencia es que en este caso no sabemos si se trata de adultos o niños, sino que es el propio algoritmo el que va a identificar que hay dos grupos, y nosotros somos los que tenemos que interpretar los resultados. 
+
+
+Otros ejemplos de clustering podrían ser agrupar películas automáticamente de forma que queden juntas las que son de un mismo género; o la detección de comunidades en una red social, el cual es un típico problema de clustering en donde los puntos son los usuarios y queremos agruparlos automáticamente en comunidades. De esta forma podemos descubrir grupos de usuarios que tienen un cierto interés en común aun sin saber exactamente cuál es dicho interés.
+
+Las claves para reconocer un problema de clustering\cite{apunte_uba} son:
+\begin{itemize}
+\item Contamos con un set de datos y queremos agruparlos en clusters/grupos.
+\item No son necesarios labels.
+\end{itemize}
 
 \cleardoublepage
 
-\subsection{K-Means.}
-\colorbox{red}{FALTA}
-K-Means (o K-Medias en español), blablaba...
+\paragraph{Algoritmos más conocidos.}
+
+Resumidamente, en la Figura \ref{fig:Diagrama_algoritmos} se detallan los algoritmos más conocidos para las distintas clasificaciones de Machine Learning previamente explicadas. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/Diagrama_algoritmos.png}
+  \caption{Algoritmos de Machine Learning más conocidos}  
+  \label{fig:Diagrama_algoritmos}
+\end{figure}
+
+Cabe destacar que algunos algoritmos se pueden adaptar para resolver problemas de otro tipo al cual están inicialmente categorizados. Por ejemplo, KNN que está categorizado como un algoritmo de clasificación, también se puede utilizar para resolver problemas de regresión. Otro caso conocido es Support Vector Regression (SVR), que utiliza las bases de Máquinas de vectores de soporte (SVM) para resolver problemas de regresión.
 
 \cleardoublepage
 
-\subsubsection{Elbow Method.}
-\colorbox{red}{FALTA}
-Elbow Method (o Método del codo en español), blablaba...
+\subsubsection{Aprendizaje transductivo}
+
+Existe una cierta relación entre los problemas de clustering y de clasificación, por ejemplo dado un problema de clasificación podríamos aplicar clustering primero y luego clasificar a cada punto de acuerdo al cluster al cual pertenece en base a la clase mayoritaria de dicho cluster. Este procedimiento no es muy frecuente pero es conveniente tenerlo en cuenta porque permite entender el funcionamiento de ciertos algoritmos que combinan las propiedades de un problema de clustering y uno de clasificación.
+
+
+Una aplicación que combina clustering (aprendizaje no supervisado) y clasificación (aprendizaje supervisado) es la que denominamos \textbf{Aprendizaje transductivo}\cite{aprendiz_transd}\cite{apunte_uba} . De esta manera, para predecir nuevos datos no etiquetados se utilizan los datos previamente etiquetados, así como los datos sin etiquetar, como forma de ayuda a un clasificador tradicional.
+
+
+Consideremos el ejemplo de la Figura \ref{fig:Transductivo_1}. Aquí tenemos solo dos puntos clasificados, uno clasificado como "blanco" y el otro como "negro". Sin mayor información el punto marcado con el signo de pregunta, cuya clase desconocemos, quedaría clasificado como "blanco" ya que está mucho mas cerca del punto blanco que del punto negro.
+
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/Transductivo_1.png}
+  \caption{Aprendizaje transductivo}  
+  \label{fig:Transductivo_1}
+\end{figure}
+
+
+En la Figura \ref{fig:Transductivo_2} al agregar puntos cuya clase desconocemos, vemos que en nuestros datos existen dos clusters. De esta manera, si tenemos que asociar cada cluster con un color entonces el de arriba es “negro” y el de abajo es “blanco”, ya que el punto negro pertenece al cluster de arriba y el blanco al de abajo. De este modo, el punto que inicialmente consideramos blanco, con esta nueva información de clusters, sería considerado negro.
+
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/Transductivo_2.png}
+  \caption{Aprendizaje transductivo}  
+  \label{fig:Transductivo_2}
+\end{figure}
+
+El aprendizaje transductivo es un área muy nueva dentro de Data Science y que sin dudas merece ser explorada.
+
+
+En este proyecto de Tesis se utilizará el aprendizaje transductivo para lograr inicialmente una clusterización de nuestros candidatos en 5 grupos mediante un algoritmo de clustering (K-means), y luego se realizará una clasificación mediante un algoritmo de clasificación (KNN). 
+
+\subsubsection{Separación de los datos.}\label{Separacion datos}
+
+Dos conceptos importantes que mencionaremos a lo largo del Informe son: los “datos de entrenamiento” y los “datos de prueba”.
+
+Como mencionamos anteriormente, los algoritmos de Machine Learning aprenden de los datos con los que los entrenamos. A partir de ellos, intentan encontrar o inferir el patrón que les permita predecir el resultado para un nuevo caso. Pero, para poder calibrar si un modelo funciona, necesitaremos probarlo con un conjunto de datos diferente. Por ello, en todo proceso de aprendizaje automático, los datos de trabajo se dividen en dos partes:
+
+\begin{itemize}
+\item Los \textbf{datos de entrenamiento} son los datos que usamos para entrenar un modelo. La calidad de nuestro modelo de aprendizaje automático va a ser directamente proporcional a la calidad de los datos. Por ello son muy importantes las tareas de limpieza y preprocesamiento de los datos..
+\item Los \textbf{datos de prueba o evaluación} son los datos que nos “reservamos” para comprobar si el modelo que hemos generado a partir de los datos de entrenamiento “funciona”. Es decir, si las respuestas predichas por el modelo para un caso totalmente nuevo son acertadas o no.
+\end{itemize}
+
+
+Es importante que el conjunto de datos de prueba tenga un volumen suficiente como para generar resultados estadísticamente significativos, y a la vez, que sea representativo del conjunto de datos global. Normalmente el conjunto de datos se suele dividir en un \textbf{70\%/80\% de datos de entrenamiento} y un \textbf{30\%/20\% de datos de prueba}, pero se puede variar la proporción según el caso. 
+
 
 \cleardoublepage
+\subsubsection{¿Cómo implementar un modelo de ML?}
+
+Resumidamente, los pasos a seguir para implementar un modelo de ML y utilizarlo para realizar predicciones sobre los datos son los siguientes:
+\begin{itemize}
+\item Paso 1: Recolección de Datos.
+\item Paso 2: Preparación y preprocesamiento de los datos.
+\item Paso 3: Elección del modelo de ML.
+\item Paso 4: Entrenamiento del algoritmo.
+\item Paso 5: Evaluación del modelo.
+\item Paso 6: Parameter Tuning o configuración de parámetros.
+\item Paso 7: Utilizando nuestro modelo.\\
+\end{itemize}
+
+A continuación detallaremos en mayor detalle los mencionados pasos.
+
+\begin{itemize}
+\item Paso 1: Recolección de Datos.
+
+Dada la problemática que deseemos resolver mediante algoritmos de ML, nuestro primer paso será recolectar los datos que utilizaremos posteriormente para “alimentar” a dicho algoritmo. 
+
+Para el primer paso de recolección de datos, hay que tener muy en cuenta la calidad y cantidad de información que consigamos ya que impactará directamente en lo bien o mal que luego funcione nuestro modelo. Estos datos los podemos sacar de bases de datos, planillas de cálculo, utilizando técnicas de web scraping\footnote{Proceso dentro de Data Science que se utiliza para la extracción de datos de sitios web simulando cómo navegaría un ser humano por los mismos.} o mediante APIs\footnote{API o interfaz de programación de aplicaciones, es un conjunto de métodos o funciones que ofrece cierta biblioteca para ser utilizada por otro software como una capa de abstracción} para recopilar información de manera automática de diversas fuentes de Internet, etc.\\
+
+\item Paso 2: Preparación y preprocesamiento de los datos.
+
+En este paso generalmente se realizan visualizaciones de los datos y se revisa si existen correlaciones entre las distintas “features”\footnote{Features generalmente son las columnas de nuestro dataframe, archivo o base de datos -dependiendo cómo almacenamos nuestros datos-.} de nuestros datos. Al pre-procesar nuestros datos nos referimos a normalizar los mismos: eliminando duplicados y realizando distintas correcciones de errores. 
+
+En esta etapa además es importante \textbf{separar} nuestros datos en dos grupos:
+\begin{itemize}
+\item un set de entrenamiento.
+\item un set de prueba. 
+\end{itemize}
+
+Como mencionamos previamente, el set de test en general es un 20\% o 30\% del set de entrenamiento. Esta partición de los datos en estos dos conjuntos diferenciados permite generar el modelo a partir de los datos de entrenamiento para después comprobar su eficiencia con los datos reservados para test.\\
+
+\item Paso 3: Elección del modelo de ML.
+
+Una vez obtenidos y preprocesados estos datos, lo que se hace es \textbf{elegir el modelo de ML}\footnote{Un modelo de machine learning es la salida de información que se genera cuando se entrena un algoritmo de ML con datos. Después del entrenamiento, al proporcionar un modelo con una entrada, se le dará una salida. Por ejemplo, un algoritmo predictivo creará un modelo predictivo.} de acuerdo al objetivo que tengamos o problema que deseemos resolver. 
+
+De esta manera, utilizaremos algoritmos de clasificación, regresión o clustering para construir nuestro modelo de ML a partir de los datos, de forma tal de luego poder usar dicho modelo para predecir nuevos datos.\\
+
+\item Paso 4: Entrenamiento del algoritmo.
+
+El siguiente paso es \textbf{entrenar} a nuestro algoritmo de ML. En este proceso mediante una serie de iteraciones nuestro algoritmo detecta patrones en nuestros datos que luego nos servirán para poder realizar predicciones con los nuevos datos que se incorporen al sistema.
+
+La idea es entrenar a nuestro algoritmo con el set de entrenamiento (mediante una función \textit{fit()}) para luego, en las etapas posteriores, aplicarlo al set de prueba (mediante una función \textit{predict()}). De esta forma, los datos para los cuales queremos probar el algoritmo (set de test) nunca fueron vistos por el mismo en la etapa de entrenamiento, lo cual permite saber si el modelo fue capaz de generalizar correctamente.\\
+
+\item Paso 5: Evaluación del modelo\cite{apunte_uba}.
+
+Hacer predicciones correctas sobre datos futuros suele ser el principal problema que queremos resolver al utilizar algoritmos de ML. Luego de entrenar el modelo se tiene que \textbf{evaluar} el mismo. Evaluar un modelo, resumidamente, es estimar su rendimiento para saber qué tan bien se desempeñará / predecirá para datos nuevos no vistos por el mismo.
+
+Para poder evaluar un modelo correctamente, tenemos que contar con la separación de nuestros datos en set de entrenamiento y set de prueba que realizamos en los pasos previos. Esto lo hacemos, ya que evaluar la precisión predictiva de un modelo de ML con los mismos datos que se han utilizado para el entrenamiento no es útil, ya que compensa a los modelos que pueden "recordar" los datos de entrenamiento en lugar de generalizar.
+
+De esta manera, luego de haber entrenado nuestro modelo de ML, resumidamente lo que hacemos en esta etapa es comparar las predicciones realizadas sobre set de pruebas devueltas por el modelo de ML contra el valor de destino conocido para el mismo set de pruebas; y por último generar alguna \textbf{métrica de evaluación} que nos permite verificar la performance de nuestro modelo indicando la efectividad de las predicciones.
+
+Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métricas de evaluación para verificar su performance. Como observación, se detallan algunas de las métricas más conocidas en el Cuadro  \ref{table:1}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{6cm}||p{5cm}||p{5cm}|}
+\hline
+\textbf{Modelos de regresión} & \textbf{Modelos de clasificación} & \textbf{Modelos de clustering} \\ [1ex] 
+\hline
+Error cuadrático medio (MSE)  & Matriz de confusión o error & Inertia \\
+\hline
+Error cuadrático medio (RMSE)  & Accuracy (Exactitud) & Silhouette Score \\
+\hline
+Error absoluto medio (MAE)  & Precision (Precisión) & Rand Index \\
+\hline
+R al cuadrado (R²)  & Recall o sensibilidad o TPR (Tasa positiva real) & Adjusted Rand Index \\
+\hline
+Error de porcentaje cuadrático medio (MSPE)  & Especificidad o TNR (Tasa negativa real) & Mutual Information \\
+\hline
+Error porcentual absoluto medio (MAPE)  & F1-Score &  Calinski-Harabasz Index \\
+\hline
+Error logarítmico cuadrático medio (RMSLE)  &  & Davies-Bouldin Index \\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Métricas para evaluar distintos tipos de modelos.}
+\label{table:1}
+\end{table}
+
+Por ejemplo, si queremos verificar la performance de un modelo de clasificación podemos utilizar el \textbf{accuracy}. Esta métrica mide el \% de aciertos: es el ratio de las predicciones correctas sobre el número total de instancias evaluadas. Por ejemplo, si el Accuracy es menor o igual al 50\% este modelo no será útil ya que sería como lanzar una moneda al aire para tomar decisiones. Si alcanzamos un 90\% o más podremos tener una buena confianza en los resultados que nos otorga el modelo.\\
+
+\item Paso 6: Parameter Tuning o configuración de parámetros\cite{apunte_uba}.
+
+Si durante la evaluación no obtuvimos buenas predicciones y nuestra métrica de evaluación no logró ser la mínima deseada, es posible que tengamos problemas de overfitting (ó underfitting) y deberemos retornar al paso de entrenamiento (Paso 4) haciendo antes una nueva configuración de hiper-parámetros de nuestro modelo. 
+
+Cada modelo tiene un conjunto de parámetros e hiper-parámetros que necesita para funcionar:
+\begin{itemize}
+\item Los \textbf{parámetros} son los valores obtenidos por el propio algoritmo a partir de los datos, no son indicados manualmente. 
+\item Los \textbf{hiper-parámetros}, en cambio, son datos que debemos pasarle al algoritmo para funcionar. 
+\end{itemize}
+
+Como ejemplos de parámetros tenemos los coeficientes en una regresión lineal o logística, o los pesos en una red neuronal artificial. Y, como ejemplos de hiper-parámetros, tenemos al ‘k’ en KNN, o los ‘EPOCHs’ que nos permiten incrementar la cantidad de veces que iteramos sobre nuestros datos de entrenamiento en una red neuronal artificial. 
+
+Para encontrar los hiper-parámetros óptimos, es decir, aquellos que mejor funcionan para nuestro set de datos, lo que se hace es, nuevamente, realizar un entrenamiento y una evaluación de nuestro modelo de ML seleccionando e iterando sobre los distintos hiper-parámetros que tengamos: a esto se le conoce como \textit{“Parameter Tuning”}. Esta iteración puede ser de manera aleatoria (método conocido como \textit{random search}) o completa (\textit{grid search}). Luego de realizar esta iteración se obtiene la configuración de hiper-parámetros más óptima.
+
+Algo a tener en cuenta es que, para realizar la evaluación, no debemos usar los datos del set de prueba, ya que podríamos caer en un caso de overfitting seleccionando los parámetros que funcionan mejor para los datos del set de pruebas, pero tal vez no los parámetros que generalicen mejor. Para evaluar el modelo y realizar dicho \textit{“Parameter Tuning”} lo que necesitamos es dividir el set de entrenamiento original en dos: un set de entrenamiento y un \textbf{set de validación}. 
+
+La idea es entrenar el modelo con el set de entrenamiento y luego probarlo con dicho set de validación (NO con el set de pruebas) a efectos de encontrar los mejores hiper-parámetros. El set de validación en general es un 20-30\% del set de entrenamiento original.
+
+Por último, una vez hallados los hiper-parámetros más óptimos, lo que haremos es realizar una \textbf{evaluación final} sobre el set de pruebas con los hiper-parámetros que encontramos, y de esta manera nos dará el accuracy (o la métrica de evaluación que elegimos) para los datos que el modelo no vió.
+
+No obstante, existen 2 problemas con el esquema anterior:
+\begin{itemize}
+\item Siendo el set de validación siempre el mismo podemos caer en el problema de que los hiper-parámetros que encontremos solo sean óptimos para nuestro set de validación (el cual es un pequeño conjunto de nuestros datos).
+\item La división del set de entrenamiento en un nuevo set de entrenamiento y un set de validación hace que haya menos datos disponibles para el entrenamiento. Esto resulta un problema, especialmente para conjuntos de datos pequeños, ya que siempre es mejor utilizar el mayor número de datos posible para el entrenamiento.
+\end{itemize}
+
+Para evitar estos 2 problemas utilizamos el método de \textbf{Cross Validation} (o validación cruzada), el cual es prácticamente universal para optimizar algoritmos de ML. Este método nos permite evaluar modelos de ML solucionando los 2 problemas mencionados anteriormente previniendo el overfitting. Para mayor detalle de su funcionamiento ver \textit{\nameref{Cross Validation}}.\\
+
+\item Paso 7: Utilizando nuestro modelo. 
+
+Una vez que obtuvimos buenas predicciones en la etapa de evaluación y nuestra métrica de evaluación llegó a ser la mínima deseada, ya podemos afirmar que estamos en condiciones de utilizar nuestro modelo de Machine Learning entrenado para realizar predicciones con nuevos datos que están fuera del set de entrenamiento y del set de test.
+
+\end{itemize}
+
+
+\cleardoublepage
+\paragraph{Cross Validation.}\label{Cross Validation}
+gadgha
+gagaga
+
+\cleardoublepage
+\paragraph{Los Problemas de ML: Overfitting y Underfitting.}
+
+
+
 
 \section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
 
@@ -606,7 +886,7 @@ Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.
 ¿Por qué utilizamos solo una porción de nuestros datasets?: Esto es debido a los drawbacks de WMD y KNN.
 \begin{itemize}
 \item WMD: posee una alta complejidad en el cálculo de la distancia, teniendo un tiempo de ejecución muy elevado. Como ejemplo, al correrlo localmente, el cálculo de WMD para 3131 filas tardó 7 horas; frente a los 3 segundos que tardó el cálculo de Cosine Similarity para la misma cantidad de filas.
-\item KNN: KNN es una gran opción para datasets pequeños con pocas variables de entrada; pero tiene problemas cuando la cantidad de entradas es muy grande. Cada variable de entrada puede considerarse una dimensión de un espacio de entrada p-dimensional. En grandes dimensiones, los puntos que pueden ser similares pueden tener distancias muy grandes. Además, cada vez que se va a hacer una predicción con KNN, busca al vecino más cercano en el conjunto de entrenamiento completo. Por esto, se debe utilizar un dataset pequeño para que el clasificador KNN completa su ejecución rápidamente.
+\item KNN: KNN es una gran opción para datasets pequeños con pocas variables de entrada; pero tiene problemas cuando la cantidad de entradas es muy grande. En grandes dimensiones, los puntos que pueden ser similares pueden tener distancias muy grandes. Además, cada vez que se va a hacer una predicción con KNN, busca al vecino más cercano en el conjunto de entrenamiento completo. Por esto, se debe utilizar un dataset pequeño para que el clasificador KNN complete su ejecución rápidamente.
 \end{itemize}
 En conclusión, al utilizar solo una porción de nuestros datasets para obtener los distintos cálculos de distancias y entrenar KNN, el cálculo de WMD se podrá realizar en un tiempo finito, y nuestro clasificador KNN funcionará rápida y eficientemente al realizar predicciones.
 
@@ -821,7 +1101,7 @@ Pshdar Abdalla Hamza, Baban Jabbar Othman, Bayar Gardi, Sarhang Sorguli, Hassan 
 \textit{Recruitment and Selection: The Relationship between Recruitment and Selection with Organizational Performance}. International journal of Engineering, Business and Management (IJEBM). 5(3). (pp. 1-6).
 
 \bibitem{apunte_uba}
-Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. \colorbox{red}{(pp. COMPLETAR páginas)}. 
+Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. 4-8,351,352,377-379, 387-389,470-477). 
 
 \bibitem{estudio_eye_tracking}
 Ladders Company. (2018). \textit{Eye-Tracking Study}. (pp. 2,6).
@@ -876,6 +1156,13 @@ Ioannis Paparrizos, B. Barla Cambazoglu, \& Aristides Gionis. (2011). \textit{Ma
 
 \bibitem{sistema_recomendacion}
 Paul Resnick, \& Hal R. Varian. (1997). \textit{Recommender Systems}. Communications of the ACM40. (pp. 56-59).
+
+\bibitem{intro_algos_ML}
+M. Emre Celebi, Michael W. Berry, Azlinah Mohamed, \& Bee Wah Yap. (2020). \textit{Supervised and Unsupervised Learning for Data Science}. Springer book. (pp. 3,4,14,15).
+
+\bibitem{aprendiz_transd}
+Karthik Tangirala. (2011). \textit{Semi-supervised and transductive learning algorithms for predicting alternative splicing events in genes}. Proyecto de Tesis para carrera de grado \textit{Master of Science}. Kansas State University. (pp. 1-4).
+
 
 \end{thebibliography}
 
