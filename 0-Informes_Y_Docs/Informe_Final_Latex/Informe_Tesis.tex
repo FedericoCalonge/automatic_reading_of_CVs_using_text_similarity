@@ -467,7 +467,7 @@ Las claves para identificar un problema de regresión\cite{apunte_uba} son las s
 \end{itemize}
 
 \cleardoublepage
-\paragraph{Clasificación.}
+\paragraph{Clasificación.}\label{clasificacion}
 
 En los problemas de clasificación la variable que se intenta predecir no es continua sino discreta, frecuentemente tiene pocos valores posibles y en muchos casos los valores posibles son solo dos: clasificación binaria. La idea es la misma que antes, contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
 
@@ -488,7 +488,7 @@ Las claves para reconocer un problema de clasificación\cite{apunte_uba} son:
 \end{itemize}
 
 \cleardoublepage
-\paragraph{Agrupación (clustering).}
+\paragraph{Agrupación (clustering).}\label{agrupacion}
 
 En un problema de clustering contamos con datos que queremos dividir en grupos de forma automática. Estos datos no tienen etiquetas, no sabemos a qué grupo pertenecen. Lo que hace un algoritmo de clustering es intentar buscar agrupaciones en los datos, creando de esta forma clusters\footnote{Cluster, o grupo, es un conjunto de objetos que son ”similares” entre ellos y ”diferentes” de los objetos que pertenecen a los otros grupos. La palabra cluster viene del inglés y significa agrupación. Desde un punto de vista general, el cluster puede considerarse como la búsqueda automática de una estructura o de una clasificación en una colección de datos no etiquetados.} con características similares. En algunos casos la cantidad de clusters la debemos indicar previamente y en otros el algoritmo es capaz de determinarla por sí mismo.
 
@@ -625,7 +625,7 @@ Para poder evaluar un modelo correctamente, tenemos que contar con la separació
 
 De esta manera, luego de haber entrenado nuestro modelo de ML, resumidamente lo que hacemos en esta etapa es comparar las predicciones realizadas sobre set de pruebas devueltas por el modelo de ML contra el valor de destino conocido para el mismo set de pruebas; y por último generar alguna \textbf{métrica de evaluación} que nos permite verificar la performance de nuestro modelo indicando la efectividad de las predicciones.
 
-Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métricas de evaluación para verificar su performance. Como observación, se detallan algunas de las métricas más conocidas en el Cuadro  \ref{table:1}.
+Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métricas de evaluación para verificar su performance. Como observación, se detallan algunas de las métricas más conocidas en el Cuadro  \ref{table:1}. \\
 
 \begin{table}[h!]
 \centering
@@ -691,15 +691,510 @@ Una vez que obtuvimos buenas predicciones en la etapa de evaluación y nuestra m
 
 \cleardoublepage
 \paragraph{Cross Validation.}\label{Cross Validation}
-gadgha
-gagaga
+
+El método de \textbf{Cross Validation}, o validación cruzada\cite{apunte_uba}\cite{cross_validation}, consiste en entrenar modelos de ML en subconjuntos de los datos de entrada disponibles y evaluarlos con un subconjunto complementario de los datos.
+
+En la la Figura \ref{fig:cross_val} podemos observar el funcionamiento del enfoque básico de Cross Validation: \textbf{k-fold Cross Validation}. Este método comienza particionando el set de entrenamiento en k bloques (o "folds"). Luego, se realizan varias iteraciones en las cuales entrenamos nuestro algoritmo con k - 1 bloques como set de entrenamiento y lo validamos con el bloque restante (el cual sería nuestro set de prueba), para obtener el valor de alguna métrica de evaluación, como por ejemplo el accuracy. Este proceso se repite k veces con el objetivo de que todos los bloques de datos hayan participado alguna vez del set de pruebas. 
+
+El resultado de la métrica de evaluación final devuelta por k-fold Cross Validation es el \textbf{promedio} de los resultados de dicha métrica de evaluación calculada dentro de las k iteraciones del algoritmo. Esto hay que hacerlo además por cada valor posible para nuestros hiper-parámetros, por lo que, dependiendo de los datos, puede resultar un proceso costoso.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/Cross_Validation.png}
+ \caption[k-fold Cross Validation]{k-fold Cross Validation\protect\footnotemark}
+ \label{fig:cross_val}
+\end{figure}
+
+\footnotetext{Librería Scikit-learn. \textit{Cross-Validation: evaluating estimator performance}. \url{https://scikit-learn.org/stable/modules/cross_validation.html}. (Consultado el 30 marzo de 2022).}
+
+En conclusión, luego de realizar dichas iteraciones mediante k-fold Cross Validation, obtendremos la métrica de evaluación final para cada uno de las combinaciones de nuestros hiper-parámetros, y elegiremos los hiper-parámetros más óptimos (el que mejor métrica de evaluación nos haya dado). 
+
+Una vez hallados los mismos, el último paso, como comentamos con el primer esquema, es realizar una evaluación final sobre el set de pruebas con los hiper-parámetros que encontramos, y de esta manera nos dará el accuracy (o la métrica de evaluación que elegimos) para los datos que el modelo no vió.
+
+Un ejemplo de la utilización de estos esquemas para la evaluación de modelos, lo podemos observar en  \textit{\nameref{IMP_Modelo_clasificacion_KNN}}.\\
+
+\paragraph{Los Problemas de ML: Overfitting y Underfitting.}\label{Over_y_under}
+
+En esta sección vamos a nombrar y explicar algunos de los problemas clave en tareas de ML: overfitting y underfitting. Podemos observar un ejemplo de estos conceptos en la Figura \ref{fig:fitting}.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/Fitting.png}
+ \caption{Overfitting y Underfitting\cite{apunte_uba}}
+ \label{fig:fitting}
+\end{figure}
+
+\textbf{Overfitting}, o sobre-ajuste, es un problema clave en las tareas de aprendizaje automático supervisado.
+Es el fenómeno que se detecta cuando un algoritmo de aprendizaje se ajusta/entrena tan bien al set de datos de entrenamiento que se memorizan el ruido y peculiaridades específicas de los datos de entrenamiento. Entonces, se vuelve difícil para el modelo generalizar a nuevos ejemplos que no estaban en el conjunto de entrenamiento. Es por esto que la precisión del modelo cae cuando se prueba en un conjunto de datos desconocido. De esta manera, termina siendo mayor la precisión en el entrenamiento que la precisión sobre los set de pruebas.
+
+La cantidad de datos utilizados para el proceso de aprendizaje es fundamental en este contexto. Los conjuntos de datos pequeños son más propensos al overfitting que los conjuntos de datos grandes. El ajuste excesivo de los datos de entrenamiento conduce al deterioro de las propiedades de generalización del modelo y da como resultado un rendimiento o precisión del mismo poco fiable\cite{over_and_under}.
+
+El concepto de overfitting está asociado a la complejidad del modelo. Un modelo excesivamente complejo puede ajustar tan bien como queramos al set de entrenamiento pero funcionar muy mal para el set de test\cite{apunte_uba}.
+
+En cambio \textbf{Underfitting}, o sub-ajuste, es el opuesto de Overfitting. Esto ocurre cuando el modelo es incapaz de capturar la variabilidad de los datos. Se produce cuando el modelo es demasiado simple. Si nuestros puntos están distribuidos en forma curva, un modelo lineal es demasiado simple, no tiene el poder expresivo necesario para representar correctamente el set de entrenamiento\cite{apunte_uba}.
+
+Por lo tanto, podemos decir que el modelo óptimo es aquel que tiene la complejidad necesaria para capturar lo que los datos expresan pero no más.
 
 \cleardoublepage
-\paragraph{Los Problemas de ML: Overfitting y Underfitting.}
+\subsection{k Nearest Neighbor (KNN).}
 
+K-Nearest Neighbor o K Vecinos más cercanos (KNN), es un algoritmo ML que se puede usar tanto en tareas de regresión como de clasificación. En nuestra implementación, lo usaremos para resolver un problema de clasificación (ver \textit{\nameref{clasificacion}}). Como mencionamos anteriormente, en los problemas de clasificación la variable que se intenta predecir es discreta. En este tipo de problemas contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, y queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
 
+Como lo dice su nombre, el algoritmo KNN se basa en encontrar para un determinado punto m, sus K-vecinos más cercanos. Esto es asumiendo que nuestro set de datos está formado por un conjunto de m puntos en n dimensiones siendo todos los valores numéricos.\\
 
+Para poder utilizar KNN hay que definir previamente dos hiper-parámetros:
+\begin{itemize}
+\item La métrica a usar para calcular las distancias.
+\item El valor de k, es decir cuantos vecinos vamos a considerar.
+\end{itemize}
 
+Algo a destacar, es que KNN es un tipo de aprendizaje basado en la memoria, también llamado aprendizaje basado en instancias, que pertenece al aprendizaje perezoso (“lazy learning”). Esto quiere decir que KNN \textbf{no tiene una fase de entrenamiento}. ¿Qué quiere decir que KNN no tenga un proceso de entrenamiento?, y entonces en \textit{\nameref{IMP_Modelo_clasificacion_KNN}} ¿qué se hace realmente al utilizar la función \textit{.fit()} provista por sklearn?. A continuación contestaremos estas preguntas:
+
+\begin{itemize}
+\item \textbf{A nivel conceptual}, entrenar un clasificador significa tomar un conjunto de datos como entrada, y obtener a la salida un modelo clasificador identificado con distintos parámetros, los cuales son obtenidos en esta etapa de entrenamiento mediante iteraciones realizando cálculos numéricos o resolviendo problemas de optimización (como por ejemplo la obtención del mejor hiperplano en SVM o el ajuste de los pesos en redes neuronales artificiales). En el caso de KNN, el clasificador no se obtiene luego de iterar y obtener dichos parámetros, sino que se identifica por los propios datos de entrenamiento. Entonces, conceptualmente, entrenar un clasificador KNN simplemente requiere almacenar el conjunto de entrenamiento.
+
+\item \textbf{A nivel de implementación}, evaluar un clasificador KNN en un nuevo punto de datos requiere buscar sus vecinos más cercanos en el conjunto de entrenamiento, lo que puede ser una operación costosa cuando nuestro conjunto de entrenamiento es grande. Existen varios métodos para acelerar esta búsqueda, que generalmente funcionan creando estructuras de datos basadas en el conjunto de entrenamiento. La idea general, es que parte del trabajo computacional necesario para clasificar nuevos puntos es común en todos los puntos. Por lo tanto, este trabajo se puede hacer con anticipación y luego reutilizarse, en lugar de repetirse para cada nueva instancia. De esta manera, en la fase de entrenamiento, al llamar a la función \textit{.fit()} de sklearn, lo que se hace internamente es guardar todo el set de entrenamiento completo mediante estructuras de datos que nos permitan minimizar los futuros cálculos de medición de distancias. Estas estructuras de datos suelen ser árboles kd (\textit{KD tree}) o árboles de bolas (\textit{Ball tree}). De esta manera, posteriormente a utilizar \textit{.fit()} utilizaremos \textit{.predict()}, y en este paso el cálculo de medición de distancias para el nuevo punto a clasificar será mucho más rápido.\\
+\end{itemize} 
+
+\subsubsection{Principal limitación KNN.}
+
+Una de las principales limitaciones de KNN\cite{KNN_limitacion} es la \textbf{complejidad computacional requerida al trabajar con datasets de gran tamaño}. 
+
+Esto ocurre debido a que, como mencionamos previamente, cada vez que se va a realizar una predicción para un nuevo punto del set de test, es necesario calcular las distancias entre este punto y todos los demás puntos del set de entrenamiento completo. Dichos cálculos llevan un gran costo computacional si se trata de un dataset de grandes dimensiones. 
+
+Además, KNN requiere almacenar todos los datos de entrenamiento para funcionar, por lo que también existe un gran costo computacional en términos de almacenamiento. Es por esto que se recomienda utilizar datasets de pocas dimensiones para que el clasificador KNN complete su ejecución rápidamente. \\
+
+\subsubsection{Funcionamiento y ejemplo de KNN.}
+
+Luego de haber entrenado / construido nuestro modelo KNN habiendo previamente determinado el valor de k y la métrica de distancia a utilizar, el funcionamiento del algoritmo KNN para la predicción o clasificación de nuevas muestras es el siguiente: 
+
+\begin{itemize}
+\item Paso 1: Dado un nuevo punto de entrada del set de pruebas, se calculan las distancias entre este nuevo punto y todos los puntos del set de entrenamiento.
+\item Paso 2: Se ordenan las distancias y se determinan los K vecinos más cercanos basándose en los valores mínimos de dichas distancias.
+\item Paso 3: Se analiza la clase de esos vecinos y se asigna una clase para ese punto de entrada basado en el voto de la mayoría.
+\item Paso 4: Se retorna la clase predicha.
+\end{itemize}
+
+A modo de ejemplo, veamos un caso en el cual usamos KNN para clasificación usando la distancia euclidiana como métrica para calcular las distancias. 
+
+Como podemos ver en la Figura \ref{fig:KNN_example}, el conjunto de datos está etiquetado: uno es un cuadrado azul y otro es un triángulo rojo. El círculo verde es el punto que necesitamos clasificar. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.5\textwidth]{images/KNN_Ejemplo.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo de Clasificación con KNN con K=3 (círculo con linea sólida) y K=5 (círculo con linea punteada), usando la distancia euclidiana como métrica de cálculo de distancias\cite{KNN_Ejemplo}.} 
+ \label{fig:KNN_example}
+\end{figure}
+
+Viendo la Tabla \ref{table:2} observamos que:
+
+\begin{itemize}
+\item Si K = 1, tomamos únicamente el punto más cercano del círculo verde. Este punto es un triángulo rojo. Como es el único punto que vota, el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 1 y de que sea azul es 0.
+\item Si K = 3, entonces hay 2 triángulos rojos y 1 cuadrado azul más cercano al punto verde Estos 3 puntos votan, por lo que el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 2/3  y de que sea azul es 1/3 .. 
+\item Si K = 5, entonces hay 2 triángulos rojos y 3 cuadrados azules más cercanos al punto verde. Estos 5 puntos votan, por lo que el punto verde a clasificar pertenece al cuadrado azul. De esta manera la probabilidad de que sea rojo es 2/5 y de que sea azul es 3/5 .
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{K} & \textbf{P(Azul)} & \textbf{P(Rojo)} \\ [1ex] 
+\hline
+1 & 0 & 1 \\
+\hline
+3 & 1/3 & 2/3 \\
+\hline
+5 & 3/5 & 2/5 \\ [1ex] 
+\hline
+\end{tabular}
+\caption{Probabilidad de pertenecer a cada clase para diferentes valores de k.}
+\label{table:2}
+\end{table}
+
+Por lo tanto, podemos ver que KNN se basa esencialmente en un método estadístico. Cuando queremos simplemente clasificar un punto cuya clase no conocemos no hacen falta las probabilidades; podemos simplemente asignarlo a la clase con mayoría entre los k-vecinos del punto.\\
+
+\subsubsection{Métrica de distancia a emplear.}
+
+La función de distancia entre dos vectores $x$ e $y$ es una función $d(x,y)$ que define la distancia entre ambos vectores como un número real no negativo. Esta función es considerada como una métrica si satisface las siguientes 4 propiedades\cite{KNN_Ejemplo}: 
+
+\begin{enumerate}
+\item Valor no-negativo: La distancia entre $x$ e $y$ siempre es un valor mayor o igual a cero. 
+$$d(x,y) \geq 0$$
+
+\item Identidad de los indiscernibles: La distancia entre $x$ e $y$ es igual a cero si y sólo si $x$ es igual a $y$.
+\[d(x,y) = 0, \text{   si  } x=y\]
+
+\item Simetría:  La distancia entre $x$ e $y$ es igual a la distancia entre $y$ y $x$.
+$$d(x,y) = d(y,x)$$
+
+\item Desigualdad triangular: Considerando la presencia de un tercer punto $z$, la distancia entre $x$ e $y$ es siempre menor o igual que la suma de la distancia entre $x$ y $z$ y la distancia entre $y$ y $z$. 
+$$d(x,y) \leq d(x,z) + d(y,z)$$
+\end{enumerate}
+
+De esta manera, puede usarse cualquier métrica para medir las distancias en KNN, siempre y cuando cumpla con las propiedades descritas anteriormente.
+
+Dos de las distancias más utilizadas en la implementación de KNN son la distancia euclidiana y la distancia Manhattan. En  Figura \ref{fig:Man_euc} podemos observar gráficamente las diferencias entre las mismas.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.6\textwidth]{images/Manhattan_Euclidiana.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Distancia Manhattan vs Distancia Euclidiana\cite{apunte_uba}.} 
+ \label{fig:Man_euc}
+\end{figure}
+
+La \textbf{distancia euclidiana}, o también conocida como Norma L2 o distancia de regla, es una extensión del Teorema de Pitágoras. Esta distancia representa la raíz de la suma al cuadrado de las diferencias absolutas entre los valores opuestos de los vectores. Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia euclidiana, su cálculo se obtiene mediante la ecuación \ref{eq:ecuacion_1}.
+
+\begin{equation}\label{eq:ecuacion_1}
+d(x,y)=\sqrt{\sum_{i=1}^{n}|x_{i}-y_{i}|^2}   \qquad  \text{(Ver \cite{KNN_Ejemplo})}
+\end{equation}
+
+Donde $x=(x_{1},x_{2},..., x_{n})$, $y = (y_{1},y_{2},...,y_{n})$, y $n = \text{dimensiones de los puntos}$.
+
+En la ecuación \ref{eq:ecuacion_2} y Figura \ref{fig:KNN_2_Dim} podemos observar el cálculo de la distancia euclidiana entre x e y  considerando un espacio bidimensional. Este es el cálculo que se realiza en la implementación de nuestro KNN, ya que utilizamos la distancia euclidiana como métrica, y únicamente contaremos con 2 ejes.
+
+\begin{equation}\label{eq:ecuacion_2}
+d(x,y)=\sqrt{(x_{1}-x_{2})^2 + (y_{1}-y_{2})^2}
+\end{equation}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.4\textwidth]{images/KNN_2_Dim.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Distancia Euclidiana en 2 dimensiones.} 
+ \label{fig:KNN_2_Dim}
+\end{figure}
+
+En cambio, la \textbf{distancia Manhattan}\footnote{Su nombre es debido a que es la forma de calcular distancias en una ciudad con forma de grilla en la cual solo nos podemos mover por las calles en forma horizontal y vertical}, o también conocida como Norma L1 o distancia rectilínea, se calcula como la sumatoria de la diferencia absoluta entre los valores opuestos de los vectores.  Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia Manhattan, su cálculo se obtiene mediante la ecuación \ref{eq:ecuacion_3}.
+
+\begin{equation}\label{eq:ecuacion_3}
+d(x,y)=\sum_{i=1}^{n}|x_{i}-y_{i}|  \qquad  \text{(Ver \cite{KNN_Ejemplo})}
+\end{equation}
+
+Donde $x=(x_{1},x_{2},..., x_{n})$, $y = (y_{1},y_{2},...,y_{n})$, y $n = \text{dimensiones de los puntos}$.
+
+\cleardoublepage
+\subsubsection{Eligiendo el valor de k: overfitting y underfitting.}
+
+En el caso de KNN el único hiper-parámetro que manejamos -además de la métrica usada para la distancia-, es k. La elección del valor k tendrá un impacto significativo en los resultados del algoritmo. 
+
+Para determinar el valor óptimo para k lo que se hace es probar diferentes valores de k y ver cual es el que nos da mejores resultados. Aquí hay que tener un cierto cuidado ya que hay que entender qué implica aumentar o disminuir la cantidad de vecinos más cercanos.
+Veamos en la Figura \ref{fig:KNN_k_1} qué pasa cuando usamos k = 1, es decir cuando a cada punto lo clasificamos únicamente en base al punto más cercano.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/KNN_k_1.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{KNN con k = 1. \cite{apunte_uba}} 
+ \label{fig:KNN_k_1}
+\end{figure}
+
+En este caso nuestro el set de entrenamiento en KNN es simplemente perfecto porque dado un registro cualquiera, el más parecido es el registro mismo y, por lo tanto, vamos a tener 100\% de precisión para el set de entrenamiento. Sin embargo esto no quiere decir que el algoritmo generalice bien y para el set de pruebas los resultados pueden ser catastróficos.
+
+Lo que podemos ver es que la distribución que aprende nuestro clasificador no es homogénea, es decir que hay puntos de distintas clases mezclados en zonas en las cuales predomina otra clase, esto implica que nuestro clasificador va a funcionar muy bien para el set de entrenamiento pero no aprendió a generalizar y esto quiere decir que no va a ser muy bueno para predecir la clase de puntos nuevos que no hayamos observado en el set de entrenamiento. Esta es la definición de overfitting que discutimos en la sección previa (Ver \textit{\nameref{Over_y_under}}): cuando un algoritmo funciona bien para el set de entrenamiento y mal para datos nuevos. El concepto es que aprender a predecir el set de entrenamiento no es lo mismo que aprender a generalizar.
+
+\cleardoublepage
+Ahora veamos en la Figura \ref{fig:KNN_k_5} qué sucede con k = 5.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/KNN_k_5.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{KNN con k = 5. \cite{apunte_uba}} 
+ \label{fig:KNN_k_5}
+\end{figure}
+
+Como podemos ver en la Figura \ref{fig:KNN_k_5} el clasificador aprendió a generar áreas más suaves y por consiguiente es un clasificador que generalizará mejor para predecir puntos que no estaban en el set de entrenamiento. Podriamos pensar entonces que es conveniente usar valores de k grandes como k = 1000 o incluso k = n. Sin embargo, al aumentar el valor de k estamos dando cada vez mayor peso a las clases que tienen mayor cantidad de puntos en el set de entrenamiento, en el extremo si k = n vamos a predecir para todos los puntos la clase que mayor cantidad de puntos tiene en el set de entrenamiento lo cual no es bueno. 
+
+En resumen:
+\begin{itemize}
+\item Cuando k es muy bajo, el algoritmo toma muy pocos puntos para clasificar un punto nuevo. Es un caso de overfitting. El modelo clasifica los puntos nuevos en base a muy poca evidencia. Nuestro algoritmo alucina, las fronteras se vuelven muy complejas, demasiado complejas para el set de datos que tenemos. 
+\item Cuando k es un número muy grande, KNN considera demasiados puntos para clasificar un punto nuevo. Este es un caso de underfitting, donde nuestro algoritmo tiene visión borrosa por estar mirando demasiados puntos, las fronteras entre nuestras clases se vuelven difusas y el poder expresivo del algoritmo es pobre. 
+\end{itemize}
+
+En definitiva, el k óptimo en KNN es aquel que nos de un buen desempeño en cuanto a la precisión de clasificación para el mayor k posible. Una de las mejores formas para seleccionar nuestro k óptimo, es utilizando el método de \textbf{Cross Validation} (ó validación cruzada): ver \textit{\nameref{Cross Validation}}.
+
+\cleardoublepage
+\subsection{K-means.}
+K-means o K-medias, o también conocido como algoritmo de Lloyd, es un algoritmo de ML de clustering (ver \textit{\nameref{agrupacion}}). Como mencionamos anteriormente, en problemas de clustering contamos con datos que queremos dividir en grupos de forma automática. Estos datos no tienen etiquetas, no sabemos a qué grupo pertenecen. K-means nos permite encontrar cómo repartir m puntos en n dimensiones dentro de k clusters.
+
+El nombre de K-means viene porque representa cada uno de los clusters por la media de sus puntos, es decir, por su centroide. Cada clúster, por tanto, es caracterizado por su centroide que se encuentra en el centro de los elementos que componen el clúster.
+
+Para este algoritmo, el único hiper-parámetro que se necesita definir previamente es k, el número de clusters. Este k se puede obtener de distintas formas, en nuestra implementación utilizaremos el \textit{método del codo} para calcularlo. Antes de explicar en qué consiste este método, detallaremos el funcionamiento de k-means, su objetivo, sus desventajas y las mejoras que se pueden aplicar.
+
+\subsubsection{Funcionamiento y ejemplo de K-means.}\label{K_means_funcionamiento}
+
+Resumidamente, habiendo definido previamente nuestro k, el número de clusters, y teniendo como entrada nuestros puntos de datos $x_{1},...,x_{m}$, el funcionamiento de K-means consta de los siguientes 4 pasos \cite{K_means_review}:
+
+\begin{itemize}
+\item Paso 1: Se inicializan aleatoriamente los centroides $C_{1},...,C_{k}$ colocándose en posiciones al azar. Cada centroide $C_{j}$ pertenece a un cluster $j$ específico. 
+\item Paso 2: Se asignan los puntos de datos a su cluster más cercano: Para esto, lo que se hace es, para cada punto de datos $x_{i}$, se calculan las distancias euclidianas con cada uno de los centroides $C_{j}$. Luego, se asigna cada punto de datos $x_{i}$ al cluster $j$, cuyo centroide $C_{j}$ es el más cercano al punto $x_{i}$ basándose en la mínima distancia euclidiana. Matemáticamente. se utiliza la Fórmula \ref{eq:ecuacion_1} para calcular la distancia euclidiana entre cada uno de nuestros puntos de datos $x_{i}$, y cada uno de nuestros centroides $C_{j}$, y obtener el mínimo valor. Reformulando dicha ecuación, nos quedaría la Fórmula \ref{eq:ecuacion_4}.   
+
+\begin{equation}\label{eq:ecuacion_4}
+d(x,C_{j})=\sqrt{\sum_{i=1}^{d}|x_{i}-C_{ji}|^2}  \qquad  \text{(Ver \cite{K_means_experiment})}
+\end{equation}
+
+Donde $d = \text{dimensiones de nuestros puntos de datos}$, $x_{i} = (x_{1},x_{2},...,x_{d})$ la posición de un punto $x$ de nuestro set de datos para la dimensión $i$, y $C_{ji} = (C_{11},C_{12},...,C_{kd})$ la posición de nuestro centroide $C$ del cluster $j$ para la dimensión $i$.
+            
+En la Fórmula \ref{eq:ecuacion_4}, podemos visualizar que los centroides tienen igual cantidad de dimensiones que nuestros puntos y, además, pueden o no coincidir con puntos de los datos. Un centroide que es también un punto de los datos se lo llama “clusteroid”. En general, no se pide que los centroides sean también puntos sino que se permite que tomen cualquier posición dentro del espacio de los datos.
+
+\item Paso 3: Se actualizan las posiciones de los $C_{j}$ (centroides $C$ pertenecientes a los clusters $j$). De esta manera, se recalculan los centroides como el promedio de todos sus puntos (los que pertenecen a su cluster) de forma tal de minimizar la distancia desde el centroide a los puntos asignados al mismo. Como resultado, los centroides se mueven al centro promedio de los puntos a los que se les asignaron. Matemáticamente. se utiliza la Fórmula \ref{eq:ecuacion_5} para calcular, para cada cluster $j=(1,...,k)$ la nueva posición del centroide $C_{j}$, el cual se calcula como el promedio de todos los puntos $x_{i}$ asignados al cluster $j$ en el paso anterior.  
+
+\begin{equation}\label{eq:ecuacion_5}
+C_{j}(a)=\frac{1}{m_{j}}\sum_{x_{i} \in C_{j}}^{x_{m}}x_{i}(a),     \text{   para  } a = (1,...,d)
+\end{equation}
+
+Donde $d = \text{dimensiones de nuestros puntos de datos y centroides}$, $m_{j}$ = cantidad de puntos de nuestro set de datos pertenecientes al cluster $j$, $x_{i}(a)$ = posición de nuestro punto del set de datos $x_{i}$ para la dimensión $a$, y $C_{j}(a)= (C_{1}(1),C_{1}(2),...., C_{K}(D))$ la posición de nuestro centroide $C$ del cluster $j$ para la dimensión $a$.
+
+\item Paso 4: Se repiten los pasos 2 y 3 hasta que los centroides convergen. La convergencia puede verificarse mediante la diferencia entre los centroides entre el paso anterior y el actual. Cuando los centroides prácticamente ya no cambian de posición o cuando los puntos de datos no cambian de cluster se declara la \textbf{convergencia} del algoritmo.\\
+
+\end{itemize}
+
+A modo de ejemplo, veamos un caso en el cual usamos K-means para clusterizar nuestros datos hasta llegar a su convergencia. 
+
+En el ejemplo de la Figura \ref{fig:K_means_working_1}, nuestros datos tienen 2 dimensiones. Definiendo previamente nuestro k=2 (2 clusters), en el item \textbf{(1)} observamos dicha distribución de datos y, además, realizamos una inicialización aleatoria de nuestros 2 centroides (triángulos rojo y amarillo). Este es el \textbf{paso 1} del algoritmo k-means.  
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/K_Means_1.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.} 
+ \label{fig:K_means_working_1}
+\end{figure}
+
+En el \textbf{paso 2}, lo que se tiene que hacer es, para cada uno de nuestros puntos de datos, averiguar a cuál centroide se asignará, basándonos en la distancia más cercana al mismo.
+Al considerar la distancia euclidiana para este objetivo, en \textbf{(2)} dibujamos una línea roja imaginaria que divide en iguales distancias nuestros 2 centroides: partiendo de esta línea la distancia a ambos centroides es la misma. De esta manera, cada punto ubicado a la derecha de la linea pertenecerá al cluster amarillo (por tener menor distancia al centroide triángulo amarillo), y cada punto ubicado a la izquierda de la linea pertenecerá al cluster rojo (por tener menor distancia al centroide triángulo rojo). Esta asignación la observamos en el item \textbf{(3)}, que representa nuestra asignación inicial de nuestros puntos en los clusters. 
+
+La línea roja es simplemente una referencia utilizada para una mejor comprensión gráfica, pero internamente esta asignación de puntos se realiza en base al cálculo de las distancias euclidianas mediante la Fórmula \ref{eq:ecuacion_4}. descrita anteriormente para el paso 2 de k-means.
+
+Ahora, pasamos al \textbf{paso 3} de k-means: la actualización de las posiciones de los centroides de los clusters. Lo que hacemos en \textbf{(4)} es mover los centroides al centro promedio de los puntos a los que se les asignaron. Para esto se utiliza la Fórmula \ref{eq:ecuacion_5} descrita anteriormente. Podemos observar las nuevas posiciones de los centroides en \textbf{(5)}. 
+De esta forma, finalizamos la primera iteración de nuestro algoritmo. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_2.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+En la próxima iteración, tenemos la misma disposición de los puntos, solo que ahora tenemos dos nuevas posiciones para nuestros centroides. Ignoramos las clases que se asignaron para los puntos de nuestros datos ya que esta era una asignación del paso anterior: ahora nuestros centroides cambiaron y la asignación de clases también lo hará. Nuevamente trazamos la linea imaginaria \textbf{(6)} y realizamos la nueva asignación: los únicos puntos que cambiaron con respecto al paso anterior son los 2 amarillos ubicados en la parte superior, los cuales pasan a ser rojos \textbf{(7)}. Debido a que cambiaron de clase, entonces nuevamente vamos a actualizar las posiciones de nuestros centroides \textbf{(8)}, quedándonos distribuidos finalmente como \textbf{(9)}. De esta manera finalizamos la segunda iteración. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_3.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_4.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+Para la tercera iteración se vuelven a repetir los pasos 2 y 3: trazamos la línea de división de nuestros datos \textbf{(10)}, realizamos la nueva asignación de puntos \textbf{(11)} y observamos que cambiaron 2 puntos de clases.  Debido a que cambiaron de clase, entonces re-ubicamos los centroides nuevamente \textbf{(12)}, quedándonos finalmente como \textbf{(13)}.  De esta manera finalizamos la tercera iteración. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_5.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_6.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+En el ítem \textbf{(13)}, si ahora intentamos asignar nuevamente nuestros puntos de datos, observamos que ninguno cambiaría de color/clase. Los puntos rojos ya están del lado izquierdo de la linea, y los puntos amarillos ya están del lado derecho de la linea. Esto significa que si seguimos iterando nada cambiará, por lo que llegamos a la \textbf{convergencia} de nuestro algoritmo.
+
+\cleardoublepage
+\subsubsection{Objetivo de k-means y su función de coste.}
+
+El objetivo de K-means es encontrar cómo repartir m puntos en n dimensiones dentro de k clusters de la “mejor forma posible”. 
+
+¿A qué llamamos “de la mejor forma posible”?: se puede definir a cada cluster a partir de su centro (centroide), en cuyo caso la mejor distribución posible es aquella que minimiza la distancia entre cada punto del cluster y el centroide que se le asignó. Esto es lo que se conoce como \textbf{Inercia} (Inertia) o \textbf{WCSS} (within-cluster sum-of-squares, suma de cuadrados intra cluster), y es lo que busca \textit{minimizar} K-means.
+
+A este criterio de Inercia también se lo considera como la \textbf{función de coste J}\footnote{La función de coste o también llamada función de distorsión u objetivo, es una función que trata de determinar la diferencia o el error entre el valor estimado/predicho por un modelo de machine learning y el valor real, con el fin de optimizar los parámetros en dicha función y obtener un error mínimo. En el caso de k-means, nuestros valores estimados son las posiciones de los centroides -los cuales tenemos que descubrir y encontrar los más óptimos / los que minimicen nuestra J- y nuestros valores reales son nuestros puntos del cluster} de K-means, la cual se intenta \textit{minimizar}. 
+
+Dicho de otra manera, el objetivo de k-means es encontrar la ubicación de los centroides que minimicen la inercia, esta será la posición óptima de los mismos.
+
+La Inercia\cite{K_means_experiment} se puede reconocer como una medida de la coherencia interna de los clústeres, permitiendo medir qué tan bien K-means realiza la agrupación del conjunto de datos. La misma se calcula como la sumatoria de las diferencias de las distancias (generalmente euclidiana) al cuadrado entre cada uno de los puntos de datos $x_{i}$ pertenecientes a un cluster $j$ y el centroide al que fue asignado dicho punto, $C_{j}$: Fórmula \ref{eq:ecuacion_6}.
+
+\begin{equation}\label{eq:ecuacion_6}
+J = Inertia = WCSS = \sum_{C_{j}}^{C_{k}}  ( \sum_{xi \in C_{j}}^{x_{m}}||x_{i}-C_{j}||^2)
+\end{equation}
+
+Donde $k$ = número de centroides ó clusters, $m$ = cantidad de puntos de nuestro set de datos, $C_{j}$ = centroide de cluster $j$, y $x_{i}$ = punto $i$ de nuestro set de datos asignado a $C_{j}$. Además, el término $||x_{i}-C_{j}||$ se corresponde a la distancia euclidiana entre cada punto del set de datos, $x_{i}$, y el centroide que tiene asignado, $C_{j}$. Este cálculo se corresponde a la Fórmula \ref{eq:ecuacion_4} que obtuvimos anteriormente.
+
+Considerando una inicialización aleatoria de nuestros centroides, y por ejemplo, definiendo que nuestro número de clusters es 3 ($k$ en kmeans = 3), entonces la Fórmula \ref{eq:ecuacion_6} se podría reescribir como la Fórmula \ref{eq:ecuacion_7}. Podemos observar que al variar la inicialización de nuestros centroides, las posiciones de nuestros $C_{j}$ cambiarían, por lo que nuestra $WSS$ sería distinta. 
+
+\begin{equation}\label{eq:ecuacion_7}
+WCSS =  \sum_{x_{i} \in C_{1}}||x_{i}-C_{1}||^2 + \sum_{x_{i} \in C_{2}}||x_{i}-C_{2}||^2 + \sum_{x_{i} \in C_{3}}||x_{i}-C_{3}||^2     \qquad  \text{(Ver \cite{K_means_elbow})}
+\end{equation}
+
+\cleardoublepage
+Es importante entender la Fórmula \ref{eq:ecuacion_6} para comprender el problema genérico de clustering. Se sabe que hay k centroides y que cada uno de estos centroides puede estar en cualquier punto del espacio. El objetivo de k-means es \textbf{encontrar la posición óptima para estos centroides de forma tal de minimizar la distancia total entre los puntos y los centroides que se le han asignado}. Es evidente que cada punto debe estar asignado a su centroide más cercano para minimizar la distancia por lo que el problema puede resumirse a \textbf{encontrar la posición óptima para los k centroides}.
+
+Obtener el mínimo valor de nuestro $WCSS$, o que es lo mismo que encontrar el mínimo global, es un proceso muy complejo debido a la inmensa cantidad de formas en las que nuestros m puntos de datos se pueden repartir en k clusters. En lugar de esto, k-means trata de encontrar una solución que, aun no siendo la mejor de entre todas las posibles, sea buena (óptimo local) y garantice un agrupamiento en el que los clusters sean poco dispersos y se encuentren separados entre sí.
+
+Es de destacar que, suponiendo que tenemos $m$ puntos de datos y especificamos que este $m$ sea nuestro número de clusters ($k$ = $m$), entonces $WCSS$ será 0 ya que cada punto de nuestros datos actuará como centroide de sí mismo y la distancia euclidiana entre ellos será nula. De esta forma, cada cluster contendrá solo un punto. Esto idealmente es un cluster perfecto, pero no tiene ningún sentido tener tantos clusters como puntos de datos tengamos. Por lo tanto, existe un valor de umbral para $k$ que podemos encontrar utilizando el \textit{método del codo}, el cual veremos más adelante en \textit{\nameref{Elbow_Met}}).
+
+\subsubsection{Posición inicial de los centroides.}\label{Posicion inicial centroides}
+
+Al ser un algoritmo que encuentra un mínimo local, K-means es muy sensible a la posición inicial de los centroides. Una posible solución para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, idealmente ejecuciones en paralelo, y computar la función de coste $J$ para cada resultado final quedándonos con la mínima. 
+
+La Figura \ref{fig:K_means_costo_1} muestra un ejemplo donde hay 4 clusters y varios puntos aislados en un plano bidimensional. La Figura \ref{fig:K_means_costo_2} muestra el resultado del mejor y peor costo. Se puede ver que el resultado del peor costo es realmente muy malo mientras que el resultado del mejor costo es lo que se esperaba obtener.  
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.4\textwidth]{images/K_means_costo_1.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo K-means. \cite{apunte_uba}}
+ \label{fig:K_means_costo_1}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/K_means_costo_2.png}
+ \captionsetup{justification=centering,margin=1cm}
+ \caption{Ejemplo K-Means peor (izquierda) y mejor (derecha) costo. \cite{apunte_uba}}
+ \label{fig:K_means_costo_2}
+\end{figure}  
+
+El gráfico de la Figura \ref{fig:K_means_costo_3} muestra el resultado de la función costo para 100 ejecuciones de K-Means, con un $k$ predefinido, y variando las inicializaciones de nuestros centroides. En el eje $x$ se representan las 100 ejecuciones de k-means, y en el eje $y$ encontramos la función de coste $J$ obtenida para cada ejecución). 
+
+En la Figura \ref{fig:K_means_costo_4} podemos observar un histograma representando la cantidad de veces en porcentajes (eje $y$) que se observaron diferentes rangos de costo (eje $x$). Como se puede ver, afortunadamente los costos bajos son amplia mayoría, es decir que únicamente con algunas pocas inicializaciones desafortunadas K-means llega a un mínimo global muy malo. Esto quiere decir que una sola iteración de K-Means nos dará un buen resultado con una probabilidad alta y hacer un ciclo con unas pocas ejecuciones es más que suficiente para llegar a un excelente resultado.
+
+\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/K_means_costo_3.png}
+\caption{Costo en K-Means. \cite{apunte_uba}}
+\label{fig:K_means_costo_3}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/K_means_costo_4.png}
+\caption{Histograma J en K-Means. \cite{apunte_uba}}
+\label{fig:K_means_costo_4}
+\end{minipage}
+\end{figure}
+
+\cleardoublepage
+\subsubsection{Limitaciones K-means.}
+
+K-means tiene tres principales limitaciones, las cuales describiremos a continuación.
+
+\begin{enumerate}
+
+\item \textbf{Outliers}: Un outlier es una observación atípica dentro de una muestra de datos que es notablemente diferente del resto. Los outliers representan errores en la medición, mala recolección de datos, o simplemente muestran variables no consideradas al recolectar los datos.
+En k-means los outliers pueden incrementar la función de coste o Inercia. 
+
+Varios investigadores observaron que, cuando los datos contienen outliers, existe una variación en el resultado que significa que no hay un resultado estable al realizar diferentes ejecuciones de k-means con los mismos datos\cite{K_means_review}. Por esta razón, es muy importante eliminar los outliers de nuestro conjunto de datos. Los valores atípicos se pueden eliminar aplicando técnicas de preprocesamiento en el conjunto de datos original.
+
+\item \textbf{Número de los $k$ clusters}: Uno de los principales inconvenientes de K-means es la necesidad de determinar el número óptimo de los $k$ clusters por adelantado. Esto perjudica la eficacia del algoritmo ya que en la práctica, no se conoce a priori el número de clusters final. Este defecto lo perjudica al compararlo con otros algoritmos, ya que en muchos la inicialización del número de clusters no es necesaria. Todavía es un problema saber cuál es el número correcto de $k$ clusters que debemos asignar\cite{K_means_review}.
+
+\item \textbf{Inicialización de los centroides}: Como vimos en la sección \textit{\nameref{Posicion inicial centroides}}, la selección inicial de los centroides dirige el proceso de K-means y las particiones resultantes y su efectividad están condicionadas a la elección de estos centroides\cite{K_means_experiment}. 
+Existen numerosos estudios\cite{K_means_initial_centroids} que muestran que la performance de K-means es fuertemente dependiente de la estrategia de inicialización de la ubicación de los centroides a utilizar.
+
+\end{enumerate}
+
+Todas estas limitaciones descritas anteriormente fueron abordadas y resueltas en la implementación de k-means realizada para este proyecto de la siguiente forma:
+
+\begin{itemize}
+
+\item Para el primer problema, los outliers, se aplicó un pre-procesamiento de nuestros datos que permitió removerlos: ver \textit{\nameref{IMP_Modelo_clasificacion_KNN}}.
+
+\item Para el problema de la determinación óptima y por adelantado del número de los $k$ clusters, se aplicó el \textit{método del codo}: ver \textit{\nameref{Elbow_Met}}.
+
+\item Para el último caso de inicialización de los centroides, como mencionamos anteriormente, una de las soluciones para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, computar la función de distorsión J para cada resultado final y quedarnos con el mínimo. 
+
+En la implementación de esta Tesis, se utilizó una estrategia más novedosa, inicializar nuestros centroides utilizando K-means++: ver \textit{\nameref{k_means_plus_plus}}. La ventaja de utilizar esta estrategia es que generalmente funciona mejor y más rápido que la detallada anteriormente, por lo que actualmente es uno de los métodos estándar para inicializar nuestros centroides en k-means. \cite{K_means_plus_plus}
+\end{itemize}
+
+\cleardoublepage
+\paragraph{Obtención del k mediante Elbow Method.}\label{Elbow_Met}
+
+Como se mencionó anteriormente, es necesario encontrar el valor óptimo de $k$. Un buen modelo k-means es uno que tenga la menor Inertia y un bajo número de clusters $k$. Sin embargo esto no es posible, ya que si $k$ aumenta, Inertia decrece.
+
+\textit{Elbow method} o \textit{método del codo} nos permite determinar el óptimo valor de $k$, o dicho de otra forma, el óptimo número de clusters en los cuales nuestros puntos de datos serán clusterizados. Mediante este método lo que se hace es graficar cómo varía la función de costo o Inercia en función de $k$: recordemos que la Inercia se calcula mediante la Fórmula \ref{eq:ecuacion_6}. 
+
+Luego de obtener este gráfico, se encuentra el punto ``del codo'', el cual indicará nuestro $k$ óptimo. Este es el punto después del cual la Inercia comienza a disminuir de forma lineal, o dicho de otra forma, el punto ``del codo'' indica que después de este punto, el cambio en la disminución del valor de la Inercia no es significativo. 
+
+Veamos el siguiente ejemplo donde obtendremos nuestro $k$ óptimo en base al \textit{método del codo}: para los puntos de datos observados en la Figura \ref{fig:Elbow_1}, podemos observar visualmente 3 clusters separados, por lo que el número óptimo de clusters debería ser 3. En este caso es bastante sencillo observar esto, pero hay muchos casos donde no es fácil visualizar a simple vista el número de $k$ óptimo, y es por esto que el \textit{método del codo} es de gran utilidad. 
+
+Utilizando esta técnica, graficamos la Inertia en función de $k$: iteramos valores de $k$ desde 1 hasta 9 y calculamos los valores de inercia para cada valor de $k$ dentro de ese rango, obteniendo el gráfico de la Figura \ref{fig:Elbow_2}.
+
+\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/Elbow_1.png}
+\caption{Puntos de datos.}
+\label{fig:Elbow_1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/Elbow_2.png}
+\caption{Método del codo usando Inercia.}
+\label{fig:Elbow_2}
+\end{minipage}
+\end{figure}
+ 
+De esta manera, concluimos que, para estos datos, viendo el gráfico de la Figura \ref{fig:Elbow_2}, el punto ``del codo'' está en $k=3$, siendo 3 nuestro $k$ óptimo. 
+
+\cleardoublepage
+En la Figura \ref{fig:Elbow_3} podemos visualizar los puntos de datos clusterizados para diferentes valores de $k$, observando de esta manera que con $k=3$ obtenemos la clusterización más óptima y lógica.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/Elbow_3.png}
+ \captionsetup{justification=centering,margin=1cm}
+ \caption{Puntos de datos clusterizados para diferentes valores de $k$.}
+ \label{fig:Elbow_3}
+\end{figure} 
+
+\paragraph{Inicialización de los centroides: k-means++.}\label{k_means_plus_plus}
+
+K-Means++\cite{K_means_plus_plus} es una variante de K-Means en donde lo único que cambia con respecto a este es la forma en que se inicializan los centroides (el paso 1 de k-means descrito en la sección \textit{\nameref{K_means_funcionamiento}}). Actualmente es uno de los métodos estándar para inicializar los centroides en k-means.
+
+De esta manera, habiendo predefinido nuestro $k$, los pasos para inicializar nuestros centroides con k-means++ son:
+
+\begin{enumerate}
+\item Se elige un punto al azar como primer centroide. Este paso es el mismo que ocurre en k-means, solo que en este caso únicamente el primer centroide será elegido al azar.
+\item Calculamos la distancia $D(x)$ entre cada punto de nuestros datos $x$ y su centroide. 
+\item Uno de nuestros puntos de datos $x$ será elegido como el nuevo centroide. Este nuevo centroide será el que tenga la mayor distancia al cuadrado $D(x)^2$ con respecto a su centroide, es decir, el punto $x$ que tenga la distancia más lejana con su centroide. 
+\item Repetimos los pasos 2 y 3 hasta que nuestros $k$ centroides sean asignados.
+\end{enumerate}
+
+La idea de K-means++ es asignar los centroides de forma espaciada, de esta forma el óptimo local obtenido por K-Means tiene una mayor probabilidad de estar cerca del óptimo global.
+
+\cleardoublepage
+En la secuencia de la Figura \ref{fig:K_means_plus_plus} podemos observar un ejemplo de asignación de centroides por medio de k-means ++, habiendo previamente definido $k=3$. Observamos que, a partir de la muestra de datos \textbf{(1)}, obtendremos la inicialización de nuestros centroides \textbf{(6)}.\\
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/K_means_plus_plus.png}
+ \captionsetup{justification=centering,margin=1cm}
+ \caption{Inicialización de centroides mediante K-means.}
+ \label{fig:K_means_plus_plus}
+\end{figure} 
+
+En \textbf{(2)} se elige aleatoriamente un punto al azar como centroide inicial (en este caso el punto verde).
+En \textbf{(3)} se calcula la distancia $D(x)$ entre cada uno de los puntos $x$ y su centroide. Para este caso únicamente tenemos el centroide verde. 
+En \textbf{(4)} se encuentra al segundo centroide (rojo) de manera que esté alejado del centroide verde. Este segundo centroide es el punto x que tiene la mayor distancia al cuadrado $D(x)^2$ a su centroide.
+En \textbf{(5)} se calculan nuevamente las distancias $D(x)$ entre cada uno de los puntos y su centroide más cercano.
+Por último, en \textbf{(6)} finalizamos la inicialización de nuestros centroides encontrando al último y tercer centroide (azul). El mismo fue elegido ya que su punto $x$ es el que tiene la mayor distancia al cuadrado $D(x)^2$ a su centroide con respecto a cualquier otro punto y su centroide.
+
+De esta manera, concluimos que K-means++ genera una inicialización más dispersa de los centroides iniciales comparándolo con el método de K-means estándar de inicialización aleatoria. El problema de K-Means++ es que para datos realmente masivos necesita hacer k iteraciones sobre los datos para elegir los centroides, tarea que es todavía más ineficiente cuando k es un número largo. Sin embargo, en general, K-Means++ genera una inicialización mejor para K-Means y esto permite no solo obtener una mejor solución final sino que también acelera la velocidad de convergencia del algoritmo.
+
+\cleardoublepage
 \section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
 
 \colorbox{red}{FALTA}
@@ -899,7 +1394,7 @@ Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de simil
 
 \cleardoublepage
 
-\subsection{Armado del modelo de clasificación KNN.}
+\subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
 \colorbox{red}{FALTA}
 
 Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentarán a un modelo de clasificación KNN. Finalmente, con este modelo KNN lograremos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
@@ -1158,11 +1653,37 @@ Ioannis Paparrizos, B. Barla Cambazoglu, \& Aristides Gionis. (2011). \textit{Ma
 Paul Resnick, \& Hal R. Varian. (1997). \textit{Recommender Systems}. Communications of the ACM40. (pp. 56-59).
 
 \bibitem{intro_algos_ML}
-M. Emre Celebi, Michael W. Berry, Azlinah Mohamed, \& Bee Wah Yap. (2020). \textit{Supervised and Unsupervised Learning for Data Science}. Springer book. (pp. 3,4,14,15).
+M. Emre Celebi, Michael W. Berry, Azlinah Mohamed, \& Bee Wah Yap. (2020). Libro \textit{Supervised and Unsupervised Learning for Data Science}. (pp. 3,4,14,15).
 
 \bibitem{aprendiz_transd}
 Karthik Tangirala. (2011). \textit{Semi-supervised and transductive learning algorithms for predicting alternative splicing events in genes}. Proyecto de Tesis para carrera de grado \textit{Master of Science}. Kansas State University. (pp. 1-4).
 
+\bibitem{cross_validation}
+Daniel Berra. (2018). \textit{Cross-Validation}. Libro \textit{Reference Module in Life Sciences}. Data Science Laboratory, Tokyo Institute of Technology. (pp. 1-5).
+
+\bibitem{over_and_under}
+Haider Khalaf Jabbar, \& Rafiqul Zaman Khan. (2014). \textit{Methods to avoid over-fitting and under-fitting in supervised machine learning (comparative study)}. (pp. 163-165)
+
+\bibitem{KNN_limitacion}
+Zhou Yong,  Li Youwen, \& Xia Shixiong. (2009, Marzo). \textit{An Improved KNN Text Classification Algorithm Based on Clustering}. Journal of Computers, 4(3). (pp. 230, 233). 
+
+\bibitem{KNN_Ejemplo}
+Haneen Arafat Abu Alfeilat, Ahmad B.A. Hassanat, Omar Lasassmeh, Ahmad S. Tarawneh, Mahmoud Bashir Alhasanat, Hamzeh S. Eyal Salman, \& V.B. Surya Prasath. (2019, Diciembre). \textit{Effects of Distance Measure Choice on K-Nearest Neighbor Classifier Performance: A Review}. Libro \textit{Big Data}, 7(4). (pp. 1-9).
+
+\bibitem{K_means_experiment}
+Boyang Li. (2018, Febrero). \textit{An Experiment of K-Means Initialization Strategies on Handwritten Digits Dataset}. Intelligent Information Management, 10. (pp. 43-46). 
+
+\bibitem{K_means_elbow}
+Mengyao Cui. (2020). \textit{Introduction to the K-Means Clustering Algorithm Based on the Elbow Method}. Accounting, Auditing and Finance, 1. (pp. 5-8).
+
+\bibitem{K_means_review}
+Shraddha Shukla, \& Naganna S. (2014). \textit{A Review On K-means Data Clustering Approach}. International Journal of Information \& Computation Technology, 4(17). (pp. 1847-1849, 1852, 1853).
+
+\bibitem{K_means_initial_centroids}
+Kodinariya, T.M. (2014). \textit{Survey on Exiting Method for Selecting Initial Centroids in K-Means Clustering}. International Journal of Engineering Development and Research, 4(2). (pp. 2865-2868).
+
+\bibitem{K_means_plus_plus}
+David Arthur, \& Sergei Vassilvitskii. (2007, Enero). \textit{K-Means++: The Advantages of Careful Seeding}. SODA '07: Proceedings of the 18th annual ACM-SIAM symposium on Discrete algorithms. (pp. 1027-1035).
 
 \end{thebibliography}
 

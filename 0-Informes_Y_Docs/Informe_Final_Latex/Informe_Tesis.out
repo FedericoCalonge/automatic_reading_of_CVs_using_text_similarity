@@ -25,39 +25,51 @@
 \BOOKMARK [3][-]{subsubsection.3.2.4}{\277C\363mo implementar un modelo de ML?}{subsection.3.2}% 25
 \BOOKMARK [4][-]{paragraph.3.2.4.1}{Cross Validation.}{subsubsection.3.2.4}% 26
 \BOOKMARK [4][-]{paragraph.3.2.4.2}{Los Problemas de ML: Overfitting y Underfitting.}{subsubsection.3.2.4}% 27
-\BOOKMARK [1][-]{section.4}{Natural Language Processing.}{}% 28
-\BOOKMARK [2][-]{subsection.4.1}{Introducci\363n.}{section.4}% 29
-\BOOKMARK [2][-]{subsection.4.2}{Preprocesamiento de textos.}{section.4}% 30
-\BOOKMARK [2][-]{subsection.4.3}{Similitud entre textos.}{section.4}% 31
-\BOOKMARK [2][-]{subsection.4.4}{T\351cnicas para medir Similitud entre textos.}{section.4}% 32
-\BOOKMARK [3][-]{subsubsection.4.4.1}{Cosine Similarity.}{subsection.4.4}% 33
-\BOOKMARK [3][-]{subsubsection.4.4.2}{Word Mover's Distance \(WMD\).}{subsection.4.4}% 34
-\BOOKMARK [2][-]{subsection.4.5}{Algoritmos de vectorizaci\363n.}{section.4}% 35
-\BOOKMARK [3][-]{subsubsection.4.5.1}{TF-IDF.}{subsection.4.5}% 36
-\BOOKMARK [3][-]{subsubsection.4.5.2}{Word Embeddings.}{subsection.4.5}% 37
-\BOOKMARK [4][-]{paragraph.4.5.2.1}{\277C\363mo entrenar Word Embeddings?}{subsubsection.4.5.2}% 38
-\BOOKMARK [1][-]{section.5}{Implementaci\363n.}{}% 39
-\BOOKMARK [2][-]{subsection.5.1}{Obtenci\363n del modelo de clasificaci\363n.}{section.5}% 40
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Introducci\363n.}{subsection.5.1}% 41
-\BOOKMARK [3][-]{subsubsection.5.1.2}{Esquema.}{subsection.5.1}% 42
-\BOOKMARK [3][-]{subsubsection.5.1.3}{Obtenci\363n de sets de datos.}{subsection.5.1}% 43
-\BOOKMARK [4][-]{paragraph.5.1.3.1}{Curriculum Vitae.}{subsubsection.5.1.3}% 44
-\BOOKMARK [4][-]{paragraph.5.1.3.2}{Descripciones Puestos Laborales.}{subsubsection.5.1.3}% 45
-\BOOKMARK [3][-]{subsubsection.5.1.4}{Preprocesamiento y limpieza de datos.}{subsection.5.1}% 46
-\BOOKMARK [3][-]{subsubsection.5.1.5}{Cantidad final del set de datos y su uso en las distintas etapas.}{subsection.5.1}% 47
-\BOOKMARK [2][-]{subsection.5.2}{Comparando textos y obteniendo similitudes.}{section.5}% 48
-\BOOKMARK [2][-]{subsection.5.3}{Armado del modelo de clasificaci\363n KNN.}{section.5}% 49
-\BOOKMARK [2][-]{subsection.5.4}{Clasificaci\363n de nuevas muestras y resultados obtenidos.}{section.5}% 50
-\BOOKMARK [2][-]{subsection.5.5}{Integraci\363n al Sistema Web.}{section.5}% 51
-\BOOKMARK [3][-]{subsubsection.5.5.1}{Base de datos.}{subsection.5.5}% 52
-\BOOKMARK [3][-]{subsubsection.5.5.2}{Secciones del sistema}{subsection.5.5}% 53
-\BOOKMARK [3][-]{subsubsection.5.5.3}{Manejo de los datos.}{subsection.5.5}% 54
-\BOOKMARK [4][-]{paragraph.5.5.3.1}{Modelado.}{subsubsection.5.5.3}% 55
-\BOOKMARK [4][-]{paragraph.5.5.3.2}{Filtrado.}{subsubsection.5.5.3}% 56
-\BOOKMARK [4][-]{paragraph.5.5.3.3}{Visualizaci\363n.}{subsubsection.5.5.3}% 57
-\BOOKMARK [2][-]{subsection.5.6}{Pipeline Flow final del Sistema.}{section.5}% 58
-\BOOKMARK [2][-]{subsection.5.7}{Conclusiones.}{section.5}% 59
-\BOOKMARK [2][-]{subsection.5.8}{Caso de Uso.}{section.5}% 60
-\BOOKMARK [2][-]{subsection.5.9}{Limitaciones del sistema.}{section.5}% 61
-\BOOKMARK [1][-]{section.6}{Pr\363ximos pasos.}{}% 62
-\BOOKMARK [1][-]{section.7}{Anexos.}{}% 63
+\BOOKMARK [2][-]{subsection.3.3}{k Nearest Neighbor \(KNN\).}{section.3}% 28
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Principal limitaci\363n KNN.}{subsection.3.3}% 29
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Funcionamiento y ejemplo de KNN.}{subsection.3.3}% 30
+\BOOKMARK [3][-]{subsubsection.3.3.3}{M\351trica de distancia a emplear.}{subsection.3.3}% 31
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Eligiendo el valor de k: overfitting y underfitting.}{subsection.3.3}% 32
+\BOOKMARK [2][-]{subsection.3.4}{K-means.}{section.3}% 33
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Funcionamiento y ejemplo de K-means.}{subsection.3.4}% 34
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Objetivo de k-means y su funci\363n de coste.}{subsection.3.4}% 35
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Posici\363n inicial de los centroides.}{subsection.3.4}% 36
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Limitaciones K-means.}{subsection.3.4}% 37
+\BOOKMARK [4][-]{paragraph.3.4.4.1}{Obtenci\363n del k mediante Elbow Method.}{subsubsection.3.4.4}% 38
+\BOOKMARK [4][-]{paragraph.3.4.4.2}{Inicializaci\363n de los centroides: k-means++.}{subsubsection.3.4.4}% 39
+\BOOKMARK [1][-]{section.4}{Natural Language Processing.}{}% 40
+\BOOKMARK [2][-]{subsection.4.1}{Introducci\363n.}{section.4}% 41
+\BOOKMARK [2][-]{subsection.4.2}{Preprocesamiento de textos.}{section.4}% 42
+\BOOKMARK [2][-]{subsection.4.3}{Similitud entre textos.}{section.4}% 43
+\BOOKMARK [2][-]{subsection.4.4}{T\351cnicas para medir Similitud entre textos.}{section.4}% 44
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Cosine Similarity.}{subsection.4.4}% 45
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Word Mover's Distance \(WMD\).}{subsection.4.4}% 46
+\BOOKMARK [2][-]{subsection.4.5}{Algoritmos de vectorizaci\363n.}{section.4}% 47
+\BOOKMARK [3][-]{subsubsection.4.5.1}{TF-IDF.}{subsection.4.5}% 48
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Word Embeddings.}{subsection.4.5}% 49
+\BOOKMARK [4][-]{paragraph.4.5.2.1}{\277C\363mo entrenar Word Embeddings?}{subsubsection.4.5.2}% 50
+\BOOKMARK [1][-]{section.5}{Implementaci\363n.}{}% 51
+\BOOKMARK [2][-]{subsection.5.1}{Obtenci\363n del modelo de clasificaci\363n.}{section.5}% 52
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Introducci\363n.}{subsection.5.1}% 53
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Esquema.}{subsection.5.1}% 54
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Obtenci\363n de sets de datos.}{subsection.5.1}% 55
+\BOOKMARK [4][-]{paragraph.5.1.3.1}{Curriculum Vitae.}{subsubsection.5.1.3}% 56
+\BOOKMARK [4][-]{paragraph.5.1.3.2}{Descripciones Puestos Laborales.}{subsubsection.5.1.3}% 57
+\BOOKMARK [3][-]{subsubsection.5.1.4}{Preprocesamiento y limpieza de datos.}{subsection.5.1}% 58
+\BOOKMARK [3][-]{subsubsection.5.1.5}{Cantidad final del set de datos y su uso en las distintas etapas.}{subsection.5.1}% 59
+\BOOKMARK [2][-]{subsection.5.2}{Comparando textos y obteniendo similitudes.}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.3}{Armado del modelo de clasificaci\363n KNN.}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.4}{Clasificaci\363n de nuevas muestras y resultados obtenidos.}{section.5}% 62
+\BOOKMARK [2][-]{subsection.5.5}{Integraci\363n al Sistema Web.}{section.5}% 63
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Base de datos.}{subsection.5.5}% 64
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Secciones del sistema}{subsection.5.5}% 65
+\BOOKMARK [3][-]{subsubsection.5.5.3}{Manejo de los datos.}{subsection.5.5}% 66
+\BOOKMARK [4][-]{paragraph.5.5.3.1}{Modelado.}{subsubsection.5.5.3}% 67
+\BOOKMARK [4][-]{paragraph.5.5.3.2}{Filtrado.}{subsubsection.5.5.3}% 68
+\BOOKMARK [4][-]{paragraph.5.5.3.3}{Visualizaci\363n.}{subsubsection.5.5.3}% 69
+\BOOKMARK [2][-]{subsection.5.6}{Pipeline Flow final del Sistema.}{section.5}% 70
+\BOOKMARK [2][-]{subsection.5.7}{Conclusiones.}{section.5}% 71
+\BOOKMARK [2][-]{subsection.5.8}{Caso de Uso.}{section.5}% 72
+\BOOKMARK [2][-]{subsection.5.9}{Limitaciones del sistema.}{section.5}% 73
+\BOOKMARK [1][-]{section.6}{Pr\363ximos pasos.}{}% 74
+\BOOKMARK [1][-]{section.7}{Anexos.}{}% 75
