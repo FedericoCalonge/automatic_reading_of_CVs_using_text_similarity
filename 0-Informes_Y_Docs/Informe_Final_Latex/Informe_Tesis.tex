@@ -126,7 +126,7 @@
     
 \end{center}
 
-En la Tesis de Ingeniería en Informática que se presenta, se diseña un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de \textit{machine learning} y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
+En la Tesis de Ingeniería en Informática que se presenta se diseña un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de \textit{machine learning} y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
 El sistema esta desarrollado utilizando el lenguaje de programación Python, permitiendo verificar la teoría desarrollada.
 
 \begin{center}
@@ -144,10 +144,12 @@ The system is developed using the Python programming language allowing to verify
 
 \cleardoublepage    %Nueva página
 
-\section{Introducción.}
+\section{Introducción.}\label{Intro}
 Los procesos de \textit{reclutamiento y selección laboral} se han vuelto cruciales para el manejo de recursos humanos en el mundo moderno. Con las transformaciones digitales de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textit{Sector IT}, donde año tras año se van generando nuevos puestos de trabajo y estos mismos van creciendo en demanda. Este crecimiento de la demanda en distintos puestos del Sector IT lo podemos evidenciar, a modo de resumen, en la figura \ref{fig:Increasing_Jobs}.
 
-En estos últimos años se implementaron una gran cantidad de herramientas de Software que utilizan algoritmos inteligentes y que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva \cite{trabajos_relacionados_1}\cite{trabajos_relacionados_2}\cite{trabajos_relacionados_3}\cite{trabajos_relacionados_4}\cite{trabajos_relacionados_5}\cite{trabajos_relacionados_6}\cite{trabajos_relacionados_7}\cite{trabajos_relacionados_8}\cite{trabajos_relacionados_9}\cite{trabajos_relacionados_10}\cite{trabajos_relacionados_11} \cite{trabajos_relacionados_12}\cite{trabajos_relacionados_13}\cite{trabajos_relacionados_14}\cite{trabajos_relacionados_15}. La \textit{automatización} se transformó en un factor clave e indispensable para que el reclutador pueda conseguir a los candidatos más relevantes para los puestos que ofrece la empresa en un tiempo muy corto.
+En estos últimos años se implementaron una gran cantidad de herramientas de Software que utilizan algoritmos inteligentes y que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva\cite{trabajos_relacionados_1,trabajos_relacionados_2,trabajos_relacionados_3,trabajos_relacionados_4,
+trabajos_relacionados_5,trabajos_relacionados_6,trabajos_relacionados_7,trabajos_relacionados_8,
+trabajos_relacionados_9,trabajos_relacionados_10, trabajos_relacionados_11, trabajos_relacionados_12, trabajos_relacionados_13, trabajos_relacionados_14, trabajos_relacionados_15}. La \textit{automatización} se transformó en un factor clave e indispensable para que el reclutador pueda conseguir a los candidatos más relevantes para los puestos que ofrece la empresa en un tiempo muy corto.
 Se espera que para el año 2025 muchas tareas realizadas actualmente por humanos, sean automatizadas por máquinas: esto lo podemos evidenciar en la figura \ref{fig:Automatizacion}.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
@@ -165,23 +167,42 @@ por participación de las empresas encuestadas por el \textit{Foro Económico Mu
   \label{fig:Automatizacion}
 \end{figure}
 
-El tema de este Proyecto de Tesis será desarrollar un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de Machine Learning y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
+El tema de este Proyecto de Tesis será desarrollar un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de machine learning y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
 
-La medición de similitudes de documentos es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios, tales como recomendación de películas, libros o artículos similares, identificación de documentos plagiados o documentos legales, etc. 
+La medición de similitudes entre documentos de texto es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)} y es muy utilizado para el análisis de datos. Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, de information retrieval (IR), de análisis de sentimientos, etc.\cite{Similarity_calculation}
 
-Para que las máquinas puedan descubrir esta similitud entre documentos, se necesita definir una forma de medir matemáticamente la similitud, la cual debe ser comparable para que la máquina pueda identificar qué documentos son más similares (o menos). Previamente a esto necesitamos representar el texto de los documentos en una forma cuantificable (que suele ser en forma vectorial), de modo que podamos realizar cálculos de similitud sobre él.
+Para que las máquinas puedan describir esta similitud entre documentos, se necesita definir una forma de medir matemáticamente la similitud, la cual debe ser comparable para que la máquina pueda identificar qué documentos son más (o menos) similares. Previamente a esto necesitamos representar el texto de los documentos en una forma cuantificable (que suele ser en forma vectorial), de modo que podamos realizar los posteriores cálculos de similitud sobre él. Una distancia pequeña entre los vectores significa un alto nivel de similitud, mientras que grandes distancias significan un bajo nivel de similitud\cite{Similarity_calculation}.
 
-Por lo tanto, los pasos necesarios para que las máquinas puedan medir la similitud entre documentos son:
+Por lo tanto, resumidamente los pasos necesarios para poder medir similitudes entre documentos son\cite{Similarity_calculation}:
 \begin{enumerate}
-\item Convertir un documento en un objeto matemático (vector).
-\item Definir y emplear una medida de similitud.
+\item Convertir cada uno de los documentos en un objeto matemático (vector).
+\item Definir y emplear una métrica de distancia que será utilizada como nuestra medida de similitud entre los textos.
 \end{enumerate}
 
 \cleardoublepage    %Nueva página
 
-Para el primer paso se utilizarán los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}; y para el segundo paso se emplearán las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover's Distance -WMD-}.
+En el sistema desarrollado, una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT mediante distintos algoritmos y técnicas de machine learning, estos valores se utilizarán para alimentar y generar \textit{un modelo de clasificación}, el cual nos servirá para lograr, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.\\
 
-Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un \textbf{algoritmo de clustering K-means} que a su vez, con sus datos de salida (4 clusters), alimentará a un \textbf{modelo de clasificación KNN}. Finalmente este modelo KNN nos servirá para lograr, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+\subsection{Algoritmos y técnicas utilizadas.}
+
+A continuación nombraremos resumidamente los algoritmos y técnicas de machine learning utilizadas para el desarrollo del \textit{sistema de lectura automática de Curriculum Vitae}. 
+
+Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}.
+
+Para el segundo paso, definir y emplear métricas de distancia, se emplearon las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}.
+
+Existen numerosas técnicas para medir distancias, las cuales serán detalladas en \textit{\nameref{Tecnicas_Simil_textos}}. Para este sistema se decidió utilizar una combinación entre Cosine similarity y WMD debido a:
+
+\begin{itemize}
+\item En el caso de Cosine similarity, se utilizó dicha técnica debido a que es una de las más tradicionales y ampliamente utilizadas para medir similitudes entre textos en varias aplicaciones\cite{similarity_survey, cosine_sim_1, cosine_sim_2, cosine_sim_3}.
+\item En cambio, WMD es una técnica más nueva (2015)\cite{wmd_paper} que al momento de la encuesta realizada el 31 de Agosto del 2020\cite{similarity_survey} es la principal técnica utilizada para la medición semántica de la distancia entre textos.
+\end{itemize} 
+        
+Como tercer y último paso, una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un \textbf{algoritmo de clustering K-means} que a su vez, con sus datos de salida (4 clusters), alimentan a un \textbf{modelo de clasificación K-Nearest Neighbor (KNN)}.
+
+Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT.
+
+Estos algoritmos, técnicas y modelos utilizados serán detallados en las secciones posteriores, tanto teóricamente como en su implementación. 
 
 \cleardoublepage    %Nueva página
 
@@ -189,10 +210,10 @@ Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de lo
 
 \subsubsection{Objetivo general.}
 
-El objetivo de este Proyecto de Tesis es lograr un desarrollo, tanto teórico como práctico, de un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de Machine Learning y basándose, principalmente, en una medición de similitud entre textos:  
+El objetivo de este Proyecto de Tesis es lograr un desarrollo, tanto teórico como práctico, de un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de machine learning y basándose, principalmente, en una medición de similitud entre textos:  
 \begin{itemize}
 \item los Curriculum Vitae de los candidatos por un lado, 
-\item y descripciones de los puestos laborales de IT por el otro.
+\item descripciones de los puestos laborales de IT por el otro.
 \end{itemize} 
 
 \subsubsection{Objetivos específicos.}
@@ -223,13 +244,13 @@ Esta sección abarca principalmente la parte teórica del trabajo, haciendo hinc
 	\item El estado del arte (actual y pasado) de los sistemas de lectura y análisis de Curriculum Vitae.
 	\item Técnicas usadas para el procesamiento del lenguaje natural (NLP).
 	\item Técnicas para medir similitudes entre textos: Cosine Similarity y WMD.
-	\item Algoritmos de Vectorización: TF-IDF y Word Embeddings.
-	\item Algoritmos de Machine Learning para tareas de clasificación (KNN) y clustering (K-means).
+	\item Algoritmos de vectorización: TF-IDF y Word Embeddings.
+	\item Algoritmos de machine mearning para tareas de clasificación (KNN) y clustering (K-means).
 \end{itemize} 
 
 Esta primera sección abarca los capítulos \textit{\nameref{2.ReclutamientolaboralenIT}}, \textit{\nameref{3.AlgoritmosdeMachineLearning}} y \textit{\nameref{4.NaturalLanguageProcessing}} de este Informe de Tesis. \\
 
-\item Investigación e implementación de distintas técnicas y algoritmos para la obtención del modelo de clasificación KNN. 
+\item Implementación de distintas técnicas y algoritmos para la obtención del modelo de clasificación KNN. 
 
 Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. 
 
@@ -247,9 +268,9 @@ Los items que abarca esta sección son:
  
 Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \textit{\nameref{5.1.Obtenciondelmodelopredictivo}} hasta \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}) de este Informe de Tesis. \\
 
-\item Investigación e integración al sistema web.
+\item Integración al sistema web.
 
-Esta última sección hace referencia a la reutilización de las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo esto en el sistema Web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
+Esta última sección hace referencia a la reutilización de las funciones que contienen la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo este conjunto en el sistema web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
 
 Los items principales de esta sección son:
 \begin{itemize}
@@ -278,9 +299,11 @@ Los \textit{reclutadores}, dentro de un departamento de recursos humanos, son lo
 
 \subsection{Reclutamiento vs selección.}\label{SeleccionYReclutamiento}
 
-El \textbf{reclutamiento} es el proceso de atracción, búsqueda, recolección e identificación de candidatos que encajan con la oferta de trabajo y, en definitiva, con la empresa. El objetivo del reclutamiento es \textit{atraer}, \textit{buscar} e \textit{identificar} a los candidatos más adecuados y mejor calificados para el puesto disponible, según las necesidades de la empresa\cite{seleccion_reclutamiento_2}. 
+El \textbf{reclutamiento} es el proceso de atracción, búsqueda, recolección e identificación de candidatos que encajan con la oferta de trabajo y, en definitiva, con la empresa. Como mencionan Anwar y Abdullah, \textit{``el reclutamiento es el proceso de descubrir y capturar candidatos calificados o apropiados para ocupar el puesto vacante''}\cite{seleccion_reclutamiento_2}.
 
-El proceso de reclutamiento incluye las siguientes actividades:
+El objetivo del reclutamiento es \textit{atraer}, \textit{buscar} e \textit{identificar} a los candidatos más adecuados y mejor calificados para el puesto disponible, según las necesidades de la empresa. 
+
+El proceso de reclutamiento incluye las siguientes actividades\cite{seleccion_reclutamiento_2}:
 \begin{itemize}
 \item Identificación de las necesidades del puesto a cubrir. 
 \item Análisis de la descripción y especificaciones del puesto.
@@ -292,9 +315,11 @@ El proceso de reclutamiento incluye las siguientes actividades:
 
 \cleardoublepage    %Nueva página
 
-En cambio, la \textbf{selección} es un proceso posterior al reclutamiento, donde se evalua más detalladamente y se entrevista a los candidatos para el trabajo en particular. El objetivo de la selección es \textit{elegir} y \textit{hacer efectiva la contratación} del candidato más adecuado y mejor calificado para el puesto disponible, según las necesidades de la empresa. Este procedimiento particiona a los candidatos en dos secciones: a los que se les ofrecerán el trabajo, y a los que se descartarán\cite{seleccion_reclutamiento_2}.
+En cambio, la \textbf{selección} es un proceso posterior al reclutamiento, donde se evalua más detalladamente y se entrevista a los candidatos para el trabajo en particular. Como mencionan Rahman y Abdullah, \textit{``la selección es un proceso de evaluar y entrevistar a los candidatos para un trabajo en particular y seleccionar a la persona adecuada para el puesto correcto''}\cite{seleccion_reclutamiento_2}.
 
-El proceso de selección incluye las siguientes actividades: 
+El objetivo de la selección es \textit{elegir} y \textit{hacer efectiva la contratación} del candidato más adecuado y mejor calificado para el puesto disponible, según las necesidades de la empresa. Este procedimiento particiona a los candidatos en dos secciones: a los que se les ofrecerán el trabajo, y a los que se descartarán.
+
+El proceso de selección incluye las siguientes actividades\cite{seleccion_reclutamiento_2}: 
 \begin{itemize}
 \item Recepción de la aplicación al puesto.
 \item Cribado o Screening de los candidatos, lo que permite avanzar con los candidatos adecuados y descartar a los no adecuados para el puesto.
@@ -383,9 +408,9 @@ Como vimos en la sección anterior, hay cientos de enfoques y combinaciones posi
 
 El enfoque elegido para este Proyecto de Tesis fue realizar un sistema híbrido que utilice técnicas de mediciones de similitud entre los curriculums de los candidatos y las descripciones de los puestos disponibles, junto con técnicas de machine learning (de clustering y clasificación). 
 
-Como métricas de medición de similitud se utilizó una de las más comúnmente usadas, \textit{similitud del coseno}, y una métrica que \textbf{no se usó en ninguno de los trabajos anteriores} pero, que sin embargo, es muy reciente y prometedora, y es la principal técnica utilizada para la medición semántica de la distancia entre textos, \textit{Word Mover's Distance (WMD)}. Estas métricas serán explicadas más en detalle en las secciones posteriores (Ver \nameref{Tecnicas_Simil_textos}).
+Como métricas de medición de similitud se utilizó una de las más comúnmente usadas, \textit{similitud del coseno}, y una métrica que \textbf{no se usó en ninguno de los trabajos anteriores} pero, que sin embargo, es muy reciente y prometedora, y es la principal técnica utilizada para la medición semántica de la distancia entre textos, \textit{Word Mover's Distance (WMD)}. Estas métricas serán explicadas más en detalle en las secciones posteriores (Ver \textit{\nameref{Tecnicas_Simil_textos}}).
 
-Una vez utilizadas estas mediciones de similitud se utilizaron algoritmos de machine learning: un algoritmo de clustering (K-means), y luego un modelo de clasificación KNN. 
+Una vez utilizadas estas mediciones de similitud se utilizaron algoritmos de machine learning: un algoritmo de clustering K-means, y luego un modelo de clasificación KNN. 
 
 Además del uso de \textit{Word Mover's Distance}, otro aspecto distintivo de este sistema es que se realizó una \textbf{integración a una interfaz web}, la cual la mayoría de los sistemas descriptos anteriormente no poseen. De esta manera, mediante la interfaz web se logra una interacción entre usuarios candidatos y reclutadores y, principalmente, permite que el reclutador sea capaz de visualizar un listado con los N candidatos más similes a un puesto determinado.
 
@@ -396,9 +421,9 @@ Por último, cabe destacar que los trabajos anteriormente mencionados no tienen 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
 \subsection{Introducción.}
-Continuando con el marco teórico de esta Tesis, es necesario explicar qué es Machine Learning y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje: haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
+Continuando con el marco teórico de esta Tesis, es necesario explicar qué es \textit{machine learning (ML)} y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje, haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
 
-Además, detallaremos la importancia de la separación de los datos y mencionaremos a grandes rasgos cuáles son los pasos a seguir para implementar un modelo de ML teniendo en cuenta algunos de los problemas clásicos que nos pueden ocurrir.
+Además, detallaremos la importancia de la separación de los datos y mencionaremos cuáles son los pasos a seguir para implementar un modelo de ML teniendo en cuenta algunos de los problemas clásicos que pueden afectar a nuestros resultados.
 
 \subsection{Machine Learning (ML).} 
 
@@ -427,8 +452,7 @@ $$y=f(x)$$
 
 Los algoritmos de aprendizaje supervisado se utilizan para resolver problemas de \textbf{clasificación} y de \textbf{regresión}.
 
-\item El \textbf{aprendizaje no supervisado}, en cambio, se refiere al proceso de entrenamiento de un modelo de Machine Learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
-
+\item El \textbf{aprendizaje no supervisado}, en cambio, se refiere al proceso de entrenamiento de un modelo de machine learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
 
 El objetivo de este método es experimentar con el conjunto de datos (los cuales contienen muchas características) y luego aprender propiedades útiles de la estructura de dicho conjunto de datos. Matemáticamente se cuenta con un dataset de entrenamiento de variables de entrada $x$ pero no se conoce su salida. 
 
@@ -438,25 +462,24 @@ Los algoritmos de aprendizaje no supervisado se utilizan para resolver problemas
 \end{itemize}
 
 \cleardoublepage
-En la Figura \ref{fig:Clasif_algoritmos} se detalla un resumen de la división en las categorías de ML y su “subdivisión” en modelos de clasificación, regresión y agrupación (clustering). 
+En la Figura \ref{fig:Clasif_algoritmos} se detalla un resumen de la división en las categorías de ML y su sub-división en modelos de clasificación, regresión y agrupación (clustering). 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/Clasificacion_algoritmos.png}
-  \caption{Tipos de aprendizaje en ML}  
+  \caption[Tipos de aprendizaje en ML]{Tipos de aprendizaje en ML\protect\footnotemark}  
   \label{fig:Clasif_algoritmos}
 \end{figure}
+
+\footnotetext{Sitio Web. \textit{Modelos de Machine Learning}. \url{https://openwebinars.net/blog/modelos-de-machine-learning/}. (Consultado el 30 marzo de 2022).}
 
 \paragraph{Regresión.}
 
 En un problema de regresión se intenta predecir el valor de una variable numérica y continua a partir de un cierto conjunto de datos. 
 
-
 En general contamos con un set de entrenamiento en el cual conocemos el valor de la variable que queremos predecir. El objetivo es entonces construir un modelo que nos permita predecir el valor de nuestra variable de salida a partir de datos nuevos. Dicho de otra forma, lo que se hace es buscar una función que represente los datos de entrenamiento y que permita generalizar correctamente\footnote{Generalizar es la capacidad de nuestro modelo de ML de obtener buenos resultados con datos nuevos reconociendo patrones generales de los datos de entrenamiento en lugar de reconocer particularidades específicas.}.
 
-
 El caso más simple es la regresión lineal (observado previamente en la Figura \ref{fig:Clasif_algoritmos}), en el cual nuestro modelo es una recta, la recta que mejor se ajusta a los puntos de nuestro set de entrenamiento. En este ejemplo se intenta predecir la cantidad de personas en un lugar a una hora determinada. 
-
 
 Los problemas de regresión pueden usarse para realizar distintas predicciones, ya sea el valor de las acciones en el mercado de valores, predecir el costo de una propiedad, estimar las ganancias de un negocio, etc. 
 
@@ -469,16 +492,11 @@ Las claves para identificar un problema de regresión\cite{apunte_uba} son las s
 \cleardoublepage
 \paragraph{Clasificación.}\label{clasificacion}
 
-En los problemas de clasificación la variable que se intenta predecir no es continua sino discreta, frecuentemente tiene pocos valores posibles y en muchos casos los valores posibles son solo dos: clasificación binaria. La idea es la misma que antes, contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
-
-
-Un caso típico de la clasificación binaria es un problema de análisis de sentimiento, donde queremos saber si un cierto texto es positivo o negativo, es decir si habla bien o mal de un cierto tema. Como set de entrenamiento entonces deberíamos contar con textos para los cuales ya conocemos su sentimiento. 
-
+En los problemas de clasificación la variable que se intenta predecir no es continua sino discreta, frecuentemente tiene pocos valores posibles y en muchos casos los valores posibles son solo dos: clasificación binaria\footnote{Un caso típico de la clasificación binaria es un problema de análisis de sentimiento, donde queremos saber si un cierto texto es positivo o negativo, es decir si habla bien o mal de un cierto tema. Como set de entrenamiento entonces deberíamos contar con textos para los cuales ya conocemos su sentimiento.}. La idea general es la misma que antes, para este caso contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, y queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
 
 Por ejemplo, en la Figura \ref{fig:Clasif_algoritmos}, observamos que tenemos una serie de personas, de las cuales contamos con su peso y altura, y queremos clasificarlas en adultos o niños. Lo que va a hacer un modelo de clasificación es aprender dónde están estos puntos y crear un clasificador que, para nuevos datos de entrada, consiga segmentarlos correctamente en adultos o niños.
 
-
-Otras aplicaciones por ejemplo podrían ser analizar si los reviews de un producto son buenos o malos, medir la actitud del público en general ante determinadas noticias por los comentarios que existen en redes sociales, clasificar si un email es spam o no lo es, etc. 
+Otras aplicaciones, por ejemplo, podrían ser analizar si las reviews de un producto son buenas o malas, medir la actitud del público en general ante determinadas noticias por los comentarios que existen en redes sociales, clasificar si un email es spam o no lo es, etc. 
 
 Las claves para reconocer un problema de clasificación\cite{apunte_uba} son:
 \begin{itemize}
@@ -492,9 +510,7 @@ Las claves para reconocer un problema de clasificación\cite{apunte_uba} son:
 
 En un problema de clustering contamos con datos que queremos dividir en grupos de forma automática. Estos datos no tienen etiquetas, no sabemos a qué grupo pertenecen. Lo que hace un algoritmo de clustering es intentar buscar agrupaciones en los datos, creando de esta forma clusters\footnote{Cluster, o grupo, es un conjunto de objetos que son ”similares” entre ellos y ”diferentes” de los objetos que pertenecen a los otros grupos. La palabra cluster viene del inglés y significa agrupación. Desde un punto de vista general, el cluster puede considerarse como la búsqueda automática de una estructura o de una clasificación en una colección de datos no etiquetados.} con características similares. En algunos casos la cantidad de clusters la debemos indicar previamente y en otros el algoritmo es capaz de determinarla por sí mismo.
 
-
 En el ejemplo de la Figura \ref{fig:Clasif_algoritmos}, podemos ver que se agrupan los puntos de la misma forma que en el problema de clasificación. La diferencia es que en este caso no sabemos si se trata de adultos o niños, sino que es el propio algoritmo el que va a identificar que hay dos grupos, y nosotros somos los que tenemos que interpretar los resultados. 
-
 
 Otros ejemplos de clustering podrían ser agrupar películas automáticamente de forma que queden juntas las que son de un mismo género; o la detección de comunidades en una red social, el cual es un típico problema de clustering en donde los puntos son los usuarios y queremos agruparlos automáticamente en comunidades. De esta forma podemos descubrir grupos de usuarios que tienen un cierto interés en común aun sin saber exactamente cuál es dicho interés.
 
@@ -508,12 +524,12 @@ Las claves para reconocer un problema de clustering\cite{apunte_uba} son:
 
 \paragraph{Algoritmos más conocidos.}
 
-Resumidamente, en la Figura \ref{fig:Diagrama_algoritmos} se detallan los algoritmos más conocidos para las distintas clasificaciones de Machine Learning previamente explicadas. 
+Resumidamente, en la Figura \ref{fig:Diagrama_algoritmos} se detallan los algoritmos más conocidos para las distintas clasificaciones de machine learning previamente explicadas. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=0.8\textwidth]{images/Diagrama_algoritmos.png}
-  \caption{Algoritmos de Machine Learning más conocidos}  
+  \caption{Algoritmos de machine learning más conocidos}  
   \label{fig:Diagrama_algoritmos}
 \end{figure}
 
@@ -525,12 +541,9 @@ Cabe destacar que algunos algoritmos se pueden adaptar para resolver problemas d
 
 Existe una cierta relación entre los problemas de clustering y de clasificación, por ejemplo dado un problema de clasificación podríamos aplicar clustering primero y luego clasificar a cada punto de acuerdo al cluster al cual pertenece en base a la clase mayoritaria de dicho cluster. Este procedimiento no es muy frecuente pero es conveniente tenerlo en cuenta porque permite entender el funcionamiento de ciertos algoritmos que combinan las propiedades de un problema de clustering y uno de clasificación.
 
-
 Una aplicación que combina clustering (aprendizaje no supervisado) y clasificación (aprendizaje supervisado) es la que denominamos \textbf{Aprendizaje transductivo}\cite{aprendiz_transd}\cite{apunte_uba} . De esta manera, para predecir nuevos datos no etiquetados se utilizan los datos previamente etiquetados, así como los datos sin etiquetar, como forma de ayuda a un clasificador tradicional.
 
-
-Consideremos el ejemplo de la Figura \ref{fig:Transductivo_1}. Aquí tenemos solo dos puntos clasificados, uno clasificado como "blanco" y el otro como "negro". Sin mayor información el punto marcado con el signo de pregunta, cuya clase desconocemos, quedaría clasificado como "blanco" ya que está mucho mas cerca del punto blanco que del punto negro.
-
+Consideremos el ejemplo de la Figura \ref{fig:Transductivo_1}. Aquí tenemos solo dos puntos clasificados, uno clasificado como ``blanco'' y el otro como ``negro''. Sin mayor información el punto marcado con el signo de pregunta, cuya clase desconocemos, quedaría clasificado como ``blanco'' ya que está mucho mas cerca del punto blanco que del punto negro.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -539,9 +552,7 @@ Consideremos el ejemplo de la Figura \ref{fig:Transductivo_1}. Aquí tenemos sol
   \label{fig:Transductivo_1}
 \end{figure}
 
-
-En la Figura \ref{fig:Transductivo_2} al agregar puntos cuya clase desconocemos, vemos que en nuestros datos existen dos clusters. De esta manera, si tenemos que asociar cada cluster con un color entonces el de arriba es “negro” y el de abajo es “blanco”, ya que el punto negro pertenece al cluster de arriba y el blanco al de abajo. De este modo, el punto que inicialmente consideramos blanco, con esta nueva información de clusters, sería considerado negro.
-
+En la Figura \ref{fig:Transductivo_2} al agregar puntos cuya clase desconocemos, vemos que en nuestros datos existen dos clusters. De esta manera, si tenemos que asociar cada cluster con un color entonces el de arriba es ``negro'' y el de abajo es ``blanco'', ya que el punto negro pertenece al cluster de arriba y el blanco al de abajo. De este modo, el punto que inicialmente consideramos blanco, con esta nueva información de clusters, sería considerado negro.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -552,22 +563,21 @@ En la Figura \ref{fig:Transductivo_2} al agregar puntos cuya clase desconocemos,
 
 El aprendizaje transductivo es un área muy nueva dentro de Data Science y que sin dudas merece ser explorada.
 
-
 En este proyecto de Tesis se utilizará el aprendizaje transductivo para lograr inicialmente una clusterización de nuestros candidatos en 5 grupos mediante un algoritmo de clustering (K-means), y luego se realizará una clasificación mediante un algoritmo de clasificación (KNN). 
 
 \subsubsection{Separación de los datos.}\label{Separacion datos}
 
-Dos conceptos importantes que mencionaremos a lo largo del Informe son: los “datos de entrenamiento” y los “datos de prueba”.
+Dos conceptos importantes que mencionaremos a lo largo del informe son: los “datos de entrenamiento” y los “datos de prueba”.
 
-Como mencionamos anteriormente, los algoritmos de Machine Learning aprenden de los datos con los que los entrenamos. A partir de ellos, intentan encontrar o inferir el patrón que les permita predecir el resultado para un nuevo caso. Pero, para poder calibrar si un modelo funciona, necesitaremos probarlo con un conjunto de datos diferente. Por ello, en todo proceso de aprendizaje automático, los datos de trabajo se dividen en dos partes:
+Como mencionamos anteriormente, los algoritmos de machine learning aprenden de los datos con los que los entrenamos. A partir de ellos, intentan encontrar o inferir el patrón que les permita predecir el resultado para un nuevo caso. Pero, para poder calibrar si un modelo funciona, necesitaremos probarlo con un conjunto de datos diferente. Por ello, en todo proceso de aprendizaje automático, los datos de trabajo se deben dividir mínimamente en dos partes:
 
 \begin{itemize}
-\item Los \textbf{datos de entrenamiento} son los datos que usamos para entrenar un modelo. La calidad de nuestro modelo de aprendizaje automático va a ser directamente proporcional a la calidad de los datos. Por ello son muy importantes las tareas de limpieza y preprocesamiento de los datos..
-\item Los \textbf{datos de prueba o evaluación} son los datos que nos “reservamos” para comprobar si el modelo que hemos generado a partir de los datos de entrenamiento “funciona”. Es decir, si las respuestas predichas por el modelo para un caso totalmente nuevo son acertadas o no.
+\item Los \textbf{datos de entrenamiento} son los datos que usamos para entrenar un modelo. La calidad de nuestro modelo de aprendizaje automático va a ser directamente proporcional a la calidad de estos datos. Por ello son muy importantes las tareas de limpieza y preprocesamiento de los mismos.
+\item Los \textbf{datos de prueba o evaluación} son los datos que nos “reservamos” para comprobar si el modelo que hemos generado a partir de los datos de entrenamiento “funciona”.  Es decir, si las respuestas predichas por el modelo para un caso totalmente nuevo son acertadas o no.
 \end{itemize}
 
 
-Es importante que el conjunto de datos de prueba tenga un volumen suficiente como para generar resultados estadísticamente significativos, y a la vez, que sea representativo del conjunto de datos global. Normalmente el conjunto de datos se suele dividir en un \textbf{70\%/80\% de datos de entrenamiento} y un \textbf{30\%/20\% de datos de prueba}, pero se puede variar la proporción según el caso. 
+Es importante que el conjunto de datos de prueba tenga un volumen suficiente como para generar resultados estadísticamente significativos, y a la vez, que sea representativo del conjunto de datos global. Normalmente el conjunto de datos se suele dividir en un \textbf{70\%/80\% de datos de entrenamiento} y un \textbf{30\%/20\% de datos de prueba}, pero se puede variar la proporción según el caso\cite{apunte_uba}. 
 
 
 \cleardoublepage
@@ -591,13 +601,14 @@ A continuación detallaremos en mayor detalle los mencionados pasos.
 
 Dada la problemática que deseemos resolver mediante algoritmos de ML, nuestro primer paso será recolectar los datos que utilizaremos posteriormente para “alimentar” a dicho algoritmo. 
 
-Para el primer paso de recolección de datos, hay que tener muy en cuenta la calidad y cantidad de información que consigamos ya que impactará directamente en lo bien o mal que luego funcione nuestro modelo. Estos datos los podemos sacar de bases de datos, planillas de cálculo, utilizando técnicas de web scraping\footnote{Proceso dentro de Data Science que se utiliza para la extracción de datos de sitios web simulando cómo navegaría un ser humano por los mismos.} o mediante APIs\footnote{API o interfaz de programación de aplicaciones, es un conjunto de métodos o funciones que ofrece cierta biblioteca para ser utilizada por otro software como una capa de abstracción} para recopilar información de manera automática de diversas fuentes de Internet, etc.\\
+En este paso hay que tener muy en cuenta la calidad y cantidad de información que consigamos ya que impactará directamente en lo bien o mal que luego funcione nuestro modelo. Estos datos los podemos sacar de bases de datos, planillas de cálculo, utilizando técnicas de web scraping\footnote{Proceso dentro de Data Science que se utiliza para la extracción de datos de sitios web simulando cómo navegaría un ser humano por los mismos.} o mediante APIs\footnote{API o interfaz de programación de aplicaciones, es un conjunto de métodos o funciones que ofrece cierta biblioteca para ser utilizada por otro software como una capa de abstracción.} para recopilar información de manera automática de diversas fuentes de Internet, etc.\\
 
 \item Paso 2: Preparación y preprocesamiento de los datos.
 
-En este paso generalmente se realizan visualizaciones de los datos y se revisa si existen correlaciones entre las distintas “features”\footnote{Features generalmente son las columnas de nuestro dataframe, archivo o base de datos -dependiendo cómo almacenamos nuestros datos-.} de nuestros datos. Al pre-procesar nuestros datos nos referimos a normalizar los mismos: eliminando duplicados y realizando distintas correcciones de errores. 
+En este paso generalmente se realizan visualizaciones de los datos y se revisa si existen correlaciones entre las distintas “features”\footnote{Features generalmente son las columnas de nuestro dataframe, archivo o base de datos -dependiendo cómo almacenamos nuestros datos-.} de nuestros datos. Al pre-procesar nuestros datos nos referimos a normalizar los mismos: eliminando duplicados y realizando distintas correcciones de errores. El preprocesamiento de datos usualmente tiene un impacto significante en la performance de generalización de nuestro algoritmo de machine learning\cite{preprocessing}. 
 
-En esta etapa además es importante \textbf{separar} nuestros datos en dos grupos:
+\cleardoublepage
+En esta etapa, además, es importante \textbf{separar} nuestros datos en dos grupos:
 \begin{itemize}
 \item un set de entrenamiento.
 \item un set de prueba. 
@@ -621,7 +632,7 @@ La idea es entrenar a nuestro algoritmo con el set de entrenamiento (mediante un
 
 Hacer predicciones correctas sobre datos futuros suele ser el principal problema que queremos resolver al utilizar algoritmos de ML. Luego de entrenar el modelo se tiene que \textbf{evaluar} el mismo. Evaluar un modelo, resumidamente, es estimar su rendimiento para saber qué tan bien se desempeñará / predecirá para datos nuevos no vistos por el mismo.
 
-Para poder evaluar un modelo correctamente, tenemos que contar con la separación de nuestros datos en set de entrenamiento y set de prueba que realizamos en los pasos previos. Esto lo hacemos, ya que evaluar la precisión predictiva de un modelo de ML con los mismos datos que se han utilizado para el entrenamiento no es útil, ya que compensa a los modelos que pueden "recordar" los datos de entrenamiento en lugar de generalizar.
+Para poder evaluar un modelo correctamente, tenemos que contar con la separación de nuestros datos en set de entrenamiento y set de prueba que realizamos en los pasos previos. Esto lo hacemos, ya que evaluar la precisión predictiva de un modelo de ML con los mismos datos que se han utilizado para el entrenamiento no es útil, ya que compensa a los modelos que pueden ``recordar'' los datos de entrenamiento en lugar de generalizar.
 
 De esta manera, luego de haber entrenado nuestro modelo de ML, resumidamente lo que hacemos en esta etapa es comparar las predicciones realizadas sobre set de pruebas devueltas por el modelo de ML contra el valor de destino conocido para el mismo set de pruebas; y por último generar alguna \textbf{métrica de evaluación} que nos permite verificar la performance de nuestro modelo indicando la efectividad de las predicciones.
 
@@ -633,22 +644,20 @@ Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métrica
 \hline
 \textbf{Modelos de regresión} & \textbf{Modelos de clasificación} & \textbf{Modelos de clustering} \\ [1ex] 
 \hline
-Error cuadrático medio (MSE)  & Matriz de confusión o error & Inertia \\
+Mean square error (MSE)  & Matriz de confusión o error & Inertia \\
 \hline
-Error cuadrático medio (RMSE)  & Accuracy (Exactitud) & Silhouette Score \\
+Root MSE (RMSE)  & Accuracy (Exactitud) & Homogeneity \\
 \hline
-Error absoluto medio (MAE)  & Precision (Precisión) & Rand Index \\
+Normalized RMSE (NRMSE)  & Precision (Precisión) & Majority-representation \\
 \hline
-R al cuadrado (R²)  & Recall o sensibilidad o TPR (Tasa positiva real) & Adjusted Rand Index \\
+Mean absolute error (MAE)   & Recall (Sensibilidad o TPR) & Adjusted Rand Index \\
 \hline
-Error de porcentaje cuadrático medio (MSPE)  & Especificidad o TNR (Tasa negativa real) & Mutual Information \\
+Mean absolute percentage error (MAPE)  & FP Rate (Especificidad o TNR) & Silhouette coefficient \\
 \hline
-Error porcentual absoluto medio (MAPE)  & F1-Score &  Calinski-Harabasz Index \\
+  &  &  Dunn index \\
 \hline
-Error logarítmico cuadrático medio (RMSLE)  &  & Davies-Bouldin Index \\ [1ex] 
- \hline
 \end{tabular}
-\caption{Métricas para evaluar distintos tipos de modelos.}
+\caption{Métricas para evaluar distintos tipos de modelos\cite{metrics_clustering_1, metrics_clustering_2,metrics_clasification,metrics_regression}.} 
 \label{table:1}
 \end{table}
 
@@ -664,7 +673,7 @@ Cada modelo tiene un conjunto de parámetros e hiper-parámetros que necesita pa
 \item Los \textbf{hiper-parámetros}, en cambio, son datos que debemos pasarle al algoritmo para funcionar. 
 \end{itemize}
 
-Como ejemplos de parámetros tenemos los coeficientes en una regresión lineal o logística, o los pesos en una red neuronal artificial. Y, como ejemplos de hiper-parámetros, tenemos al ‘k’ en KNN, o los ‘EPOCHs’ que nos permiten incrementar la cantidad de veces que iteramos sobre nuestros datos de entrenamiento en una red neuronal artificial. 
+Como ejemplos de parámetros tenemos los coeficientes en una regresión lineal o logística, o los pesos en una red neuronal artificial. Y como ejemplos de hiper-parámetros, tenemos al ‘k’ en KNN, o los ‘EPOCHs’ que nos permiten incrementar la cantidad de veces que iteramos sobre nuestros datos de entrenamiento en una red neuronal artificial. 
 
 Para encontrar los hiper-parámetros óptimos, es decir, aquellos que mejor funcionan para nuestro set de datos, lo que se hace es, nuevamente, realizar un entrenamiento y una evaluación de nuestro modelo de ML seleccionando e iterando sobre los distintos hiper-parámetros que tengamos: a esto se le conoce como \textit{“Parameter Tuning”}. Esta iteración puede ser de manera aleatoria (método conocido como \textit{random search}) o completa (\textit{grid search}). Luego de realizar esta iteración se obtiene la configuración de hiper-parámetros más óptima.
 
@@ -684,7 +693,7 @@ Para evitar estos 2 problemas utilizamos el método de \textbf{Cross Validation}
 
 \item Paso 7: Utilizando nuestro modelo. 
 
-Una vez que obtuvimos buenas predicciones en la etapa de evaluación y nuestra métrica de evaluación llegó a ser la mínima deseada, ya podemos afirmar que estamos en condiciones de utilizar nuestro modelo de Machine Learning entrenado para realizar predicciones con nuevos datos que están fuera del set de entrenamiento y del set de test.
+Una vez que obtuvimos buenas predicciones en la etapa de evaluación y nuestra métrica de evaluación llegó a ser la mínima deseada, ya podemos afirmar que estamos en condiciones de utilizar nuestro modelo de machine learning entrenado para realizar predicciones con nuevos datos que están fuera del set de entrenamiento y del set de test.
 
 \end{itemize}
 
@@ -694,14 +703,14 @@ Una vez que obtuvimos buenas predicciones en la etapa de evaluación y nuestra m
 
 El método de \textbf{Cross Validation}, o validación cruzada\cite{apunte_uba}\cite{cross_validation}, consiste en entrenar modelos de ML en subconjuntos de los datos de entrada disponibles y evaluarlos con un subconjunto complementario de los datos.
 
-En la la Figura \ref{fig:cross_val} podemos observar el funcionamiento del enfoque básico de Cross Validation: \textbf{k-fold Cross Validation}. Este método comienza particionando el set de entrenamiento en k bloques (o "folds"). Luego, se realizan varias iteraciones en las cuales entrenamos nuestro algoritmo con k - 1 bloques como set de entrenamiento y lo validamos con el bloque restante (el cual sería nuestro set de prueba), para obtener el valor de alguna métrica de evaluación, como por ejemplo el accuracy. Este proceso se repite k veces con el objetivo de que todos los bloques de datos hayan participado alguna vez del set de pruebas. 
+En la la Figura \ref{fig:cross_val} podemos observar el funcionamiento del enfoque básico de Cross Validation: \textbf{k-fold Cross Validation}. Este método comienza particionando el set de entrenamiento en k bloques (o ``folds''). Luego, se realizan varias iteraciones en las cuales entrenamos nuestro algoritmo con k - 1 bloques como set de entrenamiento y lo validamos con el bloque restante (el cual sería nuestro set de prueba), para obtener el valor de alguna métrica de evaluación, como por ejemplo el accuracy. Este proceso se repite k veces con el objetivo de que todos los bloques de datos hayan participado alguna vez del set de pruebas. 
 
 El resultado de la métrica de evaluación final devuelta por k-fold Cross Validation es el \textbf{promedio} de los resultados de dicha métrica de evaluación calculada dentro de las k iteraciones del algoritmo. Esto hay que hacerlo además por cada valor posible para nuestros hiper-parámetros, por lo que, dependiendo de los datos, puede resultar un proceso costoso.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
  \includegraphics[width=0.8\textwidth]{images/Cross_Validation.png}
- \caption[k-fold Cross Validation]{k-fold Cross Validation\protect\footnotemark}
+ \caption[k-fold Cross Validation.]{k-fold Cross Validation\protect\footnotemark}
  \label{fig:cross_val}
 \end{figure}
 
@@ -736,7 +745,7 @@ En cambio \textbf{Underfitting}, o sub-ajuste, es el opuesto de Overfitting. Est
 Por lo tanto, podemos decir que el modelo óptimo es aquel que tiene la complejidad necesaria para capturar lo que los datos expresan pero no más.
 
 \cleardoublepage
-\subsection{k Nearest Neighbor (KNN).}
+\subsection{K-Nearest Neighbor (KNN).}
 
 K-Nearest Neighbor o K Vecinos más cercanos (KNN), es un algoritmo ML que se puede usar tanto en tareas de regresión como de clasificación. En nuestra implementación, lo usaremos para resolver un problema de clasificación (ver \textit{\nameref{clasificacion}}). Como mencionamos anteriormente, en los problemas de clasificación la variable que se intenta predecir es discreta. En este tipo de problemas contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, y queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
 
@@ -748,7 +757,7 @@ Para poder utilizar KNN hay que definir previamente dos hiper-parámetros:
 \item El valor de k, es decir cuantos vecinos vamos a considerar.
 \end{itemize}
 
-Algo a destacar, es que KNN es un tipo de aprendizaje basado en la memoria, también llamado aprendizaje basado en instancias, que pertenece al aprendizaje perezoso (“lazy learning”). Esto quiere decir que KNN \textbf{no tiene una fase de entrenamiento}. ¿Qué quiere decir que KNN no tenga un proceso de entrenamiento?, y entonces en \textit{\nameref{IMP_Modelo_clasificacion_KNN}} ¿qué se hace realmente al utilizar la función \textit{.fit()} provista por sklearn?. A continuación contestaremos estas preguntas:
+Algo a destacar, es que KNN es un tipo de aprendizaje basado en la memoria, también llamado aprendizaje basado en instancias, que pertenece al aprendizaje perezoso (“lazy learning”). Esto quiere decir que KNN \textbf{no tiene una fase de entrenamiento}. ¿Qué quiere decir que KNN no tenga un proceso de entrenamiento?, y entonces en \textit{\nameref{IMP_Modelo_clasificacion_KNN}} ¿qué se hace realmente al utilizar la función \textit{.fit()} provista por sklearn?. A continuación se contestarán estas preguntas:
 
 \begin{itemize}
 \item \textbf{A nivel conceptual}, entrenar un clasificador significa tomar un conjunto de datos como entrada, y obtener a la salida un modelo clasificador identificado con distintos parámetros, los cuales son obtenidos en esta etapa de entrenamiento mediante iteraciones realizando cálculos numéricos o resolviendo problemas de optimización (como por ejemplo la obtención del mejor hiperplano en SVM o el ajuste de los pesos en redes neuronales artificiales). En el caso de KNN, el clasificador no se obtiene luego de iterar y obtener dichos parámetros, sino que se identifica por los propios datos de entrenamiento. Entonces, conceptualmente, entrenar un clasificador KNN simplemente requiere almacenar el conjunto de entrenamiento.
@@ -781,7 +790,7 @@ Como podemos ver en la Figura \ref{fig:KNN_example}, el conjunto de datos está 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
- \includegraphics[width=0.5\textwidth]{images/KNN_Ejemplo.png}
+ \includegraphics[width=0.4\textwidth]{images/KNN_Ejemplo.png}
  \captionsetup{justification=centering,margin=2cm}
  \caption{Ejemplo de Clasificación con KNN con K=3 (círculo con linea sólida) y K=5 (círculo con linea punteada), usando la distancia euclidiana como métrica de cálculo de distancias\cite{KNN_Ejemplo}.} 
  \label{fig:KNN_example}
@@ -791,7 +800,7 @@ Viendo la Tabla \ref{table:2} observamos que:
 
 \begin{itemize}
 \item Si K = 1, tomamos únicamente el punto más cercano del círculo verde. Este punto es un triángulo rojo. Como es el único punto que vota, el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 1 y de que sea azul es 0.
-\item Si K = 3, entonces hay 2 triángulos rojos y 1 cuadrado azul más cercano al punto verde Estos 3 puntos votan, por lo que el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 2/3  y de que sea azul es 1/3 .. 
+\item Si K = 3, entonces hay 2 triángulos rojos y 1 cuadrado azul más cercano al punto verde Estos 3 puntos votan, por lo que el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 2/3  y de que sea azul es 1/3.
 \item Si K = 5, entonces hay 2 triángulos rojos y 3 cuadrados azules más cercanos al punto verde. Estos 5 puntos votan, por lo que el punto verde a clasificar pertenece al cuadrado azul. De esta manera la probabilidad de que sea rojo es 2/5 y de que sea azul es 3/5 .
 \end{itemize}
 
@@ -877,10 +886,10 @@ Donde $x=(x_{1},x_{2},..., x_{n})$, $y = (y_{1},y_{2},...,y_{n})$, y $n = \text{
 \cleardoublepage
 \subsubsection{Eligiendo el valor de k: overfitting y underfitting.}
 
-En el caso de KNN el único hiper-parámetro que manejamos -además de la métrica usada para la distancia-, es k. La elección del valor k tendrá un impacto significativo en los resultados del algoritmo. 
+En el caso de KNN el único hiper-parámetro que manejamos -además de la métrica usada para la distancia-, es $k$. La elección del valor $k$ tendrá un impacto significativo en los resultados del algoritmo. 
 
-Para determinar el valor óptimo para k lo que se hace es probar diferentes valores de k y ver cual es el que nos da mejores resultados. Aquí hay que tener un cierto cuidado ya que hay que entender qué implica aumentar o disminuir la cantidad de vecinos más cercanos.
-Veamos en la Figura \ref{fig:KNN_k_1} qué pasa cuando usamos k = 1, es decir cuando a cada punto lo clasificamos únicamente en base al punto más cercano.
+Para determinar el valor óptimo para $k$ lo que se hace es probar diferentes valores de $k$ y ver cual es el que nos da mejores resultados. Aquí hay que tener un cierto cuidado ya que hay que entender qué implica aumentar o disminuir la cantidad de vecinos más cercanos.
+Veamos en la Figura \ref{fig:KNN_k_1} qué pasa cuando usamos $k = 1$, es decir cuando a cada punto lo clasificamos únicamente en base al punto más cercano.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -890,12 +899,12 @@ Veamos en la Figura \ref{fig:KNN_k_1} qué pasa cuando usamos k = 1, es decir cu
  \label{fig:KNN_k_1}
 \end{figure}
 
-En este caso nuestro el set de entrenamiento en KNN es simplemente perfecto porque dado un registro cualquiera, el más parecido es el registro mismo y, por lo tanto, vamos a tener 100\% de precisión para el set de entrenamiento. Sin embargo esto no quiere decir que el algoritmo generalice bien y para el set de pruebas los resultados pueden ser catastróficos.
+En este caso nuestro el set de entrenamiento en KNN es simplemente perfecto porque dado un registro cualquiera, el más parecido es el registro mismo y, por lo tanto, vamos a tener 100\% de precisión para el set de entrenamiento. Sin embargo, esto no quiere decir que el algoritmo generalice bien y para el set de pruebas los resultados pueden ser catastróficos.
 
 Lo que podemos ver es que la distribución que aprende nuestro clasificador no es homogénea, es decir que hay puntos de distintas clases mezclados en zonas en las cuales predomina otra clase, esto implica que nuestro clasificador va a funcionar muy bien para el set de entrenamiento pero no aprendió a generalizar y esto quiere decir que no va a ser muy bueno para predecir la clase de puntos nuevos que no hayamos observado en el set de entrenamiento. Esta es la definición de overfitting que discutimos en la sección previa (Ver \textit{\nameref{Over_y_under}}): cuando un algoritmo funciona bien para el set de entrenamiento y mal para datos nuevos. El concepto es que aprender a predecir el set de entrenamiento no es lo mismo que aprender a generalizar.
 
 \cleardoublepage
-Ahora veamos en la Figura \ref{fig:KNN_k_5} qué sucede con k = 5.
+Ahora veamos en la Figura \ref{fig:KNN_k_5} qué sucede con $k = 5$.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -905,15 +914,15 @@ Ahora veamos en la Figura \ref{fig:KNN_k_5} qué sucede con k = 5.
  \label{fig:KNN_k_5}
 \end{figure}
 
-Como podemos ver en la Figura \ref{fig:KNN_k_5} el clasificador aprendió a generar áreas más suaves y por consiguiente es un clasificador que generalizará mejor para predecir puntos que no estaban en el set de entrenamiento. Podriamos pensar entonces que es conveniente usar valores de k grandes como k = 1000 o incluso k = n. Sin embargo, al aumentar el valor de k estamos dando cada vez mayor peso a las clases que tienen mayor cantidad de puntos en el set de entrenamiento, en el extremo si k = n vamos a predecir para todos los puntos la clase que mayor cantidad de puntos tiene en el set de entrenamiento lo cual no es bueno. 
+Como podemos ver en la Figura \ref{fig:KNN_k_5} el clasificador aprendió a generar áreas más suaves y por consiguiente es un clasificador que generalizará mejor para predecir puntos que no estaban en el set de entrenamiento. Podriamos pensar entonces que es conveniente usar valores de k grandes como $k = 1000$ o incluso $k = n$ (donde $n$ es la cantidad de puntos de datos del set de entrenamiento). Sin embargo, al aumentar el valor de $k$ estamos dando cada vez mayor peso a las clases que tienen mayor cantidad de puntos en el set de entrenamiento, en el extremo si $k = n$ vamos a predecir para todos los puntos la clase que mayor cantidad de puntos tiene en el set de entrenamiento lo cual no es bueno. 
 
 En resumen:
 \begin{itemize}
-\item Cuando k es muy bajo, el algoritmo toma muy pocos puntos para clasificar un punto nuevo. Es un caso de overfitting. El modelo clasifica los puntos nuevos en base a muy poca evidencia. Nuestro algoritmo alucina, las fronteras se vuelven muy complejas, demasiado complejas para el set de datos que tenemos. 
-\item Cuando k es un número muy grande, KNN considera demasiados puntos para clasificar un punto nuevo. Este es un caso de underfitting, donde nuestro algoritmo tiene visión borrosa por estar mirando demasiados puntos, las fronteras entre nuestras clases se vuelven difusas y el poder expresivo del algoritmo es pobre. 
+\item Cuando $k$ es muy bajo, el algoritmo toma muy pocos puntos para clasificar un punto nuevo. Es un caso de overfitting. El modelo clasifica los puntos nuevos en base a muy poca evidencia. Nuestro algoritmo alucina, las fronteras se vuelven muy complejas, demasiado complejas para el set de datos que tenemos. 
+\item Cuando $k$ es un número muy grande, KNN considera demasiados puntos para clasificar un punto nuevo. Este es un caso de underfitting, donde nuestro algoritmo tiene visión borrosa por estar mirando demasiados puntos, las fronteras entre nuestras clases se vuelven difusas y el poder expresivo del algoritmo es pobre. 
 \end{itemize}
 
-En definitiva, el k óptimo en KNN es aquel que nos de un buen desempeño en cuanto a la precisión de clasificación para el mayor k posible. Una de las mejores formas para seleccionar nuestro k óptimo, es utilizando el método de \textbf{Cross Validation} (ó validación cruzada): ver \textit{\nameref{Cross Validation}}.
+En definitiva, el $k$ óptimo en KNN es aquel que nos de un buen desempeño en cuanto a la precisión de clasificación para el mayor k posible. Una de las mejores formas para seleccionar nuestro $k$ óptimo, es utilizando el método de \textbf{Cross Validation} (ó validación cruzada): ver \textit{\nameref{Cross Validation}}.
 
 \cleardoublepage
 \subsection{K-means.}
@@ -953,7 +962,7 @@ Donde $d = \text{dimensiones de nuestros puntos de datos y centroides}$, $m_{j}$
 
 A modo de ejemplo, veamos un caso en el cual usamos K-means para clusterizar nuestros datos hasta llegar a su convergencia. 
 
-En el ejemplo de la Figura \ref{fig:K_means_working_1}, nuestros datos tienen 2 dimensiones. Definiendo previamente nuestro k=2 (2 clusters), en el item \textbf{(1)} observamos dicha distribución de datos y, además, realizamos una inicialización aleatoria de nuestros 2 centroides (triángulos rojo y amarillo). Este es el \textbf{paso 1} del algoritmo k-means.  
+En el ejemplo de la Figura \ref{fig:K_means_working_1}, nuestros datos tienen 2 dimensiones. Definiendo previamente nuestro k=2 (2 clusters), en el item \textbf{(1)} observamos dicha distribución de datos. Además, en este item se realiza la inicialización aleatoria de nuestros 2 centroides (triángulos rojo y amarillo). Todo esto involucra al \textbf{paso 1} del algoritmo k-means.  
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -968,7 +977,7 @@ Al considerar la distancia euclidiana para este objetivo, en \textbf{(2)} dibuja
 
 La línea roja es simplemente una referencia utilizada para una mejor comprensión gráfica, pero internamente esta asignación de puntos se realiza en base al cálculo de las distancias euclidianas mediante la Fórmula \ref{eq:ecuacion_4}. descrita anteriormente para el paso 2 de k-means.
 
-Ahora, pasamos al \textbf{paso 3} de k-means: la actualización de las posiciones de los centroides de los clusters. Lo que hacemos en \textbf{(4)} es mover los centroides al centro promedio de los puntos a los que se les asignaron. Para esto se utiliza la Fórmula \ref{eq:ecuacion_5} descrita anteriormente. Podemos observar las nuevas posiciones de los centroides en \textbf{(5)}. 
+Posteriormente pasamos al \textbf{paso 3} de k-means: la actualización de las posiciones de los centroides de los clusters. Lo que hacemos en \textbf{(4)} es mover los centroides al centro promedio de los puntos a los que se les asignaron. Para esto se utiliza la Fórmula \ref{eq:ecuacion_5} descrita anteriormente. Podemos observar las nuevas posiciones de los centroides en \textbf{(5)}. 
 De esta forma, finalizamos la primera iteración de nuestro algoritmo. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
@@ -1010,7 +1019,7 @@ Para la tercera iteración se vuelven a repetir los pasos 2 y 3: trazamos la lí
  \caption{Algoritmo K-means.}
 \end{figure}
 
-En el ítem \textbf{(13)}, si ahora intentamos asignar nuevamente nuestros puntos de datos, observamos que ninguno cambiaría de color/clase. Los puntos rojos ya están del lado izquierdo de la linea, y los puntos amarillos ya están del lado derecho de la linea. Esto significa que si seguimos iterando nada cambiará, por lo que llegamos a la \textbf{convergencia} de nuestro algoritmo.
+Finalmente, en el ítem \textbf{(13)}, si ahora intentamos asignar nuevamente nuestros puntos de datos, observamos que ninguno cambiaría de color/clase. Los puntos rojos ya están del lado izquierdo de la linea, y los puntos amarillos ya están del lado derecho de la linea. Esto significa que si seguimos iterando nada cambiará, por lo que llegamos a la \textbf{convergencia} de nuestro algoritmo.
 
 \cleardoublepage
 \subsubsection{Objetivo de k-means y su función de coste.}
@@ -1019,7 +1028,7 @@ El objetivo de K-means es encontrar cómo repartir m puntos en n dimensiones den
 
 ¿A qué llamamos “de la mejor forma posible”?: se puede definir a cada cluster a partir de su centro (centroide), en cuyo caso la mejor distribución posible es aquella que minimiza la distancia entre cada punto del cluster y el centroide que se le asignó. Esto es lo que se conoce como \textbf{Inercia} (Inertia) o \textbf{WCSS} (within-cluster sum-of-squares, suma de cuadrados intra cluster), y es lo que busca \textit{minimizar} K-means.
 
-A este criterio de Inercia también se lo considera como la \textbf{función de coste J}\footnote{La función de coste o también llamada función de distorsión u objetivo, es una función que trata de determinar la diferencia o el error entre el valor estimado/predicho por un modelo de machine learning y el valor real, con el fin de optimizar los parámetros en dicha función y obtener un error mínimo. En el caso de k-means, nuestros valores estimados son las posiciones de los centroides -los cuales tenemos que descubrir y encontrar los más óptimos / los que minimicen nuestra J- y nuestros valores reales son nuestros puntos del cluster} de K-means, la cual se intenta \textit{minimizar}. 
+A este criterio de Inercia también se lo considera como la \textbf{función de coste J}\footnote{La función de coste o también llamada función de distorsión u objetivo, es una función que trata de determinar la diferencia o el error entre el valor estimado / predicho por un modelo de machine learning y el valor real, con el fin de optimizar los parámetros en dicha función y obtener un error mínimo. En el caso de k-means, nuestros valores estimados son las posiciones de los centroides -los cuales tenemos que descubrir y encontrar los más óptimos / los que minimicen nuestra J- y nuestros valores reales son nuestros puntos del cluster.} de K-means, la cual se intenta \textit{minimizar}. 
 
 Dicho de otra manera, el objetivo de k-means es encontrar la ubicación de los centroides que minimicen la inercia, esta será la posición óptima de los mismos.
 
@@ -1066,7 +1075,7 @@ La Figura \ref{fig:K_means_costo_1} muestra un ejemplo donde hay 4 clusters y va
  \label{fig:K_means_costo_2}
 \end{figure}  
 
-El gráfico de la Figura \ref{fig:K_means_costo_3} muestra el resultado de la función costo para 100 ejecuciones de K-Means, con un $k$ predefinido, y variando las inicializaciones de nuestros centroides. En el eje $x$ se representan las 100 ejecuciones de k-means, y en el eje $y$ encontramos la función de coste $J$ obtenida para cada ejecución). 
+El gráfico de la Figura \ref{fig:K_means_costo_3} muestra el resultado de la función costo para 100 ejecuciones de K-Means, con un $k$ predefinido, y variando las inicializaciones de nuestros centroides. En el eje $x$ se representan las 100 ejecuciones de k-means, y en el eje $y$ encontramos la función de coste $J$ obtenida para cada ejecución. 
 
 En la Figura \ref{fig:K_means_costo_4} podemos observar un histograma representando la cantidad de veces en porcentajes (eje $y$) que se observaron diferentes rangos de costo (eje $x$). Como se puede ver, afortunadamente los costos bajos son amplia mayoría, es decir que únicamente con algunas pocas inicializaciones desafortunadas K-means llega a un mínimo global muy malo. Esto quiere decir que una sola iteración de K-Means nos dará un buen resultado con una probabilidad alta y hacer un ciclo con unas pocas ejecuciones es más que suficiente para llegar a un excelente resultado.
 
@@ -1585,8 +1594,26 @@ Las limitaciones del sistema son las siguientes:
 
 \begin{thebibliography}{9}
 
+\bibitem{Similarity_calculation}
+Pinky Sitikhu, Kritish Pahi, Pujan Thapa, \& Subarna Shakya. (2019, Octubre). \textit{A Comparison of Semantic Similarity Methods for Maximum Human Interpretability}. IEEE International Conference on Artificial Intelligence for Transforming Business and Society. (pp. 1-4).
+
 \bibitem{jobs_future}
 World Economic Forum. (2020, Octubre). \textit{The Future of Jobs Report}. (pp. 29-31).
+
+\bibitem{wmd_paper}
+Matt Kusner, Yu Sun, Nicholas Kolkin, \& Kilian Weinberger. (2015, Julio). \textit{From word embeddings to document distances}. International Conference on Machine Learning. (pp. 957–966).
+
+\bibitem{similarity_survey}
+Jiapeng Wang, \& Yihong Dong. (2020, Agosto). \textit{Measurement of Text Similarity: A Survey}. Information 2020. 11(9). (pp. 1-8, 13,14).
+
+\bibitem{cosine_sim_1}
+Baoli Li, \& Liping Han. (2013, Octubre). \textit{Distance Weighted Cosine Similarity Measure for Text Classification}. IDEAL2013 Conference. (pp. 1,2).
+
+\bibitem{cosine_sim_2}
+Chunjie Luo, Jianfeng Zhan, Lei Wang, \& Qiang Yang. (2017, Octubre). \textit{Cosine Normalization: Using Cosine Similarity Instead of Dot Product in Neural Networks}. (pp. 1,2).
+
+\bibitem{cosine_sim_3}
+Dani Gunawan, C A Sembiring, \& Mohammad Andri Budiman. (2018, Marzo). \textit{The Implementation of Cosine Similarity to Calculate Text Relevance between Two Documents}. 2nd International Conference on Computing and Applied Informatics 2017. Journal of Physics Conference Series. 978(1). (pp. 1-2).
 
 \bibitem{seleccion_reclutamiento_1}
 Derek S. Chapman, \& Jane Webster. (2003, Junio-Septiembre). \textit{The Use of Technologies in the Recruiting, Screening, and Selection Processes for Job Candidates}. International journal of selection and assessment. 11(2/3). (pp. 113-114, 117-119).
@@ -1617,7 +1644,7 @@ Wahiba Ben Abdessalem Karaa, \& Nouha Mhimdi. (2011) \textit{Using ontology for 
 Duygu Çelik, Askýn Karakas, Gülsen Bal, Cem Gültunca, Atilla Elçi, Basak Buluz, \& Murat Can Alevli. (2013, Septiembre). \textit{Towards an Information Extraction System Based on Ontology to Match Resumes and Jobs}. Computer Software and Applications Conference Workshops (COMPSACW), IEEE 37th. (pp. 333-338).
 
 \bibitem{trabajos_relacionados_5}
-Frank Färber, Tim Weitzel, \& Tobias Keim. (2003, Agosto). \textit{An automated recommendation approach to selection in personnel recruitment}. 9th Americas Conference on Information Systems (AMCIS), USA. (pp. 1-11).
+Frank Färber, Tim Weitzel, \& Tobias Keim. (2003, Agosto). \textit{An automated recommendation approach to selection in personnel recruitment}. 9th Americas Conference on Information Systems (AMCIS). (pp. 1-11).
 
 \bibitem{trabajos_relacionados_6}
 Chirag Daryania, Gurneet Singh Chhabrab, Harsh Patel, Indrajeet Kaur Chhabrad, \& Ruchi Patel. (2020). \textit{An Automated Resume Screening System using Natural Language Processing and Similarity}. Topics In Intelligent Computing And Industry Design. 2(2). (pp. 99-103).
@@ -1635,7 +1662,7 @@ V. V. Dixit, Trisha Patel, Nidhi Deshpande, \& Kamini Sonawane. (2019, Abril). \
 Dr. K.Satheesh, A.Jahnavi, L Aishwarya, K.Ayesha, G Bhanu Shekhar, \& K.Hanisha. (2020). \textit{Resume Ranking based on Job Description using SpaCy NER model}. International Research Journal of Engineering and Technology (IRJET). 7(5). (pp. 74-77).
 
 \bibitem{trabajos_relacionados_11}
-Paolo Montuschi, Valentina Gatteschi, Fabrizio Lamberti,   Andrea Sanna, \&  Claudio Demartini. (2014, Septiembre-Octubre). \textit{Job recruitment and job seeking processes: how technology can help}. IT Professional, 16(5). (pp. 41-49).
+Paolo Montuschi, Valentina Gatteschi, Fabrizio Lamberti,   Andrea Sanna, \&  Claudio Demartini. (2014, Septiembre-Octubre). \textit{Job recruitment and job seeking processes: how technology can help}. IT Professional. 16(5). (pp. 41-49).
 
 \bibitem{trabajos_relacionados_12}
 Leila Yahiaoui, Zizette Boufaïda, \& Yannick Prié. (2006). \textit{Semantic Annotation of Documents Applied to E-Recruitment}. SWAP 2006, the 3rd Italian Semantic Web Workshop. (pp. 1-6).
@@ -1644,7 +1671,7 @@ Leila Yahiaoui, Zizette Boufaïda, \& Yannick Prié. (2006). \textit{Semantic An
 Rémy Kessler, Nicolas Béchet, Mathieu Roche, Juan Manuel Torres-Moreno, \& Marc El-Bèze. (2012). \textit{A hybrid approach to managing job offers and candidates}. Information Processing \& Management. 48(6). (pp. 1124-1135).
 
 \bibitem{trabajos_relacionados_14}
-Pradeep Kumar Roy, Sarabjeet Singh Chowdhary, \& Rocky Bhatia. (2020). \textit{A Machine Learning approach for automation of Resume Recommendation system}. International Conference on Computational Intelligence and Data Science (ICCIDS). Procedia Computer Science 167. (pp. 2318-2327).
+Pradeep Kumar Roy, Sarabjeet Singh Chowdhary, \& Rocky Bhatia. (2020). \textit{A Machine Learning approach for automation of Resume Recommendation system}. International Conference on Computational Intelligence and Data Science (ICCIDS). Procedia Computer Science. 167. (pp. 2318-2327).
 
 \bibitem{trabajos_relacionados_15}
 Ioannis Paparrizos, B. Barla Cambazoglu, \& Aristides Gionis. (2011). \textit{Machine learned job recommendation}. 5th ACM Conference on Recommender Systems, ACM. (pp. 325-328).
@@ -1661,26 +1688,41 @@ Karthik Tangirala. (2011). \textit{Semi-supervised and transductive learning alg
 \bibitem{cross_validation}
 Daniel Berra. (2018). \textit{Cross-Validation}. Libro \textit{Reference Module in Life Sciences}. Data Science Laboratory, Tokyo Institute of Technology. (pp. 1-5).
 
+\bibitem{preprocessing}
+S. B. Kotsiantis, D. Kanellopoulos, \& P. E. Pintelas. (2006). \textit{Data Preprocessing for Supervised Leaning}. International Journal of Computer Science. 1(1). (pp. 111,112,116). 
+
+\bibitem{metrics_clustering_1}
+Stephen Bradshaw, \& Colm O’Riordan. (2018). \textit{Evaluating Better Document Representation in Clustering with Varying Complexity}. In Proceedings of the 10th International Joint Conference on Knowledge Discovery, Knowledge Engineering and Knowledge Management 2018. 1. (pp. 199-201).
+
+\bibitem{metrics_clustering_2}
+Julio-Omar Palacio-Niño, \& Fernando Berzal. (2019, Mayo). \textit{Evaluation Metrics for Unsupervised Learning Algorithms}. (pp. 1-6).
+
+\bibitem{metrics_clasification}
+Nathalie Japkowicz. (2006, Mayo). \textit{Why Question Machine Learning Evaluation Methods (An Illustrative Review of the Shortcomings of Current Methods)}. (pp. 1-5)
+
+\bibitem{metrics_regression}
+Alexei Botchkarev. (2018, Septiembre). \textit{Performance Metrics (Error Measures) in Machine Learning Regression, Forecasting and Prognostics: Properties and Typology}. Interdisciplinary Journal of Information, Knowledge, and Management, 2019. 14. (pp. 1-8).
+
 \bibitem{over_and_under}
 Haider Khalaf Jabbar, \& Rafiqul Zaman Khan. (2014). \textit{Methods to avoid over-fitting and under-fitting in supervised machine learning (comparative study)}. (pp. 163-165)
 
 \bibitem{KNN_limitacion}
-Zhou Yong,  Li Youwen, \& Xia Shixiong. (2009, Marzo). \textit{An Improved KNN Text Classification Algorithm Based on Clustering}. Journal of Computers, 4(3). (pp. 230, 233). 
+Zhou Yong,  Li Youwen, \& Xia Shixiong. (2009, Marzo). \textit{An Improved KNN Text Classification Algorithm Based on Clustering}. Journal of Computers. 4(3). (pp. 230, 233). 
 
 \bibitem{KNN_Ejemplo}
-Haneen Arafat Abu Alfeilat, Ahmad B.A. Hassanat, Omar Lasassmeh, Ahmad S. Tarawneh, Mahmoud Bashir Alhasanat, Hamzeh S. Eyal Salman, \& V.B. Surya Prasath. (2019, Diciembre). \textit{Effects of Distance Measure Choice on K-Nearest Neighbor Classifier Performance: A Review}. Libro \textit{Big Data}, 7(4). (pp. 1-9).
+Haneen Arafat Abu Alfeilat, Ahmad B.A. Hassanat, Omar Lasassmeh, Ahmad S. Tarawneh, Mahmoud Bashir Alhasanat, Hamzeh S. Eyal Salman, \& V.B. Surya Prasath. (2019, Diciembre). \textit{Effects of Distance Measure Choice on K-Nearest Neighbor Classifier Performance: A Review}. Libro \textit{Big Data}. 7(4). (pp. 1-9).
 
 \bibitem{K_means_experiment}
-Boyang Li. (2018, Febrero). \textit{An Experiment of K-Means Initialization Strategies on Handwritten Digits Dataset}. Intelligent Information Management, 10. (pp. 43-46). 
+Boyang Li. (2018, Febrero). \textit{An Experiment of K-Means Initialization Strategies on Handwritten Digits Dataset}. Intelligent Information Management. 10. (pp. 43-46). 
 
 \bibitem{K_means_elbow}
-Mengyao Cui. (2020). \textit{Introduction to the K-Means Clustering Algorithm Based on the Elbow Method}. Accounting, Auditing and Finance, 1. (pp. 5-8).
+Mengyao Cui. (2020). \textit{Introduction to the K-Means Clustering Algorithm Based on the Elbow Method}. Accounting, Auditing and Finance. 1. (pp. 5-8).
 
 \bibitem{K_means_review}
-Shraddha Shukla, \& Naganna S. (2014). \textit{A Review On K-means Data Clustering Approach}. International Journal of Information \& Computation Technology, 4(17). (pp. 1847-1849, 1852, 1853).
+Shraddha Shukla, \& Naganna S. (2014). \textit{A Review On K-means Data Clustering Approach}. International Journal of Information \& Computation Technology. 4(17). (pp. 1847-1849, 1852, 1853).
 
 \bibitem{K_means_initial_centroids}
-Kodinariya, T.M. (2014). \textit{Survey on Exiting Method for Selecting Initial Centroids in K-Means Clustering}. International Journal of Engineering Development and Research, 4(2). (pp. 2865-2868).
+Kodinariya, T.M. (2014). \textit{Survey on Exiting Method for Selecting Initial Centroids in K-Means Clustering}. International Journal of Engineering Development and Research. 4(2). (pp. 2865-2868).
 
 \bibitem{K_means_plus_plus}
 David Arthur, \& Sergei Vassilvitskii. (2007, Enero). \textit{K-Means++: The Advantages of Careful Seeding}. SODA '07: Proceedings of the 18th annual ACM-SIAM symposium on Discrete algorithms. (pp. 1027-1035).

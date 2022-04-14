@@ -1,10 +1,11 @@
 \babel@toc {spanish}{}
 \contentsline {section}{\numberline {1}Introducción.}{6}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Objetivos del Proyecto.}{9}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Objetivo general.}{9}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Objetivos específicos.}{9}{subsubsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.2}Alcance del Proyecto.}{10}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Organización.}{10}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.1}Algoritmos y técnicas utilizadas.}{8}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objetivos del Proyecto.}{9}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Objetivo general.}{9}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Objetivos específicos.}{9}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3}Alcance del Proyecto.}{10}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Organización.}{10}{subsection.1.4}%
 \contentsline {section}{\numberline {2}Reclutamiento y selección laboral.}{12}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Introducción.}{12}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Reclutamiento vs selección.}{12}{subsection.2.2}%
@@ -26,7 +27,7 @@
 \contentsline {subsubsection}{\numberline {3.2.4}¿Cómo implementar un modelo de ML?}{27}{subsubsection.3.2.4}%
 \contentsline {paragraph}{\numberline {3.2.4.1}Cross Validation.}{31}{paragraph.3.2.4.1}%
 \contentsline {paragraph}{\numberline {3.2.4.2}Los Problemas de ML: Overfitting y Underfitting.}{32}{paragraph.3.2.4.2}%
-\contentsline {subsection}{\numberline {3.3}k Nearest Neighbor (KNN).}{33}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}K-Nearest Neighbor (KNN).}{33}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Principal limitación KNN.}{34}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Funcionamiento y ejemplo de KNN.}{34}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Métrica de distancia a emplear.}{36}{subsubsection.3.3.3}%
