@@ -39,39 +39,40 @@
 \contentsline {subsubsection}{\numberline {3.4.4}Limitaciones K-means.}{47}{subsubsection.3.4.4}%
 \contentsline {paragraph}{\numberline {3.4.4.1}Obtención del k mediante Elbow Method.}{48}{paragraph.3.4.4.1}%
 \contentsline {paragraph}{\numberline {3.4.4.2}Inicialización de los centroides: k-means++.}{49}{paragraph.3.4.4.2}%
-\contentsline {section}{\numberline {4}Natural Language Processing.}{51}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introducción.}{52}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Preprocesamiento de textos.}{53}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Similitud entre textos.}{54}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Técnicas para medir Similitud entre textos.}{55}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Cosine Similarity.}{55}{subsubsection.4.4.1}%
-\contentsline {subsubsection}{\numberline {4.4.2}Word Mover's Distance (WMD).}{56}{subsubsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.5}Algoritmos de vectorización.}{57}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}TF-IDF.}{57}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Word Embeddings.}{58}{subsubsection.4.5.2}%
-\contentsline {paragraph}{\numberline {4.5.2.1}¿Cómo entrenar Word Embeddings?}{59}{paragraph.4.5.2.1}%
-\contentsline {section}{\numberline {5}Implementación.}{60}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Obtención del modelo de clasificación.}{61}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{61}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{61}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{62}{subsubsection.5.1.3}%
-\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{62}{paragraph.5.1.3.1}%
-\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{62}{paragraph.5.1.3.2}%
-\contentsline {subsubsection}{\numberline {5.1.4}Preprocesamiento y limpieza de datos.}{63}{subsubsection.5.1.4}%
-\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{64}{subsubsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{66}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{67}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{68}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{69}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{70}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{72}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{75}{subsubsection.5.5.3}%
-\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{76}{paragraph.5.5.3.1}%
-\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{77}{paragraph.5.5.3.2}%
-\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{78}{paragraph.5.5.3.3}%
-\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{79}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Conclusiones.}{80}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Caso de Uso.}{81}{subsection.5.8}%
-\contentsline {subsection}{\numberline {5.9}Limitaciones del sistema.}{82}{subsection.5.9}%
-\contentsline {section}{\numberline {6}Próximos pasos.}{83}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{84}{section.7}%
+\contentsline {subsection}{\numberline {3.5}Redes Neuronales.}{51}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Natural Language Processing.}{52}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introducción.}{53}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Preprocesamiento de textos.}{54}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Similitud entre textos.}{55}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Técnicas para medir Similitud entre textos.}{56}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Cosine Similarity.}{56}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Word Mover's Distance (WMD).}{57}{subsubsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.5}Algoritmos de vectorización.}{58}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}TF-IDF.}{58}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Word Embeddings.}{59}{subsubsection.4.5.2}%
+\contentsline {paragraph}{\numberline {4.5.2.1}¿Cómo entrenar Word Embeddings?}{60}{paragraph.4.5.2.1}%
+\contentsline {section}{\numberline {5}Implementación.}{61}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Obtención del modelo de clasificación.}{62}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{62}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{62}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{63}{subsubsection.5.1.3}%
+\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{63}{paragraph.5.1.3.1}%
+\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{63}{paragraph.5.1.3.2}%
+\contentsline {subsubsection}{\numberline {5.1.4}Preprocesamiento y limpieza de datos.}{64}{subsubsection.5.1.4}%
+\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{65}{subsubsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{67}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{68}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{69}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{70}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{71}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{73}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{76}{subsubsection.5.5.3}%
+\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{77}{paragraph.5.5.3.1}%
+\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{78}{paragraph.5.5.3.2}%
+\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{79}{paragraph.5.5.3.3}%
+\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{80}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Conclusiones.}{81}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Caso de Uso.}{82}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Limitaciones del sistema.}{83}{subsection.5.9}%
+\contentsline {section}{\numberline {6}Próximos pasos.}{84}{section.6}%
+\contentsline {section}{\numberline {7}Anexos.}{85}{section.7}%

@@ -421,7 +421,7 @@ Por último, cabe destacar que los trabajos anteriormente mencionados no tienen 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
 \subsection{Introducción.}
-Continuando con el marco teórico de esta Tesis, es necesario explicar qué es \textit{machine learning (ML)} y cómo se pueden clasificar a los distintos algoritmos según su tipo de aprendizaje, haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means.
+Continuando con el marco teórico de esta Tesis, es necesario explicar qué es \textit{machine learning (ML)} y cómo se pueden clasificar a los distintos algoritmos y modelos según su tipo de aprendizaje, haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means, y el modelo de Redes Neuronales. Estas técnicas son las que se utilizarán en la implementación del proyecto.
 
 Además, detallaremos la importancia de la separación de los datos y mencionaremos cuáles son los pasos a seguir para implementar un modelo de ML teniendo en cuenta algunos de los problemas clásicos que pueden afectar a nuestros resultados.
 
@@ -605,7 +605,7 @@ En este paso hay que tener muy en cuenta la calidad y cantidad de información q
 
 \item Paso 2: Preparación y preprocesamiento de los datos.
 
-En este paso generalmente se realizan visualizaciones de los datos y se revisa si existen correlaciones entre las distintas “features”\footnote{Features generalmente son las columnas de nuestro dataframe, archivo o base de datos -dependiendo cómo almacenamos nuestros datos-.} de nuestros datos. Al pre-procesar nuestros datos nos referimos a normalizar los mismos: eliminando duplicados y realizando distintas correcciones de errores. El preprocesamiento de datos usualmente tiene un impacto significante en la performance de generalización de nuestro algoritmo de machine learning\cite{preprocessing}. 
+En este paso generalmente se realizan visualizaciones de los datos y se revisa si existen correlaciones entre las distintas “features”\footnote{Features generalmente son las columnas de nuestro dataframe, archivo o base de datos -dependiendo cómo almacenamos nuestros datos-.} de nuestros datos. Al pre-procesar nuestros datos nos referimos a normalizar los mismos: eliminando duplicados y realizando distintas correcciones de errores. El preprocesamiento de datos usualmente tiene un impacto significativo en la performance de generalización de nuestro algoritmo de machine learning\cite{preprocessing}. 
 
 \cleardoublepage
 En esta etapa, además, es importante \textbf{separar} nuestros datos en dos grupos:
@@ -1202,6 +1202,13 @@ En \textbf{(5)} se calculan nuevamente las distancias $D(x)$ entre cada uno de l
 Por último, en \textbf{(6)} finalizamos la inicialización de nuestros centroides encontrando al último y tercer centroide (azul). El mismo fue elegido ya que su punto $x$ es el que tiene la mayor distancia al cuadrado $D(x)^2$ a su centroide con respecto a cualquier otro punto y su centroide.
 
 De esta manera, concluimos que K-means++ genera una inicialización más dispersa de los centroides iniciales comparándolo con el método de K-means estándar de inicialización aleatoria. El problema de K-Means++ es que para datos realmente masivos necesita hacer k iteraciones sobre los datos para elegir los centroides, tarea que es todavía más ineficiente cuando k es un número largo. Sin embargo, en general, K-Means++ genera una inicialización mejor para K-Means y esto permite no solo obtener una mejor solución final sino que también acelera la velocidad de convergencia del algoritmo.
+
+\cleardoublepage
+\subsection{Redes Neuronales.}
+Este modelo es el utilizado para ....
+
+
+
 
 \cleardoublepage
 \section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
