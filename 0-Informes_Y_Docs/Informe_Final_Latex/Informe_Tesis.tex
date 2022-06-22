@@ -2,7 +2,7 @@
 % 1-Preambulo.
 % ----------------------------------
 \documentclass[12pt,a4paper]{article}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-tabla]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{lmodern}
@@ -110,6 +110,7 @@
 
 \begin{document}
 
+\begin{sloppypar}
 \begin{figure}
   \centering
   \includegraphics[width=0.2\textwidth]{images/undav-logo.png} 	%Incluyendo logo de la Undav.
@@ -169,7 +170,7 @@ por participación de las empresas encuestadas por el \textit{Foro Económico Mu
 
 El tema de este Proyecto de Tesis será desarrollar un \textit{sistema de lectura automática de Curriculum Vitae} accesible vía Web. La finalidad del mismo es ayudar al reclutador laboral a elegir a los mejores candidatos para los puestos laborales de IT que tenga disponible. Esta elección se realiza mediante el uso de algoritmos de machine learning y basándose, principalmente, en una medición de similitud entre textos: Curriculum Vitae de los candidatos por un lado, y descripciones de los puestos laborales de IT por el otro.
 
-La medición de similitudes entre documentos de texto es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)} y es muy utilizado para el análisis de datos. Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, de information retrieval (IR), de análisis de sentimientos, etc.\cite{Similarity_calculation}
+La medición de similitudes entre documentos de texto (text similarity measurement) es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, de information retrieval (IR), de análisis de sentimientos, etc.\cite{Similarity_calculation}
 
 Para que las máquinas puedan describir esta similitud entre documentos, se necesita definir una forma de medir matemáticamente la similitud, la cual debe ser comparable para que la máquina pueda identificar qué documentos son más (o menos) similares. Previamente a esto necesitamos representar el texto de los documentos en una forma cuantificable (que suele ser en forma vectorial), de modo que podamos realizar los posteriores cálculos de similitud sobre él. Una distancia pequeña entre los vectores significa un alto nivel de similitud, mientras que grandes distancias significan un bajo nivel de similitud\cite{Similarity_calculation}.
 
@@ -187,17 +188,10 @@ En el sistema desarrollado, una vez obtenidas estas mediciones de similitud entr
 
 A continuación nombraremos resumidamente los algoritmos y técnicas de machine learning utilizadas para el desarrollo del \textit{sistema de lectura automática de Curriculum Vitae}. 
 
-Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron los algoritmos de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}.
+Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron las técnicas de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}.
 
-Para el segundo paso, definir y emplear métricas de distancia, se emplearon las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}.
+Para el segundo paso, definir y emplear métricas de distancia, se decidió emplear una combinación de las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}. En la sección \colorbox{red}{4.5.3-¿Por qué decidimos utilizar Cosine similarity y WMD?.} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en \textit{\nameref{Tecnicas_Simil_textos}}, el cual detalla las numerosas técnicas existentes para obtener similitudes entre textos.
 
-Existen numerosas técnicas para medir distancias, las cuales serán detalladas en \textit{\nameref{Tecnicas_Simil_textos}}. Para este sistema se decidió utilizar una combinación entre Cosine similarity y WMD debido a:
-
-\begin{itemize}
-\item En el caso de Cosine similarity, se utilizó dicha técnica debido a que es una de las más tradicionales y ampliamente utilizadas para medir similitudes entre textos en varias aplicaciones\cite{similarity_survey, cosine_sim_1, cosine_sim_2, cosine_sim_3}.
-\item En cambio, WMD es una técnica más nueva (2015)\cite{wmd_paper} que al momento de la encuesta realizada el 31 de Agosto del 2020\cite{similarity_survey} es la principal técnica utilizada para la medición semántica de la distancia entre textos.
-\end{itemize} 
-        
 Como tercer y último paso, una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un \textbf{algoritmo de clustering K-means} que a su vez, con sus datos de salida (4 clusters), alimentan a un \textbf{modelo de clasificación K-Nearest Neighbor (KNN)}.
 
 Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT.
@@ -222,7 +216,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \item Describir el estado del arte actual de los Sistemas de lectura y análisis de Curriculum Vitae en las fases de reclutamiento y selección laboral. 
 \item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación y medición de similitudes entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral de IT determinado.  
 \item Aprender los conceptos y técnicas principales utilizadas dentro del procesamiento de lenguaje natural (NLP) aplicando técnicas de preprocesamiento y limpieza de textos.
-\item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes algoritmos de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
+\item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes técnicas de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
 \item Conocer, implementar e integrar el algoritmo de clustering K-means junto al algoritmo de clasificación KNN para obtener un modelo de clasificación de candidatos en base a las medidas de similitud entre los textos.
 \item Evaluar los Frameworks disponibles para tener una UI \footnote{La interfaz de usuario o user inteface (UI) de una página web refiere a todo aquello tangible con lo que los usuarios interactúan de forma directa en la misma.} accesible vía web e integrar el mismo al Sistema.
 \item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos.
@@ -231,7 +225,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \cleardoublepage    %Nueva página
 
 \subsection{Alcance del Proyecto.}
-El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, algoritmos de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
+El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, técnicas de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
 
 \subsection{Organización.}
 Este Proyecto de Tesis fue organizado para trabajarlo en tres secciones:
@@ -244,7 +238,7 @@ Esta sección abarca principalmente la parte teórica del trabajo, haciendo hinc
 	\item El estado del arte (actual y pasado) de los sistemas de lectura y análisis de Curriculum Vitae.
 	\item Técnicas usadas para el procesamiento del lenguaje natural (NLP).
 	\item Técnicas para medir similitudes entre textos: Cosine Similarity y WMD.
-	\item Algoritmos de vectorización: TF-IDF y Word Embeddings.
+	\item Técnicas de vectorización: TF-IDF y Word Embeddings.
 	\item Algoritmos de machine mearning para tareas de clasificación (KNN) y clustering (K-means).
 \end{itemize} 
 
@@ -252,7 +246,7 @@ Esta primera sección abarca los capítulos \textit{\nameref{2.Reclutamientolabo
 
 \item Implementación de distintas técnicas y algoritmos para la obtención del modelo de clasificación KNN. 
 
-Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook \footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. 
+Esta sección hace referencia a la aplicación práctica dentro del marco teórico desarrollado en la primera sección, mediante la realización de una serie de análisis en documentos de Jupyter Notebook\footnote{Aplicación cliente-servidor que permite crear documentos web en formato JSON que siguen un esquema versionado y una lista ordenada de celdas de entrada y de salida. Estas celdas albergan, entre otras cosas, código, texto (en formato Markdown), fórmulas y ecuaciones matemáticas. Estos documentos que se generan funcionan en cualquier navegador estándar.} utilizando Python \footnote{Lenguaje de programación interpretado y multiplataforma de código abierto, popularizado en los últimos años por su facilidad para trabajar con inteligencia artificial, big data, machine learning y data science, entre muchos otros campos en auge.}, para la obtención final de nuestro modelo de clasificación KNN capaz de clasificar, en base a los valores de similitud de nuevos candidatos, qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta. 
 
 \cleardoublepage    %Nueva página
 
@@ -261,7 +255,7 @@ Los items que abarca esta sección son:
 \begin{itemize}
 	\item Obtención de sets de datos: curriculums vitae y descripciones laborales. 
 	\item Preprocesamiento de los textos.
-	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
+	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word Embeddings).
 	\item Obtención del modelo de clasificación KNN utilizando como datos de entrada los clusters devueltos por el algoritmo K-means obtenidos en base a las mediciones de similitud previamente realizadas.
 	\item Análisis y primeras visualizaciones de los resultados.
 \end{itemize} 
@@ -636,7 +630,7 @@ Para poder evaluar un modelo correctamente, tenemos que contar con la separació
 
 De esta manera, luego de haber entrenado nuestro modelo de ML, resumidamente lo que hacemos en esta etapa es comparar las predicciones realizadas sobre set de pruebas devueltas por el modelo de ML contra el valor de destino conocido para el mismo set de pruebas; y por último generar alguna \textbf{métrica de evaluación} que nos permite verificar la performance de nuestro modelo indicando la efectividad de las predicciones.
 
-Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métricas de evaluación para verificar su performance. Como observación, se detallan algunas de las métricas más conocidas en el Cuadro  \ref{table:1}. \\
+Dependiendo del tipo de modelo que tengamos, podemos utilizar distintas métricas de evaluación para verificar su performance. Como observación, se detallan algunas de las métricas más conocidas en la Tabla \ref{table:1}. \\
 
 \begin{table}[h!]
 \centering
@@ -853,7 +847,7 @@ Dos de las distancias más utilizadas en la implementación de KNN son la distan
  \label{fig:Man_euc}
 \end{figure}
 
-La \textbf{distancia euclidiana}, o también conocida como Norma L2 o distancia de regla, es una extensión del Teorema de Pitágoras. Esta distancia representa la raíz de la suma al cuadrado de las diferencias absolutas entre los valores opuestos de los vectores. Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia euclidiana, su cálculo se obtiene mediante la ecuación \ref{eq:ecuacion_1}.
+La \textbf{distancia euclidiana}, o también conocida como Norma L2 o distancia de regla, es una extensión del Teorema de Pitágoras. Esta distancia representa la raíz de la suma al cuadrado de las diferencias absolutas entre los valores opuestos de los vectores. Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia euclidiana, su cálculo se obtiene mediante la Fórmula \ref{eq:ecuacion_1}.
 
 \begin{equation}\label{eq:ecuacion_1}
 d(x,y)=\sqrt{\sum_{i=1}^{n}|x_{i}-y_{i}|^2}   \qquad  \text{(Ver \cite{KNN_Ejemplo})}
@@ -861,7 +855,7 @@ d(x,y)=\sqrt{\sum_{i=1}^{n}|x_{i}-y_{i}|^2}   \qquad  \text{(Ver \cite{KNN_Ejemp
 
 Donde $x=(x_{1},x_{2},..., x_{n})$, $y = (y_{1},y_{2},...,y_{n})$, y $n = \text{dimensiones de los puntos}$.
 
-En la ecuación \ref{eq:ecuacion_2} y Figura \ref{fig:KNN_2_Dim} podemos observar el cálculo de la distancia euclidiana entre x e y  considerando un espacio bidimensional. Este es el cálculo que se realiza en la implementación de nuestro KNN, ya que utilizamos la distancia euclidiana como métrica, y únicamente contaremos con 2 ejes.
+En la Fórmula \ref{eq:ecuacion_2} y Figura \ref{fig:KNN_2_Dim} podemos observar el cálculo de la distancia euclidiana entre x e y  considerando un espacio bidimensional. Este es el cálculo que se realiza en la implementación de nuestro KNN, ya que utilizamos la distancia euclidiana como métrica, y únicamente contaremos con 2 ejes.
 
 \begin{equation}\label{eq:ecuacion_2}
 d(x,y)=\sqrt{(x_{1}-x_{2})^2 + (y_{1}-y_{2})^2}
@@ -875,7 +869,7 @@ d(x,y)=\sqrt{(x_{1}-x_{2})^2 + (y_{1}-y_{2})^2}
  \label{fig:KNN_2_Dim}
 \end{figure}
 
-En cambio, la \textbf{distancia Manhattan}\footnote{Su nombre es debido a que es la forma de calcular distancias en una ciudad con forma de grilla en la cual solo nos podemos mover por las calles en forma horizontal y vertical}, o también conocida como Norma L1 o distancia rectilínea, se calcula como la sumatoria de la diferencia absoluta entre los valores opuestos de los vectores.  Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia Manhattan, su cálculo se obtiene mediante la ecuación \ref{eq:ecuacion_3}.
+En cambio, la \textbf{distancia Manhattan}\footnote{Su nombre es debido a que es la forma de calcular distancias en una ciudad con forma de grilla en la cual solo nos podemos mover por las calles en forma horizontal y vertical}, o también conocida como Norma L1 o distancia rectilínea, se calcula como la sumatoria de la diferencia absoluta entre los valores opuestos de los vectores.  Considerando $x$ e $y$ como vectores a los cuales queremos calcular su distancia Manhattan, su cálculo se obtiene mediante la Fórmula \ref{eq:ecuacion_3}.
 
 \begin{equation}\label{eq:ecuacion_3}
 d(x,y)=\sum_{i=1}^{n}|x_{i}-y_{i}|  \qquad  \text{(Ver \cite{KNN_Ejemplo})}
@@ -1103,9 +1097,7 @@ K-means tiene tres principales limitaciones, las cuales describiremos a continua
 \begin{enumerate}
 
 \item \textbf{Outliers}: Un outlier es una observación atípica dentro de una muestra de datos que es notablemente diferente del resto. Los outliers representan errores en la medición, mala recolección de datos, o simplemente muestran variables no consideradas al recolectar los datos.
-En k-means los outliers pueden incrementar la función de coste o Inercia. 
-
-Varios investigadores observaron que, cuando los datos contienen outliers, existe una variación en el resultado que significa que no hay un resultado estable al realizar diferentes ejecuciones de k-means con los mismos datos\cite{K_means_review}. Por esta razón, es muy importante eliminar los outliers de nuestro conjunto de datos. Los valores atípicos se pueden eliminar aplicando técnicas de preprocesamiento en el conjunto de datos original.
+En k-means los outliers pueden incrementar la función de coste o Inercia. Varios investigadores observaron que, cuando los datos contienen outliers, existe una variación en el resultado que significa que no hay un resultado estable al realizar diferentes ejecuciones de k-means con los mismos datos\cite{K_means_review}. Por esta razón, es muy importante eliminar los outliers de nuestro conjunto de datos. Los valores atípicos se pueden eliminar aplicando técnicas de preprocesamiento en el conjunto de datos original.
 
 \item \textbf{Número de los $k$ clusters}: Uno de los principales inconvenientes de K-means es la necesidad de determinar el número óptimo de los $k$ clusters por adelantado. Esto perjudica la eficacia del algoritmo ya que en la práctica, no se conoce a priori el número de clusters final. Este defecto lo perjudica al compararlo con otros algoritmos, ya que en muchos la inicialización del número de clusters no es necesaria. Todavía es un problema saber cuál es el número correcto de $k$ clusters que debemos asignar\cite{K_means_review}.
 
@@ -1204,8 +1196,241 @@ Por último, en \textbf{(6)} finalizamos la inicialización de nuestros centroid
 De esta manera, concluimos que K-means++ genera una inicialización más dispersa de los centroides iniciales comparándolo con el método de K-means estándar de inicialización aleatoria. El problema de K-Means++ es que para datos realmente masivos necesita hacer k iteraciones sobre los datos para elegir los centroides, tarea que es todavía más ineficiente cuando k es un número largo. Sin embargo, en general, K-Means++ genera una inicialización mejor para K-Means y esto permite no solo obtener una mejor solución final sino que también acelera la velocidad de convergencia del algoritmo.
 
 \cleardoublepage
-\subsection{Redes Neuronales.}
-Este modelo es el utilizado para ....
+\subsection{Redes Neuronales Artificiales (ANN).}
+
+Las redes neuronales artificiales (o artificial neural network, ANN) son técnicas de Machine Learning que permiten imitar o reproducir la capacidad de aprender propia del comportamiento de un cerebro humano. Las ANN están compuestas por un conjunto de elementos simples (neuronas artificiales) que se interconectan masivamente en paralelo y con organización jerárquicacite\cite{ANN_21}.
+
+En esta sección detallaremos el funcionamiento básico y los componentes de una red neuronal; la cual será utilizada como base en la implementación del modelo Word2vec para obtener word embedddings: Ver \textit{\nameref{Implementacion_word_emb_y_wmd}}.
+
+Existen muchísimos modelos de redes neuronales, los cuales pueden ser entrenados para resolver distintas tareas, tanto de clasificación o de regresión, como de clustering. En esta sección se explicarán dos de ellos, el modelo más básico y simple de una red neuronal, conocido como \textit{Perceptrón simple}, y su modelo predecesor, \textit{Perceptrón Multicapa} (o también conocido como Multi Layer Perceptron, \textit{MLP}). Ambos modelos son considerados como algoritmos de clasificación, formando parte de la rama de aprendizaje supervisado.
+
+\subsubsection{Perceptrón simple.}
+
+El Perceptrón Simple es un algoritmo de clasificación lineal que surge a fines de la década del 50 y fue desarrollado por Frank Rosenblatt. En aquel tiempo se buscaba crear un algoritmo que imitase el funcionamiento del cerebro humano. El perceptrón puede verse biológicamente como una neurona, siendo la unidad básica de procesamiento que se encuentra en una red neuronal. La teoría era que un perceptrón (o neurona) podía programarse como una salida binaria que dependía del resultado de la combinación lineal entre las entradas y pesos asignados a las mismas. De esta forma, la neurona respondía de manera binaria (0 ó 1) según si el resultado de la combinación lineal fuese mayor o menor a un cierto umbral mediante el uso de una “función de activación”\cite{apunte_uba}, la cual detallaremos más adelante.
+
+En resumen, esta neurona (o perceptrón) tiene conexiones con nodos de entrada, a partir de los cuales recibe estímulos externos (valores de entrada). Con estos valores la neurona realiza un procesamiento interno y genera un valor de salida, decidiendo de esta manera a cuál de las dos clases posibles pertenece la observación\cite{ANN_21}. Este procesamiento depende de las distintas funciones / cálculos matemáticos llevados a cabo mediante la \textit{función de entrada} y la \textit{función de activación} de la neurona (o también llamada \textit{función de transferencia})\cite{ANN_22}. Podemos observar un diagrama de la arquitectura del Perceptrón Simple en la Figura \ref{fig:ann_1}. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/ANN/1-ANN.png}
+ \caption{Modelo Perceptrón Simple} 
+ \label{fig:ann_1}
+\end{figure}
+
+Mencionaremos las partes involucradas en dicho esquema:
+\begin{itemize}
+\item Entradas ($x_1, x_2, x_3, x_n$): Las \textit{entradas} son los valores de entrada a la neurona que provienen de estímulos externos. 
+
+\item Pesos ($w_1, w_2, w_3, w_n$): Los \textit{pesos} son los coeficientes que determinan la intensidad o fuerza de la conexión de las señales de entrada registradas por la neurona. Si el peso de una entrada $x_1$ es mayor al peso de la entrada $x_2$, entonces la entrada $x_1$ tiene mayor influencia en la neurona. Si el peso es positivo se habla de una \textit{excitación} de la entrada, en cambio si el peso es negativo se habla de una \textit{inhibición} de la misma.
+
+\item Función de entrada: En esta parte del esquema se aplica una función de entrada a nuestros valores de entrada, sus pesos y el bías -representado en la figura como $b$\footnote{El bias o sesgo es el término independiente que permite cambiar o disparar la función de activación para garantizar un aprendizaje exitoso. En otras palabras, permite controlar qué tan predispuesta está la neurona a disparar un 1 o un 0 independientemente de los pesos. Un sesgo alto hace que la neurona requiera una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más sencillo.}-.
+
+Existen distintas funciones de entrada, tales como la sumatoria de las entradas ponderadas, la productoria de las entradas ponderadas o el máximo de las entradas ponderadas\cite{ANN_23}. En el ejemplo descrito en la figura \ref{fig:ann_1} se utilizó la función de entrada más común: la \textit{sumatoria de las entradas ponderadas}, que representa la suma de todos los valores de entrada a la neurona, multiplicados por sus correspondientes pesos. De esta manera, mediante la Fórmula \ref{eq:ecuacion_1_ANN} obtenemos la salida $Z$.
+
+\begin{equation}\label{eq:ecuacion_1_ANN}
+Z=\sum_{i}w_{i}x_{i}+b
+\end{equation}
+
+Donde $x_i$ es cada una de las entradas externas a la neurona/perceptrón, $w_i$ son los pesos asociados a cada entrada y $b$ es el sesgo descrito anteriormente. 
+
+\item Función de activación $f(Z)$:
+
+Las neuronas artificiales tienen diferentes estados de activación, algunas de ellas solamente dos -activa (excitada) o inactiva (no excitada)-, pero otras pueden tomar cualquier valor dentro de un conjunto determinado.
+
+La función activación calcula dichos estados de activación de la neurona, transformando la entrada global $z$ en un valor (estado) de activación o salida $y$, cuyo rango normalmente va de (0 a 1) o de (-1 a 1). Esto es así, porque una neurona puede estar totalmente inactiva (0 o -1) o activa (1)\cite{ANN_23}. 
+
+Resumiendo, la función de activación tiene como objetivo determinar si la neurona es activada o no aplicando una \textit{función no lineal} $f$ a $Z$, obteniendo así la salida de la neurona $y$: ver la Fórmula \ref{eq:ecuacion_2_ANN}. ¿Por qué esta función de activación tiene que ser una \textit{función no lineal}?: Esto lo explicaremos en la sección \textit{\nameref{Func_activ}}.
+
+\begin{equation}\label{eq:ecuacion_2_ANN}
+y = f(z) =  
+\begin{cases}
+\begin{array}{lr}
+1, \;\;\;    si \;\; z > umbral \\
+0, \;\;\;    si \;\; z \leq  umbral
+\end{array}
+\end{cases}
+\end{equation}
+
+Por ejemplo, viendo la Figura \ref{fig:ann_1}, si utilizamos la \textit{función escalón} (o \textit{step}) como nuestra función de activación, entonces nuestro umbral sería = 0 y nuestra salida se podría representar mediante la Fórmula \ref{eq:ecuacion_3_ANN}.
+
+\begin{equation}\label{eq:ecuacion_3_ANN}
+y = f(z) =  
+\begin{cases}
+\begin{array}{lr}
+1,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b > umbral \\
+0,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b \leq  umbral
+\end{array}
+\end{cases}
+\end{equation}
+
+De esta manera si es 1 se activa la neurona, y si es 0 no se activa. Observemos que este resultado depende de los pesos y las entradas a la neurona, si variamos los mismos nuestras salidas seguramente también lo harán.
+
+Se pueden aplicar otras funciones de activación, las cuales detallaremos en el Anexo: ver sección \textit{\nameref{anexo_func_activ}}.
+
+\item Salida $y$: son los valores que permiten retornar los resultados procesados por la red neuronal (en este caso formada por un único perceptrón).
+
+\end{itemize}
+
+\subsubsection{Desventaja del Perceptrón simple. }
+La desventaja de este esquema es que el Perceptrón Simple es un algoritmo que encuentra un hiperplano separador y no más que esto, por lo que dista bastante de imitar la capacidad de aprender propia de un cerebro humano.
+
+Observando la Figura \ref{fig:ann_2}, podemos ver que la neurona de tipo perceptrón simple con una función de activación lineal (función identidad) únicamente permite discriminar entre dos clases linealmente separables mediante una única recta o hiperplano (dependiendo del número de entradas), permitiendo solucionar por ejemplo la función OR (que es linealmente separable). Sin embargo, un Perceptrón simple no permite solucionar funciones no lineales, como OR-exclusiva (o XOR), debido a que en esta función no existe ninguna recta que separe los patrones de una clase de los de la otra. Para esto es necesario que se introduzca una capa intermedia (o capa oculta, ``hidden layer'') compuesta por dos neuronas que determinen dos rectas en el plano (parte derecha de la Figura \ref{fig:ann_2})\cite{ANN_24}).
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/ANN/2-ANN.png}
+ \caption[Perceptrones solucionando la función OR y XOR.]{Perceptrones solucionando la función OR y XOR\cite{ANN_24}.\protect\footnotemark}
+ \label{fig:ann_2}
+\end{figure}
+\footnotetext{Desde el punto de vista lógico la salida de la función OR es verdadera si algunos de los argumentos $x_1$ y $x_2$ son verdadero, y es falsa si todos los argumentos son falsos: entonces, la combinación $x_1=0$ y $x_2=0$ (en el gráfico de la izquierda representado por $00$) da una salida falsa; y las combinaciones $01$, $10$, $11$ verdadera. Lo que hacemos mediante el Perceptrón de una capa es separar estos resultados. En cambio, la salida de la función XOR es verdadera si las entradas no son iguales, y falso si son iguales; de esta manera $01$ y $10$ dan una salida verdadera, y $11$ y $00$ falsa. En este caso el Perceptrón multicapa puede separar estos dos resultados.}
+
+Esta limitación al utilizar una única neurona es una de las principales razones por la cual surgió el esquema de Perceptrón multicapa, el cual se detalla en la siguiente sección.
+
+\subsubsection{Perceptrón multicapa (MLP).}
+
+El modelo de Perceptrón multicapa (MLP) es el modelo más conocido y utilizado de Redes Neuronales. Al igual que el modelo de Perceptrón Simple, MLP es un modelo de clasificación. Generalmente el modelo MLP se utiliza para describir el funcionamiento de una red neuronal, y es el esquema que utilizaremos para nuestra implementación del modelo Word2vec. En el modelo MLP la distribución de neuronas dentro de la red se realiza formando niveles o capas, con un número determinado de dichas neuronas en cada una de ellas. 
+
+A continuación mencionaremos las tres capas existentes en el modelo MLP, cada una con distintas funciones.
+\begin{itemize}
+\item Capa de entrada: contiene las variables de entrada; reciben directamente la información proveniente de las fuentes externas de la red.
+\item Capas ocultas: pueden haber 1 o N capa/s oculta/s. La longitud de N determina la profundidad de la red, dando origen al término de aprendizaje profundo (o “deep learning”). Colocando neuronas en forma secuencial permite que cada neurona reciba información procesada por una neurona anterior, lo que significa que la red puede generar conocimiento jerarquizado: de esta manera la red podría aprender conocimiento básico en las primeras capas y mientras va pasando la información a las neuronas de las siguientes capas, va generando conocimiento más abstracto y complejo.
+\item Capa de salida: permite retornar los resultados procesados por la red neuronal. Si estamos resolviendo un problema de clasificación esta capa puede estar formada por 2 neuronas (si se trata de una clasificación binaria) o N neuronas (en caso de clasificación multiclase). 
+\end{itemize}
+
+Cabe destacar que en nuestro modelo MLP, una única neurona de nuestra capa oculta o de nuestra capa de salida puede representarse como un Perceptrón Simple (Figura \ref{fig:ann_3}). En cambio, una neurona de nuestra capa de  entrada NO puede representarse como un Perceptrón simple, ya que en esta capa no existe ningún procesamiento interno. Con “procesamiento interno” nos referimos a la función de entrada y función de activación dentro de la neurona: por esta razón, las funciones de activación también residen en las neuronas de la capa oculta y/o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación). 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/ANN/3-ANN.png}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption[Modelo Perceptrón Multicapa -MLP- (izquierda) y Perceptrón Simple (derecha).]{Modelo Perceptrón Multicapa -MLP- (izquierda) y Perceptrón Simple (derecha).}
+ \label{fig:ann_3}
+\end{figure}
+
+Observando la parte izquierda de la Figura \ref{fig:ann_3}, podemos apreciar que cada una de las capas pueden estar compuesta por una o más neuronas, lo que significa que cada capa es un vector de neuronas. La dimensión del vector determina el ancho del modelo de una red neuronal. Cada capa recibe los datos de salida de la capa anterior. Luego, cada neurona de la capa actual realizará sus procesamientos en base a esta entrada (aplicando su función de entrada y función de activación), y su salida la pasará a cada neurona de la capa siguiente. Este tipo de redes se denominan \textit{feedforward}, debido a que el flujo de información va de una capa a la que sigue, sin bucles de retroalimentación. 
+
+A continuación, explicaremos el modelo MLP desde un punto de vista matemático\cite{ANN_25}. Como mencionamos previamente, con el modelo de MLP es posible combinar varios perceptrones en una capa de procesamiento, con lo cual obtenemos una función $f: R^m → R^n$ para cada capa (oculta o de salida), donde $m$ es el tamaño de la entrada, y $n$ es el número de perceptrones, que a su vez determinan el tamaño de la salida. De esta manera, dada una entrada $x$, la función $f$ procesa dicha entrada mediante la Formula \ref{eq:ecuacion_5_ANN}.
+
+\begin{equation}\label{eq:ecuacion_5_ANN}
+f(x) = \phi(Wx+b) \qquad  \text{(Ver \cite{ANN_25})}
+\end{equation}
+
+Donde $\phi$ es la función de activación que elegimos usar para esa capa, $W$ es la matriz de pesos, y $b$ es el vector que contiene los sesgos.
+
+Además, como mencionamos previamente, con el modelo MLP podemos componer varias de estas capas, con lo cual obtenemos una \textit{red}, donde los perceptrones de una capa reciben como entrada a los de la capa anterior y alimentan a los de la capa que sigue. Dada una red $f$ y una entrada $x$, a la salida $f(x)$ se la denomina, naturalmente, capa de salida, mientras que a la entrada $x$ se la suele denominar capa de entrada. Cuando tenemos una red con varias capas, todas las capas que no son de salida ni de entrada se denominan capas ocultas. 
+
+Anteriormente vimos que la red $f$ depende de los parámetros $W$ y $b$, que en su conjunto vamos a denotar con $\theta$, y estará formada por una \textit{composición} sucesiva de varias capas $f^i$, donde el superíndice indica el número de la capa. De esta manera, cada capa cuenta con sus propios parámetros $\theta$ y procesa la información que recibe de acuerdo a la Fórmula \ref{eq:ecuacion_6_ANN}.
+
+\begin{equation}\label{eq:ecuacion_6_ANN}
+f^i(a^{i-1},\theta^i) = f^i(a^{i-1},w^i,b^i) = \phi(W^{i}a^{i-1}+b^i)    \qquad  \text{(Ver \cite{ANN_25})}
+\end{equation}
+
+Donde $a^{i-1}$ es la salida, o activación, de la capa anterior, $W^i$ es la matriz de pesos de la capa $i$ y $b^i$ es el vector de sesgos.
+
+\subsubsection{Funciones de activación en MLP.}\label{Func_activ}
+
+Como mencionamos previamente, las funciones de activación residen en las neuronas de la capa oculta y/o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación).
+
+Algo que vale la pena mencionar es que todas las capas ocultas suelen utilizar la misma función de activación. La capa de salida normalmente utiliza una función de activación diferente de las capas ocultas y depende del tipo de predicción requerida por el modelo.
+
+El propósito de la función de activación es introducir una \textit{no-linealidad} dentro de la red neuronal, lo que le permite a la misma obtener una variable de salida $y$ que varíe de forma no lineal con respecto a sus variables de entrada $x$. \textit{¿Por qué esta función de activación tiene que ser una función no lineal?}:
+\begin{itemize}
+\item Esto es debido a que si una red neuronal únicamente posee funciones de activación lineales (también conocidas como \textit{función identidad}), la red se comportará como si fuera un perceptrón de una sola capa: esto es debido a que si sumamos todas las capas obtendremos otra función lineal.
+Independientemente de cuán compleja sea la arquitectura de la red, una función de activación lineal solo nos permite modelar una relación lineal entre las entradas y salidas, siendo efectiva solo en una capa de profundidad y para problemas de regresión lineal (por ejemplo al predecir precios de la vivienda), y no siendo útil para la mayoría de las aplicaciones del mundo real que son altamente no lineales.
+Resumidamente, que la función de activación sea no lineal permite a la red apilar múltiples capas de neuronas para crear lo que se conoce como una red neuronal profunda, que se requiere para aprender conjuntos de datos complejos.
+\end{itemize}
+
+En nuestra implementación de red neuronal para el modelo Word2vec (ver sección \textit{\nameref{Implementacion_word_emb_y_wmd}}). no utilizamos funciones de activación en las neuronas de la capa oculta, este modelo \textit{únicamente utiliza la función de activación para la capa de salida}. 
+El modelo Word2vec, en su esquema básico, utiliza una función de activación softmax para la capa de salida. En nuestra implementación se realizó una mejora a dicho esquema, introduciendo lo que se conoce como \textit{muestreo negativo} (el cual está explicado en $VER_SECCION_MUESTREO_NEGATIVO$), que implementa una función de activación sigmoide para la capa de salida. En las siguientes secciones se detallarán dichas funciones de activación.
+
+\paragraph{Softmax en la capa de salida.}
+
+La función Softmax comprime las salidas de cada neurona para que estas sean de 0 y 1 de tal forma que la suma de las salidas sea igual a 1. La función Softmax produce salidas que se asemejan a probabilidades. Esto es, cada salida de la red produce una probabilidad entre 0 y 1, mientras que la suma de estas probabilidades es 1. Consecuentemente, esta función es usada en la capa de salida en ANN para resolver problemas de clasificación, ya que en estos problemas se requiere separar los datos de entrada en grupos. 
+En la Fórmula \ref{eq:ecuacion_7_ANN} podemos observar la representación matemática de la función softmax; mientras que en la Figura \ref{fig:ann_4}. podemos observar la aplicación de esta función a la capa de salida de una red neuronal.
+
+\begin{equation}\label{eq:ecuacion_7_ANN}
+Z_k= \frac{e^{y_k}}{\sum_{k=1}^{M}e^{y_k}} \qquad \text{(Ver \cite{ANN_24})}
+\end{equation}
+
+Donde $0 \geq Z_k \geq 1$, mientras que $y_k$ es la salida de la neurona $k$, la cual pasa a la función softmax para obtener la salida final $Z_k$, y $M$ es la cantidad total de neuronas en la capa de salida.     
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.8\textwidth]{images/ANN/4-ANN.png}
+\caption[Función Softmax aplicada a la capa de salida.]{Función Softmax aplicada a la capa de salida\protect\footnotemark .}
+ \label{fig:ann_4}
+\end{figure}
+\footnotetext{Obtenida del sitio web \url{http://sintesis.ugto.mx/WintemplaWeb}. (Consultado el 30 de abril de 2022).}
+
+\paragraph{Sigmoide en la capa de salida.} 
+
+La función sigmoide, o también llamada curva logística, es una aproximación suave de la función escalón. Como resultado de aplicar la función sigmoide a la salida $y_k$ de cada neuronal, al igual que en la Softmax, como salida obtenemos un valor $Z_k$ entre 0 y 1. Pero, a diferencia de la Softmax, la suma de las salidas (de $Z_1$ a $Z_M$) no dan 1 como resultado, ya que en el denominador no se consideran a todas las salidas $y_K$ para realizar el cálculo de la función. Utilizando la función de activación sigmoide simplemente se aplica una función $\sigma(y_k)$ por cada $y_k$ salida de la respectiva neurona. Matemáticamente podemos observar la función sigmoide en la Fórmula \ref{eq:ecuacion_8_ANN}). 
+Mientras que en la Figura \ref{fig:ann_5} podemos observar la representación gráfica de la función sigmoide comparándola con la función escalón. 
+
+\begin{equation}\label{eq:ecuacion_8_ANN}
+\sigma(y_k)= \frac{exp(y_k)}{ {1 + exp(y_k)}} =  \frac{1}{ {1+exp(-y_k)}}    \qquad \text{(Ver \cite{ANN_25})}
+\end{equation}
+
+Donde $0 \geq \sigma(y_k) \geq 1$.    
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/ANN/5-ANN.png}
+ \caption{Funciones de activación escalón y sigmoide\cite{ANN_25}.} 
+ \label{fig:ann_5}
+\end{figure}
+
+\subsubsection{Entrenamiento en una red neuronal.}
+
+Como se comentó anteriormente, el modelo MLP de Redes Neuronales es un modelo de clasificación, lo que significa que realiza un aprendizaje supervisado. De esta manera, a la red neuronal durante el proceso de entrenamiento se le muestra un gran número de datos de entrenamiento para que la red ajuste / modifique sus pesos de manera iterativa y de este modo, lograr minimizar el error producido en la respuesta: lograr minimizar la \textit{función de costo}, la cual penaliza de alguna manera los errores que comete la red al clasificar. Luego de varias iteraciones de ejemplos, se espera que la red neuronal sea efectiva para resolver la tarea para la que fue entrenada.
+En otras palabras, una red aprende resolviendo un problema de optimización, donde se buscan los parámetros de la red (pesos y sesgos, $\theta$) que minimizan la función de costo o error $J$ para cada ejemplo $xi$ en el conjunto de entrenamiento $X$. 
+
+A continuación describiremos en mayor detalle el ciclo iterativo de procesos del entrenamiento de una red neuronal\cite{ANN_25}.
+
+\begin{enumerate}
+\item Al comienzo del algoritmo, por única vez, se inicializan las matrices de pesos $W$ y los vectores de bias $b$ de toda la red con valores aleatorios. Estos son los \textit{parámetros} de nuestro modelo de red neuronal.
+  
+\item Se aplica \textit{forward propagation} (o propagación hacia adelante) para cada una de las muestras del set de entrenamiento y se obtienen los puntajes de salida $y$. Forward propagation es la manera en que una ANN computa los valores de entrada y los clasifica. Matemáticamente, durante este proceso la red neuronal recibe un vector de entrada x y devuelve un vector de salida $y$\footnote{Cada elemento del vector de salida $y$ se corresponde a la salida de una $k$ neurona de la capa de salida.} aplicando en cada una de las capas de la red la Fórmula \ref{eq:ecuacion_6_ANN} (que alimentará a la capa $f^{i+1}$, y que generalmente involucra sumatoria, multiplicación y uso de funciones de activación. De esta manera la señal se mueve desde la capa de entrada, pasando por las capas ocultas intermedias, hasta llegar a la capa de salida con un valor.
+
+\item Los vectores de salida $y$ obtenidos / predichos de todas las muestras de entrenamiento se comparan con los valores de sus vectores de salida $y$ correspondientes que tiene las etiquetas reales, computándose de esta manera el \textit{error} (o \textit{loss}) de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo / pérdida (loss function)}.
+
+La función de pérdida  $J(\theta)$ será diferente para cada modelo. Más adelante obtendremos los cálculos de las $J(\theta)$ que tendremos en consideración para nuestra implementación, las cuales son REFERENCIAR FORMULA ‘Función de costo Skip Gram con Softmax’;  y REFERENCIAR FORMULA ‘Función de costo Skip Gram con Sigmoide’, siendo esta última la que finalmente utilizaremos en nuestro modelo y buscaremos minimizar. Ambas funciones de costo son la sumatoria sobre los costos individuales en los que incurre la red al clasificar cada elemento del conjunto de entrenamiento, y se calculan 1 vez por epoch\footnote{Epoch es un hiper-parámetro de nuestra red neuronal, donde cada epoch representa una iteración sobre nuestros datos de entrenamiento completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes.}.
+
+\item Se aplica el proceso conocido como \textit{backpropagation} (o propagación hacia atrás). No se explicará en detalle este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Lo que hay que tener en cuenta es que backpropagation utiliza la función de optimización\footnote{Una función de optimización en redes neuronales tiene como objetivo encontrar los pesos W que minimicen los errores de clasificación / la función de coste.} \textit{descenso del gradiente} para poder ajustar / modificar los pesos y el bias de cada neurona de nuestra red \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. En backpropagation calculamos el gradiente de $J(\theta)$ (o dicho de otra forma derivamos el error) en función de cada uno de los parámetros de nuestra red. Para esto se opera recursivamente capa tras capa propagando el error desde la salida hacia la entrada de la red.
+
+De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la ecuación \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $theta$ para la red reuronal.
+ 
+\begin{equation}\label{eq:ecuacion_9_ANN}
+\theta^{(new)} = \theta^{(old)} - n . \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
+\end{equation}
+
+Donde $n$ es la tasa de aprendizaje (o learning rate), del cual hablaremos con mayor detalle en la Sección \textit{\nameref{hiper_n}}, y $\nabla J(\theta)$ es el gradiente (también llamado pendiente o derivada) de la función $J(\theta)$ para nuestros parámetros $\theta^{(old)}$. Al tener un “-” por delante obtenemos el gradiente negativo, el cual apunta en la dirección de máximo decrecimiento de la función. Este gradiente negativo permite “guiar” al algoritmo descenso del gradiente para acercarse, de manera progresiva debido a $n$, al mínimo ideal de la función.      
+
+\item Volver al paso 2 hasta completar la cantidad de epochs seteados como hiper-parámetro de nuestro modelo de red neuronal. 
+
+\end{enumerate}
+
+Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”} y no el \textit{algoritmo de gradiente descendiente estocástico} (stochastic gradient descent,\textit{SDG}), algo que explicaremos en mayor detalle en 4.4.4.8-Entrenamiento y función de costo con Softmax.
+
+\paragraph{Hiper-parámetro n.}\label{hiper_n}
+
+Como detallamos anteriormente, $n$ es la tasa de aprendizaje de nuestra red neuronal e interviene en la actualización de nuestros parámetros  $\theta$ al aplicar backpropagation utilizando el algoritmo descenso del gradiente. $n$ define y permite regular la velocidad con la que nos desplazamos por el espacio de parámetros y por lo tanto cuán rápido nos acercamos al mínimo de la función $J(\theta)$. $n$ definirá la cantidad de iteraciones requerida para que el algoritmo descenso del gradiente encuentre el mínimo de la función.
+
+$n$ es un parámetro que a diferencia de $\theta$ no es ajustado por el algoritmo de optimización del descenso del gradiente, sino que debe ser configurado por separado. Como mencionamos anteriormente, a este tipo de parámetros se los denomina hiper-parámetros, y requieren de cierto cuidado en su elección para garantizar el buen rendimiento de la red neuronal. 
+
+Mientras más rápido nos acerquemos al mínimo de la función, más rápido la red estará aprendiendo a realizar su tarea. Sin embargo, como ya mencionamos antes, valores muy altos del hiper-parámetro $n$ pueden tener un efecto contrario, llevando a que eventualmente el algoritmo pase de largo de manera reiterada esta mínimo, impidiendo el aprendizaje. A veces aprender requiere ir más lento y ser más cuidadosos. Lo mismo ocurre con la red, y en ese caso es conveniente ajustar $n$ para conseguir que la red no pase por alto los detalles. En la Figura \ref{fig:ann_6} podemos observar el efecto de diferentes tasas de aprendizaje durante el entrenamiento. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.6\textwidth]{images/ANN/6-ANN.png}
+  \captionsetup{justification=centering,margin=3cm}
+ \caption{Efecto de diferentes tasas de aprendizaje $n$ durante el entrenamiento.\cite{ANN_25}.} 
+ \label{fig:ann_6}
+\end{figure}
+
+Una tasa de aprendizaje demasiado alta puede ocasionar que el algoritmo de entrenamiento no pueda disminuir el costo de entrenamiento más allá de cierto punto, o en el peor de los casos puede ocasionar que el mismo aumente. Una tasa de aprendizaje demasiado baja puede hacer que el costo disminuya muy lentamente, ralentizando el aprendizaje. La tasa de aprendizaje $n$ ideal es un compromiso entre lograr una disminución significativa del costo y mantener una buena velocidad de aprendizaje\cite{ANN_25}.
+
+
 
 
 
@@ -1238,22 +1463,18 @@ Este modelo es el utilizado para ....
 \subsubsection{Cosine Similarity.}
 \colorbox{red}{FALTA}
 
-Cosine Similarity se basa en la medición del coseno del ángulo entre dos vectores proyectados en un espacio multidimensional para lograr medir la similitud de los documentos (un menor ángulo indica una mayor similitud). En este contexto, estos dos vectores representan matrices que contienen el recuento de palabras de dos documentos. Una de sus limitaciones es que  no tiene la habilidad de reconocer si las palabras que compara son semánticamente similares.
-
 \cleardoublepage
 
 \subsubsection{Word Mover's Distance (WMD).}
 \colorbox{red}{FALTA}
 
-Anteriormente, mencionamos que una de las limitaciones de Cosine Similarity es que no tiene habilidad de reconocer si las palabras que compara son semánticamente similares. En cambio, Word Mover's Distance (WMD) es un algoritmo más complejo que sí permite reconocer las relaciones semánticas; su limitación son las relaciones sintácticas (VER.........). WMD se basa en word embeddings y permite medir la distancia entre documentos (una menor distancia indica una mayor similitud).
-
 \cleardoublepage
 
-\subsection{Algoritmos de vectorización.}
+\subsection{Técnicas de vectorización.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WMD para (-----completar-----) se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
-Como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings.
+Previamente a utilizar Cosine Similarity y WMD para (-----completar-----) se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
+Como técnicas de vectorización se utilizarán TF-IDF y Word Embeddings.
 
 \subsubsection{TF-IDF.}
 \colorbox{red}{FALTA}
@@ -1281,7 +1502,7 @@ La implementación de este Sistema se trabajó en dos grandes partes:
 \begin{enumerate}
 \item Obtención del modelo de clasificación. 
 
-En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y los algoritmos de vectorización (TF-IDF y Word Embeddings).
+En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word Embeddings).
 
 Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
@@ -1343,7 +1564,7 @@ Los set de datos de descripciones de puestos laborales se obtuvieron de las sigu
 
 \cleardoublepage
 
-\subsubsection{Preprocesamiento y limpieza de datos.}
+\subsubsection{Preprocesamiento de textos.}
 Previamente a utilizar las técnicas para medir distancias y obtener similitudes entre textos (WMD y Cosine Similarity) y los algoritmos de aprendizaje (KNN y K-Means) necesitamos que los datos que comparemos e introduzcamos en los algoritmos estén lo más limpios posible; ya que de lo contrario las mismos podrían clasificar o predecir de forma errónea. Este análisis previo sobre los datos debe ser minucioso ya que puede haber valores incoherentes o absurdos.
 
 El procedimiento para la Limpieza de los Curriculum Vitae y las descripciones de los puestos laborales fue el siguiente:
@@ -1406,9 +1627,22 @@ En conclusión, al utilizar solo una porción de nuestros datasets para obtener 
 \subsection{Comparando textos y obteniendo similitudes.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear algún algoritmo de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como algoritmos de vectorización se utilizarán TF-IDF y Word Embeddings. 
+Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como técnicas de vectorización se utilizarán TF-IDF y Word Embeddings. 
 
 \cleardoublepage
+
+\subsubsection{TF-IDF \& Cosine Similarity.}
+adgadaha
+
+\subsubsection{Word embeddings (Word2vec) \& WMD.}\label{Implementacion_word_emb_y_wmd}
+dagagad
+
+\paragraph{Elección de hiper-parámetros Word2vec.}
+adgadg
+
+\paragraph{Word Mover's Distance (WMD.}
+dagadga
+
 
 \subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
 \colorbox{red}{FALTA}
@@ -1594,10 +1828,219 @@ Las limitaciones del sistema son las siguientes:
 \cleardoublepage
 
 \section{Anexos.}
-\colorbox{red}{FALTA}
+
+\subsection{Funciones de activación.}\label{anexo_func_activ}
+
+En la figura \ref{fig:ann_7} podemos observar una lista de las funciones de activación más comunes utilizadas en Redes Neuronales. Mientras que en la figura \ref{fig:ann_8} se detallan las expresiones matemáticas y los posibles rangos de valores de salida para dichas funciones de activación. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/ANN/7-ANN.png}
+ \caption{Funciones de activación más comunes\cite{ANN_22}.} 
+ \label{fig:ann_7}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/ANN/8-ANN.png}
+ \caption[Fórmulas y rangos de las funciones de activación más comunes.]{Fórmulas y rangos\\ de las funciones de activación más comunes\protect\footnotemark \cite{ANN_22}.}
+ \label{fig:ann_8}
+\end{figure}
+
+\footnotetext{$a$ indica el resultado luego de haber aplicado la función de entrada dentro de la neurona artificial. Como mencionamos anteriormente, la función de entrada más común es la sumatoria de las entradas ponderadas.}
 
 \cleardoublepage
 
+\subsection{Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}\label{anexo_word_emb}
+
+Tomaremos un ejemplo del libro Oreally Online y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word Embeddings utilizando el modelo Skip-gram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
+
+El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado} \footnotetext{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
+
+Cabe mencionar que en este ejemplo no se preprocesaron los textos previamente a armar nuestro corpus tokenizado. Si se preprocesaran los mismos -como se realiza en nuestra implementación-, nuestro corpus tokenizado que será utilizado como entradas del modelo quedaría como [“quick”, “brown”, “fox”, “jump”,“lazy”, “dog”], y nuestro vocabulario, como no existe repetición de palabras, estarían formados por estas mismas 6 palabras / tokens.
+
+Para el entrenamiento de nuestro modelo consideraremos los siguientes hiper-parámetros:
+\begin{itemize}
+\item Tamaño de ventana de contexto de 2. ($C=2$).
+\item Tamaño de embedding de 3. ($N=3$).
+\end{itemize}
+
+Lo primero que tenemos que hacer es armar nuestro dataset, el cual será utilizado como entrenamiento. Para mayor entendimiento, en la Figura \ref{fig:1_EjSkip} representaremos las palabras utilizadas en cada iteración para entrenar a nuestro modelo Skipgram. En este caso, como nuestro tamaño de ventana de contexto es 2, tomaremos para cada paso 2 palabras de cada lado de la palabra central como nuestras palabras de contexto: en el primer paso nuestra palabra central es “the” y nuestras palabras de contexto son “quick” y “brown”. En este caso no podemos tomar palabras a la izquierda, por esto únicamente tenemos 2 palabras de contexto; distinto es el caso del paso 3, donde tomamos como palabra central “brown” y sí podemos tomar las 2 palabras de contexto de ambos lados: “the”, “quick”, “fox”, “jumps”. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=1\textwidth]{images/Ejemplo_Skipgram/1_EjSkip.png}
+\caption{Armando dataset para Skipgram} 
+\label{fig:1_EjSkip}
+\end{figure}
+
+En cada iteración el modelo entrenará con un \textit{par} de palabras (central - de contexto). En la Figura \ref{fig:2_EjSkip} podemos observar el dataset que obtuvimos armándolo con las palabras de entrada (centrales) y palabras de salida (de contexto; o palabras “target”) que se utilizarán para entrenar a nuestro modelo Skipgram, junto a las iteraciones necesarias.  Por ejemplo, para nuestro primer paso de la Figura \ref{fig:1_EjSkip} (primer fila), observamos que nuestra palabra central es “the” y nuestras palabras de contexto son “quick” y “brown”. Vemos que se forman 2 pares de palabras, por esto en la primer iteración entrenaremos con el par (“the”, “quick”) y en la segunda iteración usaremos el par (“the”, “brown”). Aquí lo que estamos haciendo esencialmente es capturar los pares de palabras de todo nuestro corpus para capturar el \textit{contexto} y usarlo como información para entrenar nuestros word embeddings. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.5\textwidth]{images/Ejemplo_Skipgram/2_EjSkip.png}
+\caption{Dataset para Skipgram} 
+\label{fig:2_EjSkip}
+\end{figure}
+
+\cleardoublepage
+
+Como mencionamos previamente, las palabras que ingresarán como entrada en nuestro modelo, presentarán un vector en formato one-hot encoding: Ver Figura \ref{fig:3_EjSkip}. Recordemos que mediante one hot encoding se asigna un único código para cada única palabra. 
+
+Este vector tiene las características descritas a continuación.
+\begin{itemize}
+\item Su valor es 1 para la posición que tiene la palabra en nuestro vocabulario y 0 para las demás posiciones.
+\item Su tamaño es igual al número de palabras de nuestro vocabulario (en nuestro caso $V = 8$). 
+\end{itemize}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.5\textwidth]{images/Ejemplo_Skipgram/3_EjSkip.png}
+ \captionsetup{justification=centering,margin=3cm}
+\caption{Representación en one-hot encoding para cada una de las palabras de entrada} 
+\label{fig:3_EjSkip}
+\end{figure}
+
+Teniendo en cuenta lo mencionado previamente, pasaremos a explicar gráficamente las iteraciones necesarias para que nuestro modelo Skipgram entrene, el cual podemos visualizar en la  Figura \ref{fig:4_EjSkip}.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=1\textwidth]{images/Ejemplo_Skipgram/4_EjSkip.png}
+\caption{Arquitectura Skipgram con V=8, N=3.} 
+\label{fig:4_EjSkip}
+\end{figure}
+
+A cotinuación detallaremos las iteraciones de entrenamiento necesarias teniendo en cuenta la Figura \ref{fig:2_EjSkip}. 
+
+\begin{enumerate}
+      
+\item El primer paso consiste en la inicialización aleatoria por única vez de las matrices de pesos, las cuales son los parámetros ($\theta$)de nuestro modelo de red neuronal. En otras palabras, esto quiere decir que se llenan con valores numéricos las matrices $W input$ (o $W$) y W output (o $W’$): los valores $W11$ a $W83$ y $W’11$ a $W’38$ respectivamente.
+\item Este paso consiste en la aplicación de forward propagation para obtener nuestra salida -\textit{y pred softmax}-. Este paso se divide en 2 sub-pasos: \textit{Paso 2.1-Forward propagation (capa de entrada a capa oculta)} y \textit{Paso 2.2-Forward propagation (capa oculta a capa de salida)}.
+Algo importante a tener en cuenta es que, debido a que estamos utilizando el algoritmo de gradiente descendiente básico y no SGD, en este paso N°2 tenemos que obtener los valores de \textit{y pred softmax de todos nuestros pares} de palabras (central, contexto) para luego, teniendo estos resultados, pasar al paso N° 3. Es por esto que, \textit{este paso N°2 (y en consecuencia los sub-pasos 2.1 y 2.2) se realizan por cada una de las 30 iteraciones que vimos en la Figura \ref{fig:2_EjSkip} } hasta obtener 30 vectores \textit{y pred softmax} (los cuales luego se compararán con los 30 vectores \textit{y true} correspondientes a la palabra de entrada de cada iteración).
+      \begin{itemize}
+      
+      \item Iteración 1: Ingresa “the” como palabra central en la capa de entrada y se intenta predecir la palabra de contexto “quick” en la capa de salida. Ambas palabras son representadas como vectores one hot encoding (vectores $X$ e $y true$ respectivamente). Esto lo observamos en la Figura \ref{fig:5_EjSkip}. En la Figura \ref{fig:6_EjSkip} podemos observar un mayor detalle. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.7\textwidth]{images/Ejemplo_Skipgram/5_EjSkip.png}
+\caption{Primera iteración Skipgram del paso 2.} 
+\label{fig:5_EjSkip}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=1\textwidth]{images/Ejemplo_Skipgram/6_EjSkip.png}
+ \captionsetup{justification=centering,margin=3.5cm}
+\caption{Primera iteración Skipgram del paso 2 en mayor detalle.} 
+\label{fig:6_EjSkip}
+\end{figure}
+
+\begin{itemize}
+\item \textit{Paso 2.1 para la Iteración 1}: Forward propagation (capa de entrada a capa oculta): En este paso se calcula el valor de las neuronas $h1$, $h2$ y $h3$ de la capa oculta $H$. Para esto se utiliza la palabra central de entrada “the” en conjunto con su fila correspondiente de la matriz de embedding $W$: la cual observando la Figura \ref{fig:6_EjSkip} podemos ver que corresponde a los valores $W11$, $W12$ y $W13$. Debido a que solo una posición del vector de entrada “the” es 1 ($x1$) y los demás son 0 ($x2$ a $x8$), entonces los valores $W11$, $W12$ y $W13$ son los valores que tomarán $h1$, $h2$ y $h3$ respectivamente). En \ref{eq:skip_1} observamos el cálculo necesario para la obtención de $h1$.
+
+\begin{equation}\label{eq:skip_1}
+\begin{gathered}
+h1 = x1 . W11 + x2 . W21 + x3 . W31 + x4 . W41 + x5 . W51 \\ 
+h1 = x1 . W11 + 0 \\ 
+h1 = 1 . W11 \\  
+h1 = W11 
+\end{gathered}
+\end{equation}
+\\
+Teniendo en cuenta este cálculo, $h2$ y $h3$ se calculan de la misma manera que $h1$, siendo $h2 = W12$ y $h3 = W13$. Entonces obtenemos $H = (W11, W12, W13)$. \\
+
+\item \textit{Paso 2.2 para la Iteración 1}: Forward propagation (capa oculta a capa de salida): En este paso se calcula el valor de cada neurona de la capa de salida luego de pasar por la función de salida softmax (vector \textit{y pred softmax} de la Figura \ref{fig:6_EjSkip}). Debido a que la capa oculta no tiene función de activación, entonces los valores calculados en el \textit{paso 2.1} pasan directamente a la capa de salida. De esta manera, los valores de las neuronas de la capa de salida se calculan multiplicando el vector $H$ que nos dió anteriormente con la otra matriz $W’$ -de tamaño $N x V$-. Esto nos dará un vector \textit{y pred} de tamaño $V$. En \ref{eq:skip_2} observamos el cálculo necesario para la obtención de $y11$ e $y12$.
+
+\begin{equation}\label{eq:skip_2}
+\begin{gathered}
+y11 = h1 . W’11 + h2 . W’21 + h3 . W’31  \\
+y12 = h1 . W’12 + h2 . W’22 + h3 . W’32
+\end{gathered}
+\end{equation}
+\\
+Los cálculos de $y13$ a $y18$ siguen la misma lógica descrita en el cálculo \ref{eq:skip_2}. De esta manera, tendremos los valores para nuestro vector \textit{y pred}.
+
+Por último, este vector alimentará a la función de salida softmax con el objetivo de obtener una distribución de probabilidades sobre el espacio de nuestro vocabulario -\textit{y pred softmax}-, el cual se  calculará, utilizando la Fórmula \ref{eq:ecuacion_8_ANN}). Por ejemplo, en \ref{eq:skip_3} observamos el cálculo necesario para la obtención de $y’11$ e $y’12$.
+
+\begin{equation}\label{eq:skip_3}
+\begin{gathered}
+y’11 = \sigma(y11) = \frac{exp(y11)}{1 + exp(y11)} \\ \\
+y’12 = \sigma(y12) = \frac{exp(y12)}{1 + exp(y12)}
+\end{gathered}
+\end{equation}
+\\
+Los cálculos de $y’13$ a $y’18$ siguen la misma lógica descrita en el cálculo \ref{eq:skip_3}. De esta manera, tendremos los valores para nuestro vector \textit{y pred softmax}. 
+
+\end{itemize}
+
+\item Iteración N°2: Ingresa nuevamente “the” como palabra central en la capa de entrada. Pero ahora se intenta predecir la palabra de contexto “brown” en la capa de salida. Nuevamente ambas palabras son representadas como vectores one hot encoding (vectores $X$ e $y true$ respectivamente): ver Figura \ref{fig:7_EjSkip}. 
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.7\textwidth]{images/Ejemplo_Skipgram/7_EjSkip.png}
+\caption{Segunda iteración Skipgram del paso 2 .} 
+\label{fig:7_EjSkip}
+\end{figure}
+
+Para esta segunda iteración se realizan los \textit{pasos 2.1 y 2.2} descritos anteriormente para la iteración 1, obteniendo así el vector \textit{y pred softmax} correspondiente.
+ 
+\item Se realizarán 28 iteraciones más hasta llegar a la iteración N°30, en la cual se ingresará como entrada la palabra central “dog” y como vector y true tendremos la representación en formato one hot encoding de la palabra “lazy”. De esta manera, al finalizar el paso N°2 tendremos 30 vectores \textit{y pred softmax} y 30 vectores \textit{y true} con los que comparar.
+\end{itemize}
+      
+\item Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras (central, contexto), estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo J($\theta$)} (Ver Fórmula R2) .
+
+En la Figura \ref{fig:8_EjSkip} podemos observar un ejemplo numérico de cómo podría quedar conformado nuestro vector \textit{y pred softmax} (donde la suma de los valores dá 1) cuando el vector de entrada es, por ejemplo “the”, y cómo se realizaría la comparación contra el vector de salida \textit{y true} cuando la palabra es “quick” para obtener los errores de clasificación. Vemos que el primer resultado de nuestro entrenamiento fue medianamente bueno, ya que en nuestro vector \textit{y pred softmax}, en la posición $y ‘12$, obtuvimos el mayor valor. Y esto es lo que queremos lograr, ya que si comparamos este valor con el vector \textit{y true} en la misma posición, tiene un 1. La ide es que a medida que la red entrene y minimice la función de costo $J$, los valores de \textit{y pred softmax} se acerquen cada vez más a los valores de \textit{y true}: en nuestro caso que el valor 0,28 sea cada vez más cercanos al 1, y los otros 7 valores que sean cada vez más cercanos al 0.
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.3\textwidth]{images/Ejemplo_Skipgram/8_EjSkip.png}
+\caption{Comparando \textit{y pred softmax} con \textit{y true}.} 
+\label{fig:8_EjSkip}
+\end{figure}
+
+\item Este paso consiste en aplicar el proceso backpropagation utilizando el algoritmo de optimización \textit{descenso del gradiente} para poder ajustar / modificar las matrices $W input$ y $W output$ \textit{con el objetivo de minimizar la función de costo J($\theta$) obtenida en el paso 3}, y con ello minimizar el error de clasificación. 
+
+\item Se debe volver al paso 2 hasta completar la cantidad de \textit{epochs} seteados como hiper-parámetro de nuestro modelo. 
+
+\end{enumerate}
+      
+Finalmente, luego de haber iterado epoch veces sobre nuestro conjunto de entrenamiento y habiendo minimizado (idealmente) la función de costo J en cada iteración, lo que haremos es \textit{obtener la matriz $W$} (de dimensión $V x N$), la cual será \textit{nuestra matriz de embeddings}: Figura \ref{fig:9_EjSkip} Observamos que, para cada fila de nuestra matriz $W$, tendremos el valor del word embedding para la palabra que tenga el mismo índice en nuestro vocabulario: por ejemplo para “the” que tiene índice 1, la 1er fila de $W$ será su representación en word embedding.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+\centering
+\includegraphics[width=0.4\textwidth]{images/Ejemplo_Skipgram/9_EjSkip.png}
+\caption{Matriz $W’$ de embeddings objetivo.} 
+\label{fig:9_EjSkip}
+\end{figure}
+
+De esta manera, entrenamos nuestra red neuronal no con el objetivo de predecir la palabra de contexto a partir de la palabra central, sino con el objetivo de tomar de esa red neuronal su matriz de pesos $W’$ ya entrenada y utilizarla como nuestra matriz de embeddings.
+
+
+\cleardoublepage
+
+\subsection{Palabras repetidas en nuestro Corpus y palabras polisémicas.}\label{anexo_polisem}
+
+A continuación responderemos a dos preguntas muy interesantes: \textit{¿qué sucede en el entrenamiento con las palabras que aparecen más de una vez en nuestro Corpus?} y \textit{¿qué sucede con las palabras polisémicas\footnote{Footnote: Palabras que tienen más de un significado}?}.
+
+Word2vec nos permite, en caso que la palabra aparezca $N$ veces en nuestro corpus de texto, que el modelo aprenda los $N$ contextos de esa palabra; o dicho de otra forma \textit{permite aprender cuando se usa una misma palabra en diferentes contextos}. Además, si esa palabra tiene $M$ significados (palabras polisémicas), lo que hará Word2vec es tener en cuenta estos $M$ significados para armar un word embedding que “promedie” dichos significados. 
+
+En el ejemplo descrito en la sección del Anexo \textit{\nameref{anexo_word_emb}} esto ocurre con la palabra “the”, la cual ingresa al modelo 2 veces (siendo usada en 2 contextos distintos). En ese ejemplo, “the” es usada en contexto muy similares, por lo que su significado en este corpus también es similar, ya que ambas veces preceden a un adjetivo (“quick” y “lazy”).
+
+Tomaremos un mejor ejemplo para explicar esto: consideremos que entrenamos nuestro algoritmo con el corpus de texto “She will \textit{park} the car on the street so we can walk in the central \textit{park}”.  Luego de aplicar un pre-procesamiento y tokenización, nuestro \textit{corpus tokenizado} quedará como: [“\textit{park}”, 
+“car”, “street”, “walk”, “central”, “\textit{park}”]. Mientras que nuestro \textit{vocabulario} será: [“\textit{park}”, “car”, “street”, “walk”, “central”].
+
+Al entrenar nuestro modelo con dicho \textit{corpus tokenizado}, la palabra “park” ingresará al mismo 2 veces -con la misma representación en formato one-hot encoding: $[1,0,0,0,0]$-, ya que es usada en dos contextos diferentes. La diferencia con el anterior ejemplo, es que “park” en este corpus de texto tiene 2 significados muy distintos: el primero hace referencia a “estacionar” y el segundo a “parque”. 
+
+Al entrenar nuestro Word2vec con este \textit{corpus tokenizado}, y considerando un tamaño de ventana de 1 ($C=1$), obtendremos lo siguiente:
+
+\begin{itemize}
+\item En las iteraciones 1 y 2 \textit{el modelo aprenderá que “park” aparece cerca de “car”} (ya que en la iteración N°1 la palabra central / de entrada es “park” y la palabra de contexto / salida es “car”: y para la iteración N°2 la palabra central / de entrada es “car” y las palabras de contexto / salida son “park” y “street”. 
+      
+\item Mientras que en las iteraciones 5 y 6 \textit{el modelo aprenderá que “park” además aparece cerca de “central”} (ya que en la iteración N°5 la palabra central / de entrada es “central” y las palabras de contexto / salida son “walk” y “park”; y para la iteración N°6 la palabra central / de entrada es “park” y la palabra de contexto/salida es “central”).
+\end{itemize}
+      
+De esta manera, luego de realizar el entrenamiento, \textit{implícitamente} nuestro modelo Word2vec aprenderá los 2 significados de “park” (debido al entrenamiento en distintos contextos en las iteraciones 1,2,5,6 previamente mencionadas). En conclusión, obtendremos el vector word embedding para “park” que tendrá en cuenta los $N$ contextos en lo que se usó dicha palabra y sus M distintos significados (en este caso $N$ y $M = 2$). Este vector permitirá representar razonablemente el \textit{significado promedio} de “park” teniendo en cuenta sus 2 significados dentro del corpus (estacionar y parque); tendiendo a moverse en las coordenadas entre estos 2 significados.
+
+\cleardoublepage
 
 \begin{thebibliography}{9}
 
@@ -1630,7 +2073,7 @@ Pshdar Abdalla Hamza, Baban Jabbar Othman, Bayar Gardi, Sarhang Sorguli, Hassan 
 \textit{Recruitment and Selection: The Relationship between Recruitment and Selection with Organizational Performance}. International journal of Engineering, Business and Management (IJEBM). 5(3). (pp. 1-6).
 
 \bibitem{apunte_uba}
-Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. 4-8,351,352,377-379, 387-389,470-477). 
+Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. 4-8,351,352,377-379, 387-389,429-431,470-477).
 
 \bibitem{estudio_eye_tracking}
 Ladders Company. (2018). \textit{Eye-Tracking Study}. (pp. 2,6).
@@ -1734,7 +2177,24 @@ Kodinariya, T.M. (2014). \textit{Survey on Exiting Method for Selecting Initial 
 \bibitem{K_means_plus_plus}
 David Arthur, \& Sergei Vassilvitskii. (2007, Enero). \textit{K-Means++: The Advantages of Careful Seeding}. SODA '07: Proceedings of the 18th annual ACM-SIAM symposium on Discrete algorithms. (pp. 1027-1035).
 
+\bibitem{ANN_21}
+César Menacho Ch. (2013,Dociembre). \textit{Modelos de regresión lineal con redes neuronales (Lineal regression models with neural networks)}. Anales Científicos. 75(2). (2014). (pp. 253-259).
+
+\bibitem{ANN_22}
+Andrea Apicella, Francesco Donnarumma, Francesco Isgrò, \& Roberto Prevete. (2021,Febrero). \textit{A survey on modern trainable activation functions}. (pp. 1-25).
+
+\bibitem{ANN_23}
+Damián Jorge Matich. (2001,Marzo). \textit{Redes Neuronales: Conceptos Básicos y Aplicaciones}. Trabajo de Investigación. Cátedra Informática Aplicada a la Ingeniería de Procesos – Orientación I. Universidad Tecnológica Nacional, Facultad Regional Rosario. (pp. 4-28).
+
+\bibitem{ANN_24}
+Juan José Montaño Moreno. (2002). \textit{Redes Neuronales Artificiales aplicadas al Análisis de Datos}. Proyecto de Tesis Doctoral. Universitat de les illes balears, Mallorca. Facultad de Psicología. (pp. 17-47).
+
+\bibitem{ANN_25}
+Ariel E. Repetur. (2019, Abril). \textit{Redes Neuronales Artificiales}. Trabajo final para carrera {Licenciatura en Ciencias Matemáticas}. Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas. (pp. 5-19,41-43).
+
+
 \end{thebibliography}
 
+\end{sloppypar}
 \end{document}
 %Para poner en Las citas del anexo --> información\cite{iot}. 
