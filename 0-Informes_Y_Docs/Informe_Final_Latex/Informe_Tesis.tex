@@ -176,7 +176,7 @@ Para que las máquinas puedan describir esta similitud entre documentos, se nece
 
 Por lo tanto, resumidamente los pasos necesarios para poder medir similitudes entre documentos son\cite{Similarity_calculation}:
 \begin{enumerate}
-\item Convertir cada uno de los documentos en un objeto matemático (vector).
+\item Convertir cada uno de los documentos de texto en un objeto matemático (vector).
 \item Definir y emplear una métrica de distancia que será utilizada como nuestra medida de similitud entre los textos.
 \end{enumerate}
 
@@ -190,7 +190,7 @@ A continuación nombraremos resumidamente los algoritmos y técnicas de machine 
 
 Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron las técnicas de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}.
 
-Para el segundo paso, definir y emplear métricas de distancia, se decidió emplear una combinación de las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}. En la sección \colorbox{red}{4.5.3-¿Por qué decidimos utilizar Cosine similarity y WMD?.} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en \textit{\nameref{Tecnicas_Simil_textos}}, el cual detalla las numerosas técnicas existentes para obtener similitudes entre textos.
+Para el segundo paso, definir y emplear métricas de distancia, se decidió emplear una combinación de las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}. En la sección \textit{\nameref{cos_y_wmd}} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en la sección \textit{\nameref{Tecnicas_Simil_textos}}, en el cual se detallan las numerosas técnicas existentes para obtener similitudes entre textos.
 
 Como tercer y último paso, una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un \textbf{algoritmo de clustering K-means} que a su vez, con sus datos de salida (4 clusters), alimentan a un \textbf{modelo de clasificación K-Nearest Neighbor (KNN)}.
 
@@ -817,7 +817,7 @@ Viendo la Tabla \ref{table:2} observamos que:
 
 Por lo tanto, podemos ver que KNN se basa esencialmente en un método estadístico. Cuando queremos simplemente clasificar un punto cuya clase no conocemos no hacen falta las probabilidades; podemos simplemente asignarlo a la clase con mayoría entre los k-vecinos del punto.\\
 
-\subsubsection{Métrica de distancia a emplear.}
+\subsubsection{Métrica de distancia a emplear.}\label{metrica_dist_emp}
 
 La función de distancia entre dos vectores $x$ e $y$ es una función $d(x,y)$ que define la distancia entre ambos vectores como un número real no negativo. Esta función es considerada como una métrica si satisface las siguientes 4 propiedades\cite{KNN_Ejemplo}: 
 
@@ -1196,7 +1196,7 @@ Por último, en \textbf{(6)} finalizamos la inicialización de nuestros centroid
 De esta manera, concluimos que K-means++ genera una inicialización más dispersa de los centroides iniciales comparándolo con el método de K-means estándar de inicialización aleatoria. El problema de K-Means++ es que para datos realmente masivos necesita hacer k iteraciones sobre los datos para elegir los centroides, tarea que es todavía más ineficiente cuando k es un número largo. Sin embargo, en general, K-Means++ genera una inicialización mejor para K-Means y esto permite no solo obtener una mejor solución final sino que también acelera la velocidad de convergencia del algoritmo.
 
 \cleardoublepage
-\subsection{Redes Neuronales Artificiales (ANN).}
+\subsection{Redes Neuronales Artificiales (ANN).}\label{ann_teoria}
 
 Las redes neuronales artificiales (o artificial neural network, ANN) son técnicas de Machine Learning que permiten imitar o reproducir la capacidad de aprender propia del comportamiento de un cerebro humano. Las ANN están compuestas por un conjunto de elementos simples (neuronas artificiales) que se interconectan masivamente en paralelo y con organización jerárquicacite\cite{ANN_21}.
 
@@ -1341,9 +1341,9 @@ Resumidamente, que la función de activación sea no lineal permite a la red api
 \end{itemize}
 
 En nuestra implementación de red neuronal para el modelo Word2vec (ver sección \textit{\nameref{Implementacion_word_emb_y_wmd}}). no utilizamos funciones de activación en las neuronas de la capa oculta, este modelo \textit{únicamente utiliza la función de activación para la capa de salida}. 
-El modelo Word2vec, en su esquema básico, utiliza una función de activación softmax para la capa de salida. En nuestra implementación se realizó una mejora a dicho esquema, introduciendo lo que se conoce como \textit{muestreo negativo} (el cual está explicado en $VER_SECCION_MUESTREO_NEGATIVO$), que implementa una función de activación sigmoide para la capa de salida. En las siguientes secciones se detallarán dichas funciones de activación.
+El modelo Word2vec, en su esquema básico, utiliza una función de activación softmax para la capa de salida. En nuestra implementación se realizó una mejora a dicho esquema, introduciendo lo que se conoce como \textit{muestreo negativo} (el cual está explicado en la sección \textit{\nameref{neg_samp}}), que implementa una función de activación sigmoide para la capa de salida. En las siguientes secciones se detallarán dichas funciones de activación.
 
-\paragraph{Softmax en la capa de salida.}
+\paragraph{Softmax en la capa de salida.}\label{soft_capa_salida}
 
 La función Softmax comprime las salidas de cada neurona para que estas sean de 0 y 1 de tal forma que la suma de las salidas sea igual a 1. La función Softmax produce salidas que se asemejan a probabilidades. Esto es, cada salida de la red produce una probabilidad entre 0 y 1, mientras que la suma de estas probabilidades es 1. Consecuentemente, esta función es usada en la capa de salida en ANN para resolver problemas de clasificación, ya que en estos problemas se requiere separar los datos de entrada en grupos. 
 En la Fórmula \ref{eq:ecuacion_7_ANN} podemos observar la representación matemática de la función softmax; mientras que en la Figura \ref{fig:ann_4}. podemos observar la aplicación de esta función a la capa de salida de una red neuronal.
@@ -1362,9 +1362,9 @@ Donde $0 \geq Z_k \geq 1$, mientras que $y_k$ es la salida de la neurona $k$, la
 \end{figure}
 \footnotetext{Obtenida del sitio web \url{http://sintesis.ugto.mx/WintemplaWeb}. (Consultado el 30 de abril de 2022).}
 
-\paragraph{Sigmoide en la capa de salida.} 
+\paragraph{Sigmoide en la capa de salida.}\label{sigm_capa_salida}
 
-La función sigmoide, o también llamada curva logística, es una aproximación suave de la función escalón. Como resultado de aplicar la función sigmoide a la salida $y_k$ de cada neuronal, al igual que en la Softmax, como salida obtenemos un valor $Z_k$ entre 0 y 1. Pero, a diferencia de la Softmax, la suma de las salidas (de $Z_1$ a $Z_M$) no dan 1 como resultado, ya que en el denominador no se consideran a todas las salidas $y_K$ para realizar el cálculo de la función. Utilizando la función de activación sigmoide simplemente se aplica una función $\sigma(y_k)$ por cada $y_k$ salida de la respectiva neurona. Matemáticamente podemos observar la función sigmoide en la Fórmula \ref{eq:ecuacion_8_ANN}). 
+La función sigmoide, o también llamada curva logística, es una aproximación suave de la función escalón. Como resultado de aplicar la función sigmoide a la salida $y_k$ de cada neuronal, al igual que en la Softmax, como salida obtenemos un valor $Z_k$ entre 0 y 1. Pero, a diferencia de la Softmax, la suma de las salidas (de $Z_1$ a $Z_M$) no dan 1 como resultado, ya que en el denominador no se consideran a todas las salidas $y_K$ para realizar el cálculo de la función. Utilizando la función de activación sigmoide simplemente se aplica una función $\sigma(y_k)$ por cada $y_k$ salida de la respectiva neurona. Matemáticamente podemos observar la función sigmoide en la Fórmula \ref{eq:ecuacion_8_ANN}. 
 Mientras que en la Figura \ref{fig:ann_5} podemos observar la representación gráfica de la función sigmoide comparándola con la función escalón. 
 
 \begin{equation}\label{eq:ecuacion_8_ANN}
@@ -1380,7 +1380,7 @@ Donde $0 \geq \sigma(y_k) \geq 1$.
  \label{fig:ann_5}
 \end{figure}
 
-\subsubsection{Entrenamiento en una red neuronal.}
+\subsubsection{Entrenamiento en una red neuronal.}\label{entren_ann}
 
 Como se comentó anteriormente, el modelo MLP de Redes Neuronales es un modelo de clasificación, lo que significa que realiza un aprendizaje supervisado. De esta manera, a la red neuronal durante el proceso de entrenamiento se le muestra un gran número de datos de entrenamiento para que la red ajuste / modifique sus pesos de manera iterativa y de este modo, lograr minimizar el error producido en la respuesta: lograr minimizar la \textit{función de costo}, la cual penaliza de alguna manera los errores que comete la red al clasificar. Luego de varias iteraciones de ejemplos, se espera que la red neuronal sea efectiva para resolver la tarea para la que fue entrenada.
 En otras palabras, una red aprende resolviendo un problema de optimización, donde se buscan los parámetros de la red (pesos y sesgos, $\theta$) que minimizan la función de costo o error $J$ para cada ejemplo $xi$ en el conjunto de entrenamiento $X$. 
@@ -1404,13 +1404,13 @@ De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, do
 \theta^{(new)} = \theta^{(old)} - n . \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
 \end{equation}
 
-Donde $n$ es la tasa de aprendizaje (o learning rate), del cual hablaremos con mayor detalle en la Sección \textit{\nameref{hiper_n}}, y $\nabla J(\theta)$ es el gradiente (también llamado pendiente o derivada) de la función $J(\theta)$ para nuestros parámetros $\theta^{(old)}$. Al tener un “-” por delante obtenemos el gradiente negativo, el cual apunta en la dirección de máximo decrecimiento de la función. Este gradiente negativo permite “guiar” al algoritmo descenso del gradiente para acercarse, de manera progresiva debido a $n$, al mínimo ideal de la función.      
+Donde $n$ es la tasa de aprendizaje (o learning rate), del cual hablaremos con mayor detalle en la sección \textit{\nameref{hiper_n}}, y $\nabla J(\theta)$ es el gradiente (también llamado pendiente o derivada) de la función $J(\theta)$ para nuestros parámetros $\theta^{(old)}$. Al tener un “-” por delante obtenemos el gradiente negativo, el cual apunta en la dirección de máximo decrecimiento de la función. Este gradiente negativo permite “guiar” al algoritmo descenso del gradiente para acercarse, de manera progresiva debido a $n$, al mínimo ideal de la función.      
 
 \item Volver al paso 2 hasta completar la cantidad de epochs seteados como hiper-parámetro de nuestro modelo de red neuronal. 
 
 \end{enumerate}
 
-Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”} y no el \textit{algoritmo de gradiente descendiente estocástico} (stochastic gradient descent,\textit{SDG}), algo que explicaremos en mayor detalle en 4.4.4.8-Entrenamiento y función de costo con Softmax.
+Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”} y no el \textit{algoritmo de gradiente descendiente estocástico} (stochastic gradient descent,\textit{SDG}), algo que explicaremos en mayor detalle en la sección \textit{\nameref{ent_costo_softmax}}.
 
 \paragraph{Hiper-parámetro n.}\label{hiper_n}
 
@@ -1433,68 +1433,126 @@ Una tasa de aprendizaje demasiado alta puede ocasionar que el algoritmo de entre
 
 
 
-
-
-\cleardoublepage
 \section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
-
-\colorbox{red}{FALTA}
-
+adyhgery
 \cleardoublepage
 
-\subsection{Introducción.}
-\colorbox{red}{FALTA}
-
+\subsection{Introducción.}\label{Intro_NLP}
+adyhgery
 \cleardoublepage
 
-\subsection{Preprocesamiento de textos.}
-\colorbox{red}{FALTA}
-
+\subsection{Aplicaciones NLP.}\label{Aplicaciones_NLP}
+adyhgery
 \cleardoublepage
 
-\subsection{Similitud entre textos.}
-\colorbox{red}{FALTA}
-
+\subsection{NLP en la práctica.}\label{Practica_NLP}
+adyhgery
 \cleardoublepage
 
-\subsection{Técnicas para medir Similitud entre textos.}\label{Tecnicas_Simil_textos}
-\colorbox{red}{FALTA}
-
-\subsubsection{Cosine Similarity.}
-\colorbox{red}{FALTA}
-
+\subsection{Preprocesamiento de textos.}\label{Proces_textos}
+adyhgery
 \cleardoublepage
 
-\subsubsection{Word Mover's Distance (WMD).}
-\colorbox{red}{FALTA}
-
+\subsubsection{Limpieza y normalización.}\label{Limpieza_y_norm}
+adyhgery
 \cleardoublepage
 
-\subsection{Técnicas de vectorización.}
-\colorbox{red}{FALTA}
-
-Previamente a utilizar Cosine Similarity y WMD para (-----completar-----) se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. 
-Como técnicas de vectorización se utilizarán TF-IDF y Word Embeddings.
-
-\subsubsection{TF-IDF.}
-\colorbox{red}{FALTA}
-
-El algoritmo TF-IDF asigna valores numéricos a las palabras en función de la frecuencia con que aparecen en los textos para medir la frecuencia de ocurrencia de un término en la colección de documentos, expresando  cuán relevante es una palabra para un documento en una colección. 
-
+\subsubsection{Tokenización.}\label{tokenizacion}
+adyhgery
 \cleardoublepage
 
-\subsubsection{Word Embeddings.}
-\colorbox{red}{FALTA}
-
-Los Word Embeddings son necesarios para utilizar WMD.
-Los Word Embeddings son una de las variantes más populares para representar textos.  Son vectores previamente entrenados y generados mediante un modelo de red neuronal secuencial; de esta manera son capaces de capturar los contextos de una palabra en el documento llegando a poder contener información semántica y sintáctica. 
-
+\subsubsection{Stemming y Lemmatization.}\label{stem_y_lem}
+adyhgery
 \cleardoublepage
 
-\paragraph{¿Cómo entrenar Word Embeddings?}
-\colorbox{red}{FALTA}
-
+\subsubsection{N-grams.}\label{ngrams}
+adyhgery
 \cleardoublepage
+
+\subsection{Obtención de representaciones vectoriales.}\label{rep_vect}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Bag of Words (BoW).}\label{bow}
+adyhgery
+\cleardoublepage
+
+\subsubsection{TF-IDF.}\label{tf_idf}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Desventajas BoW \& TF-IDF.}\label{desv_bow_tfidf}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Word embeddings.}\label{word_emb}
+adyhgery
+\cleardoublepage
+
+\paragraph{Embeddings.}\label{embedd}
+adyhgery
+\cleardoublepage
+
+\paragraph{Word2vec.}\label{word2vec}
+adyhgery
+\cleardoublepage
+
+\paragraph{¿Cómo obtener nuestros Word embeddings?}\label{obt_word_emb}
+adyhgery
+\cleardoublepage
+
+\paragraph{CBOW vs Skipgram.}\label{cbow_vs_skip}
+adyhgery
+\cleardoublepage
+
+\paragraph{One hot encoding.}\label{one_hot_enc}
+adyhgery
+\cleardoublepage
+
+\paragraph{Obteniendo nuestros Word Embeddings con Skipgram.}\label{obt_skip}
+adyhgery
+\cleardoublepage
+
+\paragraph{Arquitectura del modelo Skipgram.}\label{skipgram}
+adyhgery
+\cleardoublepage
+
+\paragraph{Entrenamiento y función de costo con Softmax.}\label{ent_costo_softmax}
+adyhgery
+\cleardoublepage
+
+\paragraph{Optimizaciones: Muestreo Negativo.}\label{neg_samp}
+adyhgery
+\cleardoublepage
+
+\paragraph{Entrenamiento y función de costo con Sigmoide.}\label{ent_costo_sigmoide}
+adyhgery
+\cleardoublepage
+
+\paragraph{Desventajas Word2Vec.}\label{desv_word2vec}
+adyhgery
+\cleardoublepage
+
+\subsection{Obtención de las mediciones de similitud entre textos.}\label{med_sim_textos}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Maneras de medir la similitud entre textos.}\label{Tecnicas_Simil_textos}
+adyhgery
+\cleardoublepage
+
+\subsubsection{¿Por qué decidimos utilizar Cosine similarity y WMD?}\label{cos_y_wmd}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Cosine Similarity.}\label{cosine}
+adyhgery
+\cleardoublepage
+
+\subsubsection{Word Mover’s Distance (WMD).}\label{wmd}
+adyhgery
+\cleardoublepage
+
 
 \section{Implementación.}\label{5.Implementacion}
 
@@ -1537,7 +1595,7 @@ Como podemos ver la figura \ref{fig:FlowCoreSystem} representa el procedimiento 
 
 \cleardoublepage
 
-\subsubsection{Obtención de sets de datos.}
+\subsubsection{Obtención de sets de datos.}\label{obtencion_set_datos}
 En primer lugar debemos definir qué es un set o conjunto de datos.
 Un set o conjunto de datos es una tabla de una base de datos o, matemáticamente, una matriz estadística de datos. Cada columna de la tabla representa una variable del set de datos; y cada fila representa a un miembro determinado del mismo.
 
@@ -1633,15 +1691,19 @@ Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de simil
 
 \subsubsection{TF-IDF \& Cosine Similarity.}
 adgadaha
+\cleardoublepage
 
 \subsubsection{Word embeddings (Word2vec) \& WMD.}\label{Implementacion_word_emb_y_wmd}
 dagagad
+\cleardoublepage
 
-\paragraph{Elección de hiper-parámetros Word2vec.}
+\paragraph{Elección de hiper-parámetros Word2vec.}\label{hiper_par_word2vec}
 adgadg
+\cleardoublepage
 
-\paragraph{Word Mover's Distance (WMD.}
+\paragraph{Word Mover's Distance (WMD).}
 dagadga
+\cleardoublepage
 
 
 \subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
@@ -2073,7 +2135,7 @@ Pshdar Abdalla Hamza, Baban Jabbar Othman, Bayar Gardi, Sarhang Sorguli, Hassan 
 \textit{Recruitment and Selection: The Relationship between Recruitment and Selection with Organizational Performance}. International journal of Engineering, Business and Management (IJEBM). 5(3). (pp. 1-6).
 
 \bibitem{apunte_uba}
-Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. 4-8,351,352,377-379, 387-389,429-431,470-477).
+Luis Argerich, Natalia Golmar, Damián Martinelli, Martín Ramos Mejía, \& Juan Andrés Laura. (2019, Enero). \textit{75.06, 95.58 Organización de Datos}. Apunte del Curso Organización de Datos, Universidad de Buenos Aires, Facultad de Ingenieria. (pp. 4-8, 331, 332, 351, 352, 377-379, 387-389, 407, 429-431, 470-477).
 
 \bibitem{estudio_eye_tracking}
 Ladders Company. (2018). \textit{Eye-Tracking Study}. (pp. 2,6).
@@ -2178,13 +2240,13 @@ Kodinariya, T.M. (2014). \textit{Survey on Exiting Method for Selecting Initial 
 David Arthur, \& Sergei Vassilvitskii. (2007, Enero). \textit{K-Means++: The Advantages of Careful Seeding}. SODA '07: Proceedings of the 18th annual ACM-SIAM symposium on Discrete algorithms. (pp. 1027-1035).
 
 \bibitem{ANN_21}
-César Menacho Ch. (2013,Dociembre). \textit{Modelos de regresión lineal con redes neuronales (Lineal regression models with neural networks)}. Anales Científicos. 75(2). (2014). (pp. 253-259).
+César Menacho Ch. (2013, Dociembre). \textit{Modelos de regresión lineal con redes neuronales (Lineal regression models with neural networks)}. Anales Científicos. 75(2). (2014). (pp. 253-259).
 
 \bibitem{ANN_22}
-Andrea Apicella, Francesco Donnarumma, Francesco Isgrò, \& Roberto Prevete. (2021,Febrero). \textit{A survey on modern trainable activation functions}. (pp. 1-25).
+Andrea Apicella, Francesco Donnarumma, Francesco Isgrò, \& Roberto Prevete. (2021, Febrero). \textit{A survey on modern trainable activation functions}. (pp. 1-25).
 
 \bibitem{ANN_23}
-Damián Jorge Matich. (2001,Marzo). \textit{Redes Neuronales: Conceptos Básicos y Aplicaciones}. Trabajo de Investigación. Cátedra Informática Aplicada a la Ingeniería de Procesos – Orientación I. Universidad Tecnológica Nacional, Facultad Regional Rosario. (pp. 4-28).
+Damián Jorge Matich. (2001, Marzo). \textit{Redes Neuronales: Conceptos Básicos y Aplicaciones}. Trabajo de Investigación. Cátedra Informática Aplicada a la Ingeniería de Procesos – Orientación I. Universidad Tecnológica Nacional, Facultad Regional Rosario. (pp. 4-28).
 
 \bibitem{ANN_24}
 Juan José Montaño Moreno. (2002). \textit{Redes Neuronales Artificiales aplicadas al Análisis de Datos}. Proyecto de Tesis Doctoral. Universitat de les illes balears, Mallorca. Facultad de Psicología. (pp. 17-47).
@@ -2192,6 +2254,86 @@ Juan José Montaño Moreno. (2002). \textit{Redes Neuronales Artificiales aplica
 \bibitem{ANN_25}
 Ariel E. Repetur. (2019, Abril). \textit{Redes Neuronales Artificiales}. Trabajo final para carrera {Licenciatura en Ciencias Matemáticas}. Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas. (pp. 5-19,41-43).
 
+\bibitem{NLP_1}
+Priya B, Nandhini J.M, \& Gnanasekaran T. (2021). \textit{An Analysis of the Applications of NaturaL Language Processing in Various Sectors}. Smart Intelligent Computing and Communication Technology. (pp. 598-602).
+
+\bibitem{NLP_2}
+Antoine Ly, Benno Uthayasooriyar, \& Tingting Wang (2020, Octubre). \textit{A survey on Natural Language Processing (NLP) \& applications in insurance}. (pp. 1-29).
+
+\bibitem{NLP_3_4}
+Bill Manaris. (1998, Febrero). \textit{Natural Language Processing: A Human–Computer Interaction Perspective}. Advances in Computers. 47. (pp. 1-25).
+
+\bibitem{NLP_5}
+Daniel W. Otter, Julian R. Medina, \& Jugal K. Kalita. (2019, Diciembre). \textit{A Survey of the Usages of Deep Learning for Natural Language Processing}. IEEE Transactions on neural networks and learning systems. (pp. 1-15).
+
+\bibitem{NLP_6}
+N. Vasunthira Devi, \& R. Ponnusamy. (2016, Julio). \textit{A Systematic Survey of Natural Language Processing (NLP) Approaches in Different Systems}. International Journal of Computer Sciences and Engineering. 4(7). (pp. 192-197).
+
+\bibitem{NLP_7}
+Benjaamin Bengfort, Rebecca Bilbro, \& Tony Ojeda. (2018). Libro \textit{Applied Text Analysis with Python. Enabling language-aware data products with machine learning}. O’reilly Media. (pp. 55-67).
+
+\bibitem{NLP_8}
+Deepu S., Pethuru Raj., \& S.Rajaraajeswari. (2016). \textit{A Framework for Text Analytics using the Bag of Words (BoW) Model for Prediction}. International Journal of Advanced Networking \& Applications (IJANA). (pp. 320-323).
+
+\bibitem{NLP_9}
+Wenye Li, \& Senyue Hao (2019, Noviembre). \textit{Sparse lifting of dense vectors: unifying word and sentence representations}. (pp. 1-9).
+
+\bibitem{NLP_10}
+Suhang Wang, Jiliang Tang, Charu Aggarwal, \& Huan Liu. (2016, Octubre). \textit{Linked Document Embedding for Classiﬁcation}. (pp. 115-124).
+
+\bibitem{NLP_11}
+Tomas Mikolov, Kai Chen, Greg Corrado, \& Jeffrey Dean. (2013, Septiembre). \textit{Efficient Estimation of Word Representations in Vector Space}. (pp. 1-10).
+
+\bibitem{NLP_12}
+Eddy Muntina Dharma, Ford Lumban Gaol, Harco Leslie Hendric Spits Warnars, \& Benfano Soewito. (2022, Enero). \textit{The accuracy comparison among Word2vec, Glove, and Fasttext towards Convolution Neural Network (CNN) text classification}. Journal of Theoretical and Applied Information Technology. 100(2). (pp. 349-356).
+
+\bibitem{NLP_13}
+Thomas Pickard. (2020, Diciembre). \textit{Comparing word2vec and GloVe for Automatic Measurement of MWE Compositionality}. Joint Workshop on Multiword Expressions and Electronic Lexicons. (pp. 95-100).
+
+\bibitem{NLP_13_2}
+Alejandro Cano Cos. (2020, Septiembre). \textit{Aprendiendo vectores de palabras a partir de normas de asociación (Learning word embeddings from word association norms)}. Proyecto de Tesis para carrera de grado \textit{Ingeniería Informática}. Universidad de Cantabria, Facultad de Ciencias. (pp. 11-31).
+
+\bibitem{NLP_14}
+Tomas Mikolov, Ilya Sutskever, Kai Chen, Jeffrey Dean, \& Greg Corrado. (2013, Octubre). \textit{Distributed Representations of Words and Phrases and their Compositionality}. (pp. N-N).
+
+\bibitem{NLP_15}
+Matt J. Kusner, Yu Sun, Nicholas I. Kolkin, \& Kilian Q. Weinberger. (2015). \textit{From Word Embeddings To Document Distances}. 32nd International Conference on Machine Learning. 37. (pp. 1-8).
+
+\bibitem{NLP_16}
+Wael H. Gomaa, \& Aly A. Fahmy. (2013, Abril). \textit{A Survey of Text Similarity Approaches}. International Journal of Computer Applications. 68(13). (pp. 13-16).
+
+\bibitem{NLP_17_18}
+Courtney Corley, \& Rada Mihalcea. (2005, Junio). \textit{Measuring the Semantic Similarity of Texts}. ACL Workshop on Empirical Modeling of Semantic Equivalence and Entailment. (pp. 13-17).
+
+\bibitem{NLP_19}
+Pádraig Cunningham, \& Sarah Jane Delany. (2020, Abril). \textit{k-Nearest Neighbour Classifiers 2nd Edition (with Python examples)}. (pp. 1-19).
+
+\bibitem{NLP_20}
+Kim Julian Gülle, Nicholas Ford, Patrick Ebel, Florian Brokhausen,  \& Andreas Vogelsang. (2020, Julio). \textit{Topic Modeling on User Stories using Word Mover’s Distance}. (pp. 1-8).
+
+\bibitem{NLP_21}
+Dustin S. Stoltz, \& Marshall A. Taylor. (2019). \textit{Concept Mover’s Distance: Measuring Concept Engagement via Word Embeddings in Texts}. Journal of Computational Social Science. (pp. 1-11).
+
+\bibitem{NLP_26}
+Sowmya Vajjala, Bodhisattwa Majumder, Anuj Gupta, \& Harshit Surana. (2020). Libro \textit{Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems}. 6(17). O'reilly Media. (pp. 92-103).
+
+\bibitem{NLP_27}
+Aston Zhang, Zachary C. Lipton, Mu Li, \& Alexander J. Smola. (2020). Libro Online \textit{Dive into Deep Learning}. Sitio Web consultado el 15 de Junio de 2022: \url{https://d2l.ai}. (Capítulo 14 - \textit{Natural Language Processing: Pretraining}).
+
+\bibitem{NLP_28}
+BACUDA Project, \& CCF-Korea. (2022). Curso Online \textit{Data Analytics – Advanced (HS Recommendation)}. Sitio Web consultado el 15 de Junio de 2022: \url{https://clikc.wcoomd.org/course/view.php?id=1652}.
+
+\bibitem{WMD_2}
+Michel Marie Deza, \& Elena Deza. (2009). Libro \textit{Encyclopedia of Distances}. Springer. 1. (pp. 1-583).
+
+\bibitem{WMD_3}
+Andoni A., Indyk P., \& Krauthgamer R. (2008, Enero). \textit{Earth mover distance over high-dimensional spaces}. Symposium on Discrete Algorithms. (pp. 343–352).
+
+\bibitem{WMD_4} 
+Yossi Rubner, Carlo Tomasi, \& Leonidas J. Guibas. (2000). \textit{The Earth Mover’s Distance as a metric for image retrieval}. International journal of computer vision. 40(2). (pp. 99-121).
+
+\bibitem{WMD_5} 
+Lingfei Wu, Ian E.H. Yen, Kun Xu, Fangli Xu, Avinash Balakrishnan, Pin-Yu Chen, Pradeep Ravikumar, \& Michael J. Witbrock. (2018, Octubre). \textit{Word mover’s embedding: From word2vec to document embedding}. (pp. 1-9).
 
 \end{thebibliography}
 
