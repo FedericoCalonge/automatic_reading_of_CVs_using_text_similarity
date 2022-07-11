@@ -49,64 +49,63 @@
 \contentsline {subsubsection}{\numberline {3.5.5}Entrenamiento en una red neuronal.}{60}{subsubsection.3.5.5}%
 \contentsline {paragraph}{\numberline {3.5.5.1}Hiper-parámetro n.}{62}{paragraph.3.5.5.1}%
 \contentsline {section}{\numberline {4}Natural Language Processing.}{63}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introducción.}{64}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Aplicaciones NLP.}{65}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.1}Introducción.}{63}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Aplicaciones NLP.}{64}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}NLP en la práctica.}{66}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Preprocesamiento de textos.}{67}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Limpieza y normalización.}{68}{subsubsection.4.4.1}%
 \contentsline {subsubsection}{\numberline {4.4.2}Tokenización.}{69}{subsubsection.4.4.2}%
-\contentsline {subsubsection}{\numberline {4.4.3}Stemming y Lemmatization.}{70}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3}Stemming y lemmatization.}{70}{subsubsection.4.4.3}%
 \contentsline {subsubsection}{\numberline {4.4.4}N-grams.}{71}{subsubsection.4.4.4}%
-\contentsline {subsection}{\numberline {4.5}Obtención de representaciones vectoriales.}{72}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Bag of Words (BoW).}{73}{subsubsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5}Obtención de representaciones vectoriales.}{71}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Bag of Words (BoW).}{72}{subsubsection.4.5.1}%
 \contentsline {subsubsection}{\numberline {4.5.2}TF-IDF.}{74}{subsubsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.3}Desventajas BoW \& TF-IDF.}{75}{subsubsection.4.5.3}%
-\contentsline {subsubsection}{\numberline {4.5.4}Word embeddings.}{76}{subsubsection.4.5.4}%
+\contentsline {subsubsection}{\numberline {4.5.3}Desventajas BoW \& TF-IDF.}{76}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Word embeddings.}{77}{subsubsection.4.5.4}%
 \contentsline {paragraph}{\numberline {4.5.4.1}Embeddings.}{77}{paragraph.4.5.4.1}%
-\contentsline {paragraph}{\numberline {4.5.4.2}Word2vec.}{78}{paragraph.4.5.4.2}%
-\contentsline {paragraph}{\numberline {4.5.4.3}¿Cómo obtener nuestros Word embeddings?}{79}{paragraph.4.5.4.3}%
-\contentsline {paragraph}{\numberline {4.5.4.4}CBOW vs Skipgram.}{80}{paragraph.4.5.4.4}%
-\contentsline {paragraph}{\numberline {4.5.4.5}One hot encoding.}{81}{paragraph.4.5.4.5}%
-\contentsline {paragraph}{\numberline {4.5.4.6}Obteniendo nuestros Word Embeddings con Skipgram.}{82}{paragraph.4.5.4.6}%
-\contentsline {paragraph}{\numberline {4.5.4.7}Arquitectura del modelo Skipgram.}{83}{paragraph.4.5.4.7}%
-\contentsline {paragraph}{\numberline {4.5.4.8}Entrenamiento y función de costo con Softmax.}{84}{paragraph.4.5.4.8}%
-\contentsline {paragraph}{\numberline {4.5.4.9}Optimizaciones: Muestreo Negativo.}{85}{paragraph.4.5.4.9}%
-\contentsline {paragraph}{\numberline {4.5.4.10}Entrenamiento y función de costo con Sigmoide.}{86}{paragraph.4.5.4.10}%
-\contentsline {paragraph}{\numberline {4.5.4.11}Desventajas Word2Vec.}{87}{paragraph.4.5.4.11}%
-\contentsline {subsection}{\numberline {4.6}Obtención de las mediciones de similitud entre textos.}{88}{subsection.4.6}%
-\contentsline {subsubsection}{\numberline {4.6.1}Maneras de medir la similitud entre textos.}{89}{subsubsection.4.6.1}%
-\contentsline {subsubsection}{\numberline {4.6.2}¿Por qué decidimos utilizar Cosine similarity y WMD?}{90}{subsubsection.4.6.2}%
-\contentsline {subsubsection}{\numberline {4.6.3}Cosine Similarity.}{91}{subsubsection.4.6.3}%
-\contentsline {subsubsection}{\numberline {4.6.4}Word Mover’s Distance (WMD).}{92}{subsubsection.4.6.4}%
-\contentsline {section}{\numberline {5}Implementación.}{93}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Obtención del modelo de clasificación.}{94}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{94}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{94}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{95}{subsubsection.5.1.3}%
-\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{95}{paragraph.5.1.3.1}%
-\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{95}{paragraph.5.1.3.2}%
-\contentsline {subsubsection}{\numberline {5.1.4}Preprocesamiento de textos.}{96}{subsubsection.5.1.4}%
-\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{97}{subsubsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{99}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}TF-IDF \& Cosine Similarity.}{100}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Word embeddings (Word2vec) \& WMD.}{101}{subsubsection.5.2.2}%
-\contentsline {paragraph}{\numberline {5.2.2.1}Elección de hiper-parámetros Word2vec.}{102}{paragraph.5.2.2.1}%
-\contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{103}{paragraph.5.2.2.2}%
-\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{104}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{105}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{106}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{107}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{109}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{112}{subsubsection.5.5.3}%
-\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{113}{paragraph.5.5.3.1}%
-\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{114}{paragraph.5.5.3.2}%
-\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{115}{paragraph.5.5.3.3}%
-\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{116}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Conclusiones.}{117}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Caso de Uso.}{118}{subsection.5.8}%
-\contentsline {subsection}{\numberline {5.9}Limitaciones del sistema.}{119}{subsection.5.9}%
-\contentsline {section}{\numberline {6}Próximos pasos.}{120}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{121}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Funciones de activación.}{121}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}{122}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{130}{subsection.7.3}%
+\contentsline {paragraph}{\numberline {4.5.4.2}Word2vec.}{79}{paragraph.4.5.4.2}%
+\contentsline {paragraph}{\numberline {4.5.4.3}¿Cómo obtener nuestros Word embeddings?}{81}{paragraph.4.5.4.3}%
+\contentsline {paragraph}{\numberline {4.5.4.4}CBOW vs Skipgram.}{82}{paragraph.4.5.4.4}%
+\contentsline {paragraph}{\numberline {4.5.4.5}One hot encoding.}{83}{paragraph.4.5.4.5}%
+\contentsline {paragraph}{\numberline {4.5.4.6}Obteniendo nuestros Word Embeddings con Skipgram.}{84}{paragraph.4.5.4.6}%
+\contentsline {paragraph}{\numberline {4.5.4.7}Arquitectura del modelo Skipgram.}{85}{paragraph.4.5.4.7}%
+\contentsline {paragraph}{\numberline {4.5.4.8}Entrenamiento y función de costo con Softmax.}{86}{paragraph.4.5.4.8}%
+\contentsline {paragraph}{\numberline {4.5.4.9}Optimizaciones: Muestreo Negativo.}{87}{paragraph.4.5.4.9}%
+\contentsline {paragraph}{\numberline {4.5.4.10}Entrenamiento y función de costo con Sigmoide.}{88}{paragraph.4.5.4.10}%
+\contentsline {paragraph}{\numberline {4.5.4.11}Desventajas Word2Vec.}{89}{paragraph.4.5.4.11}%
+\contentsline {subsection}{\numberline {4.6}Obtención de las mediciones de similitud entre textos.}{90}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Maneras de medir la similitud entre textos.}{91}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}¿Por qué decidimos utilizar Cosine similarity y WMD?}{92}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}Cosine Similarity.}{93}{subsubsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.4}Word Mover’s Distance (WMD).}{94}{subsubsection.4.6.4}%
+\contentsline {section}{\numberline {5}Implementación.}{95}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Obtención del modelo de clasificación.}{96}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Introducción.}{96}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Esquema.}{96}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Obtención de sets de datos.}{97}{subsubsection.5.1.3}%
+\contentsline {paragraph}{\numberline {5.1.3.1}Curriculum Vitae.}{97}{paragraph.5.1.3.1}%
+\contentsline {paragraph}{\numberline {5.1.3.2}Descripciones Puestos Laborales.}{97}{paragraph.5.1.3.2}%
+\contentsline {subsubsection}{\numberline {5.1.4}Preprocesamiento de textos.}{98}{subsubsection.5.1.4}%
+\contentsline {subsubsection}{\numberline {5.1.5}Cantidad final del set de datos y su uso en las distintas etapas.}{99}{subsubsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{101}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}TF-IDF \& Cosine Similarity.}{102}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Word embeddings (Word2vec) \& WMD.}{103}{subsubsection.5.2.2}%
+\contentsline {paragraph}{\numberline {5.2.2.1}Elección de hiper-parámetros Word2vec.}{104}{paragraph.5.2.2.1}%
+\contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{105}{paragraph.5.2.2.2}%
+\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{106}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{107}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{108}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{109}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{111}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{114}{subsubsection.5.5.3}%
+\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{115}{paragraph.5.5.3.1}%
+\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{116}{paragraph.5.5.3.2}%
+\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{117}{paragraph.5.5.3.3}%
+\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{118}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Caso de Uso.}{119}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Limitaciones del sistema.}{120}{subsection.5.8}%
+\contentsline {section}{\numberline {6}Conclusiones.}{121}{section.6}%
+\contentsline {section}{\numberline {7}Anexos.}{122}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Funciones de activación.}{122}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}{123}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{131}{subsection.7.3}%

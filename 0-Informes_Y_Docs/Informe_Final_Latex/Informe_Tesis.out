@@ -54,7 +54,7 @@
 \BOOKMARK [2][-]{subsection.4.4}{Preprocesamiento de textos.}{section.4}% 54
 \BOOKMARK [3][-]{subsubsection.4.4.1}{Limpieza y normalizaci\363n.}{subsection.4.4}% 55
 \BOOKMARK [3][-]{subsubsection.4.4.2}{Tokenizaci\363n.}{subsection.4.4}% 56
-\BOOKMARK [3][-]{subsubsection.4.4.3}{Stemming y Lemmatization.}{subsection.4.4}% 57
+\BOOKMARK [3][-]{subsubsection.4.4.3}{Stemming y lemmatization.}{subsection.4.4}% 57
 \BOOKMARK [3][-]{subsubsection.4.4.4}{N-grams.}{subsection.4.4}% 58
 \BOOKMARK [2][-]{subsection.4.5}{Obtenci\363n de representaciones vectoriales.}{section.4}% 59
 \BOOKMARK [3][-]{subsubsection.4.5.1}{Bag of Words \(BoW\).}{subsection.4.5}% 60
@@ -101,11 +101,10 @@
 \BOOKMARK [4][-]{paragraph.5.5.3.2}{Filtrado.}{subsubsection.5.5.3}% 101
 \BOOKMARK [4][-]{paragraph.5.5.3.3}{Visualizaci\363n.}{subsubsection.5.5.3}% 102
 \BOOKMARK [2][-]{subsection.5.6}{Pipeline Flow final del Sistema.}{section.5}% 103
-\BOOKMARK [2][-]{subsection.5.7}{Conclusiones.}{section.5}% 104
-\BOOKMARK [2][-]{subsection.5.8}{Caso de Uso.}{section.5}% 105
-\BOOKMARK [2][-]{subsection.5.9}{Limitaciones del sistema.}{section.5}% 106
-\BOOKMARK [1][-]{section.6}{Pr\363ximos pasos.}{}% 107
-\BOOKMARK [1][-]{section.7}{Anexos.}{}% 108
-\BOOKMARK [2][-]{subsection.7.1}{Funciones de activaci\363n.}{section.7}% 109
-\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de obtenci\363n de Word Embeddings mediante skipgram y softmax.}{section.7}% 110
-\BOOKMARK [2][-]{subsection.7.3}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 111
+\BOOKMARK [2][-]{subsection.5.7}{Caso de Uso.}{section.5}% 104
+\BOOKMARK [2][-]{subsection.5.8}{Limitaciones del sistema.}{section.5}% 105
+\BOOKMARK [1][-]{section.6}{Conclusiones.}{}% 106
+\BOOKMARK [1][-]{section.7}{Anexos.}{}% 107
+\BOOKMARK [2][-]{subsection.7.1}{Funciones de activaci\363n.}{section.7}% 108
+\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de obtenci\363n de Word Embeddings mediante skipgram y softmax.}{section.7}% 109
+\BOOKMARK [2][-]{subsection.7.3}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 110

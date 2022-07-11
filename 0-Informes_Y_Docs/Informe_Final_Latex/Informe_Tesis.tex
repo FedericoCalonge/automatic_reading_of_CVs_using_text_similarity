@@ -1398,7 +1398,7 @@ La función de pérdida  $J(\theta)$ será diferente para cada modelo. Más adel
 
 \item Se aplica el proceso conocido como \textit{backpropagation} (o propagación hacia atrás). No se explicará en detalle este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Lo que hay que tener en cuenta es que backpropagation utiliza la función de optimización\footnote{Una función de optimización en redes neuronales tiene como objetivo encontrar los pesos W que minimicen los errores de clasificación / la función de coste.} \textit{descenso del gradiente} para poder ajustar / modificar los pesos y el bias de cada neurona de nuestra red \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. En backpropagation calculamos el gradiente de $J(\theta)$ (o dicho de otra forma derivamos el error) en función de cada uno de los parámetros de nuestra red. Para esto se opera recursivamente capa tras capa propagando el error desde la salida hacia la entrada de la red.
 
-De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la ecuación \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $theta$ para la red reuronal.
+De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la ecuación \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $\theta$ para la red reuronal.
  
 \begin{equation}\label{eq:ecuacion_9_ANN}
 \theta^{(new)} = \theta^{(old)} - n . \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
@@ -1422,87 +1422,450 @@ Mientras más rápido nos acerquemos al mínimo de la función, más rápido la 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
- \includegraphics[width=0.6\textwidth]{images/ANN/6-ANN.png}
+ \includegraphics[width=0.5\textwidth]{images/ANN/6-ANN.png}
   \captionsetup{justification=centering,margin=3cm}
- \caption{Efecto de diferentes tasas de aprendizaje $n$ durante el entrenamiento.\cite{ANN_25}.} 
+ \caption{Efecto de diferentes tasas de aprendizaje $n$ durante el entrenamiento\cite{ANN_25}.} 
  \label{fig:ann_6}
 \end{figure}
 
 Una tasa de aprendizaje demasiado alta puede ocasionar que el algoritmo de entrenamiento no pueda disminuir el costo de entrenamiento más allá de cierto punto, o en el peor de los casos puede ocasionar que el mismo aumente. Una tasa de aprendizaje demasiado baja puede hacer que el costo disminuya muy lentamente, ralentizando el aprendizaje. La tasa de aprendizaje $n$ ideal es un compromiso entre lograr una disminución significativa del costo y mantener una buena velocidad de aprendizaje\cite{ANN_25}.
-
-
-
-
-\section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
-adyhgery
 \cleardoublepage
 
+\section{Natural Language Processing.}\label{4.NaturalLanguageProcessing}
+
 \subsection{Introducción.}\label{Intro_NLP}
-adyhgery
+
+El Procesamiento del Lenguaje Natural o Natural Language Processing (NLP) es un subconjunto de la Inteligencia Artificial (IA) que tiene como objetivo principal la construcción de sistemas que permitan procesar el lenguaje humano capturando la complejidad del mismo, y traducirla en información resumida produciendo \textit{resultados} comprensibles por la computadora o \textit{respuestas} comprensibles por humanos como parte de la aplicación/implementación de IA. De esta manera, NLP permite que las computadoras puedan comprender el lenguaje humano.
+
+Para abordar este problema y poder extraer el significado de los lenguajes humanos, la mayoría de las técnicas de NLP se basan y utilizan enfoques del aprendizaje automático (machine learning) y del aprendizaje profundo (deep learning)\cite{NLP_1, NLP_2}.
+
+NLP podría definirse como ``la disciplina que estudia los aspectos lingüísticos de la comunicación humano-humano y humano-máquina, desarrolla modelos de competencia y desempeño lingüísticos, emplea marcos computacionales para implementar procesos que incorporan tales modelos, identifica metodologías para el refinamiento iterativo de tales procesos/modelos e investiga técnicas para evaluar los sistemas resultantes''\cite{NLP_3_4}.
+
+NLP es un área interdisciplinaria basada en muchos campos de estudio. Estos campos incluyen a la informática, que proporciona técnicas para la representación de modelos y el diseño e implementación de algoritmos; la linguística, que identifica modelos y procesos linguísticos; las matemáticas, que aporta modelos y métodos formales; la psicología, que estudia modelos y teorías del comportamiento humano; la filosofía, que proporciona teorías y preguntas sobre los principios subyacentes del pensamiento, el conocimiento linguístico y los fenómenos; estadísticas, que proporciona técnicas para predecir eventos basados en datos de muestra; ingeniería eléctrica, que aporta teoría de la información y técnicas para el procesamiento de señales; y biología, que explora la arquitectura subyacente de los procesos linguísticos en el cerebro\cite{NLP_3_4}.
+
 \cleardoublepage
 
 \subsection{Aplicaciones NLP.}\label{Aplicaciones_NLP}
-adyhgery
+
+Como mencionamos previamente, NLP generalmente utiliza algoritmos de machine learning y deep learning para resolver distintos problemas. Algunas de las áreas más interesantes donde se aplica NLP junto con ML y/o DL para la resolución de problemas son\cite{NLP_5, NLP_6}:
+
+\begin{itemize}
+\item \textbf{Traducción automática (Machine Translation, MT)}. Estas aplicaciones implican el uso de técnicas matemáticas y algorítmicas para traducir documentos de un idioma humano a otro. Realizar una traducción eficaz es muy complicado incluso para los seres humanos, ya que requiere de gran comprensión y conocimiento de las palabras, frases, sensibilidades culturales, sintaxis y la semántica de los dos idiomas involucrados. 
+
+\item \textbf{Resumidores de texto (Text Summarization)}. Estas aplicaciones permiten encontrar elementos de interés en los documentos para producir un resumen del contenido más importante. Estas tareas incluyen procesamiento de texto sintáctico, semántico y del nivel de voz. Hay dos tipos principales de resumen: extractivo y abstractivo. El primero se enfoca en la extracción, simplificación, reordenación y concatenación de oraciones para transmitir la información importante en los documentos usando texto tomado directamente de los documentos. En cambio, los resúmenes abstractivos se basan en expresar el contenido de los documentos a través de la abstracción de estilo generacional, posiblemente usando palabras nunca vistas en los documentos.
+
+\item \textbf{Generación de texto (Text Generation)}. Muchas tareas de NLP requieren la generación de un lenguaje similar al humano. Las aplicaciones de \textit{Text Summarization} y \textit{Machine Translation} convierten un texto en otro de secuencia a secuencia (seq2seq). Otras tareas, como los subtítulos de imágenes y videos y los informes meteorológicos y deportivos automáticos, convierten datos no textuales en texto. Algunas tareas, sin embargo, producen texto sin datos de entrada para convertir (o con solo pequeñas cantidades utilizadas como guía). Estas tareas incluyen la generación de poesía, la generación de chistes y la generación de historias.
+
+\item \textbf{Clasificación de texto (Text Classification)}. Text Classification permite la asignación de documentos de texto a clases predefinidas. Pueden tratarse de muchas clases o simplemente de una clasificación binaria. Text Classification tiene numerosas aplicaciones, un ejemplo es el \textit{análisis de sentimiento (Sentiment Analysis)}. Un ejemplo de una tarea de Sentiment Analysis es la extracción del sentimiento de un escritor y su clasificación: si su inclinación fue positiva, negativa o neutral hacia algún tema o idea.
+
+\item \textbf{Sistemas de recuperación de información (Information Retrieval -IR- systems)}. El propósito de los sistemas IR es ayudar al usuario a encontrar la información correcta (más útil) en el formato correcto (más conveniente) en el momento correcto (cuando la necesitan). Esta información se encuentra en documentos digitales; y lo que se intenta recuperar son textos, imágenes, sonidos o datos de otras características que sean relevantes para el usuario. Entre muchos problemas en IR, un problema principal que debe abordarse se relaciona con la clasificación de documentos con respecto a una cadena de consulta en términos de puntajes de relevancia para tareas de recuperación ad-hoc, similar a lo que sucede en un motor de búsqueda. Los modelos de DL sirven para resolver estos problemas, permitiendo para la recuperación ad-hoc hacer coincidir los textos de las consultas con los textos de los documentos para obtener puntajes de relevancia.
+
+\item \textbf{Sistemas de extracción de información (Information Extraction -IE- systems)}. El propósito de los sistemas IE es extraer información explícita o implícita del texto. Los resultados de los sistemas varían, pero a menudo los datos extraídos y las relaciones dentro de ellos se guardan en bases de datos relacionales. La información comúnmente extraída incluye entidades, relaciones o eventos en el texto. 
+
+\begin{enumerate}
+\item \textit{Named Entity Recognition (NER)}: Se refiera a identificar y reconocer entidades en los textos y “tagearlas”: por ejemplo personas, empresas, fechas, lugares, precios, etc.
+\item \textit{Extracción de eventos}: Se ocupa de identificar palabras o frases que se mencionan o refieren a la ocurrencia de eventos, junto con los participantes, roles de los mismos, objetos, momentos en que dicho evento ocurrió y desencadenantes del mismo.
+\item \textit{Extracción de relaciones}: Implica la extracción de relaciones en los textos, las cuales pueden ser relaciones posesivas, antónimas o sinónimas, familiares o geográficas.
+\end{enumerate}
+
+\item \textbf{Respuesta a preguntas (Question Answering, QA)}. Al igual que las aplicaciones de Text Summarization e IE, los sistemas de QA recopilan palabras, frases u oraciones relevantes de un documento. QA devuelve esta información de manera coherente como respuesta a una solicitud o consulta de un usuario. Dada una pregunta y un conjunto de documentos, un sistema de QA intentará encontrar la respuesta exacta, o al menos la parte exacta del texto en la que aparece la respuesta. Los métodos actuales se asemejan a los de Text Summarization
+
+\item \textbf{Reconocimiento de voz (Speech Recognition)}. Speech Recognition es el proceso de asignar señales de voz acústicas a un conjunto de palabras. Las dificultades de esta tarea surgen debido a las amplias variaciones en la pronunciación de las palabras y las ambigüedades homónimas y acústicas.
+
+\item \textbf{Combinación de voz (Speech Combination)}. Speech Combination permite la producción o creación de expresiones de oraciones en lenguaje natural. Para poder crear expresiones, el texto debe procesarse. Por lo tanto, NLP sigue siendo un componente esencial de cualquier sistema de combinación de voz.
+
+\item \textbf{Sistemas de intercambio (Exchange Systems)}. Por lo general estos sistemas se enfocan en una aplicación de caracterización limitada (por ejemplo, una heladera o sistema de sonido doméstico) y utilizan los niveles fonéticos y léxicos del idioma. 
+
+\item \textbf{Imitación de autores (Author mimicking)}. Teniendo suficientes datos se pueden utilizar modelos de DL para generar textos que repliquen el estilo particular de un escritor.
+\end{itemize}
+
 \cleardoublepage
 
 \subsection{NLP en la práctica.}\label{Practica_NLP}
-adyhgery
+
+En la práctica, el uso de NLP generalmente nos sirve como \textit{complementación} a algoritmos de ML o DL para realizar distintas tareas, las cuales pueden ser por ejemplo las mencionadas en la sección sección \textit{\nameref{Aplicaciones_NLP}}.
+
+Para la implementación de este Proyecto, la \textit{tarea específica} que involucra el uso de técnicas de NLP es la obtención de mediciones de similitud entre dos textos, las cuales posteriormente serán utilizadas como entradas a algoritmos de ML (en nuestro caso K-means, y luego KNN) para realizar la \textit{tarea global} de clasificación de nuestro Proyecto: en base a dichas mediciones de similitud lograr clasificar qué tan similares son los curriculums vitae de nuevos candidatos con respecto a la descripción de un puesto de IT.
+
+La obtención de estas mediciones de similitud, resumidamente, involucra dos pasos\cite{Similarity_calculation}:
+\begin{enumerate}
+\item Convertir cada uno de los documentos de texto en un objeto matemático (vector numérico).
+\item Definir y emplear una métrica de distancia que será utilizada como nuestra medida de similitud entre los vectores numéricos obtenidos del paso anterior, los cuales representan nuestros textos.
+\end{enumerate}
+
+Sin embargo, anteriormente al primer paso, y en general para cualquier tipo de tarea de NLP que implica manipulación de datos de texto, nuestros textos deben \textit{pre-procesarse} para lograr una limpieza y normalización de los mismos de modo que posteriormente puedan ser convertidos en vectores numéricos\cite{NLP_2}.
+
+A modo de resumen, en la Figura \ref{fig:Imagen_NLP_1} se describen los pasos generales necesarios para obtener finalmente una representación vectorial de nuestros documentos de texto y posteriormente aplicar las mediciones de similitud sobre los mismos.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \noindent\makebox[\textwidth]{%
+\includegraphics[width=1.2\textwidth]{images/NLP/1.png}}
+ \caption{Pasos generales de nuestro proceso NLP.}
+ \label{fig:Imagen_NLP_1}
+\end{figure}
+
 \cleardoublepage
 
+El primer paso, que consiste en la obtención de los textos “crudos” de los documentos que utilizaremos en los sub-siguientes pasos, será explicado directamente en la sección de implementación, donde se obtienen los textos de los Curriculum Vitae y de las descripciones de puestos laborales de IT (Ver sección \textit{\nameref{obtencion_set_datos}}). Mientras que los pasos 2-7 serán explicados en detalle en las secciones posteriores. 
+
+Algo a tener en cuenta es la diferencia entre \textit{corpus tokenizado} y \textit{vocabulario} (pasos 5 y 6 de la Figura \ref{fig:Imagen_NLP_1}), debido a que mencionaremos estos conceptos muy a menudo. El \textit{corpus tokenizado} son todas las palabras de nuestro corpus -el cual fue previamente tokenizado-, mientras que el \textit{vocabulario} es el set de palabras \textit{únicas} -sin repetir- obtenidas de dicho \textit{corpus tokenizado}.
+
+Para entender mejor esto, detallaremos un ejemplo pasando por todas las fases descritas en la Figura  \ref{fig:Imagen_NLP_1}. Partiendo de “She will park the car on the street so we can walk in the central park” como nuestro texto “crudo” de documento, pasamos a la segunda fase de \textit{limpieza y normalización} (donde, entre otras cosas, se eliminan las stop words). De esta manera nos quedaría el \textit{corpus}: “park car street walk central park”. Este corpus pasa luego por la fase de \textit{tokenización}, en la cual se particiona el texto en pequeñas partes llamadas “tokens”. Estos tokens se agrupan formando el \textit{corpus tokenizado}, el cual será un vector [“park”, “car”, “street”, “walk”, “central”, “park”] con un tamaño de 6. Por último, para formar nuestro \textit{vocabulario} simplemente eliminamos los tokens (o palabras) repetidos, quedándonos el vector [“park”, “car”, “street”, “walk”, “central”] de tamaño 5. 
+\\
+
 \subsection{Preprocesamiento de textos.}\label{Proces_textos}
-adyhgery
+
+Este paso consiste en limpiar y normalizar nuestros textos de modo que posteriormente puedan ser convertidos en vectores numéricos. El pre-procesamiento de datos usualmente tiene un impacto significativo en la performance de generalización de nuestro algoritmo de machine learning\cite{preprocessing}.
+
+Algunas palabras no son útiles en términos de poder predictivo porque son demasiado frecuentes y, por lo tanto, poco discriminantes. El objetivo del pre-procesamiento es preparar la representación de nuestros textos para que puedan alimentar a nuestros modelos de ML.
+
+Las tareas de pre-procesamiento de textos más esenciales incluyen eliminar carácteres especiales o carácteres específicos que no son relevantes para nuestros análisis, convertir a minúscula nuestros textos, remover las ‘stopwords’, aplicar stemming y/o lemmatization, tokenizar nuestros textos, usar n-gramas, etc. A continuación explicaremos en mayor detalle estas tareas\cite{NLP_2}.
+
 \cleardoublepage
 
 \subsubsection{Limpieza y normalización.}\label{Limpieza_y_norm}
-adyhgery
+
+En esta limpieza inicial podemos considerar las siguientes sub-tareas:
+\begin{enumerate}
+
+\item \textit{Codificar nuestros textos a utf-8}: es común enfrentar problemas de representación y codificación cuando nuestros textos tienen algunos carácteres específicos, como por ejemplo acentos. Para evitar estos tipos de problemas generalmente se aplica una codificación a UTF-8 antes de procesar los textos.
+\item \textit{Convertir nuestros textos a minúsculas}: Pasar cada letra de nuestros textos a minúsculas permitirá eliminar cualquier ambigüedad entre letras minúsculas y mayúsculas. 
+\item \textit{Eliminar palabras o cadenas de texto no relevantes}: Por ejemplo, podemos eliminar e-mails, páginas web o palabras que no necesitemos tener en cuenta en nuestros análisis. Para eliminar e-mails o páginas web podemos utilizar \textit{expresiones regulares}\footnote{Las expresiones regulares nos permiten identificar patrones y aplicar reglas cuando estos se detectan. De esta manera, podemos extraer información textual que sigue un formato particular: por ejemplo, “Mr /. (. *)” es una expresión regular que permite buscar los textos que empiecen con ‘Mr’ y tener en cuenta el grupo que le sigue, el cual se supone que representa el nombre de la persona\cite{NLP_2}.}, las cuales nos ayudan a identificar los formatos de URLs o casillas de mail y aplicar algún tipo de regla para eliminarlos (reemplazandolos por palabras vacías). 
+\item \textit{Procesar signos de puntuación y carácteres especiales}: Esta tarea no precisamente consiste en eliminar los signos de puntuación y carácteres especiales, ya que si bien algunos de ellos no son necesarios, otros sí lo son. Por ejemplo, en tareas de análisis de sentimiento, un signo de exclamación en un tweet puede expresar un énfasis en su sentimiento, ya que las personas tienden a aumentar el número de signos de exclamación cuando se trata de sentimientos fuertes. Por lo tanto, los carácteres especiales y de puntuación pueden conservarse o eliminarse (reemplazandolos por palabras vacías). Estas palabras con signos de puntuación y/o carácteres especiales, también pueden tratarse utilizando expresiones regulares.
+\item \textit{Eliminación de “stop words”}:  Los humanos al comunicarnos usamos palabras como “el”, “y” o “a” para que las oraciones tengan sentido. Sin embargo, estas palabras no tienen ningún significado y no son útiles para el análisis de datos. Las “stop words” se consideran palabras vacías y deshacerse de las mismas es un paso del pre-procesamiento que permite centrarse en las palabras que importan. Cada idioma posee su propia lista de palabras vacías que se pueden ajustar según el problema. 
+
+\end{enumerate}
+
 \cleardoublepage
 
 \subsubsection{Tokenización.}\label{tokenizacion}
-adyhgery
+
+Como explicamos previamente, los textos necesitan ser tratados previamente a ser convertidos en números y ser procesados por un modelo. Para lograr esto, luego de realizar las tareas de limpieza inicial detalladas en la sección anterior, se debe tokenizar (o particionar) los textos en pequeñas partes llamadas “tokens” y luego re-agrupar los mismos formando una lista de tokens. 
+
+De esta manera, la \textit{tokenización} consiste en dividir un texto en partes más pequeñas llamadas \textit{tokens}. Un token puede ser un párrafo del texto, una oración, una palabra o cada uno de los carácteres de nuestro texto. Generalmente se arman los tokens dividiendo al texto en palabras. En la Figura \ref{fig:Imagen_NLP_2} podemos observar una tokenización a nivel de palabras, mientras que en la Figura \ref{fig:Imagen_NLP_3} se realiza a nivel de carácteres. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/2.png}
+ \caption{Tokenización por palabras\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_2}
+\end{figure}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/3.png}
+ \caption{Tokenización por carácteres\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_3}
+\end{figure}
+
+Tokenizar las palabras nos permite encontrar similitudes entre las mismas: por ejemplo, detectar las palabras con las mismas raíces. Para encontrar estas similitudes podemos utilizar los métodos de stemming y lemmatization, los cuales se verán en la próxima sección.
+
+La lista de tokens que obtendremos luego de aplicar tokenización (y en caso de ser necesario stemming, lemmatization y N-grams) sobre todos los documentos de texto incluidos en nuestros datos, es el \textit{corpus tokenizado} que mencionamos previamente. Luego, al eliminar los tokens repetidos, podemos obtener nuestro \textit{vocabulario}, el cual será útil en tareas posteriores.
+
 \cleardoublepage
 
-\subsubsection{Stemming y Lemmatization.}\label{stem_y_lem}
-adyhgery
+\subsubsection{Stemming y lemmatization.}\label{stem_y_lem}
+
+Como mencionamos previamente, estas dos técnicas nos permiten encontrar similitudes entre las palabras, y por ejemplo, detectar las palabras con las mismas raíces.
+
+\begin{itemize}
+
+\item \textit{Stemming (derivación)}: Las reglas gramaticales a menudo exigen que se agreguen algunos sufijos a las palabras para que una oración tenga sentido; sin embargo, estos sufijos no son imperativos cuando se trata de comprender el significado de una palabra. Stemming es un paso del pre-procesamiento que elimina las partes innecesarias de una palabra manteniendo su \textit{raíz} (“\textit{root}” o también llamado “\textit{stem}” en inglés). Podemos ver un ejemplo de stemming en la Figura \ref{fig:Imagen_NLP_4}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/NLP/4.png}
+ \caption{Stemming\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_4}
+\end{figure}
+
+\item \textit{Lemmatization (lematización)}: Mientras que stemming elimina los sufijos y prefijos de una palabra y solo mantiene su raíz, lemmatization es un algoritmo que reemplaza una palabra por su forma más básica, también llamada “lema”. Un lema puede ser una forma infinitiva, un sustantivo, un adjetivo, etc., mientras que una raíz a menudo no significa nada: podemos ver por ejemplo en la Figura \ref{fig:Imagen_NLP_4} que el stem ‘troublemsom’ no tiene ningún significado. 
+
+Utilizar lemmatization es útil porque en algunos idiomas, las palabras con diferentes significados pueden tener la misma raíz, y utilizando stemming nos daría la misma raíz para todas las palabras, lo que supondría algo incorrecto. Por lo tanto, los lemas tienen como objetivo transmitir una idea con una palabra real en lugar de una raíz básica sin un significado definido, corrigiendo el problema de tener dos conceptos diferentes con la misma raíz. Por lo tanto, la lematización requiere un análisis morfológico de la palabra y la existencia de un diccionario detallado para que funcione el algoritmo, lo que hace que su implementación sea más compleja que utilizar stemming. Podemos ver un ejemplo de lemmatization en la Figura \ref{fig:Imagen_NLP_5}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/NLP/5.png}
+ \caption{Lemmatization\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_5}
+\end{figure}
+
+\end{itemize}
+
+
 \cleardoublepage
 
 \subsubsection{N-grams.}\label{ngrams}
-adyhgery
-\cleardoublepage
+
+A veces, asociar / juntar palabras puede cambiar el significado o traer información diferente. Por ejemplo, si estamos prediciendo el sentimiento de una oración, se esperaría que la palabra ``malo'' empujara la salida de un modelo hacia una etiqueta negativa. Sin embargo, ``no está mal'' haría lo contrario. Debido a esto, es posible que debamos considerar ``no está mal'' como una palabra única. 
+
+La construcción de nuevas ``palabras'' provenientes de la co-ocurrencia de palabras se llama ``n-grams'', donde ``n'' representa el número de palabras que nos gustaría considerar (en nuestro ejemplo ``no está mal'' es un ``3-grams''). Este procesamiento tiene como objetivo enriquecer el diccionario de palabras\cite{NLP_2}.
+\\
 
 \subsection{Obtención de representaciones vectoriales.}\label{rep_vect}
-adyhgery
+
+Una vez que nuestros datos están limpios y ya tenemos nuestro \textit{corpus tokenizado} (formado por tokens de palabras de nuestros textos), el siguiente paso es transformar estos datos \textit{textuales} en representaciones vectoriales \textit{numéricas} mediante \textbf{técnicas de vectorización}.
+
+Esta operación se lleva a cabo debido a que las computadoras y los algoritmos de machine learning no pueden entender ni aprender utilizando textos o palabras, ya que operan en un espacio de valores numéricos. Por lo tanto, para realizar tareas de ML sobre textos, necesitamos transformar nuestros documentos en representaciones vectoriales con valores numéricos. El objetivo es que la representación vectorial de nuestros documentos \textit{representen nuestro lenguaje de la mejor forma posible para que los modelos de ML usados posteriormente puedan aprender los patrones necesarios para entender dicho lenguaje}\cite{NLP_7}.
+
+Existen distintas técnicas de vectorización para lograr esto. A continuación se detallarán algunas de las más populares y utilizadas\cite{NLP_2}.
+
 \cleardoublepage
 
 \subsubsection{Bag of Words (BoW).}\label{bow}
-adyhgery
+
+\textit{Bag of Words (BoW)}, o también llamado ‘Count Vector’, es el método fundamental y más básico para obtener nuestras representaciones vectoriales de documentos. Suponiendo que tenemos $N$ documentos de texto, el modelo BoW permite representar cada uno de estos documentos como una bolsa, la cual contiene algunas palabras. Estas palabras se encuentran dentro de un \textit{diccionario} de palabras. De esta manera, BoW mediante un modelado basado en diccionarios, \textit{describe la frecuencia u ocurrencia de cada una de las palabras en los documentos}.
+
+El primer paso del método BoW consiste en crear dicho diccionario (al que representaremos como $D$), el cual contiene nuestro \textit{vocabulario}. Este vocabulario representa a todas las palabras (sin repetir) de nuestro conjunto de documentos de texto $d$.
+
+Luego, suponiendo que nuestro conjunto de documentos $d$  está formado por $n$ documentos, y queremos obtener una representación vectorial para cada una de los $d[N]$ documentos, lo que se hace es utilizar el diccionario $D$ obtenido del paso anterior para generar una matriz que cuente la cantidad de veces que aparece cada una de las palabra únicas de $d$ para cada uno de nuestros $d[N]$ documentos.
+
+En la Fórmula \ref{eq:ecuacion_1_NLP} podemos observar la representación matemática de nuestro set de documentos  $d$.
+
+\begin{equation}\label{eq:ecuacion_1_NLP}
+d = (w_i),      \text{    para  } i\in[1,n_d] 
+\end{equation}
+
+Donde:
+\begin{itemize}
+\item $w$ es un \textit{segmento} formado por una secuencia finita de \textit{caracteres}. Si nuestros \textit{caracteres} son letras, un \textit{segmento} podría ser una palabra.
+\item $d \in D$, siendo $D$ nuestro diccionario de secuencias finitas de segmentos $w$ sin repetir (o vocabulario). 
+\item $n_d$ es la longitud de $d$ (número total de palabras del set de documentos).
+\end{itemize}
+
+Resumidamente, $d$ es un conjunto de segmentos $w_i$, y $D$ está compuesto por un conjunto de segmentos $w_i$ sin repetir (nuestro vocabulario).
+
 \cleardoublepage
+
+Como mencionamos previamente, la representación vectorial mediante BoW indica la cantidad de veces que aparece cada palabra en nuestro corpus. Cada componente del vector indica esta cantidad. En el ejemplo de la Tabla \ref{fig:Imagen_NLP_6}, cada columna representa las palabras que componen nuestro vocabulario / diccionario $D$, y cada fila indica la representación vectorial mediante BoW para cada documento (sin realizar un pre-procesamiento).
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/6.png}
+ \caption{Representación mediante BoW. \\ Ejemplo obtenido de \cite{NLP_8}.}
+ \label{fig:Imagen_NLP_6}
+\end{figure}
+
+Usualmente se coloca un $1$ como componente de nuestros vectores cuando el conteo de la palabra es $>1$, representando de esta manera si una palabra en particular está presente o no. De esta manera, nos quedaría la representación BoW mediante un vector binario, como observamos en la Tabla \ref{fig:Imagen_NLP_7}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/7.png}
+ \caption{Representación binaria mediante BoW.\\ Ejemplo obtenido de \cite{NLP_8}.}
+ \label{fig:Imagen_NLP_7}
+\end{figure}
+
+Consideremos el siguiente ejemplo para explicar el funcionamiento detallado de BoW\cite{NLP_2}: 
+Siendo $d$ = [``He is a good boy'', ``She is a good girl'', ``Boys and girls are good''], nuestro objetivo es obtener una representación vectorial para cada uno de los $d[N]$ documentos\footnote{También podríamos considerar a $d$ como un único documento y $d[N]$ cada oración del documento; los cálculos se realizan de la misma manera solo que en lugar de obtener las representaciones vectoriales para cada documento ahora lo haríamos para cada oración.}.
+Luego del pre-procesamiento -que incluye conversión a minúsculas, lematización, limpieza de stopwords\footnote{En BoW la frecuencia de los stopwords, al estar muy presente en gran parte de los textos, serán mayores (aunque las mismas no tengan impacto en la representación del documento). Como mencionamos anteriormente, las stopword no son útiles para el análisis de texto por considerarse palabras vacías. Es por esto que generalmente las mismas se remueven en la etapa de pre-procesamiento previamente a crear el modelo de BoW.}, etc.-, $d$ se transforma en $d’$ = [``good boy'', ``good girl'', ``boy girl good'']. 
+
+Construimos nuestro diccionario $D$ con las palabras disponibles en $d’$: \hspace{3cm}
+$D$ = [``good'', ``boy'', ``girl''].
+
+Usando este diccionario y contando la ocurrencia de cada palabra del diccionario en cada documento $d’[i]$, obtendremos la representación mediante BoW para nuestro set de documentos $d’$ observada en la Tabla \ref{fig:Imagen_NLP_8}. En esta tabla cada fila representa el vector numérico obtenido mediante BoW para cada uno de los $d’[N]$ documentos.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.5\textwidth]{images/NLP/8.png}
+ \caption{Representación mediante BoW.\\ Ejemplo obtenido de \cite{NLP_2}.}
+ \label{fig:Imagen_NLP_8}
+\end{figure}
 
 \subsubsection{TF-IDF.}\label{tf_idf}
-adyhgery
-\cleardoublepage
+
+Las representaciones mediante BoW son muy sencillas de comprender, sin embargo sólo describen un documento de manera independiente, sin tener en cuenta el contexto de las palabras del corpus. Un mejor enfoque sería considerar la frecuencia relativa o rareza de las palabras / tokens en el documento frente a su frecuencia en los otros documentos. La idea central es que lo más probable es que el significado esté codificado en los términos más raros de un documento. Dicho de otra manera, en BoW las palabras que tienen mayor peso son las que aparecen en muchos documentos (sin embargo, debería ser lo opuesto). 
+
+\textit{TF (Term Frequency)} e \textit{IDF (Inverse Document Frequency)} solucionan este problema otorgando más peso a las palabras que aparecen en pocos documentos y menos peso a las palabras que aparecen en muchos documentos. La razón de esto es que una palabra que aparece en muchos documentos mayormente no es relevante (como por ejemplo las stop-words); en cambio palabras que aparecen en pocos documentos son más discriminantes y deberían tener mayor peso.  Por ejemplo, en un corpus tokenizado obtenido de un corpus de texto deportivo, los tokens como "córner", "penal" y "botines" aparecen con más frecuencia en documentos que tratan sobre fútbol, mientras que otros tokens que aparecen con frecuencia en todo el corpus tokenizado, como "correr", "puntuación” y “jugar” son menos importantes\cite{NLP_7}.
+
+Otra de las desventajas de BoW es su incapacidad de tener en cuenta qué palabras son más importantes para cada uno de nuestros documentos\cite{NLP_2}. Por ejemplo, viendo la Tabla \ref{fig:Imagen_NLP_8}, podemos observar que hay muchas palabras que tienen los mismos pesos (1 o 0): para $d’[1] = [1,1,0]$ observamos que las palabras “good” (1) y “boy” (1) tienen el mismo valor/peso (1). TF e IDF también permiten solucionar este problema: vemos la nueva representación de $d’[1]$ en la Tabla \ref{fig:Imagen_NLP_11}; de esta manera “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos.
+
+De esta manera, como mencionamos previamente, el modelo BoW puede ser mejorado añadiendo TF (Term Frequency) e IDF (Inverse Document Frequency). TF permite contar la cantidad de veces que aparece cada palabra/token en cada documento; mientras que la idea de IDF es darle a cada palabra/token un peso que sea inversamente proporcional a su frecuencia. Las palabras que aparecen en muchos documentos serán entonces menos importantes que las palabras que solo aparecen en unos pocos documentos\cite{apunte_uba}. Matemáticamente, podemos describir TF como en la Fórmula \ref{eq:ecuacion_2_NLP}, e IDF como en la Fórmula \ref{eq:ecuacion_3_NLP}.   
+
+\begin{equation}\label{eq:ecuacion_2_NLP}
+tf (w, d[i]) = \frac{\text{N° veces que la palabra $w$ aparece en el documento } d[i]} {{\text{Total de palabras en el documento } d[i]}}
+\end{equation}
+
+\begin{equation}\label{eq:ecuacion_3_NLP}
+idf(w) = \log{(\frac{N}{df(w)})}
+\end{equation}
+
+Donde $N$ es el número de documentos $d[i]$ presente en el conjunto de documentos $d$, y $df(w)$ es el número de documentos $d[i]$ en los que aparece la palabra $w$.
+
+Multiplicando $tf(w,d[i])$ e $idf(w)$ para cada palabra $w$ y cada documento $d[i]$, obtenemos una nueva matriz que tendrá en cuenta el contexto de las palabras en nuestro corpus, y permitirá saber mediante los pesos qué palabras son más importantes para cada uno de nuestros documentos.
+
+Siguiendo el ejemplo de BoW, en la Tabla \ref{fig:Imagen_NLP_9} obtendremos los cálculos de TF, mientras que en la Tabla \ref{fig:Imagen_NLP_10} obtendremos los cálculos de IDF.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/9.png}
+ \caption{Cálculos de TF para nuestro set de documentos $d$\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_9}
+\end{figure}
+
+Por ejemplo, los cálculos de TF para la palabra “boy” (tercer columna) y cada uno de nuestros documentos serían:
+
+\begin{center}
+tf(“boy”, “good boy”) = 1 / 2 = 0,5  \\
+tf(“boy”, “good girl”) = 0 / 2 = 0  \\
+tf(“boy”, “boy girl good”) = 1 / 3 = 0,33  \\
+\end{center}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/10.png}
+ \caption{Cálculos de IDF para nuestro set de documentos $d$\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_10}
+\end{figure}
+
+Por ejemplo, los cálculos de IDF para cada palabra $w$ (recordando que $d’$ = [“good boy”, “good girl”, “boy girl good”]) serían:
+
+\begin{center}
+idf(“good”) = log (3 / 3) = 0  \\
+idf(“boy”) = log (3 / 2) $\simeq$ 0.176  \\
+idf(“girl”) = log (3 / 2) $\simeq$ 0.176  \\
+\end{center}
+
+Por último, en la Tabla \ref{fig:Imagen_NLP_11} multiplicamos $tf (w,d[i])$ e $idf(w)$ para obtener nuestra Representación vectorial TF-IDF para cada uno de los $d’[N]$ documentos.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/11.png}
+ \caption{Representación mediante TF-IDF\cite{NLP_2}.}
+ \label{fig:Imagen_NLP_11}
+\end{figure}
+
+Matemáticamente, debido a la relación de la función logarítmica, la puntuación TF-IDF siempre estará entre 0 y 1; en ese sentido cuanto más cercana a 1 sea la puntuación TF-IDF de una palabra, más informativa será esa palabra para ese documento. Cuanto más cerca esté la puntuación de cero, menos informativa será esa palabra\cite{NLP_7}.
+
+Comparando los resultados obtenidos con la representación previa de BoW (Tabla \ref{fig:Imagen_NLP_8}), podemos observar que la palabra “good” que estaba representada en cada documento con un 1; ahora con TF-IDF está representada por 0s ya que “good” al estar presente en todos los documentos, se considera una palabra muy común y se le da menor importancia/peso.
+
+Además, observamos que para d’[1], comparando con la Tabla \ref{fig:Imagen_NLP_8}, en su representación con TF-IDF “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos (en BoW estaban representados ambos con 1). En d’[2] sucede lo mismo: la palabra “girl” tiene mayor relevancia que “good”.
 
 \subsubsection{Desventajas BoW \& TF-IDF.}\label{desv_bow_tfidf}
-adyhgery
+
+Las representaciones vectoriales obtenidas mediante BoW y TF-IDF tienen 2 principales desventajas\cite{NLP_26, NLP_2}: 
+\begin{itemize}
+\item \textbf{Son dispersas (sparse) y de alta dimensionalidad (high-dimensional)}. Que un vector sea \textit{disperso (sparse)} significa que los mismos están dispersamente distribuidos de información: sus valores son en gran mayoría 0s y minoría 1s o valores que representen información (como el puntaje de TF-IDF). En cuanto a la dimensionalidad, esta es igual al tamaño de nuestro vocabulario; de esta manera, como generalmente contamos con miles e incluso millones de palabras en nuestro vocabulario, entonces nuestro vector tendrá miles de columnas, lo cual hace de esta representación \textit{ineficiente} y dificulta el entrenamiento de los algoritmos de ML. 
+\item \textbf{Son discretas}. Esto quiere decir que tratan a las palabras (contenidas en cada posición del vector) como unidades atómicas de un solo valor, perdiendo así la habilidad de capturar relaciones entre palabras. TF-IDF, a diferencia de BoW, añade un peso IDF a las palabras, sin embargo tampoco existe una relación entre las mismas. Debido a esto, estas representaciones no permiten capturar la similitud entre palabras, siendo las mismas tratadas como índices de nuestro set de vocabulario. Dicho de otra forma, estas representaciones discretas no permiten entender el \textit{contexto} de las palabras utilizadas en los documentos de texto: no permiten detectar las diferencias \textit{semánticas}\footnote{En el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, la idea es identificar el significado apropiado por medio del contexto de la oración.} entre las palabras ni detectar \textit{sinónimos}. 
+\end{itemize}
+
 \cleardoublepage
 
 \subsubsection{Word embeddings.}\label{word_emb}
-adyhgery
-\cleardoublepage
+En la sección previa observamos dos principales desventajas con respecto a dichas representaciones básicas de texto. Para solventar estas limitaciones introduciremos una nueva forma de representar nuestros textos, también mediante vectores: \textbf{embeddings}. 
+
+En esta sección explicaremos en detalle qué son embeddings, cómo obtener dichos embeddings para representar a nuestras palabras (Word embeddings) y algunos conceptos que derivan de esta forma de representación: redes neuronales, one hot encoding, Word2vec, CBOW.
 
 \paragraph{Embeddings.}\label{embedd}
-adyhgery
+
+Los \textbf{embeddings} son una de las representaciones vectoriales más populares de texto y de palabras, los cuales son obtenidos mediante redes neuronales: ver sección \textit{\nameref{ann_teoria}}. Estas representaciones vectoriales son densas (dense) y de baja dimensionalidad (low-dimensional)\cite{NLP_26}. De esta manera, las dos limitaciones previas son solucionadas mediante las ventajas de los embeddings descritas a continuación:
+\begin{itemize}
+\item A diferencia de BoW y TF-IDF donde las representaciones son \textit{dispersas (sparse)} y \textit{de alta dimensionalidad (high-dimensional)}, como mencionamos anteriormente los embeddings son representaciones \textbf{densas (dense)} y generalmente \textbf{de menor dimensionalidad}. Que un vector sea denso significa que los mismos están densamente distribuidos de información: sus valores son en gran mayoría elementos distintos de 0, conteniendo mucha más información relevante que un vector disperso de igual dimensionalidad\cite{NLP_9}. Con respecto a la dimensionalidad, teniendo en cuenta que un embedding es un espacio representado en otro, el cual puede ser de mayor o menor cantidad de dimensiones que el espacio original, podemos decir que el espacio original de nuestros datos reales generalmente tiene una dimensionalidad muy grande, y mediante los embeddings  logramos obtener una representación de menor dimensionalidad (son más compactos)\cite{apunte_uba}. Todo esto hace que las tareas de ML utilizando estas representaciones sean más eficientes. 
+\item A diferencia de BoW y TF-IDF donde las representaciones son discretas y no permiten capturar las relaciones entre palabras, los embeddings utilizan un vector para representar a cada palabra o documento, \textbf{siendo capaces de capturar el contexto de una palabra en un documento, similitudes semánticas y sintácticas, relaciones entre palabras o documentos, sinónimos, etc.} 
+\end{itemize}
+
+Existen embeddings de palabras (\textit{Word embeddings}) como de documentos (\textit{Document embeddings})\cite{NLP_10}. En nuestro caso utilizaremos embeddings de palabras (\textit{Word embeddings}), ya que luego esto nos permitirá aplicar mediciones de similitud mediante WMD. 
+
+Resumiendo el concepto de Word Embeddings, podemos decir que es una técnica de NLP que nos permite asignar un vector a cada palabra. Este vector es obtenido mediante el entrenamiento de redes neuronales y permiten guardar información semántica, lo que permite que pueda ser asociado a otros vectores de palabras según distintos contextos gramaticales. De esta manera, palabras similares tendrán word embeddings similares, estando dichos vectores a distancias cercanas entre sí.
+
+Hay dos conceptos claves para entender el uso de los word embeddings:
+\begin{itemize}
+\item \textbf{Similitud distribucional}\cite{NLP_26}: es la idea de que el significado de una palabra puede ser entendida desde el contexto en donde la palabra aparece\footnote{La similitud distribucional también es llamada \textit{connotation}: el significado está definido por contexto; y es lo opuesto a \textit{denotation}, que es el significado literal de cualquier palabra.}. Por ejemplo, “NLP rocks”, el significado literal de la palabra “rocks” es “stones” (piedras), pero teniendo en cuenta el contexto, esta palabra es usada para referirnos a otra cosa: a algo bueno, de moda.  \textit{Los word embeddings permiten capturar las similitudes distribucionales entre palabras}.  De esta manera, si nos dan la palabra ‘USA’, palabras distribucionalmente similares podrían ser paises (como Canada, Germany, Argentina, etc.) o ciudades de USA. Y si nos dan la palabra ‘beautiful’, palabras que comparten una relación con esta palabra (por ej. sinónimos o antónimos) pueden ser consideradas palabras distribucionalmente similares. Dicho de otra forma, existen palabras que generalmente ocurren en contextos similares.
+\item \textbf{Hipótesis Distribucional}\cite{NLP_26}: En lingüística, esta hipótesis hace referencia a que las palabras que ocurren en contextos similares tienen similares significados. Por ejemplo, las palabras “dog” y “cat” ocurren en similares contextos. Por lo tanto, de acuerdo a esta hipótesis, debe existir una fuerte similitud entre los significados de esas dos palabras. \textbf{Las representaciones vectoriales mediante word embeddings se basan en esta hipótesis: de esta manera, si dos palabras ocurren en un contexto similar, sus correspondientes representaciones vectoriales estarán cerca entre sí}.  
+
+\end{itemize}
+
+Estos word embeddings, al ser vectores, son un elemento de un espacio vectorial (o también llamado “espacio de embedding”), teniendo una magnitud y una dirección. Como ejemplo, podemos observar en la Figura \ref{fig:Imagen_NLP_12} la conversión de 4 palabras en vectores (o word embeddings) de 2 dimensiones. Este es un ejemplo meramente visual, ya que en la práctica las palabras las transformamos en vectores de muchas más dimensiones (100 por ejemplo). 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/NLP/12.png}
+ \caption{ Ejemplo de embedding de 2 dimensiones \cite{NLP_28}.}
+ \label{fig:Imagen_NLP_12}
+\end{figure}
+
+En conclusión, al generar embeddings nuestras palabras con significados similares estarán colocadas cercas entre sí en este espacio de embedding. En cambio, si convertimos palabras en vectores que no almacenan ningún significado, no podemos llamar a esto embeddings. 
+
 \cleardoublepage
 
 \paragraph{Word2vec.}\label{word2vec}
-adyhgery
+
+En 2013, Miklov\cite{NLP_11} sugirió un modelo para obtener una representación vectorial numérica de las palabras basado en el entrenamiento de una red neuronal, conocido como “Word2vec”. Este modelo está basado en el concepto de \textit{similitud distribucional} explicado anteriormente, permitiendo considerar el contexto del cual se toman las palabras. De esta forma, Word2vec es capaz de capturar relaciones de analogías de palabras, como por ejemplo \textit{“King - Man + Woman = Queen”}.  Estas representaciones de palabras obtenidas mediante Word2vec son nuestros \textit{word embeddings}. En la Figura \ref{fig:Imagen_NLP_13} podemos observar un ejemplo de estos word embeddings luego de entrenar un modelo Word2vec.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/13.png}
+ \caption{Ejemplo de Word Embeddings (1)\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_13}
+\end{figure}
+
+Observamos que los valores van de 1.6 a -1.6. Los valores en rojo son los más positivos y en azul los más negativos. Vemos que tenemos varias palabras que pueden tener sus similitudes y diferencias. Por ejemplo, a simple vista podemos notar de los valores marcados en recuadros rojos (1,2,3,4,5) que los embeddings permiten codificar lo siguiente:
+\begin{itemize}
+\item Recuadro 1: Podemos ver que estos embeddings capturan muy bien la relación entre mujer, niña, niño y hombre (ya que tienen valores muy similares en ese recuadro). Podemos suponer\footnote{Vamos a hablar en estos casos de suposiciones, ya que este embedding de salida del modelo surge en base a las dimensiones que encontró el mismo mediante el entrenamiento de grandes cantidades de texto, y que nosotros no podemos comprender a simple vista.} que la segunda columna del recuadro codifica el género y la primera la edad, entonces la combinación de esas columnas nos dan esas representaciones para esas 4 palabras. 
+\item Recuadro 2: Vemos que la columna está activa en todas las palabras excepto en “water”. Esto podría significar que esta columna expresa si la palabra hace referencia a una persona (algo que el agua no tiene en común).
+\item Recuadro 3: Vemos que esa columna está siempre activa, ya que el modelo encontró que todas estas palabras tienen algo en común / son símiles de alguna forma (por ej. podría expresar que son sustantivos). 
+\item Recuadro 4: Vemos que en esta parte son muy parecidas las representaciones de las palabras rey y reina, quizás el modelo esté codificando allí algún significado de nobleza o de piezas de ajedrez o de tamaños de camas (esto depende con qué corpus se haya entrenado el modelo). 
+\item Recuadro 5: Vemos que en esta parte son muy parecidas las representaciones de las palabras niño y niña, quizás el modelo esté codificando allí algún significado de juventud. 
+\end{itemize}
+En conclusión esto es lo que buscamos, \textit{obtener embeddings que permitan codificar los significados de las palabras}.
+
+Además, al ser los embeddings vectores numéricos, esto nos permite operar entre ellos mediante álgebra entre vectores: ver Figura \ref{fig:Imagen_NLP_14}. Por ejemplo si restamos “king” y “man” y lo sumamos a “woman” nos da un vector muy similar al de “queen”. \textit{Esta es una gran utilidad de los embeddings, nos permiten formar relaciones entre palabras y que nuestro modelo de alguna forma -que nosotros no podemos explicar- entienda estas relaciones}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/14.png}
+ \caption{Ejemplo de Word Embeddings (2)\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_14}
+\end{figure}
+
+Además de Word2vec existen otros modelos para obtener dichos word embeddings, como GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove/}} y Fasttext\footnote{\url{https://fasttext.cc/}}. En nuestra implementación utilizamos Word2vec en lugar de Glove o Fasttext ya que, según estudios\cite{NLP_12, NLP_13} la diferencia entre los resultados obtenidos mediante estas tres técnicas son estadísticamente similares y todas demuestran ser métodos competitivos en cuanto a performance. Los resultados utilizando estos tres métodos de word embeddings dependen de los datos de entrenamiento que se utilicen y para el dominio y tarea que se necesite. La razón por la cual se optó por utilizar Word2vec es debido al futuro uso de WMD, ya que en el paper original de WMD\cite{wmd_paper} se utilizan embeddings obtenidos mediante Word2vec, decidiendo de esta manera utilizar la misma base en nuestra implementación.
+
 \cleardoublepage
 
 \paragraph{¿Cómo obtener nuestros Word embeddings?}\label{obt_word_emb}
-adyhgery
+
+A continuación, explicaremos cómo trabaja el modelo ‘Word2vec’ para obtener los word embeddings y de qué maneras podemos hacerlo\cite{NLP_26}.
+
+Como mencionamos previamente, para “deducir” el significado de la palabra, Word2vec utiliza los conceptos de \textbf{similitudes distribucionales} e \textbf{Hipótesis Distribucional}. Es decir, \textit{deduce el significado del contexto: palabras que aparecen como “vecinas” en el texto. Entonces, el significado de una palabra viene dado por las palabras que aparecen con frecuencia cerca de ella: si dos palabras diferentes ocurren en contextos similares, es muy probable que sus significados también sean similares}.  De esta manera podemos interpretar el resultado de una \textit{palabra central} a partir de las palabras que están alrededor de ella (\textit{palabras de contexto}), o dicho de otra forma “inferir por contexto qué quiere decir esa palabra central”. 
+
+Word2vec materializa esto entrenando una red neuronal y obteniendo los embeddings para cada una de las palabras del corpus de manera que el vector que representa a la palabra en el espacio vectorial / de embedding pueda capturar lo mejor posible el significado de la misma: las palabras con significados similares tienden a agruparse, y las palabras con significados muy diferentes están lejos unas de otras en dicho espacio vectorial / de embedding.
+
+Resumidamente, Word2vec utiliza una \textit{red neuronal de 2 capas} que toma un largo corpus de texto como input, y “aprende” a representar las palabras en vectores de igual tamaño en función de los contextos en los que aparecen en el corpus. 
+\\
+
+Existen 2 manera de obtener nuestros word embeddings\cite{NLP_26}: 
+\begin{enumerate}
+
+\item \textit{Word embeddings pre-entrenados}: Entrenar nuestros propios word embeddings es un proceso costoso en cuanto a tiempo y procesamiento. Para no realizar esta tarea costosa, podemos usar word embeddings pre-entrenados. ¿Qué son estos word embeddings pre-entrenados?: alguien realizó el duro trabajo de entrenar word embeddings sobre, generalmente, un largo corpus de texto (como Wikipedia, artículos de noticias, páginas web, etc.). Estos embeddings pueden ser descargados y podemos utilizarlos para obtener los vectores de las palabras que necesitemos. Los embeddings pueden ser pensados como una larga colección de pares clave-valor, donde la clave es la palabra en el vocabulario y el valor es el correspondiente vector de la palabra. Algunos de los más populares word embeddings pre-entrenados son Word2vec de Google\footnote{\url{https://code.google.com/archive/p/word2vec/} - Sitio Web consultado el 5 de abril de 2022}, GloVe de Stanford\footnote{\url{https://nlp.stanford.edu/projects/glove/} - Sitio Web consultado el 5 de abril de 2022} y fasttext embeddings de Facebook\footnote{\url{https://fasttext.cc/docs/en/english-vectors.html} - Sitio Web consultado el 5 de abril de 2022}. Estos embeddings están disponibles en varias dimensiones (25,50,100,200,300,600, etc.).
+
 \cleardoublepage
 
+\item \textit{Entrenando nuestros propios word embeddings}: para entrenar y obtener nuestros propios word embeddings, Word2vec nos ofrece 2 arquitecturas disponibles -las cuales fueron propuestas en el paper original de Word2vec\cite{NLP_11}-:
+\begin{itemize}
+\item \textit{Continuous bag of words (CBOW)}.
+\item \textit{SkipGram}.
+\end{itemize}
+
+\end{enumerate}
+
+En nuestra implementación no utilizamos word embeddings pre-entrenados ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT).
+\\
+
 \paragraph{CBOW vs Skipgram.}\label{cbow_vs_skip}
-adyhgery
+
+Como mencionamos previamente, para entrenar nuestros propios word embeddings tenemos 2 posibilidades: \textit{CBOW} o \textit{Skipgram}. A continuación realizaremos una comparación entre estas dos arquitecturas y elegiremos una de ellas para nuestra implementación.
+
+Tanto CBOW como SkipGram aplican el concepto de semántica distribucional -las palabras obtienen su embedding cuando miramos a qué otras palabras tienden a aparecer junto a ellas- pero visto de 2 formas distintas, y armando el dataset de entrenamiento también de distinta manera. Para analizar una comparación vemos la Figura \ref{fig:Imagen_NLP_15}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/15.png}
+ \caption{Skipgram y CBOW\cite{NLP_27}.}
+ \label{fig:Imagen_NLP_15}
+\end{figure}
+
+La diferencia principal entre CBOW y SkipGram es que en CBOW el objetivo del entrenamiento para obtener nuestros word embeddings es \textit{predecir una palabra target de un texto en función de las palabras de contexto} (palabras vecinas a la palabra target), mientras que en SkipGram el objetivo del entrenamiento es \textit{predecir las palabras de contexto en base a la palabra target}. Estas diferencias podemos observarlas en la Figura \ref{fig:Imagen_NLP_15}.
+
 \cleardoublepage
 
 \paragraph{One hot encoding.}\label{one_hot_enc}
@@ -1633,7 +1996,7 @@ El procedimiento para la Limpieza de los Curriculum Vitae y las descripciones de
 \item Eliminamos signos de puntuación y caracterés especiales (incluyendo números).
 \item Eliminamos stop words.
 \item Eliminamos common words no relevantes para nuestros análisis.
-\item Aplicamos Lematización y Tokenización.
+\item Aplicamos lematización y Tokenización.
 \item Eliminamos repetidos.
 \item Obtenemos y usamos bi-gramas.
 \end{enumerate}
@@ -1863,18 +2226,11 @@ Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:
 
 \cleardoublepage
 
-\subsection{Conclusiones.}
-\colorbox{red}{FALTA}
-
-\cleardoublepage
-
 \subsection{Caso de Uso.}
 \colorbox{red}{FALTA}
-
 \cleardoublepage
 
 \subsection{Limitaciones del sistema.}
-
 Las limitaciones del sistema son las siguientes:
 \begin{itemize}
 \item Solo acepta curriculums en formato PDF.
@@ -1884,9 +2240,10 @@ Las limitaciones del sistema son las siguientes:
 
 \cleardoublepage
 
-\section{Próximos pasos.}  
-\colorbox{red}{FALTA - acá poner mejoras}
+\section{Conclusiones.}
+\colorbox{red}{FALTA}
 
+Poner acá tambien los próximos pasos / mejoras.
 \cleardoublepage
 
 \section{Anexos.}
@@ -2322,6 +2679,9 @@ Aston Zhang, Zachary C. Lipton, Mu Li, \& Alexander J. Smola. (2020). Libro Onli
 
 \bibitem{NLP_28}
 BACUDA Project, \& CCF-Korea. (2022). Curso Online \textit{Data Analytics – Advanced (HS Recommendation)}. Sitio Web consultado el 15 de Junio de 2022: \url{https://clikc.wcoomd.org/course/view.php?id=1652}.
+
+\bibitem{datitos_nlp}
+Luciano Robino, Pablo Marinozi, \& Matías Battocchia. (2021). Curso Online de Aprendizaje Profundo. Sitio Web consultado el 15 de Abril de 2022: \url{https://datitos.github.io/curso-aprendizaje-profundo/2021/}.
 
 \bibitem{WMD_2}
 Michel Marie Deza, \& Elena Deza. (2009). Libro \textit{Encyclopedia of Distances}. Springer. 1. (pp. 1-583).
