@@ -1593,7 +1593,6 @@ Utilizar lemmatization es útil porque en algunos idiomas, las palabras con dife
 
 \end{itemize}
 
-
 \cleardoublepage
 
 \subsubsection{N-grams.}\label{ngrams}
@@ -1866,26 +1865,310 @@ Tanto CBOW como SkipGram aplican el concepto de semántica distribucional -las p
 
 La diferencia principal entre CBOW y SkipGram es que en CBOW el objetivo del entrenamiento para obtener nuestros word embeddings es \textit{predecir una palabra target de un texto en función de las palabras de contexto} (palabras vecinas a la palabra target), mientras que en SkipGram el objetivo del entrenamiento es \textit{predecir las palabras de contexto en base a la palabra target}. Estas diferencias podemos observarlas en la Figura \ref{fig:Imagen_NLP_15}.
 
-\cleardoublepage
+A continuación realizaremos una comparación entre las fórmulas matemáticas de Skipgram y CBOW. 
+\begin{itemize}
+
+\item En \textbf{Skipgram} se calcula cuál es la probabilidad de las palabras de contexto (las que tratamos de adivinar / predecir) dada la palabra central. En el ejemplo de la  Figura \ref{fig:Imagen_NLP_15} calcula la probabilidad de las palabras “the”, “man”, “his” y “son”, dado que la palabra central es “loves”. Como vemos, esto se traduce en la multiplicación de cada una de las probabilidades condicionales individuales: “probabilidad de la palabra de contexto “the” dada la palabra central “loves” x la probabilidad de “man” dado “loves” x la probabilidad de “his” dado “loves” x la probabilidad de “son” dado “loves”. Esto termina siendo \textit{dos productorias}: ver Fórmula \ref{eq:ecuacion_4_NLP}. 
+
+\begin{equation}\label{eq:ecuacion_4_NLP}
+\prod_{t=1}^{T} \; \prod_{-m \leq j \leq m, j \neq 0}  P(w^{(t+j)} | w^{(t)}) \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Cálculo de probabilidades mediante SkipGram.}
+\end{center}
+
+Teniendo en cuenta que:
+\begin{itemize}
+\item \textit{La primer productoria} ($ \prod_{-m \leq j \leq m, j \neq 0} $) es aplicada sobre la “ventana de contexto” \footnote{Ventana de contexto (o Context Window, “C”) es una ventana de tamaño $m$ que podemos colocar en cualquier parte de nuestro corpus de texto, y define qué tan largo o corto tomamos el contexto (palabras de contexto) para realizar el entrenamiento de nuestro modelo y obtener nuestra representación vectorial\cite{NLP_26}. La cantidad de palabras a usar como tamaño de ventana es un \textit{hiper-parámetro} de nuestro modelo que se define a partir de nuestros datos, y que discutiremos más adelante en la sección \textit{\nameref{hiper_par_word2vec}} }: es decir, $j$ va desde un $-m$ hasta un $+m$, donde ese m es el tamaño de nuestra ventana (en este ejemplo es 2, por lo que tomamos 2 palabras a la izquierda y otras 2 a la derecha de la palabra central, obteniendo como palabras de contexto “the”, “man”, “his”, “son”). Y lo que se calcula en $P(w^{(t+j)} | w^{(t)})$ es la probabilidad de la palabra de contexto $w^{(t+j)}$ dada la palabra central $w^{(t)}$. De esta manera multiplicamos todas esas probabilidades y obtenemos la probabilidad de 1 palabra. 
+\item Luego, en la \textit{segunda productoria} ($\prod_{t=1}^{T}$) multiplicamos por todas las otras palabras de nuestro corpus, ya que $T$=palabras de nuestro corpus.  
+
+\end{itemize}
+
+\item En cambio, en \textbf{CBOW} es al revés: se calcula cuál es la probabilidad de la palabra central (la que tratamos de adivinar / predecir) dado que tenemos todas las palabras de contexto. En el ejemplo de la  Figura \ref{fig:Imagen_NLP_15}  calcula la probabilidad que la central sea “loves” dadas las palabras de contexto “the”, “man”, “his”, “son”. En este caso esto se traduce a \textit{una sola productoria} (la que itera sobre las palabras de nuestro corpus de texto T): Fórmula \ref{eq:ecuacion_8_NLP}.
+
+\begin{equation}\label{eq:ecuacion_8_NLP}
+\prod_{t=1}^{T} P(w^{(t)} | w^{(t-m)}, …, w^{(t-1)}, w^{(t+1)}, …, w^{(t+m)} )  \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Cálculo de probabilidades mediante CBOW.}
+\end{center}
+
+
+\end{itemize}
+
+Entonces, ¿qué nos conviene elegir: CBOW o Skipgram?. Para responder a esto detallaremos las conclusiones obtenidas del paper original de Word2vec\cite{NLP_11}:
+\begin{itemize}
+\item \textit{Skipgram} necesita menor cantidad de datos y se encontró que representa mejor las palabras raras: debido a que Skipgram por cada palabra genera más ejemplos, las palabras que aparecen pocas veces (“raras” o infrecuentes) están mejor representadas en el dataset. 
+\item \textit{CBOW} funciona más rápido (ya que por lo que vimos anteriormente hace menos cuentas, solo una productoria) y tiene una mejor representación para palabras más frecuentes.
+\end{itemize}
+
+Es por esto que para nuestra implementación \textbf{se optó por utilizar SkipGram}; debido a que nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, como mencionamos previamente, otra punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
+
+El funcionamiento del modelo SkipGram para obtener nuestros word embeddings está detallado en la sección \textit{\nameref{obt_skip}}. Previamente a esto, explicaremos el concepto de vectores de tipo \textit{one hot encoding}, concepto necesario para entender el modelo Skipgram.
+\\
 
 \paragraph{One hot encoding.}\label{one_hot_enc}
-adyhgery
+
+\textit{One hot encoding} es una forma de representación vectorial que consiste en representar a cada palabra como un vector único con un único elemento (o columna) siendo 1 y el resto de los elementos (o columnas) = 0. El producto interno de dos vectores de palabras diferentes siempre es 0, es decir, cada palabra siempre es \textit{ortogonal} a todas las demás palabras\cite{NLP_9}.
+
+Al igual que BoW y TF-IDF,  one hot encoding también es una representación dispersa, de alta dimensionalidad y discreta: presentando todas las desventajas ya previamente detalladas en la sección \textit{\nameref{desv_bow_tfidf}}. Algo que se diferencia de BoW y TF-IDF es que estas son representaciones vectoriales para cada oración / documento de texto; en cambio one hot encoding, al igual que word embeddings, son representaciones vectoriales para cada \textit{palabra} de la oración / documento de texto. 
+
+En la Figura \ref{fig:Imagen_NLP_16} podemos observar la representación de 4 palabras como vectores one hot encoding. Mientras que en la Figura \ref{fig:Imagen_NLP_17}, considerando un tamaño de vocabulario de 1000, observamos la desventaja de ser una representación \textit{dispersa} y de \textit{alta dimensionalidad}: este vector tendrá 999 ceros y 1 solo uno.
+
+\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/NLP/16.png}
+\caption{One Hot Encoding (1)\cite{NLP_28}.}
+\label{fig:Imagen_NLP_16}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/NLP/17.png}
+\caption{One Hot Encoding (2)\cite{NLP_28}.}
+\label{fig:Imagen_NLP_17}
+\end{minipage}
+\end{figure}
+
+En la Figura \ref{fig:Imagen_NLP_18} se visualiza la otra desventaja de estos vectores: ser una representación \textit{discreta}. De esta manera el vector que representa a la palabra no representa su significado ni permite capturar las relaciones entre las palabras, únicamente expresa su ubicación en un espacio N-dimensional (donde N es el tamaño del vocabulario). Como tenemos un vector para cada palabra, donde todos los vectores son todos distintos entre sí, cualquier par de vectores one hot es \textit{ortogonal} (porque tienen un 1 en una dimensión distinta entre sí), por lo tanto no hay una noción natural de similitudes entre ellos: la palabra ‘Roma’ y ‘París’ son tan diferentes y tan parecidas como la palabra ‘Roma’ y ‘Baño’ (todas las palabras son igual de diferentes). 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/18.png}
+ \caption{One Hot Encoding (3)\cite{NLP_28}.}
+ \label{fig:Imagen_NLP_18}
+\end{figure}
+
+Sin embargo, debido a que one hot encoding permite representar a nuestras palabras del vocabulario mediante vectores, aunque muy vagamente -ya que no permiten capturar las relaciones entre palabras-, estos vectores son utilizados para alimentar a nuestro modelo Word2vec (en la capa de entrada de la red neuronal) para obtener al final -luego del entrenamiento- nuestras representaciones densas (Word Embeddings).
+
 \cleardoublepage
 
 \paragraph{Obteniendo nuestros Word Embeddings con Skipgram.}\label{obt_skip}
-adyhgery
+
+Ya habiendo explicado previamente los conceptos básicos de redes neuronales y vectores de tipo one hot encoding, ahora explicaremos el modelo Skipgram, el cual utilizamos para entrenar y obtener nuestros Word Embeddings. Para esto, tomaremos como ejemplo la oración “The quick brown fox jumps over the lazy dog” como nuestro corpus de texto de ejemplo.
+
+Como mencionamos previamente, el objetivo de Word2vec utilizando Skipgram es predecir cuál es la probabilidad que aparezcan todas las palabras de contexto a partir de la palabra central / dado que se conoce esta palabra central. Dicho de otra manera, la tarea principal en Skipgram consiste en construir un \textit{modelo de lenguaje} que correctamente prediga las palabras de contexto dada la palabra central. 
+
+Un modelo de lenguaje es un modelo estadístico que trata de otorgar una distribución de probabilidad sobre secuencias de palabras; permitiendo así, por ejemplo, predecir cuál es la siguiente palabra. Dada una oración de $m$ palabras, asigna una probabilidad $Pr(w_1, w_2, …, w_m)$ a la oración completa. El objetivo del modelo de lenguaje es asignar probabilidades de forma que otorgue una alta probabilidad a oraciones “buenas” y bajas probabilidades a oraciones “malas”. Con “buenas” nos referimos a oraciones que son semántica o sintácticamente correctas; y por “malas” nos referimos a oraciones que son incorrectas semántica o sintácticamente o ambas\footnote{En el análisis sintáctico se analiza la sintaxis, que incluye la acción de dividir una oración en cada uno de sus componentes. En cambio, en el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, el objetivo en este caso es identificar el significado apropiado por medio del contexto de la oración.}. De esta manera, para la oración “The cat jumped over the dog” tratará de asignar una probabilidad cercana a 1.0, mientras que para la oración “jumped over the the cat dog” asignará una probabilidad cercana a 0.0\cite{NLP_26}. Este cálculo de probabilidades para Skipgram es el descrito anteriormente en la Fórmula \ref{eq:ecuacion_4_NLP}.
+
+Algo a destacar de los modelos de lenguajes es que tienen una gran \textit{ventaja} sobre la mayoría de los otros modelos de aprendizaje automático. Esa ventaja es que tenemos un montón de datos de texto para entrenarlos: los podemos obtener de libros, artículos, contenido de millones de páginas web, etc. En otros modelos de aprendizaje automático, como en modelos de detección de imágenes, no tenemos “naturalmente” los datos, ya que generalmente necesitamos datos recopilados especialmente y que tienen un preprocesamiento de etiquetado manual. 
+
+Siguiendo con nuestro ejemplo, para nuestro corpus “The quick brown fox jumps over the lazy dog” utilizaremos un tamaño de ventana de contexto = 2.  Nuestro primer objetivo es armar un \textit{dataset} a partir del corpus para alimentar y entrenar al modelo, ya que como mencionamos anteriormente, el significado de las palabras vienen a partir de las \textit{similitudes distribucionales}. Para esto realizamos una serie de iteraciones: en la Figura \ref{fig:Imagen_NLP_19} podemos observar una iteración específica dentro del modelo Skipgram, donde a partir de la palabra central “jumped” (en azul), se intenta predecir/adivinar cada una de las palabras de contexto (en este caso “brown”, “fox”, “over” y “the”).  Esto únicamente constituye un paso, Skipgram repite esto para cada palabra de nuestro corpus siendo la palabra central. Para esto \textit{se desplaza la ventana de contexto}: vemos en la Figura \ref{fig:Imagen_NLP_20}  que para la siguiente iteración nos movemos una palabra a la derecha, cambiando de esta manera nuestras palabras de contexto y nuestra palabra central (la cual pasa a ser “over”). Esta ventana se desplazará hasta recorrer todo el corpus de texto.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/19.png}
+ \caption{Skipgram: dada la palabra central se predicen las palabras de contexto.}
+ \label{fig:Imagen_NLP_19}
+\end{figure}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/20.png}
+ \caption{Skipgram: próxima iteración.}
+ \label{fig:Imagen_NLP_20}
+\end{figure}
+
+De esta manera se obtiene el \textit{dataset} que será utilizado para entrenar Skipgram y obtener al final del entrenamiento nuestros embeddings. Explicado de una forma más general, podemos decir que para obtener nuestro dataset corremos una \textit{ventana deslizante de contexto de tamaño $C$} sobre nuestro corpus de texto para obtener un set de $2C+1$ palabras que tendremos en consideración en cada paso. La palabra central en nuestra ventana es $X$, y las $C$ palabras a cada lado de la palabra central son $Y$. Esto nos da $2C$ puntos de datos. Un único punto de datos consiste en un par \textit{(índice de la palabra central, índice de la palabra target o de contexto)}. Luego deslizamos la ventana 1 palabra a la derecha del corpus y repetimos el proceso. De esta manera, deslizamos la ventana sobre todo nuestro corpus de texto para crear nuestro \textit{dataset de entrenamiento}: Figura \ref{fig:Imagen_NLP_21}. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/21.png}
+ \caption{Preparando nuestro dataset para Skipgram (con $C$ = 2)\cite{NLP_26}.}
+ \label{fig:Imagen_NLP_21}
+\end{figure}
+
+Como vemos en la imagen anterior, exceptuando los inicios y finales de nuestros corpus (donde las ventanas deslizantes no llegan a estar completas), podemos observar que dada una palabra central, la misma en el dataset va a aparecer $2xC$ veces: por ejemplo, para la tercer iteración, brown aparecerá en el dataset $2x2=4$ veces. Es por esto que con Skipgram se representan mejor las palabras infrecuentes / raras a comparación de CBOW: las palabras que aparecen pocas veces, en el dataset aparecen muchas veces.
+
+En este dataset (Figura \ref{fig:Imagen_NLP_21}) la primer palabra de nuestro par (la palabra central) será tratada como la palabra de entrada a la red, y la segunda palabra de nuestro par (palabra de contexto) será tratada como la salida o posible resultado. Vemos que esto al final es una tarea de \textit{clasificación}: dado que se sabe cual es esta palabra (input word) se debe predecir cuál palabra de contexto le sigue. de todas estas palabras de mi diccionario es la que sigue. 
+
+Por último, algo que puede generar curiosidad es: ¿qué sucede en el entrenamiento con las palabras que aparecen más de una vez en nuestro Corpus? Y ¿qué sucede con las palabras polisémicas\footnote{Palabras que tienen más de un significado.}?. Estas preguntas son respondidas en el Anexo: ver sección \textit{\nameref{anexo_polisem}}.
+
 \cleardoublepage
 
 \paragraph{Arquitectura del modelo Skipgram.}\label{skipgram}
-adyhgery
+
+En la Figura \ref{fig:Imagen_NLP_22} podemos observar: a la izquierda, la red neuronal de 2 capas utilizada para entrenar a nuestro modelo SkipGram, mientras que a la derecha, un “resumen” compactado de la misma utilizando el ejemplo de la iteración de la Figura \ref{fig:Imagen_NLP_19}.  Observamos que nuestra arquitectura Skipgram tiene:
+\begin{itemize}
+\item Un vector de capa de entrada de $V$ dimensiones -siendo $V$ el tamaño de nuestro vocabulario-.
+\item Un vector de capa oculta de $N$ dimensiones -siendo $N$ el tamaño (dimensión) del embedding (de la matriz $W$)-. 
+\item Un vector de salida también de $V$ dimensiones. 
+\end{itemize}
+
+Además, cabe destacar que la capa oculta \textit{no posee una función de activación} y en la capa de salida se usa la \textit{función softmax}. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/22.png}
+ \caption{Arquitectura básica SkipGram\cite{NLP_26}.}
+ \label{fig:Imagen_NLP_22}
+\end{figure}
+
+En la Figura \ref{fig:Imagen_NLP_23} podemos observar en mayor detalle la arquitectura de SkipGram. En este ejemplo se considera un tamaño de vocabulario = 6 ($V$), un tamaño de embedding = 3 ($N$) y un tamaño de ventana = 1 ($C$). Como $C=1$, tomaremos como palabras de contexto 1 palabra de cada lado de la palabra central.
+
+\begin{figure}[H]  
+\centering
+\noindent\makebox[\textwidth]{%
+\includegraphics[width=1.2\textwidth]{images/NLP/23.png}}
+\caption{Arquitectura Skipgram con $V=8$, $N=3$, $C=1$.}
+\label{fig:Imagen_NLP_23}
+\end{figure}
+
+Debido a que $C=1$, observamos 2 vectores de salida -\textit{y pred}- e -\textit{y pred softmax}-. Sin embargo esto es simplemente para una mejor visualización, ya que la salida realmente para cada iteración es un único vector formada por 8 posiciones (o neuronas) debido a que nuestro modelo entrena con un \textit{par} de palabras: primero $(central1, contexto1)$ y luego $(central1, contexto2)$ -considerando $C=1$-. 
+
+El proceso de entrenamiento de esta red neuronal se explicará en detalle en la sección \textit{\nameref{ent_costo_softmax}}. Lo que hay que tener en consideración, es que al final del mismo, \textit{nuestro objetivo no es obtener la salida de la red; nuestro objetivo es extraer $W$, la cual será nuestra matriz de embedding que utilizaremos para representar los textos}. Por esta razón se considera que mediante Word2vec estamos realizando una “\textit{tarea falsa}”, ya que realmente no estamos interesados en la predicción del modelo para la tarea en que fue entrenada, sino el subproducto (nuestros word embeddings) del modelo.
+
 \cleardoublepage
 
 \paragraph{Entrenamiento y función de costo con Softmax.}\label{ent_costo_softmax}
-adyhgery
+
+Como mencionamos previamente, la capa oculta \textit{no posee una función de activación} y en la capa de salida se usa la \textit{función softmax}. Además, las palabras que ingresan a la capa de entrada a lo largo de cada iteración de entrenamiento deben estar representadas en formato one hot encoding (ver sección \textit{\nameref{one_hot_enc}}).
+
+Resumidamente, el entrenamiento de nuestro modelo Word2vec mediante la arquitectura Skipgram consiste en el ingreso de un par de palabras $(central, contexto)$, donde la palabra central será puesta en la capa de entrada y la de contexto funcionará como target en la capa de salida. Luego mediante \textit{forward propagation} se obtiene el valor de cada neurona de la capa de salida utilizando la función softmax. Este procedimiento anterior se repite hasta que todas las palabras de nuestro corpus hayan actuado como palabra central e ingresado a la red como un par $(central, contexto)$.
+Al tener todas las salidas de cada una de las combinaciones palabra central y contexto, lo que se hace es comparar estas salidas predichas con las salidas reales correspondientes de la palabra de contexto / target, y utilizar \textit{back propagation} para actualizar los parámetros de nuestro modelo (las matrices $W$ y $W’$) minimizando nuestra función de costo $J$. Este procedimiento que incluye forward propagation y back propagation se realizan $epoch$ veces. 
+
+A continuación, describiremos en detalle este ciclo iterativo de procesos del entrenamiento. Como se trata de un modelo de red neuronal, este proceso general fue explicado anteriormente en la sección \textit{\nameref{entren_ann}}, solo que ahora adaptaremos la explicación para Skipgram. Al final de este ciclo de entrenamiento el objetivo es \textit{extraer la matriz $W$ (nuestra matriz de Word Embeddings)}.
+
+El ciclo de entrenamiento utilizando Skipgram consiste en las siguientes fases:
+\begin{enumerate}
+
+\item \textbf{Inicialización aleatoria} por única vez de las matrices de pesos ($W input$ y $W output$ en nuestro caso), los cuales son los parámetros ($\theta$) de nuestro modelo de red neuronal.  
+
+\item \textbf{Forward propagation}. En este proceso se realizan los cálculos necesarios para obtener nuestras salidas -\textit{y pred softmax}-. Vamos a dividirlo en dos sub-pasos:
+
+\begin{itemize}
+
+\item 2.1. \textit{Forward propagation (capa de entrada a capa oculta)}: En este paso se calcula el valor de cada neurona de la capa oculta. Para esto se utiliza la palabra central de entrada (la cual está codificada en formato one hot encoding) en conjunto con su fila correspondiente de la matriz de embedding $W$ -de tamaño $V x N$- (la cual representa los pesos de entrada de nuestra red). Como el vector de entrada únicamente es 1 para la palabra en cuestión (o dicho de otra forma, por cada iteración hay únicamente una neurona activa en la capa de entrada), entonces los valores de las neuronas de la capa oculta son directamente los valores de los pesos que corresponden a esa única neurona de la capa de entrada activa: por ejemplo, considerando que tenemos 3 neuronas en la capa oculta ($N=3$) y que nuestro vector de entrada es de 8 ($V=8$), nuestra primer entrada sería $[1,0,0,0,0,0,0,0]$, por lo que el valor de la primer neurona de la capa oculta ($h1$) será de $1 x w11$, $h2 = w12$ y $h3 = w13$.
+
+\item 2.2. \textit{Forward propagation (capa oculta a capa de salida)}: En este paso se calcula el valor de cada neurona de la capa de salida luego de pasar por la función de salida softmax (vector \textit{y pred softmax}).  Debido a que la capa oculta no tiene función de activación, entonces los valores calculados en el paso 2.1 pasan directamente a la capa de salida. De esta manera, los valores de las neuronas de la capa de salida se calculan multiplicando el vector $H$ que nos dió anteriormente con otra matriz $W’$ -de tamaño $N x V$-. Esto nos dará un vector \textit{y pred} de tamaño $V$, el cual alimentará a una función softmax para obtener una distribución de probabilidades sobre el espacio de nuestro vocabulario (-\textit{y pred softmax}-). 
+\\
+
+Para cada una de las combinaciones entre palabras centrales y de contexto se realizan los pasos 2.1 y 2.2 hasta que todas las palabras de nuestro corpus hayan actuado como palabra central, obteniendo al final todas las salidas -\textit{y pred softmax}- de cada una de las combinaciones palabra central y contexto. 
+
+\end{itemize}
+
+\item \textbf{Cálculo de función de costo}:  Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras $(central, contexto)$, estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo (loss function) $J(\theta)$}: Fórmula \ref{eq:ecuacion_11_NLP} que veremos más adelante. Esta función de costo tiene en cuenta todas las palabras de nuestro texto $T$, y toma todos los pares correspondientes de palabras $(central, contexto)$ dependiendo de nuestra ventana de contexto de tamaño $m$.
+
+\item \textbf{Backpropagation}: Se aplica este proceso utilizando el algoritmo de optimización \textit{descenso del gradiente} para poder ajustar / modificar las matrices $W input$ y $W output$  (que juntos forman $\theta$) \textit{con el objetivo de minimizar la función de costo $J(\theta)$obtenida en el paso 3}, y con ello minimizar el error de clasificación. No se detallará este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Sin embargo, lo que hay que tener en cuenta es que se utiliza la ecuación general  \ref{eq:ecuacion_9_ANN} explicada anteriormente para actualizar los parámetros de nuestra red neuronal. 
+
+\item Volver al paso 2 hasta completar la cantidad de epochs seteados como \textit{hiper-parámetro} de nuestro modelo. 
+
+Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”}. Con este método se calcula el error o función de costo luego de haber pasado todos los datos de entrenamiento a través de la red de una sola vez. De esta manera, luego de calcular forward propagation \textit{para todos los datos de entrada}, se computa la función de costo y se aplica backpropagation realizando la actualización de los pesos. Todo este “bloque” de procedimiento se aplica por epoch. Por lo tanto, con este método de gradiente descendiente se calcula una función de costo y se realiza una sola actualización de los pesos por cada epoch.
+
+\end{enumerate}
+
+Otra opción hubiera sido utilizar el algoritmo de \textit{gradiente descendiente estocástico} (stochastic gradient descent, \textit{SDG}). Con este método se calcula el error o función de costo luego de haber pasado solo un ejemplo de nuestros datos de entrenamiento a través de la red. De esta manera, por cada ejemplo de entrenamiento se calcula forward propagation, luego se computa la función de costo y se aplica backpropagation realizando la actualización de pesos. Todo esto nuevamente se aplica por cada epoch. Si tuviéramos 100 ejemplos entonces calculariamos 100 veces la función de costo y los pesos se actualizarian 100 veces. En la práctica este método resulta más rápido que el gradiente descendiente “básico”.  Sin embargo, SDG no se utilizó en este proyecto debido a que por defecto no se encuentra la opción de setear el algoritmo de gradiente descendiente en la implementación de Word2vec de gensim, la cual se basa en el paper original de Word2vec\cite{NLP_11} donde describe la función de costo mediante el uso de GD básico, teniendo en cuenta el entrenamiento de todas las palabras de nuestro texto T dentro de todas las ventanas de contexto. En caso de utilizar SDG, la función de costo debería expresarse individualmente por cada palabra de nuestro texto $T$ teniendo en cuenta las combinaciones dentro de la ventana de contexto de tamaño $m$: Fórmula \ref{eq:ecuacion_12_NLP} que veremos más adelante.
+
+Para comprender mejor las iteraciones de entrenamiento, se recomienda consultar el Anexo (sección \textit{\nameref{anexo_word_emb}}) donde se detalla un ejemplo concreto del entrenamiento del modelo Skip gram con función de salida softmax utilizando el algoritmo de gradiente descendiente “básico”. En este ejemplo se toma a la oración “The quick brown fox jumps over the lazy dog” como nuestro corpus de texto con el cual entrenará el algoritmo.
+
+Como podemos observar, todo este entrenamiento tiene como objetivo minimizar la \textit{función de costo} para realizar una correcta predicción. La \textit{función de costo $J(\theta)$} de Skipgram se basa en la \textit{función de verosimilitud $L(\theta)$}, la cual es prácticamente la que vimos en la Fórmula \ref{eq:ecuacion_4_NLP}. La reescribimos como la Fórmula \ref{eq:ecuacion_10_NLP}: aquí se calcula, para cada posición del texto $t = 1, ..., T$ (donde $T$ es nuestro corpus de texto) y para cada ventana de contexto de tamaño fijo $m$, cuál es la probabilidad de que una palabra $(w^{(t+j)})$ sea contexto de una palabra central ($w^{(t)}$), dada esa palabra ($w^{(t)}$) y los parámetros del modelo $(\theta)$ -que en nuestro caso son las matrices de pesos $W$ y $W’$-. De esta manera, con $L(\theta)$ obtenemos la probabilidad de generar todas las palabras de contexto dada cualquier palabra central.
+
+\begin{equation}\label{eq:ecuacion_10_NLP}
+L(\theta) = \prod_{t=1}^{T} \; \prod_{-m \leq j \leq m, j \neq 0}  P(w^{(t+j)} | w^{(t)} ; \theta) \qquad \text{(Ver \cite{NLP_27})}
+\end{equation} 
+\begin{center}
+\textit{Función de verosimilitud Skipgram.}
+\end{center}
+
+A  $L(\theta)$  se le aplica el logaritmo y se le coloca un menos por delante para que de esta manera sea minimizable, obteniendo así la función de costo a minimizar $J(\theta)$ (Fórmula \ref{eq:ecuacion_11_NLP}), la cual es la \textit{verosimilitud logarítmica negativa media}. La mejor minimización de esta función la obtendremos cuando la probabilidad de que aparezca la palabra $w^{(t+j)}$ dada $w^{(t)}$ sea 1 (ya que el logaritmo de 1 es 0, siendo este el valor mínimo). Cuando el valor de la probabilidad es menor que 1 los valores se hacen muy negativos, pero al colocarle el menos se hacen muy positivos. Además, algo a tener en cuenta es que transformamos las \textit{productorias} de la  Fórmula \ref{eq:ecuacion_10_NLP} en \textit{sumatorias} en la Fórmula \ref{eq:ecuacion_11_NLP}; ya que le estamos aplicando el logaritmo a la función $L(\theta)$, y el logaritmo del producto es la suma de los logaritmos.
+\cleardoublepage
+
+\begin{equation}\label{eq:ecuacion_11_NLP}
+J(\theta) = -\frac{1}{T} log L (\theta) = -\frac{1}{T} \sum_{t=1}^{T} \sum_{-m \leq j \leq m, j \neq 0} log P(w^{(t+j)} | w^{(t)} ; \theta)    \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Función de costo Skipgram.}
+\end{center}
+
+Como mencionamos anteriormente, esta fórmula es teniendo en cuenta nuestra implementación con el algoritmo de gradiente descendiente “básico”. Si quisiéramos implementar el algoritmo SGD, nuestra función de costo quedaría representada como la Fórmula \ref{eq:ecuacion_12_NLP}, la cual se calcularía luego de realizar cada una de las iteraciones individuales de las palabras $w(t)$ teniendo en cuenta  cada posición de la ventana de contexto. 
+
+\begin{equation}\label{eq:ecuacion_12_NLP}
+J (\theta;w^{(t)}) = - \sum_{-m \leq j \leq m, j =! 0} log P(w^{(t+j)} | w^{(t)} ; \theta)   \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Función de costo Skipgram utilizando SGD.}
+\end{center}
+
+Ahora, ¿cómo calculamos la probabilidad $P(w^{(t+j)} | w^{(t)} ; \theta)$?. Vamos a omitir los parámetros de nuestro modelo $(\theta)$ para simplificar la notación. Utilizaremos dos vectores densos por cada palabra $w$:
+\begin{itemize}
+\item $v_w$: vector de tamaño $d$ para simbolizar cuando $w$ es la palabra central $wc$, donde $d$ es el tamaño de palabras de nuestro vocabulario.
+\item $u_w$: vector de tamaño $d$ para simbolizar cuando $w$ es una palabra de contexto $wo$.
+\end{itemize}
+
+De esta manera, en la Fórmula \ref{eq:ecuacion_15_NLP} se describe cómo obtener la probabilidad de que $wo$ sea una palabra de contexto (con índice $o$ en nuestra secuencia de textos T) dada una palabra central $wc$ (con índice $c$ en el diccionario del corpus).  El cálculo de la misma es similar a la que se usa cuando queremos calcular la probabilidad de salida de distintas clases en clasificación utilizando la función softmax (ver Fórmula \ref{eq:ecuacion_7_ANN}) donde se calcula la probabilidad de todas las clases sumadas y por cada probabilidad se divide la misma, obteniendo así una \textit{distribución} (ya que la suma de todas las probabilidades resultantes como salida dan 1). 
+
+\begin{equation}\label{eq:ecuacion_15_NLP}
+P(w_o, w_c) = \frac{exp(u_{o}^{T} v_c)}{\sum_{W \in V} exp(u_{W}^{T} v_c)}    \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{ Probabilidad de que $w_o$ sea una palabra de contexto dada \\ una palabra central $w_c$ (función de salida softmax).}
+\end{center}
+
+Teniendo en cuenta que:
+\begin{itemize}
+\item $u_o$ = vector de la palabra de contexto ($o$ = outside/contexto).
+\item $v_c$ = vector de la palabra central ($c$ = central).
+\item $V$ = nuestro vocabulario (palabras únicas de nuestro corpus de texto $T$). 
+\item En el denominador se realiza la sumatoria de todo el vocabulario de tamaño $V$ para obtener la distribución de probabilidad.
+\item La exponencial se coloca para que siempre sea positiva (ya que las probabilidades tienen que ser siempre positivas).
+\end{itemize}
+
 \cleardoublepage
 
 \paragraph{Optimizaciones: Muestreo Negativo.}\label{neg_samp}
-adyhgery
+
+Como podemos observar para el cálculo de $P(w_o | w_c)$ (Fórmula \ref{eq:ecuacion_15_NLP}) -la cual se realiza para obtener nuestra función de costo $J(\theta)$  (Fórmula \ref{eq:ecuacion_11_NLP})- depende del tamaño de nuestro vocabulario $V$ (ya que en el denominador de $P(w_o | w_c)$ se realiza una sumatoria por cada palabra $w$ perteneciente a $V$). Debido a que nuestros vocabularios pueden ser miles o incluso millones de palabras, el costo de realizar el cálculo de los gradientes puede ser muy alto. Para reducir tal complejidad computacional y optimizar el cálculo de la función de costo explicada previamente se puede utilizar otro método de entrenamiento conocido como \textit{muestreo negativo} (o \textit{negative sampling}), el cual está descrito en el segundo Paper de Tomas Mikolov\cite{NLP_14}.  como una mejora al Skipgram tradicional con función de salida softmax.
+
+Como podemos observar en la Figura \ref{fig:Imagen_NLP_24}, anteriormente utilizando softmax (parte izquierda de la imagen) teníamos un problema de \textit{clasificación}, donde teníamos una palabra central (en este ejemplo “not”) como \textit{entrada} y teníamos que clasificar cuál de todas las palabras del vocabulario era la más probable de que fuera la palabra de contexto de \textit{salida} (en este ejemplo “thou”).  El problema es que, como vimos anteriormente, la clasificación con softmax es un problema debido a su elevado costo de cálculo; con lo cual la idea es transformar esto a \textit{otro problema de clasificación} pero usando la \textit{regresión logística} (parte derecha de la imagen). De esta manera, mediante muestreo negativo se emplean nodos de regresión logística (es decir, con la función sigmoide -Fórmula \ref{eq:ecuacion_8_ANN}-) con el objetivo de clasificar de la mejor manera posible, ejemplos positivos y negativos de nuestro conjunto de entrenamiento\cite{NLP_13_2}. En este modelo de ejemplo nos dan como \textit{entrada} las 2 palabras (palabra central: “not”, y palabra de contexto: “thou”) y a la \textit{salida} nos fijamos cual es la probabilidad de que esas dos palabras estén juntas (en este caso arrojó como resultado “0.9”). En conclusión, pasamos de un problema de “Dada una palabra central ¿cuál de todas estas palabras es la palabra de contexto?” a “Dado un par de palabras (central, contexto) ¿cuál es la probabilidad de que estén juntas?”. Ahora nuestra salida no es una palabra, sino un número del 0 al 1: en lugar de usar la softmax, ahora usamos la sigmoide, la cual  va de 0 a 1.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/24.png}
+ \caption{Comparación Skipgram con distintas funciones de salida: softmax (izquierda) y sigmoide (derecha)\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_24}
+\end{figure}
+
+De esta manera, mediante muestreo negativo pasamos de usar la Fórmula \ref{eq:ecuacion_15_NLP} para calcular la probabilidad de la palabra $w_o$ dada $w_c$ (que representa la probabilidad $P(w^{(t+j)} | w^{(t)}; \theta)$), a utilizar la Fórmula \ref{eq:ecuacion_17_NLP}, la cual calcula la probabilidad de que la salida sea 1, dadas las 2 palabras $w_c$ y $w_o$. 
+
+\begin{equation}\label{eq:ecuacion_17_NLP}
+P(D=1 | w_c, w_o) = \sigma (u_{o}^{T} v_c)    \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Probabilidad de que la salida sea 1, dadas $w_o$ y $w_c$ (función de salida sigmoide).}
+\end{center}
+
+Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórmula \ref{eq:ecuacion_8_ANN}) para adaptarla a nuestro caso: Fórmula \ref{eq:ecuacion_18_NLP}.
+
+\begin{equation}\label{eq:ecuacion_18_NLP}
+\sigma (u_{o}^{T} v_c) = \frac{1}{1 + exp(- (\sigma (u_{o}^{T} v_c)) )}    \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Función Sigmoide utilizada.}
+\end{center}
+
+En la Figura \ref{fig:Imagen_NLP_25} podemos observar un ejemplo de construcción de datasets para utilizar como entrenamiento: usando como función de salida softmax (parte izquierda) y sigmoide (parte derecha). De esta manera pasamos de tener un dataset donde la entrada y salida son las dos palabras, a uno donde tengamos las dos palabras como features, y la etiqueta “target” es cual es el valor que debería arrojar el modelo.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/25.png}
+ \caption{Armando el datasets para distintas funciones de salida: softmax (izquierda), sigmoide (derecha)\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_25}
+\end{figure}
+
+El problema del dataset descrito anteriormente (utilizando sigmoide) es que los ejemplos son siempre positivos: tenemos dos palabras y la respuesta/salida siempre es 1. Si dejamos todas las etiquetas en 1 el modelo rápidamente va a aprender que prediciendo 1 está en lo correcto y tendrá un 100\% de efectividad. 
+
+Aquí entran los ejemplos negativos (\textit{muestreo negativo}): tenemos que agregar palabras que no vayan juntas para que el modelo aprenda que esas palabras no van juntas. De esta manera, mediante el muestreo negativo (Figura \ref{fig:Imagen_NLP_26}) lo que hacemos es que para cada ejemplo positivo agarramos \textit{palabras al azar} del vocabulario mediante “\textit{random sampling}”\footnote{En el \textit{random sampling} lo más óptimo es agarrar palabras muy improbables de nuestro vocabulario para que nuestro modelo aprenda que no tiene que poner esas palabras.} (como “aaron” y “taco”), las metemos en el dataset y le colocamos etiqueta 0. Es decir, por cada ejemplo positivo estamos metiendo (en este caso) 2 negativos. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.3\textwidth]{images/NLP/26.png}
+ \caption{Armando el datasets para función de salida sigmoide usando negative sampling\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_26}
+\end{figure}
+
+¿Cuántas palabras negativas ponemos por cada positiva?: esto es otro \textit{hiper-parámetro} de nuestro modelo Word2vec. 
+
 \cleardoublepage
 
 \paragraph{Entrenamiento y función de costo con Sigmoide.}\label{ent_costo_sigmoide}
