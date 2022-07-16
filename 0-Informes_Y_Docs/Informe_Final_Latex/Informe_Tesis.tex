@@ -438,19 +438,17 @@ Los algoritmos de ML hoy en día se usan en todo tipo de aplicaciones: en Amazon
 Podemos dividir a ML en dos grandes categorías: aprendizaje supervisado y aprendizaje no supervisado. Resumidamente, la diferencia entre estas dos categorías es la existencia de etiquetas (labels) en el subconjunto de datos de entrenamiento (Ver \textit{\nameref{Separacion datos}}).
 
 \begin{itemize}
-\item En el \textbf{aprendizaje supervisado}, el modelo es entrenado utilizando datos que están “etiquetados”. Esto quiere decir que el set de datos que es utilizado para enseñar al algoritmo tiene una etiqueta (o label) que define la respuesta/salida correcta. 
+\item En el \textbf{aprendizaje supervisado}\cite{intro_clasificacion_ML}, el modelo es entrenado utilizando datos que están “etiquetados”. Esto quiere decir que el set de datos que es utilizado para enseñar al algoritmo tiene una etiqueta (o label) que define la respuesta/salida correcta. 
 
-Analizándolo matemáticamente, este proceso puede ser representado por una variable de entrada $x$ y una conocida variable de salida $y$, donde se usa un algoritmo $f$ para que aprenda a predecir resultados para aquellos nuevos datos que no tienen etiqueta.
+Dicho de otra manera, el modelo recibe datos etiquetados (tanto para la entrada como para la salida esperada) durante su entrenamiento teniedo como objetivo generar una función de mapeo $f(x)$ que pueda identificar la salida esperada $y$ para una entrada $x$ dada. El proceso de entrenamiento continúa hasta que el algoritmo alcanza el nivel de precisión deseado. 
 
-$$y=f(x)$$
+De esta manera al finalizar el entrenamiento idealmente la función $f$ predecirá resultados con gran precisión para aquellos nuevos datos que no tienen etiqueta. 
 
 Los algoritmos de aprendizaje supervisado se utilizan para resolver problemas de \textbf{clasificación} y de \textbf{regresión}.
 
-\item El \textbf{aprendizaje no supervisado}, en cambio, se refiere al proceso de entrenamiento de un modelo de machine learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
+\item El \textbf{aprendizaje no supervisado}\cite{intro_clasificacion_ML}, en cambio, se refiere al proceso de entrenamiento de un modelo de machine learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
 
-El objetivo de este método es experimentar con el conjunto de datos (los cuales contienen muchas características) y luego aprender propiedades útiles de la estructura de dicho conjunto de datos. Matemáticamente se cuenta con un dataset de entrenamiento de variables de entrada $x$ pero no se conoce su salida. 
-
-$$\mbox{¿}?=f(x)$$
+En otras palabras, el modelo recibe un conjunto de datos de entrada sin etiquetar y sin clasificar, y el algoritmo de aprendizaje no supervisado experimentará con este conjunto de datos aprendiendo patrones, similitudes y diferencias entre los mismos sin ningún entrenamiento previo. El objetivo final es generar una función $f$ que permita identificar estructuras ocultas en el conjunto de datos dado.
 
 Los algoritmos de aprendizaje no supervisado se utilizan para resolver problemas de \textbf{clustering}.
 \end{itemize}
@@ -739,6 +737,7 @@ En cambio \textbf{Underfitting}, o sub-ajuste, es el opuesto de Overfitting. Est
 Por lo tanto, podemos decir que el modelo óptimo es aquel que tiene la complejidad necesaria para capturar lo que los datos expresan pero no más.
 
 \cleardoublepage
+
 \subsection{K-Nearest Neighbor (KNN).}
 
 K-Nearest Neighbor o K Vecinos más cercanos (KNN), es un algoritmo ML que se puede usar tanto en tareas de regresión como de clasificación. En nuestra implementación, lo usaremos para resolver un problema de clasificación (ver \textit{\nameref{clasificacion}}). Como mencionamos anteriormente, en los problemas de clasificación la variable que se intenta predecir es discreta. En este tipo de problemas contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, y queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
@@ -778,44 +777,9 @@ Luego de haber entrenado / construido nuestro modelo KNN habiendo previamente de
 \item Paso 4: Se retorna la clase predicha.
 \end{itemize}
 
-A modo de ejemplo, veamos un caso en el cual usamos KNN para clasificación usando la distancia euclidiana como métrica para calcular las distancias. 
+En la sección del Anexo \textit{\nameref{anexo_knn}} detallamos un breve ejemplo gráfico en el cual usamos KNN para clasificación utilizando la distancia euclidiana como métrica para calcular las distancias. Viendo este ejemplo podemos observar que KNN se basa esencialmente en un método estadístico. Cuando queremos simplemente clasificar un punto cuya clase no conocemos no hacen falta las probabilidades; podemos simplemente asignarlo a la clase con mayoría entre los k-vecinos del punto.
 
-Como podemos ver en la Figura \ref{fig:KNN_example}, el conjunto de datos está etiquetado: uno es un cuadrado azul y otro es un triángulo rojo. El círculo verde es el punto que necesitamos clasificar. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.4\textwidth]{images/KNN_Ejemplo.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Ejemplo de Clasificación con KNN con K=3 (círculo con linea sólida) y K=5 (círculo con linea punteada), usando la distancia euclidiana como métrica de cálculo de distancias\cite{KNN_Ejemplo}.} 
- \label{fig:KNN_example}
-\end{figure}
-
-Viendo la Tabla \ref{table:2} observamos que:
-
-\begin{itemize}
-\item Si K = 1, tomamos únicamente el punto más cercano del círculo verde. Este punto es un triángulo rojo. Como es el único punto que vota, el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 1 y de que sea azul es 0.
-\item Si K = 3, entonces hay 2 triángulos rojos y 1 cuadrado azul más cercano al punto verde Estos 3 puntos votan, por lo que el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 2/3  y de que sea azul es 1/3.
-\item Si K = 5, entonces hay 2 triángulos rojos y 3 cuadrados azules más cercanos al punto verde. Estos 5 puntos votan, por lo que el punto verde a clasificar pertenece al cuadrado azul. De esta manera la probabilidad de que sea rojo es 2/5 y de que sea azul es 3/5 .
-\end{itemize}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{K} & \textbf{P(Azul)} & \textbf{P(Rojo)} \\ [1ex] 
-\hline
-1 & 0 & 1 \\
-\hline
-3 & 1/3 & 2/3 \\
-\hline
-5 & 3/5 & 2/5 \\ [1ex] 
-\hline
-\end{tabular}
-\caption{Probabilidad de pertenecer a cada clase para diferentes valores de k.}
-\label{table:2}
-\end{table}
-
-Por lo tanto, podemos ver que KNN se basa esencialmente en un método estadístico. Cuando queremos simplemente clasificar un punto cuya clase no conocemos no hacen falta las probabilidades; podemos simplemente asignarlo a la clase con mayoría entre los k-vecinos del punto.\\
+\cleardoublepage
 
 \subsubsection{Métrica de distancia a emplear.}\label{metrica_dist_emp}
 
@@ -954,68 +918,10 @@ Donde $d = \text{dimensiones de nuestros puntos de datos y centroides}$, $m_{j}$
 
 \end{itemize}
 
-A modo de ejemplo, veamos un caso en el cual usamos K-means para clusterizar nuestros datos hasta llegar a su convergencia. 
-
-En el ejemplo de la Figura \ref{fig:K_means_working_1}, nuestros datos tienen 2 dimensiones. Definiendo previamente nuestro k=2 (2 clusters), en el item \textbf{(1)} observamos dicha distribución de datos. Además, en este item se realiza la inicialización aleatoria de nuestros 2 centroides (triángulos rojo y amarillo). Todo esto involucra al \textbf{paso 1} del algoritmo k-means.  
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=1\textwidth]{images/K_Means_1.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.} 
- \label{fig:K_means_working_1}
-\end{figure}
-
-En el \textbf{paso 2}, lo que se tiene que hacer es, para cada uno de nuestros puntos de datos, averiguar a cuál centroide se asignará, basándonos en la distancia más cercana al mismo.
-Al considerar la distancia euclidiana para este objetivo, en \textbf{(2)} dibujamos una línea roja imaginaria que divide en iguales distancias nuestros 2 centroides: partiendo de esta línea la distancia a ambos centroides es la misma. De esta manera, cada punto ubicado a la derecha de la linea pertenecerá al cluster amarillo (por tener menor distancia al centroide triángulo amarillo), y cada punto ubicado a la izquierda de la linea pertenecerá al cluster rojo (por tener menor distancia al centroide triángulo rojo). Esta asignación la observamos en el item \textbf{(3)}, que representa nuestra asignación inicial de nuestros puntos en los clusters. 
-
-La línea roja es simplemente una referencia utilizada para una mejor comprensión gráfica, pero internamente esta asignación de puntos se realiza en base al cálculo de las distancias euclidianas mediante la Fórmula \ref{eq:ecuacion_4}. descrita anteriormente para el paso 2 de k-means.
-
-Posteriormente pasamos al \textbf{paso 3} de k-means: la actualización de las posiciones de los centroides de los clusters. Lo que hacemos en \textbf{(4)} es mover los centroides al centro promedio de los puntos a los que se les asignaron. Para esto se utiliza la Fórmula \ref{eq:ecuacion_5} descrita anteriormente. Podemos observar las nuevas posiciones de los centroides en \textbf{(5)}. 
-De esta forma, finalizamos la primera iteración de nuestro algoritmo. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.7\textwidth]{images/K_Means_2.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.}
-\end{figure}
-
-En la próxima iteración, tenemos la misma disposición de los puntos, solo que ahora tenemos dos nuevas posiciones para nuestros centroides. Ignoramos las clases que se asignaron para los puntos de nuestros datos ya que esta era una asignación del paso anterior: ahora nuestros centroides cambiaron y la asignación de clases también lo hará. Nuevamente trazamos la linea imaginaria \textbf{(6)} y realizamos la nueva asignación: los únicos puntos que cambiaron con respecto al paso anterior son los 2 amarillos ubicados en la parte superior, los cuales pasan a ser rojos \textbf{(7)}. Debido a que cambiaron de clase, entonces nuevamente vamos a actualizar las posiciones de nuestros centroides \textbf{(8)}, quedándonos distribuidos finalmente como \textbf{(9)}. De esta manera finalizamos la segunda iteración. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.7\textwidth]{images/K_Means_3.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.}
-\end{figure}
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.7\textwidth]{images/K_Means_4.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.}
-\end{figure}
-
-Para la tercera iteración se vuelven a repetir los pasos 2 y 3: trazamos la línea de división de nuestros datos \textbf{(10)}, realizamos la nueva asignación de puntos \textbf{(11)} y observamos que cambiaron 2 puntos de clases.  Debido a que cambiaron de clase, entonces re-ubicamos los centroides nuevamente \textbf{(12)}, quedándonos finalmente como \textbf{(13)}.  De esta manera finalizamos la tercera iteración. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.7\textwidth]{images/K_Means_5.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.}
-\end{figure}
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.7\textwidth]{images/K_Means_6.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Algoritmo K-means.}
-\end{figure}
-
-Finalmente, en el ítem \textbf{(13)}, si ahora intentamos asignar nuevamente nuestros puntos de datos, observamos que ninguno cambiaría de color/clase. Los puntos rojos ya están del lado izquierdo de la linea, y los puntos amarillos ya están del lado derecho de la linea. Esto significa que si seguimos iterando nada cambiará, por lo que llegamos a la \textbf{convergencia} de nuestro algoritmo.
+A modo de ejemplo, en la sección del Anexo \textit{\nameref{anexo_k_means}}, detallamos un ejemplo gráfico en el cual utilizamos K-means para clusterizar nuestros datos hasta llegar a su convergencia. 
 
 \cleardoublepage
+
 \subsubsection{Objetivo de k-means y su función de coste.}
 
 El objetivo de K-means es encontrar cómo repartir m puntos en n dimensiones dentro de k clusters de la “mejor forma posible”. 
@@ -1047,48 +953,6 @@ Obtener el mínimo valor de nuestro $WCSS$, o que es lo mismo que encontrar el m
 
 Es de destacar que, suponiendo que tenemos $m$ puntos de datos y especificamos que este $m$ sea nuestro número de clusters ($k$ = $m$), entonces $WCSS$ será 0 ya que cada punto de nuestros datos actuará como centroide de sí mismo y la distancia euclidiana entre ellos será nula. De esta forma, cada cluster contendrá solo un punto. Esto idealmente es un cluster perfecto, pero no tiene ningún sentido tener tantos clusters como puntos de datos tengamos. Por lo tanto, existe un valor de umbral para $k$ que podemos encontrar utilizando el \textit{método del codo}, el cual veremos más adelante en \textit{\nameref{Elbow_Met}}).
 
-\subsubsection{Posición inicial de los centroides.}\label{Posicion inicial centroides}
-
-Al ser un algoritmo que encuentra un mínimo local, K-means es muy sensible a la posición inicial de los centroides. Una posible solución para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, idealmente ejecuciones en paralelo, y computar la función de coste $J$ para cada resultado final quedándonos con la mínima. 
-
-La Figura \ref{fig:K_means_costo_1} muestra un ejemplo donde hay 4 clusters y varios puntos aislados en un plano bidimensional. La Figura \ref{fig:K_means_costo_2} muestra el resultado del mejor y peor costo. Se puede ver que el resultado del peor costo es realmente muy malo mientras que el resultado del mejor costo es lo que se esperaba obtener.  
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.4\textwidth]{images/K_means_costo_1.png}
- \captionsetup{justification=centering,margin=2cm}
- \caption{Ejemplo K-means. \cite{apunte_uba}}
- \label{fig:K_means_costo_1}
-\end{figure}
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
- \centering
- \includegraphics[width=0.9\textwidth]{images/K_means_costo_2.png}
- \captionsetup{justification=centering,margin=1cm}
- \caption{Ejemplo K-Means peor (izquierda) y mejor (derecha) costo. \cite{apunte_uba}}
- \label{fig:K_means_costo_2}
-\end{figure}  
-
-El gráfico de la Figura \ref{fig:K_means_costo_3} muestra el resultado de la función costo para 100 ejecuciones de K-Means, con un $k$ predefinido, y variando las inicializaciones de nuestros centroides. En el eje $x$ se representan las 100 ejecuciones de k-means, y en el eje $y$ encontramos la función de coste $J$ obtenida para cada ejecución. 
-
-En la Figura \ref{fig:K_means_costo_4} podemos observar un histograma representando la cantidad de veces en porcentajes (eje $y$) que se observaron diferentes rangos de costo (eje $x$). Como se puede ver, afortunadamente los costos bajos son amplia mayoría, es decir que únicamente con algunas pocas inicializaciones desafortunadas K-means llega a un mínimo global muy malo. Esto quiere decir que una sola iteración de K-Means nos dará un buen resultado con una probabilidad alta y hacer un ciclo con unas pocas ejecuciones es más que suficiente para llegar a un excelente resultado.
-
-\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[width=\linewidth]{images/K_means_costo_3.png}
-\caption{Costo en K-Means. \cite{apunte_uba}}
-\label{fig:K_means_costo_3}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[width=\linewidth]{images/K_means_costo_4.png}
-\caption{Histograma J en K-Means. \cite{apunte_uba}}
-\label{fig:K_means_costo_4}
-\end{minipage}
-\end{figure}
-
 \cleardoublepage
 \subsubsection{Limitaciones K-means.}
 
@@ -1101,8 +965,7 @@ En k-means los outliers pueden incrementar la función de coste o Inercia. Vario
 
 \item \textbf{Número de los $k$ clusters}: Uno de los principales inconvenientes de K-means es la necesidad de determinar el número óptimo de los $k$ clusters por adelantado. Esto perjudica la eficacia del algoritmo ya que en la práctica, no se conoce a priori el número de clusters final. Este defecto lo perjudica al compararlo con otros algoritmos, ya que en muchos la inicialización del número de clusters no es necesaria. Todavía es un problema saber cuál es el número correcto de $k$ clusters que debemos asignar\cite{K_means_review}.
 
-\item \textbf{Inicialización de los centroides}: Como vimos en la sección \textit{\nameref{Posicion inicial centroides}}, la selección inicial de los centroides dirige el proceso de K-means y las particiones resultantes y su efectividad están condicionadas a la elección de estos centroides\cite{K_means_experiment}. 
-Existen numerosos estudios\cite{K_means_initial_centroids} que muestran que la performance de K-means es fuertemente dependiente de la estrategia de inicialización de la ubicación de los centroides a utilizar.
+\item \textbf{Inicialización de los centroides}: La selección inicial de los centroides dirige el proceso de K-means y las particiones resultantes y su efectividad están condicionadas a la elección de estos centroides\cite{K_means_experiment}. Esto lo podemos ver en mayor detalle en la sección del Anexo \textit{\nameref{anexo_pos_inic_centroides}}. Existen numerosos estudios\cite{K_means_initial_centroids} que muestran que la performance de K-means es fuertemente dependiente de la estrategia de inicialización de la ubicación de los centroides a utilizar.
 
 \end{enumerate}
 
@@ -1114,7 +977,7 @@ Todas estas limitaciones descritas anteriormente fueron abordadas y resueltas en
 
 \item Para el problema de la determinación óptima y por adelantado del número de los $k$ clusters, se aplicó el \textit{método del codo}: ver \textit{\nameref{Elbow_Met}}.
 
-\item Para el último caso de inicialización de los centroides, como mencionamos anteriormente, una de las soluciones para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, computar la función de distorsión J para cada resultado final y quedarnos con el mínimo. 
+\item Para el último caso de inicialización de los centroides, como se menciona en \textit{\nameref{anexo_pos_inic_centroides}}, una de las soluciones para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, computar la función de distorsión J para cada resultado final y quedarnos con el mínimo. 
 
 En la implementación de esta Tesis, se utilizó una estrategia más novedosa, inicializar nuestros centroides utilizando K-means++: ver \textit{\nameref{k_means_plus_plus}}. La ventaja de utilizar esta estrategia es que generalmente funciona mejor y más rápido que la detallada anteriormente, por lo que actualmente es uno de los métodos estándar para inicializar nuestros centroides en k-means. \cite{K_means_plus_plus}
 \end{itemize}
@@ -1219,11 +1082,11 @@ En resumen, esta neurona (o perceptrón) tiene conexiones con nodos de entrada, 
 
 Mencionaremos las partes involucradas en dicho esquema:
 \begin{itemize}
-\item Entradas ($x_1, x_2, x_3, x_n$): Las \textit{entradas} son los valores de entrada a la neurona que provienen de estímulos externos. 
+\item \textbf{Entradas ($x_1, x_2, x_3, x_n$)}: Las \textit{entradas} son los valores de entrada a la neurona que provienen de estímulos externos. 
 
-\item Pesos ($w_1, w_2, w_3, w_n$): Los \textit{pesos} son los coeficientes que determinan la intensidad o fuerza de la conexión de las señales de entrada registradas por la neurona. Si el peso de una entrada $x_1$ es mayor al peso de la entrada $x_2$, entonces la entrada $x_1$ tiene mayor influencia en la neurona. Si el peso es positivo se habla de una \textit{excitación} de la entrada, en cambio si el peso es negativo se habla de una \textit{inhibición} de la misma.
+\item \textbf{Pesos ($w_1, w_2, w_3, w_n$)}: Los \textit{pesos} son los coeficientes que determinan la intensidad o fuerza de la conexión de las señales de entrada registradas por la neurona. Si el peso de una entrada $x_1$ es mayor al peso de la entrada $x_2$, entonces la entrada $x_1$ tiene mayor influencia en la neurona. Si el peso es positivo se habla de una \textit{excitación} de la entrada, en cambio si el peso es negativo se habla de una \textit{inhibición} de la misma.
 
-\item Función de entrada: En esta parte del esquema se aplica una función de entrada a nuestros valores de entrada, sus pesos y el bías -representado en la figura como $b$\footnote{El bias o sesgo es el término independiente que permite cambiar o disparar la función de activación para garantizar un aprendizaje exitoso. En otras palabras, permite controlar qué tan predispuesta está la neurona a disparar un 1 o un 0 independientemente de los pesos. Un sesgo alto hace que la neurona requiera una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más sencillo.}-.
+\item \textbf{Función de entrada}: En esta parte del esquema se aplica una función de entrada a nuestros valores de entrada, sus pesos y el bías -representado en la figura como $b$\footnote{El bias o sesgo es el término independiente que permite cambiar o disparar la función de activación para garantizar un aprendizaje exitoso. En otras palabras, permite controlar qué tan predispuesta está la neurona a disparar un 1 o un 0 independientemente de los pesos. Un sesgo alto hace que la neurona requiera una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más sencillo.}-.
 
 Existen distintas funciones de entrada, tales como la sumatoria de las entradas ponderadas, la productoria de las entradas ponderadas o el máximo de las entradas ponderadas\cite{ANN_23}. En el ejemplo descrito en la figura \ref{fig:ann_1} se utilizó la función de entrada más común: la \textit{sumatoria de las entradas ponderadas}, que representa la suma de todos los valores de entrada a la neurona, multiplicados por sus correspondientes pesos. De esta manera, mediante la Fórmula \ref{eq:ecuacion_1_ANN} obtenemos la salida $Z$.
 
@@ -1233,7 +1096,7 @@ Z=\sum_{i}w_{i}x_{i}+b
 
 Donde $x_i$ es cada una de las entradas externas a la neurona/perceptrón, $w_i$ son los pesos asociados a cada entrada y $b$ es el sesgo descrito anteriormente. 
 
-\item Función de activación $f(Z)$:
+\item \textbf{Función de activación $f(Z)$}:
 
 Las neuronas artificiales tienen diferentes estados de activación, algunas de ellas solamente dos -activa (excitada) o inactiva (no excitada)-, pero otras pueden tomar cualquier valor dentro de un conjunto determinado.
 
@@ -1267,7 +1130,7 @@ De esta manera si es 1 se activa la neurona, y si es 0 no se activa. Observemos 
 
 Se pueden aplicar otras funciones de activación, las cuales detallaremos en el Anexo: ver sección \textit{\nameref{anexo_func_activ}}.
 
-\item Salida $y$: son los valores que permiten retornar los resultados procesados por la red neuronal (en este caso formada por un único perceptrón).
+\item \textbf{Salida $y$}: son los valores que permiten retornar los resultados procesados por la red neuronal (en este caso formada por un único perceptrón).
 
 \end{itemize}
 
@@ -1292,9 +1155,9 @@ El modelo de Perceptrón multicapa (MLP) es el modelo más conocido y utilizado 
 
 A continuación mencionaremos las tres capas existentes en el modelo MLP, cada una con distintas funciones.
 \begin{itemize}
-\item Capa de entrada: contiene las variables de entrada; reciben directamente la información proveniente de las fuentes externas de la red.
-\item Capas ocultas: pueden haber 1 o N capa/s oculta/s. La longitud de N determina la profundidad de la red, dando origen al término de aprendizaje profundo (o “deep learning”). Colocando neuronas en forma secuencial permite que cada neurona reciba información procesada por una neurona anterior, lo que significa que la red puede generar conocimiento jerarquizado: de esta manera la red podría aprender conocimiento básico en las primeras capas y mientras va pasando la información a las neuronas de las siguientes capas, va generando conocimiento más abstracto y complejo.
-\item Capa de salida: permite retornar los resultados procesados por la red neuronal. Si estamos resolviendo un problema de clasificación esta capa puede estar formada por 2 neuronas (si se trata de una clasificación binaria) o N neuronas (en caso de clasificación multiclase). 
+\item \textbf{Capa de entrada}: contiene las variables de entrada; reciben directamente la información proveniente de las fuentes externas de la red.
+\item \textbf{Capas ocultas}: pueden haber 1 o N capa/s oculta/s. La longitud de N determina la profundidad de la red, dando origen al término de aprendizaje profundo (o “deep learning”). Colocando neuronas en forma secuencial permite que cada neurona reciba información procesada por una neurona anterior, lo que significa que la red puede generar conocimiento jerarquizado: de esta manera la red podría aprender conocimiento básico en las primeras capas y mientras va pasando la información a las neuronas de las siguientes capas, va generando conocimiento más abstracto y complejo.
+\item \textbf{Capa de salida}: permite retornar los resultados procesados por la red neuronal. Si estamos resolviendo un problema de clasificación esta capa puede estar formada por 2 neuronas (si se trata de una clasificación binaria) o N neuronas (en caso de clasificación multiclase). 
 \end{itemize}
 
 Cabe destacar que en nuestro modelo MLP, una única neurona de nuestra capa oculta o de nuestra capa de salida puede representarse como un Perceptrón Simple (Figura \ref{fig:ann_3}). En cambio, una neurona de nuestra capa de  entrada NO puede representarse como un Perceptrón simple, ya que en esta capa no existe ningún procesamiento interno. Con “procesamiento interno” nos referimos a la función de entrada y función de activación dentro de la neurona: por esta razón, las funciones de activación también residen en las neuronas de la capa oculta y/o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación). 
@@ -1309,7 +1172,7 @@ Cabe destacar que en nuestro modelo MLP, una única neurona de nuestra capa ocul
 
 Observando la parte izquierda de la Figura \ref{fig:ann_3}, podemos apreciar que cada una de las capas pueden estar compuesta por una o más neuronas, lo que significa que cada capa es un vector de neuronas. La dimensión del vector determina el ancho del modelo de una red neuronal. Cada capa recibe los datos de salida de la capa anterior. Luego, cada neurona de la capa actual realizará sus procesamientos en base a esta entrada (aplicando su función de entrada y función de activación), y su salida la pasará a cada neurona de la capa siguiente. Este tipo de redes se denominan \textit{feedforward}, debido a que el flujo de información va de una capa a la que sigue, sin bucles de retroalimentación. 
 
-A continuación, explicaremos el modelo MLP desde un punto de vista matemático\cite{ANN_25}. Como mencionamos previamente, con el modelo de MLP es posible combinar varios perceptrones en una capa de procesamiento, con lo cual obtenemos una función $f: R^m → R^n$ para cada capa (oculta o de salida), donde $m$ es el tamaño de la entrada, y $n$ es el número de perceptrones, que a su vez determinan el tamaño de la salida. De esta manera, dada una entrada $x$, la función $f$ procesa dicha entrada mediante la Formula \ref{eq:ecuacion_5_ANN}.
+A continuación, explicaremos el modelo MLP desde un punto de vista matemático\cite{ANN_25}. Como mencionamos previamente, con el modelo de MLP es posible combinar varios perceptrones en una capa de procesamiento, con lo cual obtenemos una función $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ para cada capa (oculta o de salida), donde $m$ es el tamaño de la entrada, y $n$ es el número de perceptrones, que a su vez determinan el tamaño de la salida. De esta manera, dada una entrada $x$, la función $f$ procesa dicha entrada mediante la Formula \ref{eq:ecuacion_5_ANN}.
 
 \begin{equation}\label{eq:ecuacion_5_ANN}
 f(x) = \phi(Wx+b) \qquad  \text{(Ver \cite{ANN_25})}
@@ -1351,6 +1214,9 @@ En la Fórmula \ref{eq:ecuacion_7_ANN} podemos observar la representación matem
 \begin{equation}\label{eq:ecuacion_7_ANN}
 Z_k= \frac{e^{y_k}}{\sum_{k=1}^{M}e^{y_k}} \qquad \text{(Ver \cite{ANN_24})}
 \end{equation}
+\begin{center}
+\textit{Función softmax.}
+\end{center}
 
 Donde $0 \geq Z_k \geq 1$, mientras que $y_k$ es la salida de la neurona $k$, la cual pasa a la función softmax para obtener la salida final $Z_k$, y $M$ es la cantidad total de neuronas en la capa de salida.     
 
@@ -1370,6 +1236,9 @@ Mientras que en la Figura \ref{fig:ann_5} podemos observar la representación gr
 \begin{equation}\label{eq:ecuacion_8_ANN}
 \sigma(y_k)= \frac{exp(y_k)}{ {1 + exp(y_k)}} =  \frac{1}{ {1+exp(-y_k)}}    \qquad \text{(Ver \cite{ANN_25})}
 \end{equation}
+\begin{center}
+\textit{Función sigmoide.}
+\end{center}
 
 Donde $0 \geq \sigma(y_k) \geq 1$.    
 
@@ -1394,15 +1263,18 @@ A continuación describiremos en mayor detalle el ciclo iterativo de procesos de
 
 \item Los vectores de salida $y$ obtenidos / predichos de todas las muestras de entrenamiento se comparan con los valores de sus vectores de salida $y$ correspondientes que tiene las etiquetas reales, computándose de esta manera el \textit{error} (o \textit{loss}) de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo / pérdida (loss function)}.
 
-La función de pérdida  $J(\theta)$ será diferente para cada modelo. Más adelante obtendremos los cálculos de las $J(\theta)$ que tendremos en consideración para nuestra implementación, las cuales son REFERENCIAR FORMULA ‘Función de costo Skip Gram con Softmax’;  y REFERENCIAR FORMULA ‘Función de costo Skip Gram con Sigmoide’, siendo esta última la que finalmente utilizaremos en nuestro modelo y buscaremos minimizar. Ambas funciones de costo son la sumatoria sobre los costos individuales en los que incurre la red al clasificar cada elemento del conjunto de entrenamiento, y se calculan 1 vez por epoch\footnote{Epoch es un hiper-parámetro de nuestra red neuronal, donde cada epoch representa una iteración sobre nuestros datos de entrenamiento completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes.}.
+La función de pérdida  $J(\theta)$ será diferente para cada modelo. Más adelante obtendremos los cálculos de las $J(\theta)$ que tendremos en consideración para nuestra implementación, las cuales son la Fórmula \ref{eq:ecuacion_11_NLP} y la Fórmula \ref{eq:ecuacion_21_NLP}, siendo esta última la que finalmente utilizaremos en nuestro modelo y buscaremos minimizar. Ambas funciones de costo son la sumatoria sobre los costos individuales en los que incurre la red al clasificar cada elemento del conjunto de entrenamiento, y se calculan 1 vez por epoch\footnote{Epoch es un hiper-parámetro de nuestra red neuronal, donde cada epoch representa una iteración sobre nuestros datos de entrenamiento completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes.}.
 
 \item Se aplica el proceso conocido como \textit{backpropagation} (o propagación hacia atrás). No se explicará en detalle este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Lo que hay que tener en cuenta es que backpropagation utiliza la función de optimización\footnote{Una función de optimización en redes neuronales tiene como objetivo encontrar los pesos W que minimicen los errores de clasificación / la función de coste.} \textit{descenso del gradiente} para poder ajustar / modificar los pesos y el bias de cada neurona de nuestra red \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. En backpropagation calculamos el gradiente de $J(\theta)$ (o dicho de otra forma derivamos el error) en función de cada uno de los parámetros de nuestra red. Para esto se opera recursivamente capa tras capa propagando el error desde la salida hacia la entrada de la red.
 
 De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la ecuación \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $\theta$ para la red reuronal.
  
 \begin{equation}\label{eq:ecuacion_9_ANN}
-\theta^{(new)} = \theta^{(old)} - n . \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
+\theta^{(new)} = \theta^{(old)} - n \cdot \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
 \end{equation}
+\begin{center}
+\textit{Fórmula de actualización de parámetros de nuestra ANN.}
+\end{center}
 
 Donde $n$ es la tasa de aprendizaje (o learning rate), del cual hablaremos con mayor detalle en la sección \textit{\nameref{hiper_n}}, y $\nabla J(\theta)$ es el gradiente (también llamado pendiente o derivada) de la función $J(\theta)$ para nuestros parámetros $\theta^{(old)}$. Al tener un “-” por delante obtenemos el gradiente negativo, el cual apunta en la dirección de máximo decrecimiento de la función. Este gradiente negativo permite “guiar” al algoritmo descenso del gradiente para acercarse, de manera progresiva debido a $n$, al mínimo ideal de la función.      
 
@@ -1637,23 +1509,39 @@ Resumidamente, $d$ es un conjunto de segmentos $w_i$, y $D$ está compuesto por 
 
 \cleardoublepage
 
-Como mencionamos previamente, la representación vectorial mediante BoW indica la cantidad de veces que aparece cada palabra en nuestro corpus. Cada componente del vector indica esta cantidad. En el ejemplo de la Tabla \ref{fig:Imagen_NLP_6}, cada columna representa las palabras que componen nuestro vocabulario / diccionario $D$, y cada fila indica la representación vectorial mediante BoW para cada documento (sin realizar un pre-procesamiento).
+Como mencionamos previamente, la representación vectorial mediante BoW indica la cantidad de veces que aparece cada palabra en nuestro corpus. Cada componente del vector indica esta cantidad. En el ejemplo de la Tabla \ref{table:bow_1}, cada columna representa las palabras que componen nuestro vocabulario / diccionario $D$, y cada fila indica la representación vectorial mediante BoW para cada documento (sin realizar un pre-procesamiento).
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.9\textwidth]{images/NLP/6.png}
- \caption{Representación mediante BoW. \\ Ejemplo obtenido de \cite{NLP_8}.}
- \label{fig:Imagen_NLP_6}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{4cm}||p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+\hline
+\textbf{Vocabulario$\Rightarrow$ Corpus $\Downarrow$} & the & cat & sat & on & hat & dog & ate & and \\ [1ex] 
+\hline
+\textit{The cat sat on the hat} & 2 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\ 
+\hline
+\textit{The dog ate the cat and the hat} & 3 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline
+\end{tabular}
+\caption{Representación mediante BoW. \\ Ejemplo obtenido de \cite{NLP_8}.} 
+\label{table:bow_1}
+\end{table}
 
-Usualmente se coloca un $1$ como componente de nuestros vectores cuando el conteo de la palabra es $>1$, representando de esta manera si una palabra en particular está presente o no. De esta manera, nos quedaría la representación BoW mediante un vector binario, como observamos en la Tabla \ref{fig:Imagen_NLP_7}.
+Usualmente se coloca un $1$ como componente de nuestros vectores cuando el conteo de la palabra es $>1$, representando de esta manera si una palabra en particular está presente o no. De esta manera, nos quedaría la representación BoW mediante un vector binario, como observamos en la Tabla \ref{table:bow_2}.
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.9\textwidth]{images/NLP/7.png}
- \caption{Representación binaria mediante BoW.\\ Ejemplo obtenido de \cite{NLP_8}.}
- \label{fig:Imagen_NLP_7}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{4cm}||p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+\hline
+\textbf{Vocabulario$\Rightarrow$ Corpus $\Downarrow$} & the & cat & sat & on & hat & dog & ate & and \\ [1ex] 
+\hline
+\textit{The cat sat on the hat} & \textbf{1} & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\ 
+\hline
+\textit{The dog ate the cat and the hat} & \textbf{1} & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline
+\end{tabular}
+\caption{Representación binaria mediante BoW.\\ Ejemplo obtenido de \cite{NLP_8}.} 
+\label{table:bow_2}
+\end{table}
 
 Consideremos el siguiente ejemplo para explicar el funcionamiento detallado de BoW\cite{NLP_2}: 
 Siendo $d$ = [``He is a good boy'', ``She is a good girl'', ``Boys and girls are good''], nuestro objetivo es obtener una representación vectorial para cada uno de los $d[N]$ documentos\footnote{También podríamos considerar a $d$ como un único documento y $d[N]$ cada oración del documento; los cálculos se realizan de la misma manera solo que en lugar de obtener las representaciones vectoriales para cada documento ahora lo haríamos para cada oración.}.
@@ -1662,14 +1550,24 @@ Luego del pre-procesamiento -que incluye conversión a minúsculas, lematizació
 Construimos nuestro diccionario $D$ con las palabras disponibles en $d’$: \hspace{3cm}
 $D$ = [``good'', ``boy'', ``girl''].
 
-Usando este diccionario y contando la ocurrencia de cada palabra del diccionario en cada documento $d’[i]$, obtendremos la representación mediante BoW para nuestro set de documentos $d’$ observada en la Tabla \ref{fig:Imagen_NLP_8}. En esta tabla cada fila representa el vector numérico obtenido mediante BoW para cada uno de los $d’[N]$ documentos.
+Usando este diccionario y contando la ocurrencia de cada palabra del diccionario en cada documento $d’[i]$, obtendremos la representación mediante BoW para nuestro set de documentos $d’$ observada en la Tabla \ref{table:bow_3}. En esta tabla cada fila representa el vector numérico obtenido mediante BoW para cada uno de los $d’[N]$ documentos.
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.5\textwidth]{images/NLP/8.png}
- \caption{Representación mediante BoW.\\ Ejemplo obtenido de \cite{NLP_2}.}
- \label{fig:Imagen_NLP_8}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{5cm}||p{1cm}|p{1cm}|p{1cm}|}
+\hline
+\centering $d’[N]$ & \textbf{good} & \textbf{boy} & \textbf{girl} \\ [1ex]
+\hline
+$d’[1]$ = ``good boy'' & 1 & 1 & 0 \\
+\hline
+$d’[2]$ = ``good girl'' & 1 & 0 & 1 \\
+\hline
+$d’[3]$ = ``boy girl good'' & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\caption{Representación mediante BoW.\\ Ejemplo obtenido de \cite{NLP_2}.} 
+\label{table:bow_3}
+\end{table}
 
 \subsubsection{TF-IDF.}\label{tf_idf}
 
@@ -1677,7 +1575,7 @@ Las representaciones mediante BoW son muy sencillas de comprender, sin embargo s
 
 \textit{TF (Term Frequency)} e \textit{IDF (Inverse Document Frequency)} solucionan este problema otorgando más peso a las palabras que aparecen en pocos documentos y menos peso a las palabras que aparecen en muchos documentos. La razón de esto es que una palabra que aparece en muchos documentos mayormente no es relevante (como por ejemplo las stop-words); en cambio palabras que aparecen en pocos documentos son más discriminantes y deberían tener mayor peso.  Por ejemplo, en un corpus tokenizado obtenido de un corpus de texto deportivo, los tokens como "córner", "penal" y "botines" aparecen con más frecuencia en documentos que tratan sobre fútbol, mientras que otros tokens que aparecen con frecuencia en todo el corpus tokenizado, como "correr", "puntuación” y “jugar” son menos importantes\cite{NLP_7}.
 
-Otra de las desventajas de BoW es su incapacidad de tener en cuenta qué palabras son más importantes para cada uno de nuestros documentos\cite{NLP_2}. Por ejemplo, viendo la Tabla \ref{fig:Imagen_NLP_8}, podemos observar que hay muchas palabras que tienen los mismos pesos (1 o 0): para $d’[1] = [1,1,0]$ observamos que las palabras “good” (1) y “boy” (1) tienen el mismo valor/peso (1). TF e IDF también permiten solucionar este problema: vemos la nueva representación de $d’[1]$ en la Tabla \ref{fig:Imagen_NLP_11}; de esta manera “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos.
+Otra de las desventajas de BoW es su incapacidad de tener en cuenta qué palabras son más importantes para cada uno de nuestros documentos\cite{NLP_2}. Por ejemplo, viendo la Tabla \ref{table:bow_3}, podemos observar que hay muchas palabras que tienen los mismos pesos (1 o 0): para $d’[1] = [1,1,0]$ observamos que las palabras “good” (1) y “boy” (1) tienen el mismo valor/peso (1). TF e IDF también permiten solucionar este problema: vemos la nueva representación de $d’[1]$ en la Tabla \ref{table:tf_idf_3}; de esta manera “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos.
 
 De esta manera, como mencionamos previamente, el modelo BoW puede ser mejorado añadiendo TF (Term Frequency) e IDF (Inverse Document Frequency). TF permite contar la cantidad de veces que aparece cada palabra/token en cada documento; mientras que la idea de IDF es darle a cada palabra/token un peso que sea inversamente proporcional a su frecuencia. Las palabras que aparecen en muchos documentos serán entonces menos importantes que las palabras que solo aparecen en unos pocos documentos\cite{apunte_uba}. Matemáticamente, podemos describir TF como en la Fórmula \ref{eq:ecuacion_2_NLP}, e IDF como en la Fórmula \ref{eq:ecuacion_3_NLP}.   
 
@@ -1693,14 +1591,24 @@ Donde $N$ es el número de documentos $d[i]$ presente en el conjunto de document
 
 Multiplicando $tf(w,d[i])$ e $idf(w)$ para cada palabra $w$ y cada documento $d[i]$, obtenemos una nueva matriz que tendrá en cuenta el contexto de las palabras en nuestro corpus, y permitirá saber mediante los pesos qué palabras son más importantes para cada uno de nuestros documentos.
 
-Siguiendo el ejemplo de BoW, en la Tabla \ref{fig:Imagen_NLP_9} obtendremos los cálculos de TF, mientras que en la Tabla \ref{fig:Imagen_NLP_10} obtendremos los cálculos de IDF.
+Siguiendo el ejemplo de BoW, en la Tabla \ref{table:tf_idf_1} obtendremos los cálculos de TF, mientras que en la Tabla \ref{table:tf_idf_2} obtendremos los cálculos de IDF.
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.9\textwidth]{images/NLP/9.png}
- \caption{Cálculos de TF para nuestro set de documentos $d$\cite{NLP_2}.}
- \label{fig:Imagen_NLP_9}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{1cm}||p{1cm}|p{1cm}|p{1cm}|}
+\hline
+\centering $d’[N]$ & \textbf{good} & \textbf{boy} & \textbf{girl}  \\ [1ex] 
+\hline
+$d’[1]$ & 0,5 & 0,5 & 0 \\
+\hline
+$d’[2]$ & 0,5 & 0 & 0,5 \\
+\hline
+$d’[3]$ & 0,33 & 0,33 & 0,33 \\
+\hline
+\end{tabular}
+\caption{Cálculos de \textbf{TF} para nuestro set de documentos $d$\cite{NLP_2}.} 
+\label{table:tf_idf_1}
+\end{table}
 
 Por ejemplo, los cálculos de TF para la palabra “boy” (tercer columna) y cada uno de nuestros documentos serían:
 
@@ -1710,12 +1618,18 @@ tf(“boy”, “good girl”) = 0 / 2 = 0  \\
 tf(“boy”, “boy girl good”) = 1 / 3 = 0,33  \\
 \end{center}
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.9\textwidth]{images/NLP/10.png}
- \caption{Cálculos de IDF para nuestro set de documentos $d$\cite{NLP_2}.}
- \label{fig:Imagen_NLP_10}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{1cm}||p{1cm}|p{1cm}|p{1cm}|}
+\hline
+& \textbf{good} & \textbf{boy} & \textbf{girl}  \\ [1ex] 
+\hline
+\textbf{IDF} & 0  & 0.176 & 0.176  \\
+\hline
+\end{tabular}
+\caption{Cálculos de \textbf{IDF} para nuestro set de documentos $d$\cite{NLP_2}.} 
+\label{table:tf_idf_2}
+\end{table}
 
 Por ejemplo, los cálculos de IDF para cada palabra $w$ (recordando que $d’$ = [“good boy”, “good girl”, “boy girl good”]) serían:
 
@@ -1725,20 +1639,30 @@ idf(“boy”) = log (3 / 2) $\simeq$ 0.176  \\
 idf(“girl”) = log (3 / 2) $\simeq$ 0.176  \\
 \end{center}
 
-Por último, en la Tabla \ref{fig:Imagen_NLP_11} multiplicamos $tf (w,d[i])$ e $idf(w)$ para obtener nuestra Representación vectorial TF-IDF para cada uno de los $d’[N]$ documentos.
+Por último, en la Tabla \ref{table:tf_idf_3} multiplicamos $tf (w,d[i])$ e $idf(w)$ para obtener nuestra Representación vectorial TF-IDF para cada uno de los $d’[N]$ documentos.
 
-\begin{figure}[H]    
- \centering
- \includegraphics[width=0.9\textwidth]{images/NLP/11.png}
- \caption{Representación mediante TF-IDF\cite{NLP_2}.}
- \label{fig:Imagen_NLP_11}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{1cm}||p{1cm}|p{4cm}|p{4cm}|}
+\hline
+\centering $d’[N]$ & \textbf{good} & \textbf{boy} & \textbf{girl}  \\ [1ex] 
+\hline
+$d’[1]$ & 0 & 0,5 x 0,176 = \textbf{0.088} & 0  \\
+\hline
+$d’[2]$ & 0 & 0 & 0,5 x 0,176 = \textbf{0.088}  \\
+\hline
+$d’[3]$ & 0 & 0,33 x 0,176 = \textbf{0.058} & 0,33 x 0,176 = \textbf{0.058}  \\
+\hline
+\end{tabular}
+\caption{Representación mediante \textbf{TF-IDF}\cite{NLP_2}.} 
+\label{table:tf_idf_3}
+\end{table}
 
 Matemáticamente, debido a la relación de la función logarítmica, la puntuación TF-IDF siempre estará entre 0 y 1; en ese sentido cuanto más cercana a 1 sea la puntuación TF-IDF de una palabra, más informativa será esa palabra para ese documento. Cuanto más cerca esté la puntuación de cero, menos informativa será esa palabra\cite{NLP_7}.
 
-Comparando los resultados obtenidos con la representación previa de BoW (Tabla \ref{fig:Imagen_NLP_8}), podemos observar que la palabra “good” que estaba representada en cada documento con un 1; ahora con TF-IDF está representada por 0s ya que “good” al estar presente en todos los documentos, se considera una palabra muy común y se le da menor importancia/peso.
+Comparando los resultados obtenidos con la representación previa de BoW (Tabla \ref{table:bow_3}), podemos observar que la palabra “good” que estaba representada en cada documento con un 1; ahora con TF-IDF está representada por 0s ya que “good” al estar presente en todos los documentos, se considera una palabra muy común y se le da menor importancia/peso.
 
-Además, observamos que para d’[1], comparando con la Tabla \ref{fig:Imagen_NLP_8}, en su representación con TF-IDF “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos (en BoW estaban representados ambos con 1). En d’[2] sucede lo mismo: la palabra “girl” tiene mayor relevancia que “good”.
+Además, observamos que para $d’[1]$, comparando con la Tabla \ref{table:bow_3}, en su representación con TF-IDF “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos (en BoW estaban representados ambos con 1). En $d’[2]$ sucede lo mismo: la palabra “girl” tiene mayor relevancia que “good”.
 
 \subsubsection{Desventajas BoW \& TF-IDF.}\label{desv_bow_tfidf}
 
@@ -1959,6 +1883,7 @@ Siguiendo con nuestro ejemplo, para nuestro corpus “The quick brown fox jumps 
 \begin{figure}[H]    
  \centering
  \includegraphics[width=1\textwidth]{images/NLP/19.png}
+ \captionsetup{justification=centering,margin=3cm}
  \caption{Skipgram: dada la palabra central se predicen las palabras de contexto.}
  \label{fig:Imagen_NLP_19}
 \end{figure}
@@ -1975,6 +1900,7 @@ De esta manera se obtiene el \textit{dataset} que será utilizado para entrenar 
 \begin{figure}[H]    
  \centering
  \includegraphics[width=0.8\textwidth]{images/NLP/21.png}
+ \captionsetup{justification=centering,margin=4cm}
  \caption{Preparando nuestro dataset para Skipgram (con $C$ = 2)\cite{NLP_26}.}
  \label{fig:Imagen_NLP_21}
 \end{figure}
@@ -2111,20 +2037,20 @@ Teniendo en cuenta que:
 \item $v_c$ = vector de la palabra central ($c$ = central).
 \item $V$ = nuestro vocabulario (palabras únicas de nuestro corpus de texto $T$). 
 \item En el denominador se realiza la sumatoria de todo el vocabulario de tamaño $V$ para obtener la distribución de probabilidad.
-\item La exponencial se coloca para que siempre sea positiva (ya que las probabilidades tienen que ser siempre positivas).
+\item La exponencial se coloca para que siempre sea positiva (ya que las probabilidades tienen que ser siempre positivas). \\
 \end{itemize}
 
-\cleardoublepage
 
 \paragraph{Optimizaciones: Muestreo Negativo.}\label{neg_samp}
 
 Como podemos observar para el cálculo de $P(w_o | w_c)$ (Fórmula \ref{eq:ecuacion_15_NLP}) -la cual se realiza para obtener nuestra función de costo $J(\theta)$  (Fórmula \ref{eq:ecuacion_11_NLP})- depende del tamaño de nuestro vocabulario $V$ (ya que en el denominador de $P(w_o | w_c)$ se realiza una sumatoria por cada palabra $w$ perteneciente a $V$). Debido a que nuestros vocabularios pueden ser miles o incluso millones de palabras, el costo de realizar el cálculo de los gradientes puede ser muy alto. Para reducir tal complejidad computacional y optimizar el cálculo de la función de costo explicada previamente se puede utilizar otro método de entrenamiento conocido como \textit{muestreo negativo} (o \textit{negative sampling}), el cual está descrito en el segundo Paper de Tomas Mikolov\cite{NLP_14}.  como una mejora al Skipgram tradicional con función de salida softmax.
 
-Como podemos observar en la Figura \ref{fig:Imagen_NLP_24}, anteriormente utilizando softmax (parte izquierda de la imagen) teníamos un problema de \textit{clasificación}, donde teníamos una palabra central (en este ejemplo “not”) como \textit{entrada} y teníamos que clasificar cuál de todas las palabras del vocabulario era la más probable de que fuera la palabra de contexto de \textit{salida} (en este ejemplo “thou”).  El problema es que, como vimos anteriormente, la clasificación con softmax es un problema debido a su elevado costo de cálculo; con lo cual la idea es transformar esto a \textit{otro problema de clasificación} pero usando la \textit{regresión logística} (parte derecha de la imagen). De esta manera, mediante muestreo negativo se emplean nodos de regresión logística (es decir, con la función sigmoide -Fórmula \ref{eq:ecuacion_8_ANN}-) con el objetivo de clasificar de la mejor manera posible, ejemplos positivos y negativos de nuestro conjunto de entrenamiento\cite{NLP_13_2}. En este modelo de ejemplo nos dan como \textit{entrada} las 2 palabras (palabra central: “not”, y palabra de contexto: “thou”) y a la \textit{salida} nos fijamos cual es la probabilidad de que esas dos palabras estén juntas (en este caso arrojó como resultado “0.9”). En conclusión, pasamos de un problema de “Dada una palabra central ¿cuál de todas estas palabras es la palabra de contexto?” a “Dado un par de palabras (central, contexto) ¿cuál es la probabilidad de que estén juntas?”. Ahora nuestra salida no es una palabra, sino un número del 0 al 1: en lugar de usar la softmax, ahora usamos la sigmoide, la cual  va de 0 a 1.
+Como podemos observar en la Figura \ref{fig:Imagen_NLP_24}, anteriormente utilizando softmax (parte izquierda de la imagen) teníamos un problema de \textit{clasificación}, donde teníamos una palabra central (en este ejemplo “not”) como \textit{entrada} y teníamos que clasificar cuál de todas las palabras del vocabulario era la más probable de que fuera la palabra de contexto de \textit{salida} (en este ejemplo “thou”).  El problema es que, como vimos anteriormente, la clasificación con softmax es un problema debido a su elevado costo de cálculo; con lo cual la idea es transformar esto a \textit{otro problema de clasificación} pero usando la \textit{regresión logística} (parte derecha de la imagen). De esta manera, mediante muestreo negativo se emplean nodos de regresión logística (es decir, con la función sigmoide -Fórmula \ref{eq:ecuacion_8_ANN}-) con el objetivo de clasificar de la mejor manera posible, ejemplos positivos y negativos de nuestro conjunto de entrenamiento\cite{NLP_13_2}. En este modelo de ejemplo nos dan como \textit{entrada} las 2 palabras (palabra central: “not”, y palabra de contexto: “thou”) y a la \textit{salida} nos fijamos cual es la probabilidad de que esas dos palabras estén juntas (en este caso arrojó como resultado “0.9”). En conclusión, pasamos de un problema de “Dada una palabra central ¿cuál de todas estas palabras es la palabra de contexto?” a “Dado un par de palabras (central, contexto) ¿cuál es la probabilidad de que estén juntas?”. Ahora nuestra salida no es una palabra, sino un número del 0 al 1: en lugar de usar la softmax, ahora usamos la sigmoide, la cual  va de 0 a 1. \\
 
 \begin{figure}[H]    
  \centering
  \includegraphics[width=1\textwidth]{images/NLP/24.png}
+ \captionsetup{justification=centering,margin=2cm}
  \caption{Comparación Skipgram con distintas funciones de salida: softmax (izquierda) y sigmoide (derecha)\cite{datitos_nlp}.}
  \label{fig:Imagen_NLP_24}
 \end{figure}
@@ -2135,7 +2061,7 @@ De esta manera, mediante muestreo negativo pasamos de usar la Fórmula \ref{eq:e
 P(D=1 | w_c, w_o) = \sigma (u_{o}^{T} v_c)    \qquad \text{(Ver \cite{NLP_27})}
 \end{equation}
 \begin{center}
-\textit{Probabilidad de que la salida sea 1, dadas $w_o$ y $w_c$ (función de salida sigmoide).}
+\textit{Probabilidad de que la salida sea 1, dadas $w_o$ y $w_c$  \\ (función de salida sigmoide).}
 \end{center}
 
 Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórmula \ref{eq:ecuacion_8_ANN}) para adaptarla a nuestro caso: Fórmula \ref{eq:ecuacion_18_NLP}.
@@ -2144,7 +2070,7 @@ Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórm
 \sigma (u_{o}^{T} v_c) = \frac{1}{1 + exp(- (\sigma (u_{o}^{T} v_c)) )}    \qquad \text{(Ver \cite{NLP_27})}
 \end{equation}
 \begin{center}
-\textit{Función Sigmoide utilizada.}
+\textit{Función sigmoide utilizada.}
 \end{center}
 
 En la Figura \ref{fig:Imagen_NLP_25} podemos observar un ejemplo de construcción de datasets para utilizar como entrenamiento: usando como función de salida softmax (parte izquierda) y sigmoide (parte derecha). De esta manera pasamos de tener un dataset donde la entrada y salida son las dos palabras, a uno donde tengamos las dos palabras como features, y la etiqueta “target” es cual es el valor que debería arrojar el modelo.
@@ -2152,6 +2078,7 @@ En la Figura \ref{fig:Imagen_NLP_25} podemos observar un ejemplo de construcció
 \begin{figure}[H]    
  \centering
  \includegraphics[width=1\textwidth]{images/NLP/25.png}
+ \captionsetup{justification=centering,margin=2cm}
  \caption{Armando el datasets para distintas funciones de salida: softmax (izquierda), sigmoide (derecha)\cite{datitos_nlp}.}
  \label{fig:Imagen_NLP_25}
 \end{figure}
@@ -2163,42 +2090,329 @@ Aquí entran los ejemplos negativos (\textit{muestreo negativo}): tenemos que ag
 \begin{figure}[H]    
  \centering
  \includegraphics[width=0.3\textwidth]{images/NLP/26.png}
+ \captionsetup{justification=centering,margin=3cm}
  \caption{Armando el datasets para función de salida sigmoide usando negative sampling\cite{datitos_nlp}.}
  \label{fig:Imagen_NLP_26}
 \end{figure}
 
 ¿Cuántas palabras negativas ponemos por cada positiva?: esto es otro \textit{hiper-parámetro} de nuestro modelo Word2vec. 
 
+Con esta optimización, transcribimos la Fórmula \ref{eq:ecuacion_17_NLP} anterior para describir la probabilidad de que la salida sea 1, dadas las 2 palabras $w_c$ y $w_o$, a la Fórmula \ref{eq:ecuacion_19_NLP}.
+
+\begin{equation}\label{eq:ecuacion_19_NLP}
+P(w^{(t+j)} | w^{(t)}) = P(D=1 | w^{(t)}, w^{(t+j)})  \prod_{k=1, w_k \sim P(w)}^{K} \; P(D=0 | w^{(t)}, w_k)     \qquad \text{(Ver \cite{NLP_27})}
+\end{equation}
+\begin{center}
+\textit{Probabilidad de que $w^{(t+j)}$ sea palabra de contexto de la palabra central $w^{(t)}$ \\ (función de salida sigmoide y uso de negative samping)}.
+\end{center}
+
+Teniendo en cuenta que:
+\begin{itemize}
+\item $P(D=1 | w^{(t)}, w^{(t+j)})$ es la probabilidad de que la salida sea 1 cuando las dos palabras esten juntas $w^{(t+j)}$ y $w^{(t)}$.
+\item $\prod_{k=1, w_k \sim P(w)}^{K} \; P(D=0 | w^{(t)}, w_k)$ es la probabilidad de que la salida sea 0 cuando las dos palabras esten juntas ($w^{(t)}$ y la palabra central $w_k$, que es la que agarramos mediante random sampling). El $K$ en esta ecuación define cuántas palabras negativas tenemos en cuenta. 
+\end{itemize}
+
+De esta manera, observamos que la Fórmula \ref{eq:ecuacion_19_NLP}, no depende de todo el vocabulario $V$, como sí sucedía en la Fórmula \ref{eq:ecuacion_15_NLP}. La Fórmula \ref{eq:ecuacion_19_NLP} solo depende de las palabras negativas $w_k$ que metamos: por cada ejemplo vamos a tener que iterar sobre esas $K$ palabras en lugar de iterar sobre todo el diccionario \textit{para calcular la función de pérdida} (Fórmula \ref{eq:ecuacion_11_NLP}). $K$ es mucho menor que el vocabulario $V$: generalmente estamos hablando de 5 a 10 ejemplos negativos por cada positivo, y 10 ya es mucho más pequeño que 1 millón (considerando 1 millón como el tamaño de nuestro vocabulario).
+
 \cleardoublepage
 
 \paragraph{Entrenamiento y función de costo con Sigmoide.}\label{ent_costo_sigmoide}
-adyhgery
-\cleardoublepage
+
+El ciclo de entrenamiento del modelo Word2vec con función de salida sigmoide y utilizando negative sampling es similar al descrito en la sección \textit{\nameref{ent_costo_softmax}}. La diferencia es que la función de salida es sigmoide en lugar de softmax, y la función de coste $J$ será distinta; el resto de los pasos indicados anteriormente para el entrenamiento son los mismos.
+
+Resumidamente, para realizar el entrenamiento de nuestro modelo Word2vec con función de salida sigmoide y utilizando negative sampling, el primer paso es generar nuestras matrices $W$ y $W'$: Figura \ref{fig:Imagen_NLP_27}. Para esto se generan los 2 vectores que vimos anteriormente ($v_w$ -vector de la palabra central-, y $u_w$ -vector de la palabra de contexto-) por cada palabra de nuestro vocabulario. Con estos vectores se crean dichas matrices: la \textit{matriz de embedding} ($W$) cuando la palabra es la central; y la \textit{matriz de contexto} ($W'$) cuando la palabra es de contexto. Ambas matrices tienen \textit{el mismo tamaño}, por lo que tienen una representación de embedding para cada palabra de nuestro vocabulario. Las filas son las palabras de nuestro vocabulario y las columnas es el tamaño del embedding: otro \textit{hiper-parámetro} de nuestro modelo Word2vec.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/NLP/27.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Primer paso entrenamiento Word2vec con función de salida sigmoide y utilizando negative sampling\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_27}
+\end{figure}
+
+Luego, viendo la Figura \ref{fig:Imagen_NLP_28}, observamos que el modelo agarra el primer grupo de palabras (en este caso son 3 filas: una fila es la palabra central junto con la palabra de contexto correcta -thou-, y las otras dos filas son la palabra central junto con las palabras de ejemplo negativo -aaron y taco-). Luego el modelo busca la palabra central en la matriz de embedding junto con todas las de contexto en la matriz de contexto, y las separa. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/28.png}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption{Obtención de vectores para el cálculo de forward propagation\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_28}
+\end{figure}
+
+Teniendo las etiquetas de estas 3 salidas, lo que hace el modelo es calcular la salida mediante forward propagation, y por último aplicar la función de salida sigmoide. Esto se hace para \textit{todos los ejemplos de entrenamiento}. Una vez finalizado el cálculo de las salidas calculamos el error total, los cuales surgen de la comparación de las salidas de la sigmoide con las etiquetas correspondientes aplicando la función de costo $J$ descrita en la Fórmula \ref{eq:ecuacion_21_NLP}. En esta función de costo observamos que ya no dependemos del tamaño de vocabulario $T$, sino que dependemos de nuestros $k$ ejemplos negativos. Estos errores los usamos para modificar los embeddings de las matrices mediante backpropagation utilizando gradiente descendiente: Figura \ref{fig:Imagen_NLP_29}. 
+
+\begin{equation}\label{eq:ecuacion_21_NLP}
+J(\theta) = -log P(w^{(t+j)} | w^{(t)}) = - log \; \sigma (u_{i_{t+j}}^{T} v_{i_{t}}) - \sum_{k=1, w_k \sim P(w)}^{K} \;  log \; \sigma (-u_{h_{k}}^{T} v_{i_{t}})
+\end{equation}
+\begin{center}
+\textit{Función de costo Skipgram (función salida Sigmoide y uso de negative sampling})\cite{NLP_27}.
+\end{center}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/29.png}
+ \caption{Forward y Back propagation\cite{datitos_nlp}.}
+ \label{fig:Imagen_NLP_29}
+\end{figure}
+
+Mientras se realiza el entrenamiento recorriendo epoch veces nuestro conjunto de datos, los embeddings continúan mejorando su representación para cada una de las palabras. Como mencionamos previamente, estos embeddings son entrenados para que las palabras que siempre están cerca, aparezcan cerca; y por lo tanto en el proceso de entrenamiento el modelo aprenda a codificar estas palabras para que se mantenga el significado de las mismas. 
+
+Una vez que el modelo finalizó el entrenamiento obtendremos nuestras 2 matrices / embeddings listas y lo que se hace es descartar la matriz de contexto $W’$ y \textit{usar la matriz de Embeddings de palabra central $W$ como nuestros embeddings pre-entrenados} para representar a nuestras palabras. 
+\\
 
 \paragraph{Desventajas Word2Vec.}\label{desv_word2vec}
-adyhgery
-\cleardoublepage
+
+Existen tres grandes desventajas de utilizar embeddings obtenidos mediante Word2vec, las cuales describiremos a continuación.
+
+\begin{itemize}
+\item La primer limitación\cite{NLP_28} de Word2vec es que sus embeddings \textit{no permiten trabajar con palabras desconocidas por nuestro vocabulario} (palabras \textit{out-of-vocabulary, OVV}). De esta manera, si el embedding no contiene en su vocabulario una palabra, la misma simplemente no se tendrá en cuenta. Esta limitación puede ser solventada utilizando word embeddings obtenidos mediante el modelo \textit{FastText}, el cual es una variante de Word2Vec creada por Facebook que si permite manejar palabras OOV. Esto ocurre debido a que Word2vec considera a una palabra como una unidad que no puede ser dividida, mientras que Fasttext considera una palabra como una combinación de sub-palabras. En FastText cada palabra es dividida en n-grams (o “sub-palabras”), los cuales están compuestos por n caracteres. El valor de n define cómo se divide cada palabra en cierto número de n-gramas. Por ejemplo, si $n=3$, “apple” se divide en “app”, “ppl” y “ple”. Una vez que se obtengan los valores vectoriales de las sub-palabras, el valor vectorial de “apple” se convierte en la suma de los valores vectoriales de las sub-palabras. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_30}.
+
+Mediante esta técnica de entrenamiento FastText permite el manejo de palabras OOV. Por ejemplo, consideremos un caso en el que se cuentan en nuestro vocabulario de embedding las palabras “birth” (nacimiento) y “place” (lugar), pero no la palabra “birthplace” (lugar de nacimiento). En Word2vec, al no estar definido el valor del vector “birthplace”, entonces este no se podrá obtener de ninguna forma. En cambio, FastText puede calcular el valor del vector “birthplace” mediante la unión de las subpalabras “birth” y “place”, las cuales si están en nuestro vocabulario. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_31}.
+
+\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/NLP/30.png}
+\captionsetup{justification=centering,margin=0.5cm}
+\caption{Representación de ‘apple’ mediante FastText\cite{NLP_28}.}
+\label{fig:Imagen_NLP_30}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.55\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/NLP/31.png}
+\captionsetup{justification=centering,margin=1cm}
+\caption{Word2vec (izquierda) / FastText (derecha)\cite{NLP_28}.}
+\label{fig:Imagen_NLP_31}
+\end{minipage}
+\end{figure}
+
+\item La segunda desventaja\cite{NLP_28} de Word2vec es que \textit{los resultados del embedding no son buenos frente a las palabras que tienen errores tipográficos (datos que presentan ruido)}. Esta limitación también puede ser solventada utilizando FastText. Por ejemplo, consideremos la palabra “apple” y “appple”, que tiene una p adicional como un error tipográfico. En Word2Vec, las dos palabras se consideran palabras completamente separadas. Sin embargo, para FastText, dado que las dos palabras tienen varios n-gramas idénticos, se considerarán palabras similares. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_32}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/NLP/32.png}
+ \caption{Word2vec / FastText\cite{NLP_28}. }
+ \label{fig:Imagen_NLP_32}
+\end{figure}
+
+\end{itemize}
+
+Como mencionamos previamente, las limitaciones 1 y 2 pueden solventarse utilizando Fasttext. Sin embargo, en nuestra implementación no utilizamos este algoritmo debido a su mayor complejidad de cálculo, ya que para obtener el vector de una palabra en el proceso de entrenamiento tenemos que realizar la \textit{suma de todos los vectores de subpalabras}.
+
+\begin{itemize}
+
+\item La tercer y más importante desventaja de usar embeddings obtenidos mediante Word2Vec\cite{NLP_26}, es que las relaciones construidas entre las palabras son puramente estadísticas y únicamente reflejan la proximidad en un espacio vectorial. Esto es una desventaja, ya que el objetivo de NLP justamente es recrear complejas relaciones que dejen de lado las representaciones estadísticas. De esta manera, muchas veces no nos es útil esta representación para representar palabras que se usan en distintos contextos. Esto es debido a que Word2vec obtiene un embedding que aprende un vector \textbf{fijo} para cada palabra. El inconveniente acá es que existen palabras con diversos significados, por ejemplo la palabra ‘queen’ puede ser usada en una oración de piezas de ajedrez o en una oración de tamaños de cama. El vector para la palabra ‘queen’ debería ser distinto dependiendo el contexto, pero en el caso de word2vec solo existe un único vector ‘queen’ que, en caso de haber sido entrenado con ambas oraciones, supondrá un significado ‘promedio’ entre los 2 contextos. 
+
+\end{itemize}
+
+Esta tercer limitación se puede solventar mediante el uso de modelos de lenguaje más complejos basados en deep learning que permiten obtener embeddings contextuales (como \textit{BERT}, o \textit{ELMo}), permitiendo variar los embeddings dependiendo del contexto. Sin embargo, en nuestra implementación no utilizamos estos modelos debido a que el entrenamiento de los mismos requiere mucho mayor tiempo debido a su mayor complejidad de cálculo\cite{NLP_2}. Otra razón por la cual no utilizamos estos modelos es porque tendríamos que realizar pasos extra para adaptar / transformar la salida de los mismos de modo que sean compatibles con la tarea que queremos realizar a posterior: obtener las similitudes de nuestras palabras en documentos/textos mediante el método Word Mover’s Distance (WMD). Para utilizar WMD como técnica de medición de similitud, lo más simple es utilizar los embeddings obtenidos mediante Word2Vec, como está descrito en el paper de Kusner\cite{NLP_15}.
+\\
 
 \subsection{Obtención de las mediciones de similitud entre textos.}\label{med_sim_textos}
-adyhgery
-\cleardoublepage
+
+El siguiente paso de nuestra aplicación NLP consiste en definir y emplear una métrica de distancia que será utilizada como nuestra medida de similitud entre los vectores numéricos obtenidos del paso anterior (sean mediante BoW, TF-IDF o Embeddings), los cuales representan nuestros textos a comparar.
+
+La medición de similitudes entre textos (text similarity measurement) es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, information retrieval, automatic question answering, machine translation, dialogue systems, y document matching\cite{similarity_survey}.
+
+Una de las primeras aplicaciones de mediciones de similitud entre textos es quizás el modelo vectorial en la recuperación de información (information retrieval, IR), donde el documento más relevante para una consulta de entrada se determina clasificando los documentos de una colección en órden inverso a su similitud con la consulta dada. Las mediciones de similitud entre textos también se utilizaron en sistemas de retroalimentación de relevancia (relevance feedback) y de clasificación de texto (text classification). También se utilizaron para tareas de desambiguación del sentido de la palabra (word sense disambiguation) y, más recientemente, para resúmenes de texto (text summarization) y para métodos de evaluación en máquinas de traducción automática (machine translation)\cite{NLP_17_18}.
+
+Para realizar esta tarea de obtener las mediciones de similitud entre nuestros textos utilizaremos dos métodos: uno más convencional (Cosine Similarity, representando previamente nuestros textos con TF-IDF) y un método más actual y novedoso (WMD o Word Mover’s Distance, representando previamente nuestros textos mediante Embeddings). En la sección \textit{\nameref{cos_y_wmd}} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en \textit{\nameref{Tecnicas_Simil_textos}}, el cual detalla las numerosas técnicas existentes para obtener similitudes entre textos.
+
+Como mencionamos previamente, una vez que hayamos obtenido estas mediciones de similitud usando estos dos métodos, lo que haremos es combinar dichas mediciones e ingresarlas como entradas a algoritmos de ML (en nuestro caso K-means, y luego KNN) para generar \textit{un modelo de clasificación}. Lo que hará este modelo es, en base a los valores de similitud de los curriculums vitae de nuevos candidatos, lograr clasificar qué tan similares son dichos curriculums vitae con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+
+A continuación se describirán las técnicas existentes más populares para obtener mediciones de similitud entre textos, haciendo énfasis en las dos técnicas utilizadas en este proyecto. 
+\\
 
 \subsubsection{Maneras de medir la similitud entre textos.}\label{Tecnicas_Simil_textos}
-adyhgery
-\cleardoublepage
+
+Los textos pueden ser similares de dos maneras: \textit{léxica} y \textit{semánticamente}. Las palabras que componen el texto son similares léxicamente si tienen una secuencia de caracteres similar. En cambio, la similitud semántica determina la similitud entre textos basados en los significados de las palabras que la componen, en lugar de un macheo carácter por carácter. Las palabras son similares semánticamente si tienen algo en común, son opuestas entre sí, se usan de la misma manera, se usan en el mismo contexto y si una es un tipo de otra\cite{NLP_16}.
+
+La similitud de texto no sólo da cuenta de la similitud semántica entre textos, sino que también considera una perspectiva más amplia que analiza las propiedades semánticas compartidas de dos palabras. Por ejemplo, las palabras 'King' y 'Man' pueden estar estrechamente relacionadas entre sí, pero no se consideran semánticamente similares, mientras que las palabras 'King' y ‘Queen' si son semánticamente similares. Así, la similitud semántica puede considerarse como uno de los aspectos de la relación semántica. La relación semántica que incluye la similitud se mide en términos de distancia semántica, que es inversamente proporcional a la relación\cite{similarity_survey}.
+
+Existen muchas métricas para medir similitudes entre textos. Además, existen muchas técnicas para, previamente, representar vectorialmente a nuestros textos. Es por esto que podemos realizar un gran número de combinaciones entre estos métodos de vectorización y uso de métricas de similitud para llevar a cabo nuestra tarea de medición de similitudes entre textos. Esta misma separación fue tomada en cuenta por un estudio publicado en agosto de 2020\cite{similarity_survey}, el cual provee un profundo análisis y conocimiento de las actuales técnicas para medir similitudes entre textos.
+
+En la Figura \ref{fig:Imagen_NLP_33} podemos observar un resumen de dicho estudio, en la cual el cálculo o medición de similitudes entre textos es descrita teniendo en cuenta los dos aspectos mencionados: 
+\begin{itemize}
+\item \textit{Distancias entre los textos (text distance)}: la cual describe la proximidad semántica de dos palabras de texto desde la perspectiva de la distancia. 
+\item \textit{Representaciones de los textos (text representation)}: la cual representa al texto como features o valores numéricos que pueden ser calculados. 
+\end{itemize}
+
+Se han propuesto varias medidas y técnicas para medir la similitud semántica durante las últimas décadas. La mayoría de los académicos y estudios previos a este dividen los métodos de medición de similitud de texto basados en corpus de textos (corpus based similarity) y basados en conocimiento (knowledge based similarity)\cite{NLP_16}. Esta clasificación ignora los métodos de cálculo de distancias entre textos, y sólo considera los métodos de representación de textos. 
+Es por esto que este estudio\cite{similarity_survey} hace una mayor extensión y subdivisión del sistema de clasificación. Adicionalmente, debido al desarrollo y auge de las redes neuronales en estos últimos años, surgieron varios métodos de representación y cálculos de distancias basándose en estas tecnologías, las cuales fueron agregadas a este estudio y permitieron mejorar enormemente el análisis semántico de las palabras y los textos: como por ejemplo Word Mover’s Distance (WMD), Word2vec, Glove y BERT. 
+\\\\
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/NLP/33.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Medición de similitudes entre textos (remarcadas las técnicas utilizadas en la implementación)\cite{similarity_survey}.}
+ \label{fig:Imagen_NLP_33}
+\end{figure}
+
+Como podemos observar en la Figura \ref{fig:Imagen_NLP_33} ambos aspectos tienen subdivisiones: la \textit{distancia entre los textos (text distance)} puede ser dividida en distancia de longitud (length distance), distancia de distribución (distribution distance), y distancia semántica (semantic distance); mientras que las \textit{representaciones de los textos (text representation)} pueden ser divididas en representaciones basadas en cadenas de texto (string based), basadas en corpus de texto (corpus based), basadas en macheos/coincidencias semánticas de texto (semantic text matching), y basadas en estructuras de grafos\footnote{Un grafo es un conjunto de objetos llamados vértices o nodos unidos por enlaces llamados aristas o arcos, que permiten representar y estudiar relaciones binarias entre elementos de un conjunto.} (graph structure based). La idea es la misma que expresamos a lo largo de este informe, luego de haber representado los textos vectorialmente se aplican las mediciones de distancias para obtener finalmente las medidas de similitud entre nuestros textos.
+
+A continuación explicaremos más detalladamente en qué consisten estas subdivisiones de \textit{distancia entre los textos (text distance)} y \textit{representaciones de los textos (text representation)}. No entraremos en detalle de cada una de las técnicas involucradas en cada categoría -a excepción de Word Mover’s Distance y Cosine Distance- ya que no entra en los objetivos de este proyecto, pero si se explicará brevemente en qué consiste cada subdivisión.
+
+Las tres maneras de medir las \textit{distancias entre los textos (text distance)} son \cite{similarity_survey}: 
+
+\begin{enumerate}
+
+\item \textit{De acuerdo a la longitud (Length Distance)}: Tradicionalmente, la similitud entre textos se evaluó midiendo la distancia de acuerdo a la longitud, utilizando de esta forma las características numéricas del texto para calcular la longitud de distancia del texto vectorial. Las 3 distancias más populares de esta categoría son la distancia euclidiana (Euclidean Distance), la distancia del coseno (Cosine Distance) y la distancia de Manhattan (Manhattan Distance). 
+Debido a que utilizaremos la distancia del coseno como métrica de similitud entre nuestros textos, la misma está descrita en la sección \textit{\nameref{cosine}}.
+Adicionalmente en la sección \textit{\nameref{metrica_dist_emp}} se detallan los cálculos para la distancia euclidiana y distancia de Manhattan.
+
+\item \textit{De acuerdo a la distribución (Distribution Distance)}: Existen dos problemas al usar las distancias basadas en longitud para calcular la similitud. El primero, es que solo es adecuado para problemas simétricos, como Sim (A, B) = Sim (B, A), pero para que la pregunta Q recupere la respuesta A, la similitud correspondiente no es simétrica. En segundo lugar, existe el riesgo de utilizar la longitud y la distancia para juzgar la similitud sin conocer las características estadísticas de los datos\cite{WMD_2}. 
+La distancia de distribución se utiliza para comparar si los documentos provienen de la misma distribución, juzgando de esta manera la similitud entre los documentos según dicha distribución. La divergencia JS (JS Divergence) y la divergencia KL (KL Divergence) son actualmente los métodos más populares para investigar la distancia de distribución.
+
+\item \textit{De acuerdo a la semántica de los textos (Semantic distance)}: Cuando no hay una palabra común en el texto, las similitudes obtenidas basándonos en las medidas de distancias basadas en longitud o distribución pueden ser relativamente pequeñas, por lo que podemos considerar calcular la distancia a nivel semántico. La distancia conocida como Word Mover’s Distance (WMD) -también llamada distancia del transportador de palabras- es el principal método utilizado para determinar la distancia semántica\cite{wmd_paper}, el cual será explicado en detalle en la sección \textit{\nameref{wmd}}.
+
+\end{enumerate}
+
+Continuando con las distintas \textit{maneras de representar nuestros textos (Text Representation)}, algo a tener en cuenta es que mientras las representaciones basadas en cadenas de texto (String-Based) y los modelos basados en BoW -pertenecientes a las representaciones basadas en corpus de texto (Corpus-Based)- se basan principalmente en el análisis de \textit{similitud léxica} entre palabras y textos; la \textit{similitud semántica} en cambio, la cual es la que nos interesa abordar, abarca los métodos basados en ventanas poco profundas (Shallow Window-Based Methods) y basados en factorización de matrices (Matrix Factorization Methods) -pertenecientes a las representaciones basadas en corpus de texto (Corpus-Based)-, las representaciones basadas en macheo de macheos/coincidencias semánticas de texto (Semantic Text Matching) y las representaciones basadas en estructuras de grafos (Based on Graph Structure). 
+
+A continuación, explicaremos brevemente las divisiones involucradas en las \textit{maneras de representar nuestros textos (Text Representation)}\cite{similarity_survey}:
+
+\begin{enumerate}
+
+\item \textit{Representaciones basadas en cadenas de texto (String-Based)}:
+La ventaja de los métodos basados en cadenas es que son muy fáciles de implementar y los cálculos de similitud que se realizan sobre estos son muy simples de calcular. Las medidas de similitud de cadenas operan en secuencias de cadenas y composición de caracteres que miden la similitud o disimilitud (distancia) entre dos cadenas de texto para una coincidencia o comparación aproximada de cadenas. De acuerdo a la composición de su unidad básica (``basic unit'') se propuso sub-dividir en dos estas representaciones, las cuales explicaremos a continuación.
+
+\begin{itemize}
+\item 1.1.\textit{Representaciones basadas en caracteres (Character-Based)}: Un cálculo de similitud basado en caracteres se basa en la similitud entre los caracteres del texto para expresar la similitud entre los textos. Dentro de esta categoría se encuentran tres algoritmos: LCS (Longest Common Substring o subcadena común más larga), distancia de edición (Editing Distance) y similitud de Jaro (Jaro Similarity).
+\item 1.2.\textit{Representaciones basadas en frases (Phrase-Based)}: La diferencia entre este método y el método basado en caracteres, es que la unidad básica del método basado en frases es una palabra de frase (phrase word). Los métodos principales son los coeficientes DICE y Jaccard. 
+\end{itemize}
+
+\item \textit{Representaciones basadas en corpus de texto (Corpus-Based)}: Existe una diferencia importante entre los métodos basados en corpus y basados en cadenas: el método basado en corpus utiliza la información obtenida de grandes corpus de texto para calcular la similitud del texto; esta información puede ser una característica textual o una probabilidad de co-ocurrencia. Por su parte el enfoque basado en cadenas es una comparación de texto a nivel literal. En los estudios más recientes, el método basado en corpus se mide de tres maneras diferentes, las cuales detallaremos a continuación. 
+
+\begin{itemize}
+\item 2.1. \textit{Modelos basados en Bag-of-Words (Bag-of-Words Model)}:  La idea básica del modelo BoW es representar el documento como una combinación de series de palabras sin considerar el orden en que aparecen las palabras en el documento. Los métodos basados en el modelo BoW incluyen principalmente BoW (explicado en la sección \textit{\nameref{bow}}), TF-IDF (explicado en la sección \textit{\nameref{tf_idf}}) y LSI (latent semantic indexing o indexación semántica latente).
+
+\item 2.2. \textit{Métodos basados en ventanas poco profundas (Shallow Window-Based Methods)}: Mejor conocidos como representaciones distribuidas (Distributed Representation), estos métodos difieren de los modelos basados en BoW en un aspecto importante: BoW y TF-IDF no permiten capturar la distancia semántica entre palabras. Utilizando métodos basados en Shallow Windows nos permiten entrenar y obtener vectores de palabras de baja dimensionalidad donde las palabras similares estén más cerca en distancias, resolviendo de esta manera los problemas de la alta dimensionalidad y falta de semántica presente en los modelos basados en BoW. Estas ventajas fueron explicadas en mayor detalle en la sección \textit{\nameref{embedd}}. Un gran número de técnicas fueron desarrolladas para obtener estos vectores de palabras, por nombrar los tres principales métodos presentes en el estudio tenemos a los modelos Word2vec, glove y BERT. Word2vec es el modelo que utilizamos en este proyecto y fue detallado en la sección \textit{\nameref{word2vec}}.
+
+\item 2.3-\textit{Métodos basados en factorización de matrices (Matrix Factorization Methods)}: Los métodos de factorización matricial para generar representaciones de palabras de baja dimensionalidad tienen raíces que se remontan hasta LSA (Latent Semantic Analysis o análisis semántico latente). Estos métodos utilizan aproximaciones de bajo rango para descomponer matrices grandes que capturan información estadística sobre un corpus. El tipo particular de información capturada por dichas matrices varía según la aplicación. Los avances recientes en los métodos LSA facilitaron la investigación de los métodos LDA (Latent Dirichlet Allocation o asignación de dirichlet latente).
+\end{itemize}
+
+\item \textit{Representaciones basadas en macheos/coincidencias semánticas de texto (Semantic Text Matching)}: Como mencionamos previamente, la similitud semántica determina la similitud entre el texto y el documento sobre la base de su significado en lugar de la coincidencia de carácter por carácter. Sobre la base de LSA, estas representaciones son extraídas mediante deep learning y permiten obtener una estructura semántica jerárquica, la cual está embebida en la consulta y el documento. Aquí el texto se codifica para extraer características, por lo que se obtiene una nueva expresión. Estas representaciones pueden ser divididas en Single Semantic Text Matching y Multi-Semantic Document Matching, cuyos métodos principales son visualizados en la Figura \ref{fig:Imagen_NLP_33}.
+
+\item \textit{Representaciones basadas en estructuras de grafos (Graph Structure-Based)}: Recientemente los grafos como una forma de datos de texto estructurado llamaron la atención de la investigación tanto académica como de la industria. Existen algoritmos basados en grafos para aprender y aplicar distribuciones semánticas en aplicaciones de NLP. La ventaja de la representación basada en grafos y el cálculo de la similitud de textos sobre estas representaciones, radica en que los vínculos (o links) entre los nodos se establecen a través de los bordes (o edges) de las estructuras de grafos para obtener un mejor grado de similitud entre los nodos. Según los diferentes tipos de grafos, principalmente se basan en la representación de grafos de conocimiento (Knowledge Graph) y en la representación de redes neuronales basadas en grafos (Graph Neural Network).
+\\
+\end{enumerate}
 
 \subsubsection{¿Por qué decidimos utilizar Cosine similarity y WMD?}\label{cos_y_wmd}
-adyhgery
+
+Como observamos en la sección \textit{\nameref{Tecnicas_Simil_textos}}, existen numerosas técnicas para obtener las similitudes de nuestros textos, tanto de medición de distancias como de representación de los textos. En base al análisis anterior, para el sistema desarrollado en este proyecto se decidió utilizar una combinación entre Cosine similarity y WMD para realizar la medición de la distancia entre textos. A continuación explicaremos las razones por las cuales optamos por estos métodos.
+\begin{itemize}
+\item En el caso de \textit{Cosine similarity}, se utilizó dicha técnica debido a que es una de las más tradicionales y ampliamente utilizadas para medir similitudes entre textos en varias aplicaciones\cite{similarity_survey, cosine_sim_1, cosine_sim_2, cosine_sim_3}.
+\item En cambio, \textit{Word Mover’s Distance (WMD)} es una técnica más actual (2015)\cite{wmd_paper} que al momento del estudio publicado el 31 de Agosto del 2020\cite{similarity_survey} es la principal técnica utilizada para la medición semántica de la distancia entre textos.
+\end{itemize}
+
+A su vez, se decidieron utilizar las siguientes técnicas para representar vectorialmente los textos a comparar:
+\begin{itemize}
+\item \textit{Para Cosine Distance} previamente utilizamos \textit{TF-IDF} para representar vectorialmente nuestros textos. De igual forma esta elección es debido a TF-IDF que es una de las técnicas más tradicionales y ampliamente utilizadas para representar textos y usar en conjunto con cosine distance para medir similitudes entre textos\cite{similarity_survey}. 
+\item \textit{Para Word Mover’s Distance (WMD)} previamente utilizamos \textit{Word embeddings} obtenidos de \textit{Word2vec} para representar vectorialmente nuestros textos. Utilizamos el modelo Word2vec para obtener los embeddings y no otro (como por ejemplo Glove, Doc2Vec o BERT)  debido a que en el paper original de WMD\cite{wmd_paper} se utilizan embeddings obtenidos mediante Word2vec, decidiendo de esta manera utilizar la misma base.
+\end{itemize}
+
 \cleardoublepage
 
 \subsubsection{Cosine Similarity.}\label{cosine}
-adyhgery
+
+Al medir la \textit{similitud del coseno}, en lugar de medir la distancia entre dos puntos -como ocurría en la distancia Euclidiana o distancia Manhattan- esto se transforma a un problema donde se debe medir el coseno del ángulo correspondiente a estos dos puntos -representados como vectores- proyectados en un espacio multidimensional. En la Figura \ref{fig:Imagen_NLP_34} podemos observar que un menor ángulo indica una mayor similitud. Mientras más pequeño sea el ángulo, más parecidos van a ser los vectores. Si el coseno nos da 1 es que son el mismo vector. Si los vectores son ortogonales, el coseno es 0, por lo que estos dos vectores no tendrán relación entre sí. Y cuando el valor nos da muy grande y negativo esto quiere decir que los vectores son opuestos. En nuestra implementación consideramos a estos vectores como los textos que compararemos.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/NLP/34.png}
+ \caption{Obteniendo similitud del coseno.}
+ \label{fig:Imagen_NLP_34}
+\end{figure}
+
+De esta manera, considerando $x$ e $y$ como vectores a los cuales queremos calcular su similitud del coseno, su cálculo se obtiene mediante la Fórmula \ref{eq:ecuacion_22_NLP}.
+
+\begin{equation}\label{eq:ecuacion_22_NLP}
+CosSim(x,y) = cos(\theta) = \frac{x . y}{ {||x|| \; ||y||} } = \frac{\sum_{i=1}^{n} x_{i} y_{i}}{\sqrt{\sum_{i=1}^{n} x_{i}^{2}} \sqrt{\sum_{i=1}^{n} y_{i}^{2}} }    \qquad \text{(Ver \cite{KNN_Ejemplo})}
+\end{equation}
+\begin{center}
+\textit{Similitud del coseno.}
+\end{center}
+
+Donde $x= (x_1,x_2,..., x_n)$, $y = (y_1,y_2,...,y_n)$ y $n$ = dimensiones de los puntos.
+
+Algo a tener en cuenta es que de la \textit{similitud del coseno} deriva la \textit{distancia del coseno}, o también llamada distancia angular, la cual se obtiene sustrayendo la similitud del coseno de 1. Considerando x e y como vectores a los cuales queremos calcular su distancia angular, su cálculo se obtiene mediante la Fórmula \ref{eq:ecuacion_23_NLP}.
+
+\begin{equation}\label{eq:ecuacion_23_NLP}
+CosDist(x,y) = 1 - \frac{\sum_{i=1}^{n} x_{i} y_{i}} { \sqrt{\sum_{i=1}^{n} x_{i}^{2}}  \sqrt{\sum_{i=1}^{n} y_{i}^{2}} }     \qquad \text{(Ver \cite{KNN_Ejemplo})}
+\end{equation}
+\begin{center}
+\textit{Distancia del coseno.}
+\end{center}
+
+Donde $x= (x_1,x_2,..., x_n)$, $y = (y_1,y_2,...,y_n)$ y $n$ = dimensiones de los puntos.
+\\
+
+La similitud del coseno es uno de los principales métodos utilizados para medir la similitud entre dos textos $x$ e $y$. Generalmente calcular la similitud del coseno para medir la similitud entre documentos de texto resulta mucho más eficiente que utilizar la distancia euclidiana para el mismo fin\cite{similarity_survey}.
+
+Como mencionamos previamente, estos textos $x$ e $y$ están representados en forma de vectores. Si utilizamos la representación vectorial mediante el uso de TF-IDF, cada palabra en el texto definirá una dimensión en el espacio vectorial (siendo $x_1, x_2,..., x_n$ las palabras del documento 1; e $y_1, y_2,..., y_n$ las palabras del documento 2) y el valor TF-IDF de cada palabra corresponderá al valor en dicha dimensión. Algo que vale la pena recordar, es que utilizando TF-IDF la limitación que tenemos es que esta representación no cuenta con la habilidad de reconocer si las palabras que se comparan son semánticamente similares. Además, debido a que los valores de TF-IDF son únicamente valores positivos, entonces la similitud del coseno estará en el intervalo [0,1] y el ángulo entre los vectores no podrá ser mayor a 90°, por lo que podremos usar la distancia del coseno (Fórmula \ref{eq:ecuacion_23_NLP}) para obtener nuestra similitud\cite{NLP_19}.
+
+Por ejemplo, teniendo en cuenta la Figura \ref{fig:Imagen_NLP_35} y considerando que $C$, $Q$ y $D$ son nuestros textos a comparar -los cuales están representados en vectores de 2 dimensiones $X1$ y $X2$-, podemos visualizar que calculando la similitud del coseno entre estos documentos, el menor ángulo que obtengamos será entre $Q$ y $D$, por lo que estos serán los documentos más símiles considerando la la similitud del coseno como nuestra métrica de similitud.  
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.5\textwidth]{images/NLP/35.png}
+ \caption{Similitud del coseno entre documentos\cite{NLP_19}.}
+ \label{fig:Imagen_NLP_35}
+\end{figure}
+
 \cleardoublepage
 
 \subsubsection{Word Mover’s Distance (WMD).}\label{wmd}
-adyhgery
-\cleardoublepage
 
+La distancia conocida como \textit{Word Mover’s Distance (WMD)} -también llamada \textit{distancia del transportador de palabras}- surgió en el año 2015\cite{wmd_paper} y es el principal método utilizado para determinar la similitud semántica entre textos\cite{similarity_survey}. En el cálculo de WMD una menor distancia WMD indica una mayor similitud.
+Anteriormente mencionamos que una de las limitaciones de Cosine Similarity era no tener la habilidad de reconocer si las palabras que compara son semánticamente similares. En cambio, WMD al tratarse de un algoritmo más complejo basado en mediciones de distancias entre \textit{word embeddings}, si permite mantener las relaciones semánticas entre las oraciones para obtener las similitudes entre los documentos de texto. De esta forma WMD permite encontrar el costo mínimo necesario para que las palabras (representadas como word embeddings) de un documento “viajen” a la posición de todas las palabras del otro documento intentando encontrar el “vecino más cercano” para cada una de estas palabras. Por lo tanto, las colecciones de texto que comparten muchas palabras semánticamente similares deberían tener distancias más pequeñas que las colecciones de texto con palabras muy diferentes\cite{NLP_21}.
+
+Sobre la base de representar el texto como un espacio vectorial, WMD utiliza el método de EMD (Earth Mover’s Distance, originario en 1998)\cite{WMD_3, WMD_4}. para medir la distancia mínima requerida para que una palabra en un texto se mueva hacia una palabra en otro texto en el espacio semántico, y de esta manera minimizar el costo de transportar un texto A a un texto B\cite{WMD_5}. Para calcular esta distancia mínima se utiliza la \textit{distancia euclidiana}. De esta manera, WMD es un método que utiliza la transportación sobre la base de los vectores de palabra (word embeddings), y su núcleo es la programación lineal\cite{wmd_paper}.
+
+Veamos un ejemplo\cite{NLP_20}. Si bien word2vec es un enfoque sofisticado cuando se trata de generar word embeddings de calidad, estos vectores de palabras por sí solos no son suficientes para resolver a la tarea de comparar textos (los cuales están formados por diferentes word embeddings) y obtener la similitud entre ambos. Por ejemplo, consideremos estos dos textos / oraciones: “\textit{My smart home should turn on my favorite music when I come to my home.” y “My smart home shall play my most favored songs when I arrive at my place}”. Vemos que las oraciones transmiten básicamente la misma información. Obteniendo los word embeddings de ambos textos y colocándolos en un espacio de embedding, observaremos que algunos de sus vectores estarán cerca, especialmente si las palabras son símiles (por ejemplo, los pares $<music, songs>$  y  $<come, arrive>$  estarán cerca). La cercanía de los textos / oraciones completas,  por otro lado, no se puede representar solo en el modelo word2vec. Para superar esta escasez, surgió Word Mover's Distance (WMD) como una medida de distancia basada en palabras (word-based) para textos / oraciones completas. Basado en la creacioń previa de word embeddings (como, por ejemplo, utilizando el modelo word2vec), la distancia entre dos documentos de texto $A$ y $B$ se describe como la distancia acumulada mínima que las palabras del documento $A$ deben recorrer para coincidir exactamente con la nube de puntos del documento $B$. Con este método, WMD alcanza un alto grado de precisión estando completamente libre de hiper-parámetros y, por lo tanto, siendo fácil de usar.
+
+Tomaremos otro ejemplo\cite{NLP_21} para explicarlo gráfica y matemáticamente. Este es un ejemplo adaptado del paper original de WMD\cite{wmd_paper}.  En laFigura \ref{fig:Imagen_NLP_36} vemos un ejemplo de ilustración de las distancias euclidianas entre word embeddings. Algo a tener en cuenta es que en este ejemplo es un espacio vectorial de 2 dimensiones únicamente por motivos ilustrativos, usualmente los vectores de palabras tienen un tamaño de entre 50 a 500 dimensiones.
+
+Cada cantidad (una por flecha) indica la contribución de ese par de palabras a la estadística general de WMD para esos dos documentos. Estas cantidades son el producto de dos números: $c(i,j)$, que es la distancia euclidiana entre las dos palabras en el espacio de embeddings n-dimensional -también llamado 'word travel cost'-, y un término de ponderación/peso $T_{ij}$ que indica cuánto de $i$ en un documento $A$ debe viajar a la palabra $j$ en el otro documento $B$. La contribución de la distancia entre “Chicago” e “Illinois” a WMD entre los documentos 1 y 2 es de $0,18$, mientras que la contribución de la distancia entre “speaks” y “greets” es ligeramente mayor, $0,24$: esto lo podemos visualizar en la Figura \ref{fig:Imagen_NLP_37}, en el cálculo de WMD$(doc1, doc2)$. Vemos que al realizar este cálculo se toma el costo acumulado de mover todas las palabras en el $Documento 1$ a las ubicaciones de las palabras en el $Documento 2$. Esta distancia WMD dió un resultado de 1.07, siendo menor que el resultado obtenido de WMD$(doc3, doc2)$: $1.63$. Esto nos indica que existe una mayor similitud entre los documentos 1 y 2 que entre los documentos 3 y 2. 
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.6\textwidth]{images/NLP/36.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo de ilustración de las distancias euclidianas entre word embeddings (2 dimensiones)\cite{NLP_21}.}
+ \label{fig:Imagen_NLP_36}
+\end{figure}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=0.5\textwidth]{images/NLP/37.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo del cálculo de WMD$(d1,d2)$ y WMD$(d3,d2)$\cite{NLP_21}.}
+ \label{fig:Imagen_NLP_37}
+\end{figure}
+
+Matemáticamente hablando, el algoritmo WMD puede ser descrito como un problema de optimización (Fórmula \ref{eq:ecuacion_24_NLP}), donde se buscan los valores de una matriz T que minimizan “mover” un documento A, a otro documento B. De esta manera el mínimo resultado es la distancia de los dos documentos. 
+
+\begin{equation}\label{eq:ecuacion_24_NLP}
+WMD_{ij} = \min_{T\geq0} \sum_{i,j = 1}^{n} T_{ij} c(i,j)      \qquad \text{(Ver \cite{NLP_21})}
+\end{equation}
+\begin{center}
+\textit{Cálculo de WMD.}
+\end{center}
+
+Donde:
+\begin{itemize}
+\item $i$: cada una de las palabras de un documento $A$.
+\item $j$: cada una de las palabras de un documento $B$.
+\item $T_{ij}$: término de ponderación que indica cuánto de la palabra $i$ en el documento $A$ debe viajar a la palabra $j$ en el otro documento $B$.
+\item $c(i,j)$: costo asociado en “viajar” de una palabra a otra. Es la distancia euclidiana entre la palabra $i$ y la palabra $j$, por lo que $c(i,j) = ||x_{i} - x_{j}||_{2}$ \cite{wmd_paper}.
+
+\end{itemize}
+
+\cleardoublepage
 
 \section{Implementación.}\label{5.Implementacion}
 
@@ -2531,9 +2745,159 @@ Poner acá tambien los próximos pasos / mejoras.
 
 \section{Anexos.}
 
+\subsection{Ejemplo de funcionamiento KNN.}\label{anexo_knn}
+
+A continuación detallaremos un ejemplo en el cual usaremos KNN para clasificación usando la distancia euclidiana como métrica para calcular las distancias. 
+
+Como podemos ver en la Figura \ref{fig:KNN_example}, el conjunto de datos está etiquetado: uno es un cuadrado azul y otro es un triángulo rojo. El círculo verde es el punto que necesitamos clasificar. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.3\textwidth]{images/KNN_Ejemplo.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo de Clasificación con KNN con K=3 (círculo con linea sólida) y K=5 (círculo con linea punteada), usando la distancia euclidiana como métrica de cálculo de distancias\cite{KNN_Ejemplo}.} 
+ \label{fig:KNN_example}
+\end{figure}
+
+Viendo la Tabla \ref{table:2} observamos que:
+
+\begin{itemize}
+\item Si K = 1, tomamos únicamente el punto más cercano del círculo verde. Este punto es un triángulo rojo. Como es el único punto que vota, el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 1 y de que sea azul es 0.
+\item Si K = 3, entonces hay 2 triángulos rojos y 1 cuadrado azul más cercano al punto verde Estos 3 puntos votan, por lo que el punto verde a clasificar pertenece al triángulo rojo. De esta manera la probabilidad de que sea rojo es 2/3  y de que sea azul es 1/3.
+\item Si K = 5, entonces hay 2 triángulos rojos y 3 cuadrados azules más cercanos al punto verde. Estos 5 puntos votan, por lo que el punto verde a clasificar pertenece al cuadrado azul. De esta manera la probabilidad de que sea rojo es 2/5 y de que sea azul es 3/5.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{K} & \textbf{P(Azul)} & \textbf{P(Rojo)} \\ [1ex] 
+\hline
+1 & 0 & 1 \\
+\hline
+3 & 1/3 & 2/3 \\
+\hline
+5 & 3/5 & 2/5 \\
+\hline
+\end{tabular}
+\caption{Probabilidad de pertenecer a cada clase para diferentes valores de k.}
+\label{table:2}
+\end{table}
+
+\cleardoublepage
+
+\subsection{Ejemplo de funcionamiento K-means.}\label{anexo_k_means}
+
+En esta sección detallaremos un ejemplo gráfico en el cual usaremos K-means para clusterizar nuestros datos hasta llegar a su convergencia. 
+
+En el ejemplo de la Figura \ref{fig:K_means_working_1}, nuestros datos tienen 2 dimensiones. Definiendo previamente nuestro k=2 (2 clusters), en el item \textbf{(1)} observamos dicha distribución de datos. Además, en este item se realiza la inicialización aleatoria de nuestros 2 centroides (triángulos rojo y amarillo). Todo esto involucra al \textbf{paso 1} del algoritmo k-means.  
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/K_Means_1.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.} 
+ \label{fig:K_means_working_1}
+\end{figure}
+
+En el \textbf{paso 2}, lo que se tiene que hacer es, para cada uno de nuestros puntos de datos, averiguar a cuál centroide se asignará, basándonos en la distancia más cercana al mismo.
+Al considerar la distancia euclidiana para este objetivo, en \textbf{(2)} dibujamos una línea roja imaginaria que divide en iguales distancias nuestros 2 centroides: partiendo de esta línea la distancia a ambos centroides es la misma. De esta manera, cada punto ubicado a la derecha de la linea pertenecerá al cluster amarillo (por tener menor distancia al centroide triángulo amarillo), y cada punto ubicado a la izquierda de la linea pertenecerá al cluster rojo (por tener menor distancia al centroide triángulo rojo). Esta asignación la observamos en el item \textbf{(3)}, que representa nuestra asignación inicial de nuestros puntos en los clusters. 
+
+La línea roja es simplemente una referencia utilizada para una mejor comprensión gráfica, pero internamente esta asignación de puntos se realiza en base al cálculo de las distancias euclidianas mediante la Fórmula \ref{eq:ecuacion_4}. descrita anteriormente para el paso 2 de k-means.
+
+Posteriormente pasamos al \textbf{paso 3} de k-means: la actualización de las posiciones de los centroides de los clusters. Lo que hacemos en \textbf{(4)} es mover los centroides al centro promedio de los puntos a los que se les asignaron. Para esto se utiliza la Fórmula \ref{eq:ecuacion_5} descrita anteriormente. Podemos observar las nuevas posiciones de los centroides en \textbf{(5)}. 
+De esta forma, finalizamos la primera iteración de nuestro algoritmo. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_2.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+En la próxima iteración, tenemos la misma disposición de los puntos, solo que ahora tenemos dos nuevas posiciones para nuestros centroides. Ignoramos las clases que se asignaron para los puntos de nuestros datos ya que esta era una asignación del paso anterior: ahora nuestros centroides cambiaron y la asignación de clases también lo hará. Nuevamente trazamos la linea imaginaria \textbf{(6)} y realizamos la nueva asignación: los únicos puntos que cambiaron con respecto al paso anterior son los 2 amarillos ubicados en la parte superior, los cuales pasan a ser rojos \textbf{(7)}. Debido a que cambiaron de clase, entonces nuevamente vamos a actualizar las posiciones de nuestros centroides \textbf{(8)}, quedándonos distribuidos finalmente como \textbf{(9)}. De esta manera finalizamos la segunda iteración. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_3.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_4.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+Para la tercera iteración se vuelven a repetir los pasos 2 y 3: trazamos la línea de división de nuestros datos \textbf{(10)}, realizamos la nueva asignación de puntos \textbf{(11)} y observamos que cambiaron 2 puntos de clases.  Debido a que cambiaron de clase, entonces re-ubicamos los centroides nuevamente \textbf{(12)}, quedándonos finalmente como \textbf{(13)}.  De esta manera finalizamos la tercera iteración. 
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_5.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/K_Means_6.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Algoritmo K-means.}
+\end{figure}
+
+Finalmente, en el ítem \textbf{(13)}, si ahora intentamos asignar nuevamente nuestros puntos de datos, observamos que ninguno cambiaría de color/clase. Los puntos rojos ya están del lado izquierdo de la linea, y los puntos amarillos ya están del lado derecho de la linea. Esto significa que si seguimos iterando nada cambiará, por lo que llegamos a la \textbf{convergencia} de nuestro algoritmo.
+
+\cleardoublepage
+
+\subsection{Posición inicial de los centroides en K-means.}\label{anexo_pos_inic_centroides}
+
+K-means, al ser un algoritmo que encuentra un mínimo local, es muy sensible a la posición inicial de los centroides. Una posible solución para no caer en un mínimo local malo es realizar varias ejecuciones de K-means con inicializaciones aleatorias para los centroides, idealmente ejecuciones en paralelo, y computar la función de coste $J$ para cada resultado final quedándonos con la mínima. 
+
+La Figura \ref{fig:K_means_costo_1} muestra un ejemplo donde hay 4 clusters y varios puntos aislados en un plano bidimensional. La Figura \ref{fig:K_means_costo_2} muestra el resultado del mejor y peor costo. Se puede ver que el resultado del peor costo es realmente muy malo mientras que el resultado del mejor costo es lo que se esperaba obtener.  
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.4\textwidth]{images/K_means_costo_1.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Ejemplo K-means. \cite{apunte_uba}}
+ \label{fig:K_means_costo_1}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.9\textwidth]{images/K_means_costo_2.png}
+ \captionsetup{justification=centering,margin=1cm}
+ \caption{Ejemplo K-Means peor (izquierda) y mejor (derecha) costo. \cite{apunte_uba}}
+ \label{fig:K_means_costo_2}
+\end{figure}  
+
+El gráfico de la Figura \ref{fig:K_means_costo_3} muestra el resultado de la función costo para 100 ejecuciones de K-Means, con un $k$ predefinido, y variando las inicializaciones de nuestros centroides. En el eje $x$ se representan las 100 ejecuciones de k-means, y en el eje $y$ encontramos la función de coste $J$ obtenida para cada ejecución. 
+
+En la Figura \ref{fig:K_means_costo_4} podemos observar un histograma representando la cantidad de veces en porcentajes (eje $y$) que se observaron diferentes rangos de costo (eje $x$). Como se puede ver, afortunadamente los costos bajos son amplia mayoría, es decir que únicamente con algunas pocas inicializaciones desafortunadas K-means llega a un mínimo global muy malo. Esto quiere decir que una sola iteración de K-Means nos dará un buen resultado con una probabilidad alta y hacer un ciclo con unas pocas ejecuciones es más que suficiente para llegar a un excelente resultado.
+
+\begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/K_means_costo_3.png}
+\caption{Costo en K-Means. \cite{apunte_uba}}
+\label{fig:K_means_costo_3}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\linewidth]{images/K_means_costo_4.png}
+\caption{Histograma J en K-Means. \cite{apunte_uba}}
+\label{fig:K_means_costo_4}
+\end{minipage}
+\end{figure}
+
+\cleardoublepage
+
 \subsection{Funciones de activación.}\label{anexo_func_activ}
 
-En la figura \ref{fig:ann_7} podemos observar una lista de las funciones de activación más comunes utilizadas en Redes Neuronales. Mientras que en la figura \ref{fig:ann_8} se detallan las expresiones matemáticas y los posibles rangos de valores de salida para dichas funciones de activación. 
+En la Figura \ref{fig:ann_7} podemos observar una lista de las funciones de activación más comunes utilizadas en Redes Neuronales. Mientras que en la Figura \ref{fig:ann_8} se detallan las expresiones matemáticas y los posibles rangos de valores de salida para dichas funciones de activación. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -2555,7 +2919,7 @@ En la figura \ref{fig:ann_7} podemos observar una lista de las funciones de acti
 
 \subsection{Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}\label{anexo_word_emb}
 
-Tomaremos un ejemplo del libro Oreally Online y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word Embeddings utilizando el modelo Skip-gram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
+Tomaremos un ejemplo del libro de O’reilly Media\cite{NLP_26} y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word Embeddings utilizando el modelo Skip-gram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
 
 El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado} \footnotetext{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
 
@@ -2689,7 +3053,7 @@ Para esta segunda iteración se realizan los \textit{pasos 2.1 y 2.2} descritos 
 \item Se realizarán 28 iteraciones más hasta llegar a la iteración N°30, en la cual se ingresará como entrada la palabra central “dog” y como vector y true tendremos la representación en formato one hot encoding de la palabra “lazy”. De esta manera, al finalizar el paso N°2 tendremos 30 vectores \textit{y pred softmax} y 30 vectores \textit{y true} con los que comparar.
 \end{itemize}
       
-\item Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras (central, contexto), estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo J($\theta$)} (Ver Fórmula R2) .
+\item Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras (central, contexto), estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo J($\theta$)} (Ver Fórmula \ref{eq:ecuacion_11_NLP}).
 
 En la Figura \ref{fig:8_EjSkip} podemos observar un ejemplo numérico de cómo podría quedar conformado nuestro vector \textit{y pred softmax} (donde la suma de los valores dá 1) cuando el vector de entrada es, por ejemplo “the”, y cómo se realizaría la comparación contra el vector de salida \textit{y true} cuando la palabra es “quick” para obtener los errores de clasificación. Vemos que el primer resultado de nuestro entrenamiento fue medianamente bueno, ya que en nuestro vector \textit{y pred softmax}, en la posición $y ‘12$, obtuvimos el mayor valor. Y esto es lo que queremos lograr, ya que si comparamos este valor con el vector \textit{y true} en la misma posición, tiene un 1. La ide es que a medida que la red entrene y minimice la función de costo $J$, los valores de \textit{y pred softmax} se acerquen cada vez más a los valores de \textit{y true}: en nuestro caso que el valor 0,28 sea cada vez más cercanos al 1, y los otros 7 valores que sean cada vez más cercanos al 0.
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
@@ -2715,7 +3079,6 @@ Finalmente, luego de haber iterado epoch veces sobre nuestro conjunto de entrena
 \end{figure}
 
 De esta manera, entrenamos nuestra red neuronal no con el objetivo de predecir la palabra de contexto a partir de la palabra central, sino con el objetivo de tomar de esa red neuronal su matriz de pesos $W’$ ya entrenada y utilizarla como nuestra matriz de embeddings.
-
 
 \cleardoublepage
 
@@ -2833,6 +3196,9 @@ Paul Resnick, \& Hal R. Varian. (1997). \textit{Recommender Systems}. Communicat
 
 \bibitem{intro_algos_ML}
 M. Emre Celebi, Michael W. Berry, Azlinah Mohamed, \& Bee Wah Yap. (2020). Libro \textit{Supervised and Unsupervised Learning for Data Science}. (pp. 3,4,14,15).
+
+\bibitem{intro_clasificacion_ML}
+Pinky Sodhi, Naman Awasthi, \& Vishal Sharma. (2019, Enero). \textit{Introduction to Machine Learning and Its Basic Application in Python}. In Proceedings of 10th International Conference on Digital Strategies for Organizational Success. (pp. 1354-1358).
 
 \bibitem{aprendiz_transd}
 Karthik Tangirala. (2011). \textit{Semi-supervised and transductive learning algorithms for predicting alternative splicing events in genes}. Proyecto de Tesis para carrera de grado \textit{Master of Science}. Kansas State University. (pp. 1-4).
@@ -2955,7 +3321,7 @@ Kim Julian Gülle, Nicholas Ford, Patrick Ebel, Florian Brokhausen,  \& Andreas 
 Dustin S. Stoltz, \& Marshall A. Taylor. (2019). \textit{Concept Mover’s Distance: Measuring Concept Engagement via Word Embeddings in Texts}. Journal of Computational Social Science. (pp. 1-11).
 
 \bibitem{NLP_26}
-Sowmya Vajjala, Bodhisattwa Majumder, Anuj Gupta, \& Harshit Surana. (2020). Libro \textit{Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems}. 6(17). O'reilly Media. (pp. 92-103).
+Sowmya Vajjala, Bodhisattwa Majumder, Anuj Gupta, \& Harshit Surana. (2020). Libro \textit{Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems}. 6(17). O’reilly Media. (pp. 92-103).
 
 \bibitem{NLP_27}
 Aston Zhang, Zachary C. Lipton, Mu Li, \& Alexander J. Smola. (2020). Libro Online \textit{Dive into Deep Learning}. Sitio Web consultado el 15 de Junio de 2022: \url{https://d2l.ai}. (Capítulo 14 - \textit{Natural Language Processing: Pretraining}).
