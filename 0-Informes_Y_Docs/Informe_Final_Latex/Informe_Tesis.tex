@@ -146,12 +146,12 @@ The system is developed using the Python programming language allowing to verify
 \cleardoublepage    %Nueva página
 
 \section{Introducción.}\label{Intro}
-Los procesos de \textit{reclutamiento y selección laboral} se han vuelto cruciales para el manejo de recursos humanos en el mundo moderno. Con las transformaciones digitales de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textit{Sector IT}, donde año tras año se van generando nuevos puestos de trabajo y estos mismos van creciendo en demanda. Este crecimiento de la demanda en distintos puestos del Sector IT lo podemos evidenciar, a modo de resumen, en la figura \ref{fig:Increasing_Jobs}.
+Los procesos de \textit{reclutamiento y selección laboral} se han vuelto cruciales para el manejo de recursos humanos en el mundo moderno. Con las transformaciones digitales de las empresas y del mercado laboral en general, identificar los perfiles más acordes a las necesidades de la empresa se convirtió en uno de los retos más ambiciosos de Recursos Humanos, en especial cuando hablamos del \textit{Sector IT}, donde año tras año se van generando nuevos puestos de trabajo y estos mismos van creciendo en demanda. Este crecimiento de la demanda en distintos puestos del Sector IT lo podemos evidenciar, a modo de resumen, en la Figura \ref{fig:Increasing_Jobs}.
 
 En estos últimos años se implementaron una gran cantidad de herramientas de Software que utilizan algoritmos inteligentes y que permiten automatizar y gestionar información de los candidatos de una manera mucho más intuitiva\cite{trabajos_relacionados_1,trabajos_relacionados_2,trabajos_relacionados_3,trabajos_relacionados_4,
 trabajos_relacionados_5,trabajos_relacionados_6,trabajos_relacionados_7,trabajos_relacionados_8,
 trabajos_relacionados_9,trabajos_relacionados_10, trabajos_relacionados_11, trabajos_relacionados_12, trabajos_relacionados_13, trabajos_relacionados_14, trabajos_relacionados_15}. La \textit{automatización} se transformó en un factor clave e indispensable para que el reclutador pueda conseguir a los candidatos más relevantes para los puestos que ofrece la empresa en un tiempo muy corto.
-Se espera que para el año 2025 muchas tareas realizadas actualmente por humanos, sean automatizadas por máquinas: esto lo podemos evidenciar en la figura \ref{fig:Automatizacion}.
+Se espera que para el año 2025 muchas tareas realizadas actualmente por humanos, sean automatizadas por máquinas: esto lo podemos evidenciar en la Figura \ref{fig:Automatizacion}.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -188,7 +188,7 @@ En el sistema desarrollado, una vez obtenidas estas mediciones de similitud entr
 
 A continuación nombraremos resumidamente los algoritmos y técnicas de machine learning utilizadas para el desarrollo del \textit{sistema de lectura automática de Curriculum Vitae}. 
 
-Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron las técnicas de vectorización \textbf{TF-IDF} y \textbf{Word Embeddings}.
+Como se mencionó en \textit{\nameref{Intro}}, el primer paso para lograr nuestra medición de similitudes entre documentos consiste en convertir los documentos en vectores: para esto se utilizaron las técnicas de vectorización \textbf{TF-IDF} y \textbf{Word embeddings}.
 
 Para el segundo paso, definir y emplear métricas de distancia, se decidió emplear una combinación de las técnicas \textbf{Cosine Similarity} y \textbf{Word Mover’s Distance (WMD)}. En la sección \textit{\nameref{cos_y_wmd}} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en la sección \textit{\nameref{Tecnicas_Simil_textos}}, en el cual se detallan las numerosas técnicas existentes para obtener similitudes entre textos.
 
@@ -210,13 +210,13 @@ El objetivo de este Proyecto de Tesis es lograr un desarrollo, tanto teórico co
 \item descripciones de los puestos laborales de IT por el otro.
 \end{itemize} 
 
-\subsubsection{Objetivos específicos.}
+\subsubsection{Objetivos específicos.}\label{Obj_especif}
 Los objetivos específicos de este Proyecto de Tesis son:
 \begin{itemize}
 \item Describir el estado del arte actual de los Sistemas de lectura y análisis de Curriculum Vitae en las fases de reclutamiento y selección laboral. 
 \item Implementar un Sistema de lectura automática de Curriculum Vitae basado en la comparación y medición de similitudes entre textos, para finalmente obtener una visualización de los mejores candidatos para un puesto laboral de IT determinado.  
 \item Aprender los conceptos y técnicas principales utilizadas dentro del procesamiento de lenguaje natural (NLP) aplicando técnicas de preprocesamiento y limpieza de textos.
-\item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes técnicas de vectorización (TF-IDF y Word Embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
+\item Implementar diferentes técnicas para medir similitudes entre los textos (Cosine Similarity y  Word Mover's Distance -WMD-) y diferentes técnicas de vectorización (TF-IDF y Word embeddings), analizando su funcionamiento tanto teórica como matemáticamente, ventajas y desventajas.
 \item Conocer, implementar e integrar el algoritmo de clustering K-means junto al algoritmo de clasificación KNN para obtener un modelo de clasificación de candidatos en base a las medidas de similitud entre los textos.
 \item Evaluar los Frameworks disponibles para tener una UI \footnote{La interfaz de usuario o user inteface (UI) de una página web refiere a todo aquello tangible con lo que los usuarios interactúan de forma directa en la misma.} accesible vía web e integrar el mismo al Sistema.
 \item Almacenar datos de candidatos, reclutadores y puestos laborales en una base de datos.
@@ -225,7 +225,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \cleardoublepage    %Nueva página
 
 \subsection{Alcance del Proyecto.}
-El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, técnicas de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los objetivos específicos.
+El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, técnicas de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los \textit{\nameref{Obj_especif}}.
 
 \subsection{Organización.}
 Este Proyecto de Tesis fue organizado para trabajarlo en tres secciones:
@@ -238,7 +238,7 @@ Esta sección abarca principalmente la parte teórica del trabajo, haciendo hinc
 	\item El estado del arte (actual y pasado) de los sistemas de lectura y análisis de Curriculum Vitae.
 	\item Técnicas usadas para el procesamiento del lenguaje natural (NLP).
 	\item Técnicas para medir similitudes entre textos: Cosine Similarity y WMD.
-	\item Técnicas de vectorización: TF-IDF y Word Embeddings.
+	\item Técnicas de vectorización: TF-IDF y Word embeddings.
 	\item Algoritmos de machine mearning para tareas de clasificación (KNN) y clustering (K-means).
 \end{itemize} 
 
@@ -255,7 +255,7 @@ Los items que abarca esta sección son:
 \begin{itemize}
 	\item Obtención de sets de datos: curriculums vitae y descripciones laborales. 
 	\item Preprocesamiento de los textos.
-	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word Embeddings).
+	\item Comparación entre textos y obtención de similitudes entre los mismos mediante el uso de las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word embeddings).
 	\item Obtención del modelo de clasificación KNN utilizando como datos de entrada los clusters devueltos por el algoritmo K-means obtenidos en base a las mediciones de similitud previamente realizadas.
 	\item Análisis y primeras visualizaciones de los resultados.
 \end{itemize} 
@@ -377,11 +377,11 @@ En \cite{trabajos_relacionados_3} y \cite{trabajos_relacionados_4} también se u
 
 En \cite{trabajos_relacionados_5} sugieren un método de matching basado en un \textit{modelo probabilístico} para ser utilizado en la selección y recomendación de candidatos. 
 
-En \cite{trabajos_relacionados_6} se propuso un aistema automatizado de screening de currículums que usa \textit{Vector Space Model}\footnote{Modelo algebraico para representar documentos de textos en lenguaje natural de una manera formal mediante el uso de vectores de identificadores. Es utilizado para la recuperación, filtrado, indexado y cálculo de relevancia de información.} para machear cada curriculum con la descripción del puesto correspondiente y \textit{cosine similarity} como medida de similitud.
+En \cite{trabajos_relacionados_6} se propuso un aistema automatizado de screening de currículums que usa \textit{Vector Space Model}\footnote{Modelo algebraico para representar documentos de textos en lenguaje natural de una manera formal mediante el uso de vectores de identificadores. Es utilizado para la recuperación, filtrado, indexado y cálculo de relevancia de información.} para machear cada curriculum con la descripción del puesto correspondiente y \textit{Cosine Similarity} como medida de similitud.
 
 \cleardoublepage    %Nueva página
 
-En \cite{trabajos_relacionados_7} y \cite{trabajos_relacionados_8} se propuso un sistema para el screening de candidatos, para el cual se utiliza \textit{cosine similarity}, \textit{KNN} y un \textit{sistema de recomendación basado en contenido (Content Based Filtering, CBF)} para buscar los curriculums más cercanos a la descripción del puesto.
+En \cite{trabajos_relacionados_7} y \cite{trabajos_relacionados_8} se propuso un sistema para el screening de candidatos, para el cual se utiliza \textit{Cosine Similarity}, \textit{KNN} y un \textit{sistema de recomendación basado en contenido (Content Based Filtering, CBF)} para buscar los curriculums más cercanos a la descripción del puesto.
 
 En \cite{trabajos_relacionados_9} se propuso un sistema para el ordenamiento y clasificación de currículums utilizando el concepto de inteligencia artificial (sin especificar qué algoritmos o técnicas específicas se deberían usar). Lo que se propuso fue un esquema de trabajo para luego seguir con la implementación del sistema; el cual permitiría clasificar a todos los currículums de acuerdo con los requisitos de la empresa y los enviaría a Recursos Humanos para su posterior consideración.
 
@@ -415,7 +415,7 @@ Por último, cabe destacar que los trabajos anteriormente mencionados no tienen 
 \section{Algoritmos de Machine Learning.}\label{3.AlgoritmosdeMachineLearning}
 
 \subsection{Introducción.}
-Continuando con el marco teórico de esta Tesis, es necesario explicar qué es \textit{machine learning (ML)} y cómo se pueden clasificar a los distintos algoritmos y modelos según su tipo de aprendizaje, haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means, y el modelo de Redes Neuronales. Estas técnicas son las que se utilizarán en la implementación del proyecto.
+Continuando con el marco teórico de esta Tesis, es necesario explicar qué es \textit{machine learning (ML)} y cómo se pueden clasificar a los distintos algoritmos y modelos según su tipo de aprendizaje, haciendo énfasis en los algoritmos K-Nearest Neighbor (KNN) y K-means, y el modelo de Redes Neuronales. Estas técnicas son las que se utilizarán en la implementación del Proyecto.
 
 Además, detallaremos la importancia de la separación de los datos y mencionaremos cuáles son los pasos a seguir para implementar un modelo de ML teniendo en cuenta algunos de los problemas clásicos que pueden afectar a nuestros resultados.
 
@@ -438,9 +438,9 @@ Los algoritmos de ML hoy en día se usan en todo tipo de aplicaciones: en Amazon
 Podemos dividir a ML en dos grandes categorías: aprendizaje supervisado y aprendizaje no supervisado. Resumidamente, la diferencia entre estas dos categorías es la existencia de etiquetas (labels) en el subconjunto de datos de entrenamiento (Ver \textit{\nameref{Separacion datos}}).
 
 \begin{itemize}
-\item En el \textbf{aprendizaje supervisado}\cite{intro_clasificacion_ML}, el modelo es entrenado utilizando datos que están “etiquetados”. Esto quiere decir que el set de datos que es utilizado para enseñar al algoritmo tiene una etiqueta (o label) que define la respuesta/salida correcta. 
+\item En el \textbf{aprendizaje supervisado}\cite{intro_clasificacion_ML}, el modelo de machine learning es entrenado utilizando datos que están “etiquetados”. Esto quiere decir que el set de datos que es utilizado para enseñar al algoritmo tiene una etiqueta (o label) que define la respuesta/salida correcta. 
 
-Dicho de otra manera, el modelo recibe datos etiquetados (tanto para la entrada como para la salida esperada) durante su entrenamiento teniedo como objetivo generar una función de mapeo $f(x)$ que pueda identificar la salida esperada $y$ para una entrada $x$ dada. El proceso de entrenamiento continúa hasta que el algoritmo alcanza el nivel de precisión deseado. 
+Dicho de otra manera, el modelo durante su entrenamiento recibe datos etiquetados (tanto para la entrada como para la salida esperada) teniedo como objetivo generar una función de mapeo $f(x)$ que pueda identificar la salida esperada $y$ para una entrada dada $x$. El proceso de entrenamiento continúa hasta que el algoritmo alcanza el nivel de precisión deseado. 
 
 De esta manera al finalizar el entrenamiento idealmente la función $f$ predecirá resultados con gran precisión para aquellos nuevos datos que no tienen etiqueta. 
 
@@ -448,7 +448,7 @@ Los algoritmos de aprendizaje supervisado se utilizan para resolver problemas de
 
 \item El \textbf{aprendizaje no supervisado}\cite{intro_clasificacion_ML}, en cambio, se refiere al proceso de entrenamiento de un modelo de machine learning sin un set de datos etiquetado. Este tipo de aprendizaje es una rama muy importante en Data Science ya que, al trabajar solo con datos sin necesidad de tener un ”label” para los mismos, únicamente necesitamos los datos en crudo y estos en general son mucho más fáciles de conseguir que datos ya previamente clasificados. Por ejemplo, las aplicaciones de redes sociales tienen grandes cantidades de datos sin etiquetar.  
 
-En otras palabras, el modelo recibe un conjunto de datos de entrada sin etiquetar y sin clasificar, y el algoritmo de aprendizaje no supervisado experimentará con este conjunto de datos aprendiendo patrones, similitudes y diferencias entre los mismos sin ningún entrenamiento previo. El objetivo final es generar una función $f$ que permita identificar estructuras ocultas en el conjunto de datos dado.
+En otras palabras, el modelo recibe un conjunto de datos de entrada sin etiquetar y sin clasificar, y el algoritmo de aprendizaje no supervisado experimentará con este conjunto de datos aprendiendo patrones, similitudes y diferencias entre los mismos sin ningún entrenamiento previo. El objetivo final es generar una función $f$ que permita identificar estructuras ocultas sobre el conjunto de datos dado.
 
 Los algoritmos de aprendizaje no supervisado se utilizan para resolver problemas de \textbf{clustering}.
 \end{itemize}
@@ -555,7 +555,7 @@ En la Figura \ref{fig:Transductivo_2} al agregar puntos cuya clase desconocemos,
 
 El aprendizaje transductivo es un área muy nueva dentro de Data Science y que sin dudas merece ser explorada.
 
-En este proyecto de Tesis se utilizará el aprendizaje transductivo para lograr inicialmente una clusterización de nuestros candidatos en 5 grupos mediante un algoritmo de clustering (K-means), y luego se realizará una clasificación mediante un algoritmo de clasificación (KNN). 
+En este Proyecto de Tesis se utilizará el aprendizaje transductivo para lograr inicialmente una clusterización de nuestros candidatos en 5 grupos mediante un algoritmo de clustering (K-means), y luego se realizará una clasificación mediante un algoritmo de clasificación (KNN). 
 
 \subsubsection{Separación de los datos.}\label{Separacion datos}
 
@@ -969,7 +969,7 @@ En k-means los outliers pueden incrementar la función de coste o Inercia. Vario
 
 \end{enumerate}
 
-Todas estas limitaciones descritas anteriormente fueron abordadas y resueltas en la implementación de k-means realizada para este proyecto de la siguiente forma:
+Todas estas limitaciones descritas anteriormente fueron abordadas y resueltas en la implementación de k-means realizada para este Proyecto de la siguiente forma:
 
 \begin{itemize}
 
@@ -1061,7 +1061,7 @@ De esta manera, concluimos que K-means++ genera una inicialización más dispers
 \cleardoublepage
 \subsection{Redes Neuronales Artificiales (ANN).}\label{ann_teoria}
 
-Las redes neuronales artificiales (o artificial neural network, ANN) son técnicas de Machine Learning que permiten imitar o reproducir la capacidad de aprender propia del comportamiento de un cerebro humano. Las ANN están compuestas por un conjunto de elementos simples (neuronas artificiales) que se interconectan masivamente en paralelo y con organización jerárquicacite\cite{ANN_21}.
+Las redes neuronales artificiales (o artificial neural network, ANN) son técnicas de Machine Learning que permiten imitar o reproducir la capacidad de aprender propia del comportamiento de un cerebro humano. Las ANN están compuestas por un conjunto de elementos simples (neuronas artificiales) que se interconectan masivamente en paralelo y con organización jerárquica\cite{ANN_21}.
 
 En esta sección detallaremos el funcionamiento básico y los componentes de una red neuronal; la cual será utilizada como base en la implementación del modelo Word2vec para obtener word embedddings: Ver \textit{\nameref{Implementacion_word_emb_y_wmd}}.
 
@@ -1086,9 +1086,9 @@ Mencionaremos las partes involucradas en dicho esquema:
 
 \item \textbf{Pesos ($w_1, w_2, w_3, w_n$)}: Los \textit{pesos} son los coeficientes que determinan la intensidad o fuerza de la conexión de las señales de entrada registradas por la neurona. Si el peso de una entrada $x_1$ es mayor al peso de la entrada $x_2$, entonces la entrada $x_1$ tiene mayor influencia en la neurona. Si el peso es positivo se habla de una \textit{excitación} de la entrada, en cambio si el peso es negativo se habla de una \textit{inhibición} de la misma.
 
-\item \textbf{Función de entrada}: En esta parte del esquema se aplica una función de entrada a nuestros valores de entrada, sus pesos y el bías -representado en la figura como $b$\footnote{El bias o sesgo es el término independiente que permite cambiar o disparar la función de activación para garantizar un aprendizaje exitoso. En otras palabras, permite controlar qué tan predispuesta está la neurona a disparar un 1 o un 0 independientemente de los pesos. Un sesgo alto hace que la neurona requiera una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más sencillo.}-.
+\item \textbf{Función de entrada}: En esta parte del esquema se aplica una función de entrada a nuestros valores de entrada, sus pesos y el bías -representado en la Figura como $b$\footnote{El bias o sesgo es el término independiente que permite cambiar o disparar la función de activación para garantizar un aprendizaje exitoso. En otras palabras, permite controlar qué tan predispuesta está la neurona a disparar un 1 o un 0 independientemente de los pesos. Un sesgo alto hace que la neurona requiera una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más sencillo.}-.
 
-Existen distintas funciones de entrada, tales como la sumatoria de las entradas ponderadas, la productoria de las entradas ponderadas o el máximo de las entradas ponderadas\cite{ANN_23}. En el ejemplo descrito en la figura \ref{fig:ann_1} se utilizó la función de entrada más común: la \textit{sumatoria de las entradas ponderadas}, que representa la suma de todos los valores de entrada a la neurona, multiplicados por sus correspondientes pesos. De esta manera, mediante la Fórmula \ref{eq:ecuacion_1_ANN} obtenemos la salida $Z$.
+Existen distintas funciones de entrada, tales como la sumatoria de las entradas ponderadas, la productoria de las entradas ponderadas o el máximo de las entradas ponderadas\cite{ANN_23}. En el ejemplo descrito en la Figura \ref{fig:ann_1} se utilizó la función de entrada más común: la \textit{sumatoria de las entradas ponderadas}, que representa la suma de todos los valores de entrada a la neurona, multiplicados por sus correspondientes pesos. De esta manera, mediante la Fórmula \ref{eq:ecuacion_1_ANN} obtenemos la salida $Z$.
 
 \begin{equation}\label{eq:ecuacion_1_ANN}
 Z=\sum_{i}w_{i}x_{i}+b
@@ -1102,7 +1102,9 @@ Las neuronas artificiales tienen diferentes estados de activación, algunas de e
 
 La función activación calcula dichos estados de activación de la neurona, transformando la entrada global $z$ en un valor (estado) de activación o salida $y$, cuyo rango normalmente va de (0 a 1) o de (-1 a 1). Esto es así, porque una neurona puede estar totalmente inactiva (0 o -1) o activa (1)\cite{ANN_23}. 
 
-Resumiendo, la función de activación tiene como objetivo determinar si la neurona es activada o no aplicando una \textit{función no lineal} $f$ a $Z$, obteniendo así la salida de la neurona $y$: ver la Fórmula \ref{eq:ecuacion_2_ANN}. ¿Por qué esta función de activación tiene que ser una \textit{función no lineal}?: Esto lo explicaremos en la sección \textit{\nameref{Func_activ}}.
+Resumiendo, la función de activación tiene como objetivo determinar si la neurona es activada o no aplicando una \textit{función no lineal} $f$ a $Z$, obteniendo así la salida de la neurona $y$: ver la Fórmula \ref{eq:ecuacion_2_ANN}. 
+
+¿Por qué esta función de activación tiene que ser una \textit{función no lineal}?: Esto lo explicaremos en la sección \textit{\nameref{Func_activ}}.
 
 \begin{equation}\label{eq:ecuacion_2_ANN}
 y = f(z) =  
@@ -1120,8 +1122,8 @@ Por ejemplo, viendo la Figura \ref{fig:ann_1}, si utilizamos la \textit{función
 y = f(z) =  
 \begin{cases}
 \begin{array}{lr}
-1,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b > umbral \\
-0,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b \leq  umbral
+1,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b > 0 \\
+0,\;\;\;    si \;\; \sum_{i}w_{i}x_{i}+b \leq  0
 \end{array}
 \end{cases}
 \end{equation}
@@ -1156,11 +1158,11 @@ El modelo de Perceptrón multicapa (MLP) es el modelo más conocido y utilizado 
 A continuación mencionaremos las tres capas existentes en el modelo MLP, cada una con distintas funciones.
 \begin{itemize}
 \item \textbf{Capa de entrada}: contiene las variables de entrada; reciben directamente la información proveniente de las fuentes externas de la red.
-\item \textbf{Capas ocultas}: pueden haber 1 o N capa/s oculta/s. La longitud de N determina la profundidad de la red, dando origen al término de aprendizaje profundo (o “deep learning”). Colocando neuronas en forma secuencial permite que cada neurona reciba información procesada por una neurona anterior, lo que significa que la red puede generar conocimiento jerarquizado: de esta manera la red podría aprender conocimiento básico en las primeras capas y mientras va pasando la información a las neuronas de las siguientes capas, va generando conocimiento más abstracto y complejo.
+\item \textbf{Capas ocultas}: pueden haber 1 o N capa/s oculta/s. La longitud de N determina la profundidad de la red, dando origen al término de aprendizaje profundo (o \textit{deep learning}). Colocando neuronas en forma secuencial permite que cada neurona reciba información procesada por una neurona anterior, lo que significa que la red puede generar conocimiento jerarquizado: de esta manera la red podría aprender conocimiento básico en las primeras capas y mientras va pasando la información a las neuronas de las siguientes capas, va generando conocimiento más abstracto y complejo.
 \item \textbf{Capa de salida}: permite retornar los resultados procesados por la red neuronal. Si estamos resolviendo un problema de clasificación esta capa puede estar formada por 2 neuronas (si se trata de una clasificación binaria) o N neuronas (en caso de clasificación multiclase). 
 \end{itemize}
 
-Cabe destacar que en nuestro modelo MLP, una única neurona de nuestra capa oculta o de nuestra capa de salida puede representarse como un Perceptrón Simple (Figura \ref{fig:ann_3}). En cambio, una neurona de nuestra capa de  entrada NO puede representarse como un Perceptrón simple, ya que en esta capa no existe ningún procesamiento interno. Con “procesamiento interno” nos referimos a la función de entrada y función de activación dentro de la neurona: por esta razón, las funciones de activación también residen en las neuronas de la capa oculta y/o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación). 
+Cabe destacar que en nuestro modelo MLP, una única neurona de nuestra capa oculta o de nuestra capa de salida puede representarse como un Perceptrón Simple (Figura \ref{fig:ann_3}). En cambio, una neurona de nuestra capa de  entrada \textbf{no} puede representarse como un Perceptrón Simple, ya que en esta capa no existe ningún procesamiento interno. Con “procesamiento interno” nos referimos a la función de entrada y función de activación dentro de la neurona: por esta razón, las funciones de activación también residen únicamente en las neuronas de la capa oculta o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación). 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -1182,7 +1184,7 @@ Donde $\phi$ es la función de activación que elegimos usar para esa capa, $W$ 
 
 Además, como mencionamos previamente, con el modelo MLP podemos componer varias de estas capas, con lo cual obtenemos una \textit{red}, donde los perceptrones de una capa reciben como entrada a los de la capa anterior y alimentan a los de la capa que sigue. Dada una red $f$ y una entrada $x$, a la salida $f(x)$ se la denomina, naturalmente, capa de salida, mientras que a la entrada $x$ se la suele denominar capa de entrada. Cuando tenemos una red con varias capas, todas las capas que no son de salida ni de entrada se denominan capas ocultas. 
 
-Anteriormente vimos que la red $f$ depende de los parámetros $W$ y $b$, que en su conjunto vamos a denotar con $\theta$, y estará formada por una \textit{composición} sucesiva de varias capas $f^i$, donde el superíndice indica el número de la capa. De esta manera, cada capa cuenta con sus propios parámetros $\theta$ y procesa la información que recibe de acuerdo a la Fórmula \ref{eq:ecuacion_6_ANN}.
+Anteriormente vimos que la red $f$ depende de los parámetros $W$ y $b$ (que en su conjunto vamos a denotar con $\theta$) y esta formada por una \textit{composición} sucesiva de varias capas $f^i$, donde el superíndice indica el número de la capa. De esta manera, cada capa cuenta con sus propios parámetros $\theta$ y procesa la información que recibe de acuerdo a la Fórmula \ref{eq:ecuacion_6_ANN}.
 
 \begin{equation}\label{eq:ecuacion_6_ANN}
 f^i(a^{i-1},\theta^i) = f^i(a^{i-1},w^i,b^i) = \phi(W^{i}a^{i-1}+b^i)    \qquad  \text{(Ver \cite{ANN_25})}
@@ -1192,11 +1194,11 @@ Donde $a^{i-1}$ es la salida, o activación, de la capa anterior, $W^i$ es la ma
 
 \subsubsection{Funciones de activación en MLP.}\label{Func_activ}
 
-Como mencionamos previamente, las funciones de activación residen en las neuronas de la capa oculta y/o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación).
+Como mencionamos previamente, las funciones de activación residen únicamente en las neuronas de la capa oculta o en las neuronas de la capa de salida (las neuronas de la capa de entrada no poseen funciones de activación).
 
 Algo que vale la pena mencionar es que todas las capas ocultas suelen utilizar la misma función de activación. La capa de salida normalmente utiliza una función de activación diferente de las capas ocultas y depende del tipo de predicción requerida por el modelo.
 
-El propósito de la función de activación es introducir una \textit{no-linealidad} dentro de la red neuronal, lo que le permite a la misma obtener una variable de salida $y$ que varíe de forma no lineal con respecto a sus variables de entrada $x$. \textit{¿Por qué esta función de activación tiene que ser una función no lineal?}:
+El propósito de la función de activación es introducir una \textit{no-linealidad} dentro de la red neuronal, lo que le permite a la misma obtener una variable de salida $y$ que varíe de forma no lineal con respecto a sus variables de entrada $x$. A continuación explicaremos más en detalle \textit{¿por qué esta función de activación tiene que ser una función no lineal?}:
 \begin{itemize}
 \item Esto es debido a que si una red neuronal únicamente posee funciones de activación lineales (también conocidas como \textit{función identidad}), la red se comportará como si fuera un perceptrón de una sola capa: esto es debido a que si sumamos todas las capas obtendremos otra función lineal.
 Independientemente de cuán compleja sea la arquitectura de la red, una función de activación lineal solo nos permite modelar una relación lineal entre las entradas y salidas, siendo efectiva solo en una capa de profundidad y para problemas de regresión lineal (por ejemplo al predecir precios de la vivienda), y no siendo útil para la mayoría de las aplicaciones del mundo real que son altamente no lineales.
@@ -1204,11 +1206,11 @@ Resumidamente, que la función de activación sea no lineal permite a la red api
 \end{itemize}
 
 En nuestra implementación de red neuronal para el modelo Word2vec (ver sección \textit{\nameref{Implementacion_word_emb_y_wmd}}). no utilizamos funciones de activación en las neuronas de la capa oculta, este modelo \textit{únicamente utiliza la función de activación para la capa de salida}. 
-El modelo Word2vec, en su esquema básico, utiliza una función de activación softmax para la capa de salida. En nuestra implementación se realizó una mejora a dicho esquema, introduciendo lo que se conoce como \textit{muestreo negativo} (el cual está explicado en la sección \textit{\nameref{neg_samp}}), que implementa una función de activación sigmoide para la capa de salida. En las siguientes secciones se detallarán dichas funciones de activación.
+El modelo Word2vec, en su esquema básico, utiliza una función de activación softmax para la capa de salida. En nuestra implementación se realizó una mejora a dicho esquema, introduciendo lo que se conoce como \textit{muestreo negativo} (el cual está explicado en la sección \textit{\nameref{neg_samp}}), que implementa una \textbf{función de activación sigmoide para la capa de salida}. En las siguientes secciones se detallarán dichas funciones de activación (softmax y sigmoide).
 
 \paragraph{Softmax en la capa de salida.}\label{soft_capa_salida}
 
-La función Softmax comprime las salidas de cada neurona para que estas sean de 0 y 1 de tal forma que la suma de las salidas sea igual a 1. La función Softmax produce salidas que se asemejan a probabilidades. Esto es, cada salida de la red produce una probabilidad entre 0 y 1, mientras que la suma de estas probabilidades es 1. Consecuentemente, esta función es usada en la capa de salida en ANN para resolver problemas de clasificación, ya que en estos problemas se requiere separar los datos de entrada en grupos. 
+La función softmax comprime las salidas de cada neurona para que estas sean de 0 y 1 de tal forma que la suma de las salidas sea igual a 1. La función softmax produce salidas que se asemejan a probabilidades. Esto es, cada salida de la red produce una probabilidad entre 0 y 1, mientras que la suma de estas probabilidades es 1. Consecuentemente, esta función es usada en la capa de salida en ANN para resolver problemas de clasificación, ya que en estos problemas se requiere separar los datos de entrada en grupos. 
 En la Fórmula \ref{eq:ecuacion_7_ANN} podemos observar la representación matemática de la función softmax; mientras que en la Figura \ref{fig:ann_4}. podemos observar la aplicación de esta función a la capa de salida de una red neuronal.
 
 \begin{equation}\label{eq:ecuacion_7_ANN}
@@ -1223,15 +1225,17 @@ Donde $0 \geq Z_k \geq 1$, mientras que $y_k$ es la salida de la neurona $k$, la
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
 \centering
 \includegraphics[width=0.8\textwidth]{images/ANN/4-ANN.png}
-\caption[Función Softmax aplicada a la capa de salida.]{Función Softmax aplicada a la capa de salida\protect\footnotemark .}
+\caption[Función softmax aplicada a la capa de salida.]{Función softmax aplicada a la capa de salida\protect\footnotemark .}
  \label{fig:ann_4}
 \end{figure}
 \footnotetext{Obtenida del sitio web \url{http://sintesis.ugto.mx/WintemplaWeb}. (Consultado el 30 de abril de 2022).}
 
 \paragraph{Sigmoide en la capa de salida.}\label{sigm_capa_salida}
 
-La función sigmoide, o también llamada curva logística, es una aproximación suave de la función escalón. Como resultado de aplicar la función sigmoide a la salida $y_k$ de cada neuronal, al igual que en la Softmax, como salida obtenemos un valor $Z_k$ entre 0 y 1. Pero, a diferencia de la Softmax, la suma de las salidas (de $Z_1$ a $Z_M$) no dan 1 como resultado, ya que en el denominador no se consideran a todas las salidas $y_K$ para realizar el cálculo de la función. Utilizando la función de activación sigmoide simplemente se aplica una función $\sigma(y_k)$ por cada $y_k$ salida de la respectiva neurona. Matemáticamente podemos observar la función sigmoide en la Fórmula \ref{eq:ecuacion_8_ANN}. 
-Mientras que en la Figura \ref{fig:ann_5} podemos observar la representación gráfica de la función sigmoide comparándola con la función escalón. 
+La función sigmoide, o también llamada curva logística, es una aproximación suave de la función escalón. Como resultado de aplicar la función sigmoide a la salida $y_k$ de cada neurona, al igual que en la softmax, como salida obtenemos un valor $Z_k$ entre 0 y 1. Pero, a diferencia de la softmax, la suma de las salidas (de $Z_1$ a $Z_M$) no dan 1 como resultado, ya que en el denominador no se consideran a todas las salidas $y_K$ para realizar el cálculo de la función. 
+
+Utilizando la función de activación sigmoide simplemente se aplica una función $\sigma(y_k)$ por cada $y_k$ salida de la respectiva neurona. Matemáticamente podemos observar la función sigmoide en la Fórmula \ref{eq:ecuacion_8_ANN}. 
+Mientras que en la Figura \ref{fig:ann_5} podemos observar la representación gráfica de la función sigmoide comparándola, por ejemplo, con la función escalón. 
 
 \begin{equation}\label{eq:ecuacion_8_ANN}
 \sigma(y_k)= \frac{exp(y_k)}{ {1 + exp(y_k)}} =  \frac{1}{ {1+exp(-y_k)}}    \qquad \text{(Ver \cite{ANN_25})}
@@ -1252,22 +1256,22 @@ Donde $0 \geq \sigma(y_k) \geq 1$.
 \subsubsection{Entrenamiento en una red neuronal.}\label{entren_ann}
 
 Como se comentó anteriormente, el modelo MLP de Redes Neuronales es un modelo de clasificación, lo que significa que realiza un aprendizaje supervisado. De esta manera, a la red neuronal durante el proceso de entrenamiento se le muestra un gran número de datos de entrenamiento para que la red ajuste / modifique sus pesos de manera iterativa y de este modo, lograr minimizar el error producido en la respuesta: lograr minimizar la \textit{función de costo}, la cual penaliza de alguna manera los errores que comete la red al clasificar. Luego de varias iteraciones de ejemplos, se espera que la red neuronal sea efectiva para resolver la tarea para la que fue entrenada.
-En otras palabras, una red aprende resolviendo un problema de optimización, donde se buscan los parámetros de la red (pesos y sesgos, $\theta$) que minimizan la función de costo o error $J$ para cada ejemplo $xi$ en el conjunto de entrenamiento $X$. 
+En otras palabras, una red aprende resolviendo un problema de optimización, donde se buscan los parámetros de la red (pesos y sesgos, $\theta$) que minimizan la función de costo o error $J$ para cada ejemplo $x_i$ en el conjunto de entrenamiento $X$. 
 
 A continuación describiremos en mayor detalle el ciclo iterativo de procesos del entrenamiento de una red neuronal\cite{ANN_25}.
 
 \begin{enumerate}
-\item Al comienzo del algoritmo, por única vez, se inicializan las matrices de pesos $W$ y los vectores de bias $b$ de toda la red con valores aleatorios. Estos son los \textit{parámetros} de nuestro modelo de red neuronal.
+\item Al comienzo del algoritmo, por única vez, se inicializan las matrices de pesos $W$ y los vectores de bias $b$ de toda la red con valores aleatorios. Estos son los \textit{parámetros} $\theta$ de nuestro modelo de red neuronal.
   
-\item Se aplica \textit{forward propagation} (o propagación hacia adelante) para cada una de las muestras del set de entrenamiento y se obtienen los puntajes de salida $y$. Forward propagation es la manera en que una ANN computa los valores de entrada y los clasifica. Matemáticamente, durante este proceso la red neuronal recibe un vector de entrada x y devuelve un vector de salida $y$\footnote{Cada elemento del vector de salida $y$ se corresponde a la salida de una $k$ neurona de la capa de salida.} aplicando en cada una de las capas de la red la Fórmula \ref{eq:ecuacion_6_ANN} (que alimentará a la capa $f^{i+1}$, y que generalmente involucra sumatoria, multiplicación y uso de funciones de activación. De esta manera la señal se mueve desde la capa de entrada, pasando por las capas ocultas intermedias, hasta llegar a la capa de salida con un valor.
+\item Se aplica \textit{forward propagation} (o propagación hacia adelante) para cada una de las muestras del set de entrenamiento y se obtienen los puntajes de salida $y$. Forward propagation es la manera en que una ANN computa los valores de entrada y los clasifica. Matemáticamente, durante este proceso la red neuronal recibe un vector de entrada $x$ y devuelve un vector de salida $y$\footnote{Cada elemento del vector de salida $y$ se corresponde a la salida de una $k$ neurona de la capa de salida.} aplicando en cada una de las capas de la red $f^{i}$ la Fórmula \ref{eq:ecuacion_6_ANN} (que alimentará a la capa $f^{i+1}$, y que generalmente involucra sumatoria, multiplicación y uso de funciones de activación). De esta manera la señal se mueve desde la capa de entrada, pasando por las capas ocultas intermedias, hasta llegar a la capa de salida con algún valor.
 
-\item Los vectores de salida $y$ obtenidos / predichos de todas las muestras de entrenamiento se comparan con los valores de sus vectores de salida $y$ correspondientes que tiene las etiquetas reales, computándose de esta manera el \textit{error} (o \textit{loss}) de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo / pérdida (loss function)}.
+\item Los vectores de salida $y$ obtenidos / predichos de todas las muestras de entrenamiento se comparan con los valores de sus vectores de salida $y'$ correspondientes que tiene las etiquetas reales, computándose de esta manera el \textit{error} (o \textit{loss}) de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo / pérdida (loss function)}.
 
-La función de pérdida  $J(\theta)$ será diferente para cada modelo. Más adelante obtendremos los cálculos de las $J(\theta)$ que tendremos en consideración para nuestra implementación, las cuales son la Fórmula \ref{eq:ecuacion_11_NLP} y la Fórmula \ref{eq:ecuacion_21_NLP}, siendo esta última la que finalmente utilizaremos en nuestro modelo y buscaremos minimizar. Ambas funciones de costo son la sumatoria sobre los costos individuales en los que incurre la red al clasificar cada elemento del conjunto de entrenamiento, y se calculan 1 vez por epoch\footnote{Epoch es un hiper-parámetro de nuestra red neuronal, donde cada epoch representa una iteración sobre nuestros datos de entrenamiento completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes.}.
+La función de pérdida $J(\theta)$ será diferente para cada modelo. Más adelante obtendremos los cálculos de las $J(\theta)$ que tendremos en consideración para nuestra implementación: Fórmulas \ref{eq:ecuacion_11_NLP} y \ref{eq:ecuacion_21_NLP}, siendo esta última la que finalmente utilizaremos en nuestro modelo y buscaremos minimizar. Ambas funciones de costo son la sumatoria sobre los costos individuales en los que incurre la red al clasificar cada elemento del conjunto de entrenamiento, y se calculan 1 vez por epoch\footnote{Epoch es un hiper-parámetro de nuestra red neuronal, donde cada epoch representa una iteración sobre nuestros datos de entrenamiento completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes.}.
 
-\item Se aplica el proceso conocido como \textit{backpropagation} (o propagación hacia atrás). No se explicará en detalle este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Lo que hay que tener en cuenta es que backpropagation utiliza la función de optimización\footnote{Una función de optimización en redes neuronales tiene como objetivo encontrar los pesos W que minimicen los errores de clasificación / la función de coste.} \textit{descenso del gradiente} para poder ajustar / modificar los pesos y el bias de cada neurona de nuestra red \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. En backpropagation calculamos el gradiente de $J(\theta)$ (o dicho de otra forma derivamos el error) en función de cada uno de los parámetros de nuestra red. Para esto se opera recursivamente capa tras capa propagando el error desde la salida hacia la entrada de la red.
+\item Se aplica el proceso conocido como \textit{backpropagation} (o propagación hacia atrás). No se explicará en detalle este procedimiento porque no entra dentro de los objetivos de este trabajo. Lo que hay que tener en cuenta es que backpropagation utiliza la función de optimización\footnote{Una función de optimización en redes neuronales tiene como objetivo encontrar los pesos W que minimicen los errores de clasificación / la función de coste.} \textit{descenso del gradiente} para poder ajustar / modificar los pesos y el bias de cada neurona de nuestra red \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. En backpropagation calculamos el gradiente de $J(\theta)$ (o dicho de otra forma derivamos el error) en función de cada uno de los parámetros de nuestra red. Para esto se opera recursivamente capa tras capa propagando el error desde la salida hacia la entrada de la red.
 
-De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la ecuación \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $\theta$ para la red reuronal.
+De esta manera, considerando que nuestra función de pérdida es $J(\theta)$, donde nuestros parámetros $\theta$ son $W$ (matriz de pesos) y $b$ (vector de bias), el objetivo de nuestro modelo será encontrar los valores óptimos de $W$ y $b$ ($\theta^{(new)}$) para minimizar $J(\theta)$. De esta manera, en la Fórmula \ref{eq:ecuacion_9_ANN} podemos observar la ecuación general de actualización de nuestros parámetros $\theta$ para la red reuronal.
  
 \begin{equation}\label{eq:ecuacion_9_ANN}
 \theta^{(new)} = \theta^{(old)} - n \cdot \nabla J(\theta)   \qquad \text{(Ver \cite{ANN_25})}
@@ -1282,15 +1286,15 @@ Donde $n$ es la tasa de aprendizaje (o learning rate), del cual hablaremos con m
 
 \end{enumerate}
 
-Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”} y no el \textit{algoritmo de gradiente descendiente estocástico} (stochastic gradient descent,\textit{SDG}), algo que explicaremos en mayor detalle en la sección \textit{\nameref{ent_costo_softmax}}.
+Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”} y no el \textit{algoritmo de gradiente descendiente estocástico} (stochastic gradient descent, \textit{SDG}), algo que explicaremos en mayor detalle en la sección \textit{\nameref{ent_costo_softmax}}.
 
 \paragraph{Hiper-parámetro n.}\label{hiper_n}
 
 Como detallamos anteriormente, $n$ es la tasa de aprendizaje de nuestra red neuronal e interviene en la actualización de nuestros parámetros  $\theta$ al aplicar backpropagation utilizando el algoritmo descenso del gradiente. $n$ define y permite regular la velocidad con la que nos desplazamos por el espacio de parámetros y por lo tanto cuán rápido nos acercamos al mínimo de la función $J(\theta)$. $n$ definirá la cantidad de iteraciones requerida para que el algoritmo descenso del gradiente encuentre el mínimo de la función.
 
-$n$ es un parámetro que a diferencia de $\theta$ no es ajustado por el algoritmo de optimización del descenso del gradiente, sino que debe ser configurado por separado. Como mencionamos anteriormente, a este tipo de parámetros se los denomina hiper-parámetros, y requieren de cierto cuidado en su elección para garantizar el buen rendimiento de la red neuronal. 
+A diferencia de $\theta$, $n$ es un parámetro que no es ajustado por el algoritmo de optimización del descenso del gradiente, sino que debe ser configurado por separado. Como mencionamos anteriormente, a este tipo de parámetros se los denomina hiper-parámetros, y requieren de cierto cuidado en su elección para garantizar el buen rendimiento de la red neuronal. 
 
-Mientras más rápido nos acerquemos al mínimo de la función, más rápido la red estará aprendiendo a realizar su tarea. Sin embargo, como ya mencionamos antes, valores muy altos del hiper-parámetro $n$ pueden tener un efecto contrario, llevando a que eventualmente el algoritmo pase de largo de manera reiterada esta mínimo, impidiendo el aprendizaje. A veces aprender requiere ir más lento y ser más cuidadosos. Lo mismo ocurre con la red, y en ese caso es conveniente ajustar $n$ para conseguir que la red no pase por alto los detalles. En la Figura \ref{fig:ann_6} podemos observar el efecto de diferentes tasas de aprendizaje durante el entrenamiento. 
+Mientras más rápido nos acerquemos al mínimo de la función, más rápido la red estará aprendiendo a realizar su tarea. Sin embargo, como ya mencionamos antes, valores muy altos del hiper-parámetro $n$ pueden tener un efecto contrario, llevando a que eventualmente el algoritmo pase de largo de manera reiterada este mínimo, impidiendo el aprendizaje. A veces aprender requiere ir más lento y ser más cuidadosos. Lo mismo ocurre con la red, y en ese caso es conveniente ajustar $n$ para conseguir que la red no pase por alto los detalles. En la Figura \ref{fig:ann_6} podemos observar el efecto de diferentes tasas de aprendizaje durante el entrenamiento. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -1307,7 +1311,7 @@ Una tasa de aprendizaje demasiado alta puede ocasionar que el algoritmo de entre
 
 \subsection{Introducción.}\label{Intro_NLP}
 
-El Procesamiento del Lenguaje Natural o Natural Language Processing (NLP) es un subconjunto de la Inteligencia Artificial (IA) que tiene como objetivo principal la construcción de sistemas que permitan procesar el lenguaje humano capturando la complejidad del mismo, y traducirla en información resumida produciendo \textit{resultados} comprensibles por la computadora o \textit{respuestas} comprensibles por humanos como parte de la aplicación/implementación de IA. De esta manera, NLP permite que las computadoras puedan comprender el lenguaje humano.
+El Procesamiento del Lenguaje Natural o Natural Language Processing (NLP) es un subconjunto de la Inteligencia Artificial (IA) que tiene como objetivo principal la construcción de sistemas que permitan procesar el lenguaje humano capturando la complejidad del mismo, y traducirla en información resumida produciendo \textit{resultados} comprensibles por la computadora o \textit{respuestas} comprensibles por humanos como parte de la aplicación/implementación de IA. De esta manera, NLP permite que las computadoras puedan \textit{comprender} el lenguaje humano.
 
 Para abordar este problema y poder extraer el significado de los lenguajes humanos, la mayoría de las técnicas de NLP se basan y utilizan enfoques del aprendizaje automático (machine learning) y del aprendizaje profundo (deep learning)\cite{NLP_1, NLP_2}.
 
@@ -1328,23 +1332,23 @@ Como mencionamos previamente, NLP generalmente utiliza algoritmos de machine lea
 
 \item \textbf{Generación de texto (Text Generation)}. Muchas tareas de NLP requieren la generación de un lenguaje similar al humano. Las aplicaciones de \textit{Text Summarization} y \textit{Machine Translation} convierten un texto en otro de secuencia a secuencia (seq2seq). Otras tareas, como los subtítulos de imágenes y videos y los informes meteorológicos y deportivos automáticos, convierten datos no textuales en texto. Algunas tareas, sin embargo, producen texto sin datos de entrada para convertir (o con solo pequeñas cantidades utilizadas como guía). Estas tareas incluyen la generación de poesía, la generación de chistes y la generación de historias.
 
-\item \textbf{Clasificación de texto (Text Classification)}. Text Classification permite la asignación de documentos de texto a clases predefinidas. Pueden tratarse de muchas clases o simplemente de una clasificación binaria. Text Classification tiene numerosas aplicaciones, un ejemplo es el \textit{análisis de sentimiento (Sentiment Analysis)}. Un ejemplo de una tarea de Sentiment Analysis es la extracción del sentimiento de un escritor y su clasificación: si su inclinación fue positiva, negativa o neutral hacia algún tema o idea.
+\item \textbf{Clasificación de texto (Text Classification)}. Text Classification permite la asignación de documentos de texto a clases predefinidas (pueden tratarse de muchas clases o simplemente de una clasificación binaria). Una de las aplicaciones más populares de Text Classification es el \textit{análisis de sentimiento (Sentiment Analysis)}. Un ejemplo de una tarea de Sentiment Analysis es la extracción del sentimiento de un escritor y su clasificación: si su inclinación fue positiva, negativa o neutral hacia algún tema o idea.
 
-\item \textbf{Sistemas de recuperación de información (Information Retrieval -IR- systems)}. El propósito de los sistemas IR es ayudar al usuario a encontrar la información correcta (más útil) en el formato correcto (más conveniente) en el momento correcto (cuando la necesitan). Esta información se encuentra en documentos digitales; y lo que se intenta recuperar son textos, imágenes, sonidos o datos de otras características que sean relevantes para el usuario. Entre muchos problemas en IR, un problema principal que debe abordarse se relaciona con la clasificación de documentos con respecto a una cadena de consulta en términos de puntajes de relevancia para tareas de recuperación ad-hoc, similar a lo que sucede en un motor de búsqueda. Los modelos de DL sirven para resolver estos problemas, permitiendo para la recuperación ad-hoc hacer coincidir los textos de las consultas con los textos de los documentos para obtener puntajes de relevancia.
+\item \textbf{Sistemas de recuperación de información (Information Retrieval -IR- systems)}. El propósito de los sistemas IR es ayudar al usuario a encontrar la información correcta (más útil) en el formato correcto (más conveniente) en el momento correcto (cuando la necesiten). Esta información se encuentra en documentos digitales; y lo que se intenta recuperar son textos, imágenes, sonidos o datos de otras características que sean relevantes para el usuario. Entre muchos problemas en IR, un problema principal que debe abordarse se relaciona con la clasificación de documentos con respecto a una cadena de consulta en términos de puntajes de relevancia para tareas de recuperación ad-hoc, similar a lo que sucede en un motor de búsqueda. Los modelos de DL sirven para resolver estos problemas, permitiendo para la recuperación ad-hoc hacer coincidir los textos de las consultas con los textos de los documentos para obtener puntajes de relevancia.
 
 \item \textbf{Sistemas de extracción de información (Information Extraction -IE- systems)}. El propósito de los sistemas IE es extraer información explícita o implícita del texto. Los resultados de los sistemas varían, pero a menudo los datos extraídos y las relaciones dentro de ellos se guardan en bases de datos relacionales. La información comúnmente extraída incluye entidades, relaciones o eventos en el texto. 
 
 \begin{enumerate}
 \item \textit{Named Entity Recognition (NER)}: Se refiera a identificar y reconocer entidades en los textos y “tagearlas”: por ejemplo personas, empresas, fechas, lugares, precios, etc.
-\item \textit{Extracción de eventos}: Se ocupa de identificar palabras o frases que se mencionan o refieren a la ocurrencia de eventos, junto con los participantes, roles de los mismos, objetos, momentos en que dicho evento ocurrió y desencadenantes del mismo.
+\item \textit{Extracción de eventos}: Se ocupa de identificar palabras o frases que se mencionan o refieren a la ocurrencia de eventos junto con los participantes, roles de los mismos, objetos, momentos en que dicho evento ocurrió y desencadenantes del mismo.
 \item \textit{Extracción de relaciones}: Implica la extracción de relaciones en los textos, las cuales pueden ser relaciones posesivas, antónimas o sinónimas, familiares o geográficas.
 \end{enumerate}
 
-\item \textbf{Respuesta a preguntas (Question Answering, QA)}. Al igual que las aplicaciones de Text Summarization e IE, los sistemas de QA recopilan palabras, frases u oraciones relevantes de un documento. QA devuelve esta información de manera coherente como respuesta a una solicitud o consulta de un usuario. Dada una pregunta y un conjunto de documentos, un sistema de QA intentará encontrar la respuesta exacta, o al menos la parte exacta del texto en la que aparece la respuesta. Los métodos actuales se asemejan a los de Text Summarization
+\item \textbf{Respuestas a preguntas (Question Answering, QA)}. Al igual que las aplicaciones de Text Summarization e IE, los sistemas de QA recopilan palabras, frases u oraciones relevantes de un documento. QA devuelve esta información de manera coherente como respuesta a una solicitud o consulta de un usuario. Dada una pregunta y un conjunto de documentos, un sistema de QA intentará encontrar la respuesta exacta, o al menos la parte exacta del texto en la que aparece la respuesta.
 
 \item \textbf{Reconocimiento de voz (Speech Recognition)}. Speech Recognition es el proceso de asignar señales de voz acústicas a un conjunto de palabras. Las dificultades de esta tarea surgen debido a las amplias variaciones en la pronunciación de las palabras y las ambigüedades homónimas y acústicas.
 
-\item \textbf{Combinación de voz (Speech Combination)}. Speech Combination permite la producción o creación de expresiones de oraciones en lenguaje natural. Para poder crear expresiones, el texto debe procesarse. Por lo tanto, NLP sigue siendo un componente esencial de cualquier sistema de combinación de voz.
+\item \textbf{Combinación de voz (Speech Combination)}. Speech Combination permite la producción o creación de expresiones de oraciones en lenguaje natural. Para poder crear expresiones el texto debe procesarse, por lo tanto NLP es un componente esencial para estos sistemas.
 
 \item \textbf{Sistemas de intercambio (Exchange Systems)}. Por lo general estos sistemas se enfocan en una aplicación de caracterización limitada (por ejemplo, una heladera o sistema de sonido doméstico) y utilizan los niveles fonéticos y léxicos del idioma. 
 
@@ -1355,7 +1359,7 @@ Como mencionamos previamente, NLP generalmente utiliza algoritmos de machine lea
 
 \subsection{NLP en la práctica.}\label{Practica_NLP}
 
-En la práctica, el uso de NLP generalmente nos sirve como \textit{complementación} a algoritmos de ML o DL para realizar distintas tareas, las cuales pueden ser por ejemplo las mencionadas en la sección sección \textit{\nameref{Aplicaciones_NLP}}.
+En la práctica, NLP se utiliza como \textit{complemento} junto a algoritmos de ML o DL para realizar distintas tareas, las cuales pueden ser por ejemplo las mencionadas en la sección  \textit{\nameref{Aplicaciones_NLP}}.
 
 Para la implementación de este Proyecto, la \textit{tarea específica} que involucra el uso de técnicas de NLP es la obtención de mediciones de similitud entre dos textos, las cuales posteriormente serán utilizadas como entradas a algoritmos de ML (en nuestro caso K-means, y luego KNN) para realizar la \textit{tarea global} de clasificación de nuestro Proyecto: en base a dichas mediciones de similitud lograr clasificar qué tan similares son los curriculums vitae de nuevos candidatos con respecto a la descripción de un puesto de IT.
 
@@ -1413,9 +1417,9 @@ En esta limpieza inicial podemos considerar las siguientes sub-tareas:
 
 \subsubsection{Tokenización.}\label{tokenizacion}
 
-Como explicamos previamente, los textos necesitan ser tratados previamente a ser convertidos en números y ser procesados por un modelo. Para lograr esto, luego de realizar las tareas de limpieza inicial detalladas en la sección anterior, se debe tokenizar (o particionar) los textos en pequeñas partes llamadas “tokens” y luego re-agrupar los mismos formando una lista de tokens. 
+Como explicamos previamente, los textos necesitan ser tratados previamente a ser convertidos en números y ser procesados por un modelo. Para lograr esto, luego de realizar las tareas de limpieza inicial detalladas en la sección anterior, se debe tokenizar (o particionar) los textos. 
 
-De esta manera, la \textit{tokenización} consiste en dividir un texto en partes más pequeñas llamadas \textit{tokens}. Un token puede ser un párrafo del texto, una oración, una palabra o cada uno de los carácteres de nuestro texto. Generalmente se arman los tokens dividiendo al texto en palabras. En la Figura \ref{fig:Imagen_NLP_2} podemos observar una tokenización a nivel de palabras, mientras que en la Figura \ref{fig:Imagen_NLP_3} se realiza a nivel de carácteres. 
+La \textit{tokenización} consiste en dividir un texto en partes más pequeñas llamadas \textit{tokens} y luego re-agrupar los mismos formando una lista de tokens. Un token puede ser un párrafo del texto, una oración, una palabra o cada uno de los carácteres de nuestro texto. Generalmente se arman los tokens dividiendo al texto en palabras. En la Figura \ref{fig:Imagen_NLP_2} podemos observar una tokenización a nivel de palabras, mientras que en la Figura \ref{fig:Imagen_NLP_3} se realiza a nivel de carácteres. 
 
 \begin{figure}[H]    
  \centering
@@ -1431,7 +1435,7 @@ De esta manera, la \textit{tokenización} consiste en dividir un texto en partes
  \label{fig:Imagen_NLP_3}
 \end{figure}
 
-Tokenizar las palabras nos permite encontrar similitudes entre las mismas: por ejemplo, detectar las palabras con las mismas raíces. Para encontrar estas similitudes podemos utilizar los métodos de stemming y lemmatization, los cuales se verán en la próxima sección.
+Tokenizar las palabras nos permite encontrar similitudes entre las mismas: por ejemplo, detectar las palabras con las mismas raíces. Para encontrar estas similitudes podemos utilizar los métodos de \textit{stemming} y \textit{lemmatization}, los cuales se verán en la próxima sección.
 
 La lista de tokens que obtendremos luego de aplicar tokenización (y en caso de ser necesario stemming, lemmatization y N-grams) sobre todos los documentos de texto incluidos en nuestros datos, es el \textit{corpus tokenizado} que mencionamos previamente. Luego, al eliminar los tokens repetidos, podemos obtener nuestro \textit{vocabulario}, el cual será útil en tareas posteriores.
 
@@ -1543,7 +1547,7 @@ Usualmente se coloca un $1$ como componente de nuestros vectores cuando el conte
 \label{table:bow_2}
 \end{table}
 
-Consideremos el siguiente ejemplo para explicar el funcionamiento detallado de BoW\cite{NLP_2}: 
+Consideremos otro ejemplo para explicar el funcionamiento detallado de BoW\cite{NLP_2}: 
 Siendo $d$ = [``He is a good boy'', ``She is a good girl'', ``Boys and girls are good''], nuestro objetivo es obtener una representación vectorial para cada uno de los $d[N]$ documentos\footnote{También podríamos considerar a $d$ como un único documento y $d[N]$ cada oración del documento; los cálculos se realizan de la misma manera solo que en lugar de obtener las representaciones vectoriales para cada documento ahora lo haríamos para cada oración.}.
 Luego del pre-procesamiento -que incluye conversión a minúsculas, lematización, limpieza de stopwords\footnote{En BoW la frecuencia de los stopwords, al estar muy presente en gran parte de los textos, serán mayores (aunque las mismas no tengan impacto en la representación del documento). Como mencionamos anteriormente, las stopword no son útiles para el análisis de texto por considerarse palabras vacías. Es por esto que generalmente las mismas se remueven en la etapa de pre-procesamiento previamente a crear el modelo de BoW.}, etc.-, $d$ se transforma en $d’$ = [``good boy'', ``good girl'', ``boy girl good'']. 
 
@@ -1573,9 +1577,9 @@ $d’[3]$ = ``boy girl good'' & 1 & 1 & 1 \\
 
 Las representaciones mediante BoW son muy sencillas de comprender, sin embargo sólo describen un documento de manera independiente, sin tener en cuenta el contexto de las palabras del corpus. Un mejor enfoque sería considerar la frecuencia relativa o rareza de las palabras / tokens en el documento frente a su frecuencia en los otros documentos. La idea central es que lo más probable es que el significado esté codificado en los términos más raros de un documento. Dicho de otra manera, en BoW las palabras que tienen mayor peso son las que aparecen en muchos documentos (sin embargo, debería ser lo opuesto). 
 
-\textit{TF (Term Frequency)} e \textit{IDF (Inverse Document Frequency)} solucionan este problema otorgando más peso a las palabras que aparecen en pocos documentos y menos peso a las palabras que aparecen en muchos documentos. La razón de esto es que una palabra que aparece en muchos documentos mayormente no es relevante (como por ejemplo las stop-words); en cambio palabras que aparecen en pocos documentos son más discriminantes y deberían tener mayor peso.  Por ejemplo, en un corpus tokenizado obtenido de un corpus de texto deportivo, los tokens como "córner", "penal" y "botines" aparecen con más frecuencia en documentos que tratan sobre fútbol, mientras que otros tokens que aparecen con frecuencia en todo el corpus tokenizado, como "correr", "puntuación” y “jugar” son menos importantes\cite{NLP_7}.
+\textit{TF (Term Frequency)} e \textit{IDF (Inverse Document Frequency)} solucionan este problema otorgando más peso a las palabras que aparecen en pocos documentos y menos peso a las palabras que aparecen en muchos documentos. La razón de esto es que una palabra que aparece en muchos documentos mayormente no es relevante (como por ejemplo las stop-words); en cambio palabras que aparecen en pocos documentos son más discriminantes y deberían tener mayor peso.  Por ejemplo, en un corpus tokenizado obtenido de un corpus de texto deportivo, los tokens como ``córner'', ``penal'' y ``botines'' aparecen con más frecuencia en documentos que tratan sobre fútbol, mientras que otros tokens que aparecen con frecuencia en todo el corpus tokenizado, como ``correr", ``puntuación'' y ``jugar'' son menos importantes\cite{NLP_7}.
 
-Otra de las desventajas de BoW es su incapacidad de tener en cuenta qué palabras son más importantes para cada uno de nuestros documentos\cite{NLP_2}. Por ejemplo, viendo la Tabla \ref{table:bow_3}, podemos observar que hay muchas palabras que tienen los mismos pesos (1 o 0): para $d’[1] = [1,1,0]$ observamos que las palabras “good” (1) y “boy” (1) tienen el mismo valor/peso (1). TF e IDF también permiten solucionar este problema: vemos la nueva representación de $d’[1]$ en la Tabla \ref{table:tf_idf_3}; de esta manera “boy” tiene mayor peso/relevancia que “good” por estar presente en menos documentos.
+Otra de las desventajas de BoW es su incapacidad de tener en cuenta qué palabras son más importantes para cada uno de nuestros documentos\cite{NLP_2}. Por ejemplo, viendo la Tabla \ref{table:bow_3}, podemos observar que hay muchas palabras que tienen los mismos pesos (1 o 0): para $d’[1] = [1,1,0]$ observamos que las palabras ``good'' (1) y ``boy'' (1) tienen el mismo valor/peso (1). TF e IDF también permiten solucionar este problema: vemos la nueva representación de $d’[1]$ en la Tabla \ref{table:tf_idf_3}; de esta manera ``boy'' tiene mayor peso/relevancia que “good” por estar presente en menos documentos.
 
 De esta manera, como mencionamos previamente, el modelo BoW puede ser mejorado añadiendo TF (Term Frequency) e IDF (Inverse Document Frequency). TF permite contar la cantidad de veces que aparece cada palabra/token en cada documento; mientras que la idea de IDF es darle a cada palabra/token un peso que sea inversamente proporcional a su frecuencia. Las palabras que aparecen en muchos documentos serán entonces menos importantes que las palabras que solo aparecen en unos pocos documentos\cite{apunte_uba}. Matemáticamente, podemos describir TF como en la Fórmula \ref{eq:ecuacion_2_NLP}, e IDF como en la Fórmula \ref{eq:ecuacion_3_NLP}.   
 
@@ -1669,40 +1673,40 @@ Además, observamos que para $d’[1]$, comparando con la Tabla \ref{table:bow_3
 Las representaciones vectoriales obtenidas mediante BoW y TF-IDF tienen 2 principales desventajas\cite{NLP_26, NLP_2}: 
 \begin{itemize}
 \item \textbf{Son dispersas (sparse) y de alta dimensionalidad (high-dimensional)}. Que un vector sea \textit{disperso (sparse)} significa que los mismos están dispersamente distribuidos de información: sus valores son en gran mayoría 0s y minoría 1s o valores que representen información (como el puntaje de TF-IDF). En cuanto a la dimensionalidad, esta es igual al tamaño de nuestro vocabulario; de esta manera, como generalmente contamos con miles e incluso millones de palabras en nuestro vocabulario, entonces nuestro vector tendrá miles de columnas, lo cual hace de esta representación \textit{ineficiente} y dificulta el entrenamiento de los algoritmos de ML. 
-\item \textbf{Son discretas}. Esto quiere decir que tratan a las palabras (contenidas en cada posición del vector) como unidades atómicas de un solo valor, perdiendo así la habilidad de capturar relaciones entre palabras. TF-IDF, a diferencia de BoW, añade un peso IDF a las palabras, sin embargo tampoco existe una relación entre las mismas. Debido a esto, estas representaciones no permiten capturar la similitud entre palabras, siendo las mismas tratadas como índices de nuestro set de vocabulario. Dicho de otra forma, estas representaciones discretas no permiten entender el \textit{contexto} de las palabras utilizadas en los documentos de texto: no permiten detectar las diferencias \textit{semánticas}\footnote{En el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, la idea es identificar el significado apropiado por medio del contexto de la oración.} entre las palabras ni detectar \textit{sinónimos}. 
+\item \textbf{Son discretas}. Esto quiere decir que tratan a las palabras (contenidas en cada posición del vector) como unidades atómicas de un solo valor, perdiendo así la habilidad de capturar relaciones entre palabras. TF-IDF, a diferencia de BoW, añade un peso IDF a las palabras, sin embargo tampoco existe una relación entre las mismas. Debido a esto, estas representaciones no permiten capturar la similitud entre palabras, siendo las mismas tratadas como índices de nuestro set de vocabulario. Dicho de otra forma, estas representaciones discretas no permiten entender el \textit{contexto} de las palabras utilizadas en los documentos de texto: no permiten detectar las diferencias \textit{semánticas}\footnote{En el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, el objetivo es identificar el significado apropiado por medio del contexto de la oración.} entre las palabras ni detectar \textit{sinónimos}. 
 \end{itemize}
 
 \cleardoublepage
 
 \subsubsection{Word embeddings.}\label{word_emb}
-En la sección previa observamos dos principales desventajas con respecto a dichas representaciones básicas de texto. Para solventar estas limitaciones introduciremos una nueva forma de representar nuestros textos, también mediante vectores: \textbf{embeddings}. 
+En la sección previa observamos dos principales desventajas con respecto a las representaciones básicas de texto utilizando BoW y TF-IDF. Para solventar estas limitaciones introduciremos una nueva forma de representar nuestros textos, también mediante vectores: \textbf{embeddings}. 
 
 En esta sección explicaremos en detalle qué son embeddings, cómo obtener dichos embeddings para representar a nuestras palabras (Word embeddings) y algunos conceptos que derivan de esta forma de representación: redes neuronales, one hot encoding, Word2vec, CBOW.
 
 \paragraph{Embeddings.}\label{embedd}
 
-Los \textbf{embeddings} son una de las representaciones vectoriales más populares de texto y de palabras, los cuales son obtenidos mediante redes neuronales: ver sección \textit{\nameref{ann_teoria}}. Estas representaciones vectoriales son densas (dense) y de baja dimensionalidad (low-dimensional)\cite{NLP_26}. De esta manera, las dos limitaciones previas son solucionadas mediante las ventajas de los embeddings descritas a continuación:
+Los \textbf{embeddings} son una de las representaciones vectoriales más populares de texto y de palabras, los cuales son obtenidos mediante redes neuronales: ver sección \textit{\nameref{ann_teoria}}. Estas representaciones vectoriales son densas (dense) y de baja dimensionalidad (low-dimensional)\cite{NLP_26}. De esta manera, las dos limitaciones vistas en \textit{\nameref{desv_bow_tfidf}} son solucionadas mediante las ventajas de los embeddings descritas a continuación:
 \begin{itemize}
-\item A diferencia de BoW y TF-IDF donde las representaciones son \textit{dispersas (sparse)} y \textit{de alta dimensionalidad (high-dimensional)}, como mencionamos anteriormente los embeddings son representaciones \textbf{densas (dense)} y generalmente \textbf{de menor dimensionalidad}. Que un vector sea denso significa que los mismos están densamente distribuidos de información: sus valores son en gran mayoría elementos distintos de 0, conteniendo mucha más información relevante que un vector disperso de igual dimensionalidad\cite{NLP_9}. Con respecto a la dimensionalidad, teniendo en cuenta que un embedding es un espacio representado en otro, el cual puede ser de mayor o menor cantidad de dimensiones que el espacio original, podemos decir que el espacio original de nuestros datos reales generalmente tiene una dimensionalidad muy grande, y mediante los embeddings  logramos obtener una representación de menor dimensionalidad (son más compactos)\cite{apunte_uba}. Todo esto hace que las tareas de ML utilizando estas representaciones sean más eficientes. 
-\item A diferencia de BoW y TF-IDF donde las representaciones son discretas y no permiten capturar las relaciones entre palabras, los embeddings utilizan un vector para representar a cada palabra o documento, \textbf{siendo capaces de capturar el contexto de una palabra en un documento, similitudes semánticas y sintácticas, relaciones entre palabras o documentos, sinónimos, etc.} 
+\item A diferencia de BoW y TF-IDF donde las representaciones son \textit{dispersas (sparse)} y \textit{de alta dimensionalidad (high-dimensional)}, los embeddings son representaciones \textbf{densas (dense)} y generalmente \textbf{de menor dimensionalidad}. Que un vector sea denso significa que los mismos están densamente distribuidos de información: sus valores son en gran mayoría elementos distintos de 0, conteniendo mucha más información relevante que un vector disperso de igual dimensionalidad\cite{NLP_9}. Con respecto a la dimensionalidad, teniendo en cuenta que un embedding es un espacio representado en otro, el cual puede ser de mayor o menor cantidad de dimensiones que el espacio original, podemos decir que el espacio original de nuestros datos reales generalmente tiene una dimensionalidad muy grande, y mediante los embeddings  logramos obtener una representación de menor dimensionalidad (siendo más compactos)\cite{apunte_uba}. Todo esto hace que las tareas de ML utilizando estas representaciones sean más eficientes. 
+\item A diferencia de BoW y TF-IDF donde las representaciones son \textit{discretas} y \textit{no permiten capturar las relaciones entre palabras}, los embeddings utilizan un vector para representar a cada palabra o documento, \textbf{siendo capaces de capturar el contexto de una palabra en un documento, similitudes semánticas y sintácticas, relaciones entre palabras o documentos, sinónimos, etc.} 
 \end{itemize}
 
 Existen embeddings de palabras (\textit{Word embeddings}) como de documentos (\textit{Document embeddings})\cite{NLP_10}. En nuestro caso utilizaremos embeddings de palabras (\textit{Word embeddings}), ya que luego esto nos permitirá aplicar mediciones de similitud mediante WMD. 
 
-Resumiendo el concepto de Word Embeddings, podemos decir que es una técnica de NLP que nos permite asignar un vector a cada palabra. Este vector es obtenido mediante el entrenamiento de redes neuronales y permiten guardar información semántica, lo que permite que pueda ser asociado a otros vectores de palabras según distintos contextos gramaticales. De esta manera, palabras similares tendrán word embeddings similares, estando dichos vectores a distancias cercanas entre sí.
+Resumiendo el concepto de Word embeddings, podemos decir que es una técnica de NLP que nos permite asignar un vector a cada palabra. Este vector es obtenido mediante el entrenamiento de redes neuronales y permiten guardar información semántica, lo que permite que pueda ser asociado a otros vectores de palabras según distintos contextos gramaticales. De esta manera, palabras similares tendrán word embeddings similares, estando dichos vectores a distancias cercanas entre sí.
 
 Hay dos conceptos claves para entender el uso de los word embeddings:
 \begin{itemize}
-\item \textbf{Similitud distribucional}\cite{NLP_26}: es la idea de que el significado de una palabra puede ser entendida desde el contexto en donde la palabra aparece\footnote{La similitud distribucional también es llamada \textit{connotation}: el significado está definido por contexto; y es lo opuesto a \textit{denotation}, que es el significado literal de cualquier palabra.}. Por ejemplo, “NLP rocks”, el significado literal de la palabra “rocks” es “stones” (piedras), pero teniendo en cuenta el contexto, esta palabra es usada para referirnos a otra cosa: a algo bueno, de moda.  \textit{Los word embeddings permiten capturar las similitudes distribucionales entre palabras}.  De esta manera, si nos dan la palabra ‘USA’, palabras distribucionalmente similares podrían ser paises (como Canada, Germany, Argentina, etc.) o ciudades de USA. Y si nos dan la palabra ‘beautiful’, palabras que comparten una relación con esta palabra (por ej. sinónimos o antónimos) pueden ser consideradas palabras distribucionalmente similares. Dicho de otra forma, existen palabras que generalmente ocurren en contextos similares.
+\item \textbf{Similitud distribucional}\cite{NLP_26}: esta es la idea de que el significado de una palabra puede ser entendido desde el contexto en donde la palabra aparece\footnote{La similitud distribucional también es llamada \textit{connotation}: el significado está definido por contexto; y es lo opuesto a \textit{denotation}, que es el significado literal de cualquier palabra.}. Por ejemplo, “NLP rocks”, el significado literal de la palabra “rocks” es “stones” (piedras), pero teniendo en cuenta el contexto, esta palabra es usada para referirnos a otra cosa: a algo bueno, de moda.  \textit{Los word embeddings permiten capturar las similitudes distribucionales entre palabras}.  De esta manera, si nos dan la palabra ‘USA’, palabras distribucionalmente similares podrían ser paises (como Canada, Germany, Argentina, etc.) o ciudades de USA. Y si nos dan la palabra ‘beautiful’, palabras que comparten una relación con esta palabra (por ej. sinónimos o antónimos) pueden ser consideradas palabras distribucionalmente similares. Dicho de otra forma, existen palabras que generalmente ocurren en contextos similares.
 \item \textbf{Hipótesis Distribucional}\cite{NLP_26}: En lingüística, esta hipótesis hace referencia a que las palabras que ocurren en contextos similares tienen similares significados. Por ejemplo, las palabras “dog” y “cat” ocurren en similares contextos. Por lo tanto, de acuerdo a esta hipótesis, debe existir una fuerte similitud entre los significados de esas dos palabras. \textbf{Las representaciones vectoriales mediante word embeddings se basan en esta hipótesis: de esta manera, si dos palabras ocurren en un contexto similar, sus correspondientes representaciones vectoriales estarán cerca entre sí}.  
 
 \end{itemize}
 
-Estos word embeddings, al ser vectores, son un elemento de un espacio vectorial (o también llamado “espacio de embedding”), teniendo una magnitud y una dirección. Como ejemplo, podemos observar en la Figura \ref{fig:Imagen_NLP_12} la conversión de 4 palabras en vectores (o word embeddings) de 2 dimensiones. Este es un ejemplo meramente visual, ya que en la práctica las palabras las transformamos en vectores de muchas más dimensiones (100 por ejemplo). 
+Estos word embeddings son vectores con una magnitud y dirección, pertenecientes a un espacio vectorial (o también llamado “espacio de embedding”). Como ejemplo, podemos observar en la Figura \ref{fig:Imagen_NLP_12} la conversión de 4 palabras en vectores (o word embeddings) de 2 dimensiones. Este es un ejemplo meramente visual, ya que en la práctica las palabras las transformamos en vectores de muchas más dimensiones (100 por ejemplo). 
 
 \begin{figure}[H]    
  \centering
- \includegraphics[width=0.7\textwidth]{images/NLP/12.png}
+ \includegraphics[width=0.6\textwidth]{images/NLP/12.png}
  \caption{ Ejemplo de embedding de 2 dimensiones \cite{NLP_28}.}
  \label{fig:Imagen_NLP_12}
 \end{figure}
@@ -1718,7 +1722,7 @@ En 2013, Miklov\cite{NLP_11} sugirió un modelo para obtener una representación
 \begin{figure}[H]    
  \centering
  \includegraphics[width=0.8\textwidth]{images/NLP/13.png}
- \caption{Ejemplo de Word Embeddings (1)\cite{datitos_nlp}.}
+ \caption{Ejemplo de Word embeddings (1)\cite{datitos_nlp}.}
  \label{fig:Imagen_NLP_13}
 \end{figure}
 
@@ -1732,16 +1736,16 @@ Observamos que los valores van de 1.6 a -1.6. Los valores en rojo son los más p
 \end{itemize}
 En conclusión esto es lo que buscamos, \textit{obtener embeddings que permitan codificar los significados de las palabras}.
 
-Además, al ser los embeddings vectores numéricos, esto nos permite operar entre ellos mediante álgebra entre vectores: ver Figura \ref{fig:Imagen_NLP_14}. Por ejemplo si restamos “king” y “man” y lo sumamos a “woman” nos da un vector muy similar al de “queen”. \textit{Esta es una gran utilidad de los embeddings, nos permiten formar relaciones entre palabras y que nuestro modelo de alguna forma -que nosotros no podemos explicar- entienda estas relaciones}.
+Además, debido a que los embeddings son vectores numéricos, esto nos permite operar entre ellos mediante álgebra entre vectores: ver Figura \ref{fig:Imagen_NLP_14}. Por ejemplo si restamos “king” y “man” y lo sumamos a “woman” nos da un vector muy similar al de “queen”. \textit{Esta es una gran utilidad de los embeddings, nos permiten formar relaciones entre palabras y que nuestro modelo de alguna forma -que nosotros no podemos explicar- entienda estas relaciones}.
 
 \begin{figure}[H]    
  \centering
  \includegraphics[width=0.8\textwidth]{images/NLP/14.png}
- \caption{Ejemplo de Word Embeddings (2)\cite{datitos_nlp}.}
+ \caption{Ejemplo de Word embeddings (2)\cite{datitos_nlp}.}
  \label{fig:Imagen_NLP_14}
 \end{figure}
 
-Además de Word2vec existen otros modelos para obtener dichos word embeddings, como GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove/}} y Fasttext\footnote{\url{https://fasttext.cc/}}. En nuestra implementación utilizamos Word2vec en lugar de Glove o Fasttext ya que, según estudios\cite{NLP_12, NLP_13} la diferencia entre los resultados obtenidos mediante estas tres técnicas son estadísticamente similares y todas demuestran ser métodos competitivos en cuanto a performance. Los resultados utilizando estos tres métodos de word embeddings dependen de los datos de entrenamiento que se utilicen y para el dominio y tarea que se necesite. La razón por la cual se optó por utilizar Word2vec es debido al futuro uso de WMD, ya que en el paper original de WMD\cite{wmd_paper} se utilizan embeddings obtenidos mediante Word2vec, decidiendo de esta manera utilizar la misma base en nuestra implementación.
+Además de Word2vec existen otros modelos para obtener dichos word embeddings, como GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove/}} y Fasttext\footnote{\url{https://fasttext.cc/}}. Según estudios\cite{NLP_12, NLP_13} los resultados obtenidos mediante Word2vec, Glove y Fasttext son estadísticamente similares y ambos demuestran ser métodos competitivos. Los resultados de estos tres métodos dependen de los datos de entrenamiento que se utilicen y del dominio o tarea en la que se necesiten usar dichos embeddings. La razón por las cual en nuestra implementación utilizamos Word2vec en lugar de Glove o Fasttext es debido al futuro uso de la métrica de distancia Word Mover's Distance (WMD), ya que en el paper original de WMD\cite{wmd_paper} se utilizan embeddings obtenidos mediante Word2vec, decidiendo de esta manera utilizar la misma base en nuestra implementación.
 
 \cleardoublepage
 
@@ -1749,9 +1753,9 @@ Además de Word2vec existen otros modelos para obtener dichos word embeddings, c
 
 A continuación, explicaremos cómo trabaja el modelo ‘Word2vec’ para obtener los word embeddings y de qué maneras podemos hacerlo\cite{NLP_26}.
 
-Como mencionamos previamente, para “deducir” el significado de la palabra, Word2vec utiliza los conceptos de \textbf{similitudes distribucionales} e \textbf{Hipótesis Distribucional}. Es decir, \textit{deduce el significado del contexto: palabras que aparecen como “vecinas” en el texto. Entonces, el significado de una palabra viene dado por las palabras que aparecen con frecuencia cerca de ella: si dos palabras diferentes ocurren en contextos similares, es muy probable que sus significados también sean similares}.  De esta manera podemos interpretar el resultado de una \textit{palabra central} a partir de las palabras que están alrededor de ella (\textit{palabras de contexto}), o dicho de otra forma “inferir por contexto qué quiere decir esa palabra central”. 
+Como mencionamos previamente, para deducir el significado de la palabra, Word2vec utiliza los conceptos de \textbf{similitudes distribucionales} e \textbf{hipótesis distribucional}. Es decir, \textit{deduce el significado usando el contexto: palabras que aparecen como “vecinas” en el texto. Entonces, el significado de una palabra viene dado por las palabras que aparecen con frecuencia cerca de ella: si dos palabras diferentes ocurren en contextos similares, es muy probable que sus significados también sean similares}.  De esta manera podemos interpretar el resultado de una \textit{palabra central} a partir de las palabras que están alrededor de ella (\textit{palabras de contexto}), o dicho de otra forma “inferir por contexto qué quiere decir esa palabra central”. 
 
-Word2vec materializa esto entrenando una red neuronal y obteniendo los embeddings para cada una de las palabras del corpus de manera que el vector que representa a la palabra en el espacio vectorial / de embedding pueda capturar lo mejor posible el significado de la misma: las palabras con significados similares tienden a agruparse, y las palabras con significados muy diferentes están lejos unas de otras en dicho espacio vectorial / de embedding.
+Word2vec materializa esta idea entrenando una red neuronal y obteniendo los embeddings para cada una de las palabras del corpus de manera que el vector que representa a la palabra en el espacio vectorial / de embedding pueda capturar lo mejor posible el significado de la misma: las palabras con significados similares tienden a agruparse, y las palabras con significados muy diferentes están lejos unas de otras en dicho espacio vectorial / de embedding.
 
 Resumidamente, Word2vec utiliza una \textit{red neuronal de 2 capas} que toma un largo corpus de texto como input, y “aprende” a representar las palabras en vectores de igual tamaño en función de los contextos en los que aparecen en el corpus. 
 \\
@@ -1763,48 +1767,51 @@ Existen 2 manera de obtener nuestros word embeddings\cite{NLP_26}:
 
 \cleardoublepage
 
-\item \textit{Entrenando nuestros propios word embeddings}: para entrenar y obtener nuestros propios word embeddings, Word2vec nos ofrece 2 arquitecturas disponibles -las cuales fueron propuestas en el paper original de Word2vec\cite{NLP_11}-:
+\item \textit{Entrenando nuestros propios word embeddings}: para entrenar y obtener nuestros propios word embeddings, Word2vec nos ofrece 2 arquitecturas disponibles, las cuales fueron propuestas en el paper original de Word2vec\cite{NLP_11}:
 \begin{itemize}
 \item \textit{Continuous bag of words (CBOW)}.
-\item \textit{SkipGram}.
+\item \textit{Skipgram}.
 \end{itemize}
 
 \end{enumerate}
 
-En nuestra implementación no utilizamos word embeddings pre-entrenados ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT).
+En nuestra implementación no utilizamos word embeddings pre-entrenados ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT.
 \\
 
 \paragraph{CBOW vs Skipgram.}\label{cbow_vs_skip}
 
 Como mencionamos previamente, para entrenar nuestros propios word embeddings tenemos 2 posibilidades: \textit{CBOW} o \textit{Skipgram}. A continuación realizaremos una comparación entre estas dos arquitecturas y elegiremos una de ellas para nuestra implementación.
 
-Tanto CBOW como SkipGram aplican el concepto de semántica distribucional -las palabras obtienen su embedding cuando miramos a qué otras palabras tienden a aparecer junto a ellas- pero visto de 2 formas distintas, y armando el dataset de entrenamiento también de distinta manera. Para analizar una comparación vemos la Figura \ref{fig:Imagen_NLP_15}.
+Tanto CBOW como Skipgram aplican el concepto de semántica distribucional: las palabras obtienen su embedding teniendo en cuenta a las otras palabras que tienden a aparecer junto a ellas. Sin embargo aplican este concepto de 2 formas distintas, y armando el dataset de entrenamiento también de distinta manera. Para analizar una comparación vemos la Figura \ref{fig:Imagen_NLP_15}.
 
-\begin{figure}[H]    
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
- \includegraphics[width=1\textwidth]{images/NLP/15.png}
+ \noindent\makebox[\textwidth]{%
+\includegraphics[width=1.2\textwidth]{images/NLP/15.png}}
  \caption{Skipgram y CBOW\cite{NLP_27}.}
  \label{fig:Imagen_NLP_15}
 \end{figure}
 
-La diferencia principal entre CBOW y SkipGram es que en CBOW el objetivo del entrenamiento para obtener nuestros word embeddings es \textit{predecir una palabra target de un texto en función de las palabras de contexto} (palabras vecinas a la palabra target), mientras que en SkipGram el objetivo del entrenamiento es \textit{predecir las palabras de contexto en base a la palabra target}. Estas diferencias podemos observarlas en la Figura \ref{fig:Imagen_NLP_15}.
+\cleardoublepage
+
+La diferencia principal entre CBOW y Skipgram es que en CBOW el objetivo del entrenamiento para obtener nuestros word embeddings es \textit{predecir una palabra central de un texto en función de las palabras de contexto (palabras vecinas a la palabra central)}, mientras que en Skipgram el objetivo del entrenamiento es \textit{predecir las palabras de contexto en base a la palabra central}. Estas diferencias podemos observarlas en la Figura \ref{fig:Imagen_NLP_15}.
 
 A continuación realizaremos una comparación entre las fórmulas matemáticas de Skipgram y CBOW. 
 \begin{itemize}
 
-\item En \textbf{Skipgram} se calcula cuál es la probabilidad de las palabras de contexto (las que tratamos de adivinar / predecir) dada la palabra central. En el ejemplo de la  Figura \ref{fig:Imagen_NLP_15} calcula la probabilidad de las palabras “the”, “man”, “his” y “son”, dado que la palabra central es “loves”. Como vemos, esto se traduce en la multiplicación de cada una de las probabilidades condicionales individuales: “probabilidad de la palabra de contexto “the” dada la palabra central “loves” x la probabilidad de “man” dado “loves” x la probabilidad de “his” dado “loves” x la probabilidad de “son” dado “loves”. Esto termina siendo \textit{dos productorias}: ver Fórmula \ref{eq:ecuacion_4_NLP}. 
+\item En \textbf{Skipgram} se calcula cuál es la probabilidad de las palabras de contexto (las que tratamos de adivinar / predecir) dada la palabra central. En el ejemplo de la  Figura \ref{fig:Imagen_NLP_15} calcula la probabilidad de las palabras “the”, “man”, “his” y “son”, dado que la palabra central es “loves”. Como vemos, esto se traduce en la multiplicación de cada una de las probabilidades condicionales individuales: \textit{probabilidad de la palabra de contexto “the” dada la palabra central “loves” $x$ la probabilidad de “man” dado “loves” $x$ la probabilidad de “his” dado “loves” $x$ la probabilidad de “son” dado “loves”}. Esto termina siendo \textit{dos productorias}: ver Fórmula \ref{eq:ecuacion_4_NLP}. 
 
 \begin{equation}\label{eq:ecuacion_4_NLP}
 \prod_{t=1}^{T} \; \prod_{-m \leq j \leq m, j \neq 0}  P(w^{(t+j)} | w^{(t)}) \qquad \text{(Ver \cite{NLP_27})}
 \end{equation}
 \begin{center}
-\textit{Cálculo de probabilidades mediante SkipGram.}
+\textit{Cálculo de probabilidades mediante Skipgram.}
 \end{center}
 
 Teniendo en cuenta que:
 \begin{itemize}
 \item \textit{La primer productoria} ($ \prod_{-m \leq j \leq m, j \neq 0} $) es aplicada sobre la “ventana de contexto” \footnote{Ventana de contexto (o Context Window, “C”) es una ventana de tamaño $m$ que podemos colocar en cualquier parte de nuestro corpus de texto, y define qué tan largo o corto tomamos el contexto (palabras de contexto) para realizar el entrenamiento de nuestro modelo y obtener nuestra representación vectorial\cite{NLP_26}. La cantidad de palabras a usar como tamaño de ventana es un \textit{hiper-parámetro} de nuestro modelo que se define a partir de nuestros datos, y que discutiremos más adelante en la sección \textit{\nameref{hiper_par_word2vec}} }: es decir, $j$ va desde un $-m$ hasta un $+m$, donde ese m es el tamaño de nuestra ventana (en este ejemplo es 2, por lo que tomamos 2 palabras a la izquierda y otras 2 a la derecha de la palabra central, obteniendo como palabras de contexto “the”, “man”, “his”, “son”). Y lo que se calcula en $P(w^{(t+j)} | w^{(t)})$ es la probabilidad de la palabra de contexto $w^{(t+j)}$ dada la palabra central $w^{(t)}$. De esta manera multiplicamos todas esas probabilidades y obtenemos la probabilidad de 1 palabra. 
-\item Luego, en la \textit{segunda productoria} ($\prod_{t=1}^{T}$) multiplicamos por todas las otras palabras de nuestro corpus, ya que $T$=palabras de nuestro corpus.  
+\item Luego, en la \textit{segunda productoria} ($\prod_{t=1}^{T}$) multiplicamos por todas las otras palabras de nuestro corpus, ya que $T$ = palabras de nuestro corpus.  
 
 \end{itemize}
 
@@ -1826,9 +1833,9 @@ Entonces, ¿qué nos conviene elegir: CBOW o Skipgram?. Para responder a esto de
 \item \textit{CBOW} funciona más rápido (ya que por lo que vimos anteriormente hace menos cuentas, solo una productoria) y tiene una mejor representación para palabras más frecuentes.
 \end{itemize}
 
-Es por esto que para nuestra implementación \textbf{se optó por utilizar SkipGram}; debido a que nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, como mencionamos previamente, otra punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
+Es por esto que para nuestra implementación \textbf{se optó por utilizar Skipgram}; debido a que nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, como mencionamos previamente, otra punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
 
-El funcionamiento del modelo SkipGram para obtener nuestros word embeddings está detallado en la sección \textit{\nameref{obt_skip}}. Previamente a esto, explicaremos el concepto de vectores de tipo \textit{one hot encoding}, concepto necesario para entender el modelo Skipgram.
+El funcionamiento del modelo Skipgram para obtener nuestros word embeddings está detallado en la sección \textit{\nameref{obt_skip}}. Previamente a esto, explicaremos el concepto de vectores de tipo \textit{one hot encoding}, concepto necesario para entender el modelo Skipgram.
 \\
 
 \paragraph{One hot encoding.}\label{one_hot_enc}
@@ -1855,7 +1862,7 @@ En la Figura \ref{fig:Imagen_NLP_16} podemos observar la representación de 4 pa
 \end{minipage}
 \end{figure}
 
-En la Figura \ref{fig:Imagen_NLP_18} se visualiza la otra desventaja de estos vectores: ser una representación \textit{discreta}. De esta manera el vector que representa a la palabra no representa su significado ni permite capturar las relaciones entre las palabras, únicamente expresa su ubicación en un espacio N-dimensional (donde N es el tamaño del vocabulario). Como tenemos un vector para cada palabra, donde todos los vectores son todos distintos entre sí, cualquier par de vectores one hot es \textit{ortogonal} (porque tienen un 1 en una dimensión distinta entre sí), por lo tanto no hay una noción natural de similitudes entre ellos: la palabra ‘Roma’ y ‘París’ son tan diferentes y tan parecidas como la palabra ‘Roma’ y ‘Baño’ (todas las palabras son igual de diferentes). 
+En la Figura \ref{fig:Imagen_NLP_18} se visualiza la otra desventaja de estos vectores: ser una representación \textit{discreta}. De esta manera el vector que representa a la palabra no representa su significado ni permite capturar las relaciones entre las palabras, únicamente expresa su ubicación en un espacio N-dimensional (donde N es el tamaño del vocabulario). Como tenemos un vector para cada palabra, donde todos los vectores son todos distintos entre sí, cualquier par de vectores one hot es \textit{ortogonal} (porque tienen un 1 en una dimensión distinta entre sí), por lo tanto no hay una noción natural de similitudes entre ellos: las palabras ‘uva’ y ‘arándano’ son tan diferentes y tan parecidas como las palabras ‘uva’ y ‘elefante’ (todas las palabras son igual de diferentes). 
 
 \begin{figure}[H]    
  \centering
@@ -1864,21 +1871,21 @@ En la Figura \ref{fig:Imagen_NLP_18} se visualiza la otra desventaja de estos ve
  \label{fig:Imagen_NLP_18}
 \end{figure}
 
-Sin embargo, debido a que one hot encoding permite representar a nuestras palabras del vocabulario mediante vectores, aunque muy vagamente -ya que no permiten capturar las relaciones entre palabras-, estos vectores son utilizados para alimentar a nuestro modelo Word2vec (en la capa de entrada de la red neuronal) para obtener al final -luego del entrenamiento- nuestras representaciones densas (Word Embeddings).
+Sin embargo, debido a que one hot encoding permite representar a nuestras palabras del vocabulario mediante vectores, aunque muy vagamente -ya que no permiten capturar las relaciones entre palabras-, estos vectores son utilizados para alimentar a nuestro modelo Word2vec (en la capa de entrada de la red neuronal) para obtener al final -luego del entrenamiento- nuestras representaciones densas (Word embeddings).
 
 \cleardoublepage
 
-\paragraph{Obteniendo nuestros Word Embeddings con Skipgram.}\label{obt_skip}
+\paragraph{Obteniendo nuestros Word embeddings con Skipgram.}\label{obt_skip}
 
-Ya habiendo explicado previamente los conceptos básicos de redes neuronales y vectores de tipo one hot encoding, ahora explicaremos el modelo Skipgram, el cual utilizamos para entrenar y obtener nuestros Word Embeddings. Para esto, tomaremos como ejemplo la oración “The quick brown fox jumps over the lazy dog” como nuestro corpus de texto de ejemplo.
+Ya habiendo explicado previamente los conceptos básicos de redes neuronales y vectores de tipo one hot encoding, ahora explicaremos el modelo Skipgram, el cual utilizamos para entrenar y obtener nuestros Word embeddings. Para esto, tomaremos como ejemplo la oración “The quick brown fox jumps over the lazy dog” como nuestro corpus de texto de ejemplo.
 
 Como mencionamos previamente, el objetivo de Word2vec utilizando Skipgram es predecir cuál es la probabilidad que aparezcan todas las palabras de contexto a partir de la palabra central / dado que se conoce esta palabra central. Dicho de otra manera, la tarea principal en Skipgram consiste en construir un \textit{modelo de lenguaje} que correctamente prediga las palabras de contexto dada la palabra central. 
 
-Un modelo de lenguaje es un modelo estadístico que trata de otorgar una distribución de probabilidad sobre secuencias de palabras; permitiendo así, por ejemplo, predecir cuál es la siguiente palabra. Dada una oración de $m$ palabras, asigna una probabilidad $Pr(w_1, w_2, …, w_m)$ a la oración completa. El objetivo del modelo de lenguaje es asignar probabilidades de forma que otorgue una alta probabilidad a oraciones “buenas” y bajas probabilidades a oraciones “malas”. Con “buenas” nos referimos a oraciones que son semántica o sintácticamente correctas; y por “malas” nos referimos a oraciones que son incorrectas semántica o sintácticamente o ambas\footnote{En el análisis sintáctico se analiza la sintaxis, que incluye la acción de dividir una oración en cada uno de sus componentes. En cambio, en el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, el objetivo en este caso es identificar el significado apropiado por medio del contexto de la oración.}. De esta manera, para la oración “The cat jumped over the dog” tratará de asignar una probabilidad cercana a 1.0, mientras que para la oración “jumped over the the cat dog” asignará una probabilidad cercana a 0.0\cite{NLP_26}. Este cálculo de probabilidades para Skipgram es el descrito anteriormente en la Fórmula \ref{eq:ecuacion_4_NLP}.
+Un modelo de lenguaje es un modelo estadístico que trata de otorgar una distribución de probabilidad sobre secuencias de palabras; permitiendo así, por ejemplo, predecir cuál es la siguiente palabra. Dada una oración de $m$ palabras, asigna una probabilidad $Pr(w_1, w_2, …, w_m)$ a la oración completa. El objetivo del modelo de lenguaje es asignar probabilidades de forma que otorgue una alta probabilidad a oraciones “buenas” y bajas probabilidades a oraciones “malas”. Con “buenas” nos referimos a oraciones que son semántica y/o sintácticamente correctas; y por “malas” nos referimos a oraciones que son incorrectas semántica y/o sintácticamente\footnote{En el análisis sintáctico se analiza la sintaxis, que incluye la acción de dividir una oración en cada uno de sus componentes. En cambio, en el análisis semántico se busca entender el significado de la oración. Las palabras pueden tener múltiples significados, el objetivo en este caso es identificar el significado apropiado por medio del contexto de la oración.}. De esta manera, para la oración “The cat jumped over the dog” tratará de asignar una probabilidad cercana a 1.0, mientras que para la oración “jumped over the the cat dog” asignará una probabilidad cercana a 0.0\cite{NLP_26}. Este cálculo de probabilidades para Skipgram es el descrito anteriormente en la Fórmula \ref{eq:ecuacion_4_NLP}.
 
-Algo a destacar de los modelos de lenguajes es que tienen una gran \textit{ventaja} sobre la mayoría de los otros modelos de aprendizaje automático. Esa ventaja es que tenemos un montón de datos de texto para entrenarlos: los podemos obtener de libros, artículos, contenido de millones de páginas web, etc. En otros modelos de aprendizaje automático, como en modelos de detección de imágenes, no tenemos “naturalmente” los datos, ya que generalmente necesitamos datos recopilados especialmente y que tienen un preprocesamiento de etiquetado manual. 
+Algo a destacar de los modelos de lenguajes es que tienen una gran \textit{ventaja} sobre la mayoría de los otros modelos de aprendizaje automático. Esa ventaja es que tenemos un montón de datos de texto para entrenarlos: los podemos obtener de libros, artículos, contenido de millones de páginas web, etc. En otros modelos de aprendizaje automático, como en modelos de detección de imágenes, no tenemos “naturalmente” los datos, ya que generalmente necesitamos datos recopilados especialmente y que cuenten con un preprocesamiento de etiquetado manual. 
 
-Siguiendo con nuestro ejemplo, para nuestro corpus “The quick brown fox jumps over the lazy dog” utilizaremos un tamaño de ventana de contexto = 2.  Nuestro primer objetivo es armar un \textit{dataset} a partir del corpus para alimentar y entrenar al modelo, ya que como mencionamos anteriormente, el significado de las palabras vienen a partir de las \textit{similitudes distribucionales}. Para esto realizamos una serie de iteraciones: en la Figura \ref{fig:Imagen_NLP_19} podemos observar una iteración específica dentro del modelo Skipgram, donde a partir de la palabra central “jumped” (en azul), se intenta predecir/adivinar cada una de las palabras de contexto (en este caso “brown”, “fox”, “over” y “the”).  Esto únicamente constituye un paso, Skipgram repite esto para cada palabra de nuestro corpus siendo la palabra central. Para esto \textit{se desplaza la ventana de contexto}: vemos en la Figura \ref{fig:Imagen_NLP_20}  que para la siguiente iteración nos movemos una palabra a la derecha, cambiando de esta manera nuestras palabras de contexto y nuestra palabra central (la cual pasa a ser “over”). Esta ventana se desplazará hasta recorrer todo el corpus de texto.
+Siguiendo con nuestro ejemplo, para nuestro corpus “The quick brown fox jumps over the lazy dog” utilizaremos un tamaño de ventana de contexto = 2.  Nuestro primer objetivo es armar un \textit{dataset} a partir del corpus para alimentar y entrenar al modelo, ya que como mencionamos anteriormente, el significado de las palabras vienen a partir de las \textit{similitudes distribucionales}. Para esto realizamos una serie de iteraciones: en la Figura \ref{fig:Imagen_NLP_19} podemos observar una iteración específica dentro del modelo Skipgram, donde a partir de la palabra central “jumps” (en azul), se intenta predecir/adivinar cada una de las palabras de contexto (en este caso “brown”, “fox”, “over” y “the”).  Esto únicamente constituye un paso, Skipgram repite esto para cada palabra de nuestro corpus siendo la palabra central. Para esto \textit{se desplaza la ventana de contexto}: vemos en la Figura \ref{fig:Imagen_NLP_20}  que para la siguiente iteración nos movemos una palabra a la derecha, cambiando de esta manera nuestras palabras de contexto y nuestra palabra central (la cual pasa a ser “over”). Esta ventana se desplazará hasta recorrer todo el corpus de texto.
 
 \begin{figure}[H]    
  \centering
@@ -1907,31 +1914,31 @@ De esta manera se obtiene el \textit{dataset} que será utilizado para entrenar 
 
 Como vemos en la imagen anterior, exceptuando los inicios y finales de nuestros corpus (donde las ventanas deslizantes no llegan a estar completas), podemos observar que dada una palabra central, la misma en el dataset va a aparecer $2xC$ veces: por ejemplo, para la tercer iteración, brown aparecerá en el dataset $2x2=4$ veces. Es por esto que con Skipgram se representan mejor las palabras infrecuentes / raras a comparación de CBOW: las palabras que aparecen pocas veces, en el dataset aparecen muchas veces.
 
-En este dataset (Figura \ref{fig:Imagen_NLP_21}) la primer palabra de nuestro par (la palabra central) será tratada como la palabra de entrada a la red, y la segunda palabra de nuestro par (palabra de contexto) será tratada como la salida o posible resultado. Vemos que esto al final es una tarea de \textit{clasificación}: dado que se sabe cual es esta palabra (input word) se debe predecir cuál palabra de contexto le sigue. de todas estas palabras de mi diccionario es la que sigue. 
+En este dataset (Figura \ref{fig:Imagen_NLP_21}) la primer palabra de nuestro par (la palabra central) será tratada como la palabra de entrada a la red, y la segunda palabra de nuestro par (palabra de contexto) será tratada como la salida o posible resultado. Vemos que esto al final es una tarea de \textit{clasificación}: dado que se sabe cual es esta palabra (input word) se debe predecir cuál palabra de contexto le sigue.
 
-Por último, algo que puede generar curiosidad es: ¿qué sucede en el entrenamiento con las palabras que aparecen más de una vez en nuestro Corpus? Y ¿qué sucede con las palabras polisémicas\footnote{Palabras que tienen más de un significado.}?. Estas preguntas son respondidas en el Anexo: ver sección \textit{\nameref{anexo_polisem}}.
+Por último, algo que puede generar curiosidad es: ¿qué sucede en el entrenamiento con las palabras que aparecen más de una vez en nuestro Corpus? Y ¿qué sucede con las palabras polisémicas\footnote{Palabras que tienen más de un significado.}? Estas preguntas son respondidas en el Anexo: ver sección \textit{\nameref{anexo_polisem}}.
 
 \cleardoublepage
 
 \paragraph{Arquitectura del modelo Skipgram.}\label{skipgram}
 
-En la Figura \ref{fig:Imagen_NLP_22} podemos observar: a la izquierda, la red neuronal de 2 capas utilizada para entrenar a nuestro modelo SkipGram, mientras que a la derecha, un “resumen” compactado de la misma utilizando el ejemplo de la iteración de la Figura \ref{fig:Imagen_NLP_19}.  Observamos que nuestra arquitectura Skipgram tiene:
+En la Figura \ref{fig:Imagen_NLP_22} podemos observar: a la izquierda, la red neuronal de 2 capas utilizada para entrenar a nuestro modelo Skipgram, mientras que a la derecha, un “resumen” compactado de la misma utilizando el ejemplo de la iteración de la Figura \ref{fig:Imagen_NLP_19}.  Observamos que nuestra arquitectura Skipgram tiene:
 \begin{itemize}
 \item Un vector de capa de entrada de $V$ dimensiones -siendo $V$ el tamaño de nuestro vocabulario-.
 \item Un vector de capa oculta de $N$ dimensiones -siendo $N$ el tamaño (dimensión) del embedding (de la matriz $W$)-. 
 \item Un vector de salida también de $V$ dimensiones. 
 \end{itemize}
 
-Además, cabe destacar que la capa oculta \textit{no posee una función de activación} y en la capa de salida se usa la \textit{función softmax}. 
+Además, cabe destacar que la capa oculta \textit{no posee una función de activación}, mientras que en la capa de salida se utiliza la \textit{función softmax}. 
 
 \begin{figure}[H]    
  \centering
  \includegraphics[width=1\textwidth]{images/NLP/22.png}
- \caption{Arquitectura básica SkipGram\cite{NLP_26}.}
+ \caption{Arquitectura básica Skipgram\cite{NLP_26}.}
  \label{fig:Imagen_NLP_22}
 \end{figure}
 
-En la Figura \ref{fig:Imagen_NLP_23} podemos observar en mayor detalle la arquitectura de SkipGram. En este ejemplo se considera un tamaño de vocabulario = 6 ($V$), un tamaño de embedding = 3 ($N$) y un tamaño de ventana = 1 ($C$). Como $C=1$, tomaremos como palabras de contexto 1 palabra de cada lado de la palabra central.
+En la Figura \ref{fig:Imagen_NLP_23} podemos observar en mayor detalle la arquitectura de Skipgram. En este ejemplo se considera un tamaño de vocabulario = 8 ($V$), un tamaño de embedding = 3 ($N$) y un tamaño de ventana = 1 ($C$). Como $C=1$, tomaremos como palabras de contexto 1 palabra de cada lado de la palabra central.
 
 \begin{figure}[H]  
 \centering
@@ -1941,9 +1948,9 @@ En la Figura \ref{fig:Imagen_NLP_23} podemos observar en mayor detalle la arquit
 \label{fig:Imagen_NLP_23}
 \end{figure}
 
-Debido a que $C=1$, observamos 2 vectores de salida -\textit{y pred}- e -\textit{y pred softmax}-. Sin embargo esto es simplemente para una mejor visualización, ya que la salida realmente para cada iteración es un único vector formada por 8 posiciones (o neuronas) debido a que nuestro modelo entrena con un \textit{par} de palabras: primero $(central1, contexto1)$ y luego $(central1, contexto2)$ -considerando $C=1$-. 
+Debido a que $C=1$, observamos 2 vectores de salida \textit{y pred}. Sin embargo esto es simplemente para una mejor visualización, ya que la salida realmente para cada iteración es un único vector formada por 8 posiciones (o neuronas) debido a que nuestro modelo entrena con un \textit{par} de palabras: primero $(central1, contexto1)$ y luego $(central1, contexto2)$ -considerando $C=1$-. 
 
-El proceso de entrenamiento de esta red neuronal se explicará en detalle en la sección \textit{\nameref{ent_costo_softmax}}. Lo que hay que tener en consideración, es que al final del mismo, \textit{nuestro objetivo no es obtener la salida de la red; nuestro objetivo es extraer $W$, la cual será nuestra matriz de embedding que utilizaremos para representar los textos}. Por esta razón se considera que mediante Word2vec estamos realizando una “\textit{tarea falsa}”, ya que realmente no estamos interesados en la predicción del modelo para la tarea en que fue entrenada, sino el subproducto (nuestros word embeddings) del modelo.
+El proceso de entrenamiento de esta red neuronal se explicará en detalle en la sección \textit{\nameref{ent_costo_softmax}}. Lo que hay que tener en consideración, es que al final del mismo, \textit{nuestro objetivo \textbf{no} es obtener la salida de la red; nuestro objetivo es extraer $W$, la cual será nuestra matriz de embedding que utilizaremos para representar los textos}. Por esta razón se considera que mediante Word2vec estamos realizando una “\textit{tarea falsa}”, ya que realmente no estamos interesados en la predicción del modelo para la tarea en que fue entrenada, sino en el subproducto del modelo: nuestros word embeddings.
 
 \cleardoublepage
 
@@ -1952,20 +1959,20 @@ El proceso de entrenamiento de esta red neuronal se explicará en detalle en la 
 Como mencionamos previamente, la capa oculta \textit{no posee una función de activación} y en la capa de salida se usa la \textit{función softmax}. Además, las palabras que ingresan a la capa de entrada a lo largo de cada iteración de entrenamiento deben estar representadas en formato one hot encoding (ver sección \textit{\nameref{one_hot_enc}}).
 
 Resumidamente, el entrenamiento de nuestro modelo Word2vec mediante la arquitectura Skipgram consiste en el ingreso de un par de palabras $(central, contexto)$, donde la palabra central será puesta en la capa de entrada y la de contexto funcionará como target en la capa de salida. Luego mediante \textit{forward propagation} se obtiene el valor de cada neurona de la capa de salida utilizando la función softmax. Este procedimiento anterior se repite hasta que todas las palabras de nuestro corpus hayan actuado como palabra central e ingresado a la red como un par $(central, contexto)$.
-Al tener todas las salidas de cada una de las combinaciones palabra central y contexto, lo que se hace es comparar estas salidas predichas con las salidas reales correspondientes de la palabra de contexto / target, y utilizar \textit{back propagation} para actualizar los parámetros de nuestro modelo (las matrices $W$ y $W’$) minimizando nuestra función de costo $J$. Este procedimiento que incluye forward propagation y back propagation se realizan $epoch$ veces. 
+Al tener todas las salidas de cada una de las combinaciones palabra central y contexto, lo que se hace es comparar estas salidas predichas con las salidas reales correspondientes de la palabra de contexto / target, y utilizar \textit{back propagation} para actualizar los parámetros de nuestro modelo (las matrices $W$ y $W’$) minimizando nuestra función de costo $J$. Este procedimiento que incluye forward propagation y back propagation se realiza en un número de $epochs$ determinado. 
 
-A continuación, describiremos en detalle este ciclo iterativo de procesos del entrenamiento. Como se trata de un modelo de red neuronal, este proceso general fue explicado anteriormente en la sección \textit{\nameref{entren_ann}}, solo que ahora adaptaremos la explicación para Skipgram. Al final de este ciclo de entrenamiento el objetivo es \textit{extraer la matriz $W$ (nuestra matriz de Word Embeddings)}.
+A continuación, describiremos en detalle este ciclo iterativo de procesos del entrenamiento. Como se trata de un modelo de red neuronal, este proceso general fue explicado anteriormente en la sección \textit{\nameref{entren_ann}}, solo que ahora adaptaremos la explicación para Skipgram. Al final de este ciclo de entrenamiento el objetivo es \textit{extraer la matriz $W$ (nuestra matriz de Word embeddings)}.
 
 El ciclo de entrenamiento utilizando Skipgram consiste en las siguientes fases:
 \begin{enumerate}
 
-\item \textbf{Inicialización aleatoria} por única vez de las matrices de pesos ($W input$ y $W output$ en nuestro caso), los cuales son los parámetros ($\theta$) de nuestro modelo de red neuronal.  
+\item \textbf{Inicialización aleatoria} por única vez de las matrices de pesos ($W input$ -o $W$- y $W output$ -o $W'$- en nuestro caso), los cuales son los parámetros ($\theta$) de nuestro modelo de red neuronal.  
 
 \item \textbf{Forward propagation}. En este proceso se realizan los cálculos necesarios para obtener nuestras salidas -\textit{y pred softmax}-. Vamos a dividirlo en dos sub-pasos:
 
 \begin{itemize}
 
-\item 2.1. \textit{Forward propagation (capa de entrada a capa oculta)}: En este paso se calcula el valor de cada neurona de la capa oculta. Para esto se utiliza la palabra central de entrada (la cual está codificada en formato one hot encoding) en conjunto con su fila correspondiente de la matriz de embedding $W$ -de tamaño $V x N$- (la cual representa los pesos de entrada de nuestra red). Como el vector de entrada únicamente es 1 para la palabra en cuestión (o dicho de otra forma, por cada iteración hay únicamente una neurona activa en la capa de entrada), entonces los valores de las neuronas de la capa oculta son directamente los valores de los pesos que corresponden a esa única neurona de la capa de entrada activa: por ejemplo, considerando que tenemos 3 neuronas en la capa oculta ($N=3$) y que nuestro vector de entrada es de 8 ($V=8$), nuestra primer entrada sería $[1,0,0,0,0,0,0,0]$, por lo que el valor de la primer neurona de la capa oculta ($h1$) será de $1 x w11$, $h2 = w12$ y $h3 = w13$.
+\item 2.1. \textit{Forward propagation (capa de entrada a capa oculta)}: En este paso se calcula el valor de cada neurona de la capa oculta. Para esto se utiliza la palabra central de entrada (la cual está codificada en formato one hot encoding) en conjunto con su fila correspondiente de la matriz de embedding $W$ -de tamaño $V x N$- (la cual representa los pesos de entrada de nuestra red). Como el vector de entrada únicamente es 1 para la palabra en cuestión (o dicho de otra forma, por cada iteración hay únicamente una neurona activa en la capa de entrada), entonces los valores de las neuronas de la capa oculta son directamente los valores de los pesos que corresponden a esa única neurona de la capa de entrada activa: por ejemplo, considerando que tenemos 3 neuronas en la capa oculta ($N=3$) y que nuestro vector de entrada es de 8 ($V=8$), nuestra primer entrada sería $[1,0,0,0,0,0,0,0]$, por lo que el valor de la primer neurona de la capa oculta ($h1$) será de $1$ $x$ $w11$, $h2 = w12$ y $h3 = w13$.\\ \\
 
 \item 2.2. \textit{Forward propagation (capa oculta a capa de salida)}: En este paso se calcula el valor de cada neurona de la capa de salida luego de pasar por la función de salida softmax (vector \textit{y pred softmax}).  Debido a que la capa oculta no tiene función de activación, entonces los valores calculados en el paso 2.1 pasan directamente a la capa de salida. De esta manera, los valores de las neuronas de la capa de salida se calculan multiplicando el vector $H$ que nos dió anteriormente con otra matriz $W’$ -de tamaño $N x V$-. Esto nos dará un vector \textit{y pred} de tamaño $V$, el cual alimentará a una función softmax para obtener una distribución de probabilidades sobre el espacio de nuestro vocabulario (-\textit{y pred softmax}-). 
 \\
@@ -1976,15 +1983,15 @@ Para cada una de las combinaciones entre palabras centrales y de contexto se rea
 
 \item \textbf{Cálculo de función de costo}:  Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras $(central, contexto)$, estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo (loss function) $J(\theta)$}: Fórmula \ref{eq:ecuacion_11_NLP} que veremos más adelante. Esta función de costo tiene en cuenta todas las palabras de nuestro texto $T$, y toma todos los pares correspondientes de palabras $(central, contexto)$ dependiendo de nuestra ventana de contexto de tamaño $m$.
 
-\item \textbf{Backpropagation}: Se aplica este proceso utilizando el algoritmo de optimización \textit{descenso del gradiente} para poder ajustar / modificar las matrices $W input$ y $W output$  (que juntos forman $\theta$) \textit{con el objetivo de minimizar la función de costo $J(\theta)$obtenida en el paso 3}, y con ello minimizar el error de clasificación. No se detallará este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Sin embargo, lo que hay que tener en cuenta es que se utiliza la ecuación general  \ref{eq:ecuacion_9_ANN} explicada anteriormente para actualizar los parámetros de nuestra red neuronal. 
+\item \textbf{Backpropagation}: Se aplica este proceso utilizando el algoritmo de optimización \textit{descenso del gradiente} para poder ajustar / modificar las matrices $W input$ y $W output$  (que juntos forman $\theta$) \textit{con el objetivo de minimizar la función de costo $J(\theta)$ obtenida en el paso 3}, y con ello minimizar el error de clasificación. No se detallará este procedimiento aquí porque no entra dentro de los objetivos de este trabajo. Sin embargo, lo que hay que tener en cuenta es que se utiliza la ecuación general \ref{eq:ecuacion_9_ANN} explicada anteriormente para actualizar los parámetros de nuestra red neuronal. 
 
 \item Volver al paso 2 hasta completar la cantidad de epochs seteados como \textit{hiper-parámetro} de nuestro modelo. 
 
-Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”}. Con este método se calcula el error o función de costo luego de haber pasado todos los datos de entrenamiento a través de la red de una sola vez. De esta manera, luego de calcular forward propagation \textit{para todos los datos de entrada}, se computa la función de costo y se aplica backpropagation realizando la actualización de los pesos. Todo este “bloque” de procedimiento se aplica por epoch. Por lo tanto, con este método de gradiente descendiente se calcula una función de costo y se realiza una sola actualización de los pesos por cada epoch.
-
 \end{enumerate}
 
-Otra opción hubiera sido utilizar el algoritmo de \textit{gradiente descendiente estocástico} (stochastic gradient descent, \textit{SDG}). Con este método se calcula el error o función de costo luego de haber pasado solo un ejemplo de nuestros datos de entrenamiento a través de la red. De esta manera, por cada ejemplo de entrenamiento se calcula forward propagation, luego se computa la función de costo y se aplica backpropagation realizando la actualización de pesos. Todo esto nuevamente se aplica por cada epoch. Si tuviéramos 100 ejemplos entonces calculariamos 100 veces la función de costo y los pesos se actualizarian 100 veces. En la práctica este método resulta más rápido que el gradiente descendiente “básico”.  Sin embargo, SDG no se utilizó en este proyecto debido a que por defecto no se encuentra la opción de setear el algoritmo de gradiente descendiente en la implementación de Word2vec de gensim, la cual se basa en el paper original de Word2vec\cite{NLP_11} donde describe la función de costo mediante el uso de GD básico, teniendo en cuenta el entrenamiento de todas las palabras de nuestro texto T dentro de todas las ventanas de contexto. En caso de utilizar SDG, la función de costo debería expresarse individualmente por cada palabra de nuestro texto $T$ teniendo en cuenta las combinaciones dentro de la ventana de contexto de tamaño $m$: Fórmula \ref{eq:ecuacion_12_NLP} que veremos más adelante.
+Cabe destacar que este entrenamiento descrito tiene en cuenta el uso del \textit{algoritmo de gradiente descendiente “básico”}. Con este método se calcula el error o función de costo luego de haber pasado todos los datos de entrenamiento a través de la red de una sola vez. De esta manera, luego de calcular forward propagation \textit{para todos los datos de entrada}, se computa la función de costo y se aplica backpropagation realizando la actualización de los pesos. Todo este “bloque” de procedimiento se aplica por epoch. Por lo tanto, con este método de gradiente descendiente se calcula una función de costo y se realiza una sola actualización de los pesos por cada epoch.
+
+Otra opción hubiera sido utilizar el algoritmo de \textit{gradiente descendiente estocástico} (stochastic gradient descent, \textit{SDG}). Con este método se calcula el error o función de costo luego de haber pasado solo un ejemplo de nuestros datos de entrenamiento a través de la red. De esta manera, por cada ejemplo de entrenamiento se calcula forward propagation, luego se computa la función de costo y se aplica backpropagation realizando la actualización de pesos. Todo esto nuevamente se aplica por cada epoch. Si tuviéramos 100 ejemplos entonces calculariamos 100 veces la función de costo y los pesos se actualizarian 100 veces. En la práctica este método resulta más rápido que el gradiente descendiente “básico”.  Sin embargo, SDG no se utilizó en este Proyecto debido a que por defecto no se encuentra la opción de setear el algoritmo de gradiente descendiente en la implementación de Word2vec de gensim, la cual se basa en el paper original de Word2vec\cite{NLP_11} donde describe la función de costo mediante el uso de GD básico, teniendo en cuenta el entrenamiento de todas las palabras de nuestro texto T dentro de todas las ventanas de contexto. En caso de utilizar SDG, la función de costo debería expresarse individualmente por cada palabra de nuestro texto $T$ teniendo en cuenta las combinaciones dentro de la ventana de contexto de tamaño $m$: Fórmula \ref{eq:ecuacion_12_NLP} que veremos más adelante.
 
 Para comprender mejor las iteraciones de entrenamiento, se recomienda consultar el Anexo (sección \textit{\nameref{anexo_word_emb}}) donde se detalla un ejemplo concreto del entrenamiento del modelo Skip gram con función de salida softmax utilizando el algoritmo de gradiente descendiente “básico”. En este ejemplo se toma a la oración “The quick brown fox jumps over the lazy dog” como nuestro corpus de texto con el cual entrenará el algoritmo.
 
@@ -2018,11 +2025,11 @@ J (\theta;w^{(t)}) = - \sum_{-m \leq j \leq m, j =! 0} log P(w^{(t+j)} | w^{(t)}
 
 Ahora, ¿cómo calculamos la probabilidad $P(w^{(t+j)} | w^{(t)} ; \theta)$?. Vamos a omitir los parámetros de nuestro modelo $(\theta)$ para simplificar la notación. Utilizaremos dos vectores densos por cada palabra $w$:
 \begin{itemize}
-\item $v_w$: vector de tamaño $d$ para simbolizar cuando $w$ es la palabra central $wc$, donde $d$ es el tamaño de palabras de nuestro vocabulario.
-\item $u_w$: vector de tamaño $d$ para simbolizar cuando $w$ es una palabra de contexto $wo$.
+\item $v_w$: vector de tamaño $d$ para simbolizar cuando $w$ es la palabra central $w_c$, donde $d$ es el tamaño de palabras de nuestro vocabulario.
+\item $u_w$: vector de tamaño $d$ para simbolizar cuando $w$ es una palabra de contexto $w_o$.
 \end{itemize}
 
-De esta manera, en la Fórmula \ref{eq:ecuacion_15_NLP} se describe cómo obtener la probabilidad de que $wo$ sea una palabra de contexto (con índice $o$ en nuestra secuencia de textos T) dada una palabra central $wc$ (con índice $c$ en el diccionario del corpus).  El cálculo de la misma es similar a la que se usa cuando queremos calcular la probabilidad de salida de distintas clases en clasificación utilizando la función softmax (ver Fórmula \ref{eq:ecuacion_7_ANN}) donde se calcula la probabilidad de todas las clases sumadas y por cada probabilidad se divide la misma, obteniendo así una \textit{distribución} (ya que la suma de todas las probabilidades resultantes como salida dan 1). 
+De esta manera, en la Fórmula \ref{eq:ecuacion_15_NLP} se describe cómo obtener la probabilidad de que $w_o$ sea una palabra de contexto (con índice $'o'$ en nuestra secuencia de textos T) dada una palabra central $w_c$ (con índice $'c'$ en el diccionario del corpus).  El cálculo de la misma es similar a la que se usa cuando queremos calcular la probabilidad de salida de distintas clases en clasificación utilizando la función softmax (ver Fórmula \ref{eq:ecuacion_7_ANN}) donde se calcula la probabilidad de todas las clases sumadas y por cada probabilidad se divide la misma, obteniendo así una \textit{distribución} (ya que la suma de todas las probabilidades resultantes como salida dan 1). 
 
 \begin{equation}\label{eq:ecuacion_15_NLP}
 P(w_o, w_c) = \frac{exp(u_{o}^{T} v_c)}{\sum_{W \in V} exp(u_{W}^{T} v_c)}    \qquad \text{(Ver \cite{NLP_27})}
@@ -2043,7 +2050,7 @@ Teniendo en cuenta que:
 
 \paragraph{Optimizaciones: Muestreo Negativo.}\label{neg_samp}
 
-Como podemos observar para el cálculo de $P(w_o | w_c)$ (Fórmula \ref{eq:ecuacion_15_NLP}) -la cual se realiza para obtener nuestra función de costo $J(\theta)$  (Fórmula \ref{eq:ecuacion_11_NLP})- depende del tamaño de nuestro vocabulario $V$ (ya que en el denominador de $P(w_o | w_c)$ se realiza una sumatoria por cada palabra $w$ perteneciente a $V$). Debido a que nuestros vocabularios pueden ser miles o incluso millones de palabras, el costo de realizar el cálculo de los gradientes puede ser muy alto. Para reducir tal complejidad computacional y optimizar el cálculo de la función de costo explicada previamente se puede utilizar otro método de entrenamiento conocido como \textit{muestreo negativo} (o \textit{negative sampling}), el cual está descrito en el segundo Paper de Tomas Mikolov\cite{NLP_14}.  como una mejora al Skipgram tradicional con función de salida softmax.
+Como podemos observar para el cálculo de $P(w_o | w_c)$ (Fórmula \ref{eq:ecuacion_15_NLP}) -la cual se realiza para obtener nuestra función de costo $J(\theta)$  (Fórmula \ref{eq:ecuacion_11_NLP})- depende del tamaño de nuestro vocabulario $V$ (ya que en el denominador de $P(w_o | w_c)$ se realiza una sumatoria por cada palabra $w$ perteneciente a $V$). Debido a que nuestros vocabularios pueden ser miles o incluso millones de palabras, el costo de realizar el cálculo de los gradientes puede ser muy alto. Para reducir tal complejidad computacional y optimizar el cálculo de la función de costo explicada previamente se puede utilizar otro método de entrenamiento conocido como \textit{muestreo negativo} (o \textit{negative sampling}), el cual está descrito en el segundo Paper de Tomas Mikolov\cite{NLP_14} como una mejora al Skipgram tradicional con función de salida softmax.
 
 Como podemos observar en la Figura \ref{fig:Imagen_NLP_24}, anteriormente utilizando softmax (parte izquierda de la imagen) teníamos un problema de \textit{clasificación}, donde teníamos una palabra central (en este ejemplo “not”) como \textit{entrada} y teníamos que clasificar cuál de todas las palabras del vocabulario era la más probable de que fuera la palabra de contexto de \textit{salida} (en este ejemplo “thou”).  El problema es que, como vimos anteriormente, la clasificación con softmax es un problema debido a su elevado costo de cálculo; con lo cual la idea es transformar esto a \textit{otro problema de clasificación} pero usando la \textit{regresión logística} (parte derecha de la imagen). De esta manera, mediante muestreo negativo se emplean nodos de regresión logística (es decir, con la función sigmoide -Fórmula \ref{eq:ecuacion_8_ANN}-) con el objetivo de clasificar de la mejor manera posible, ejemplos positivos y negativos de nuestro conjunto de entrenamiento\cite{NLP_13_2}. En este modelo de ejemplo nos dan como \textit{entrada} las 2 palabras (palabra central: “not”, y palabra de contexto: “thou”) y a la \textit{salida} nos fijamos cual es la probabilidad de que esas dos palabras estén juntas (en este caso arrojó como resultado “0.9”). En conclusión, pasamos de un problema de “Dada una palabra central ¿cuál de todas estas palabras es la palabra de contexto?” a “Dado un par de palabras (central, contexto) ¿cuál es la probabilidad de que estén juntas?”. Ahora nuestra salida no es una palabra, sino un número del 0 al 1: en lugar de usar la softmax, ahora usamos la sigmoide, la cual  va de 0 a 1. \\
 
@@ -2064,7 +2071,7 @@ P(D=1 | w_c, w_o) = \sigma (u_{o}^{T} v_c)    \qquad \text{(Ver \cite{NLP_27})}
 \textit{Probabilidad de que la salida sea 1, dadas $w_o$ y $w_c$  \\ (función de salida sigmoide).}
 \end{center}
 
-Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórmula \ref{eq:ecuacion_8_ANN}) para adaptarla a nuestro caso: Fórmula \ref{eq:ecuacion_18_NLP}.
+Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórmula \ref{eq:ecuacion_8_ANN}) adaptándola a nuestro caso: Fórmula \ref{eq:ecuacion_18_NLP}.
 
 \begin{equation}\label{eq:ecuacion_18_NLP}
 \sigma (u_{o}^{T} v_c) = \frac{1}{1 + exp(- (\sigma (u_{o}^{T} v_c)) )}    \qquad \text{(Ver \cite{NLP_27})}
@@ -2073,7 +2080,7 @@ Reescribimos la fórmula descrita anteriormente para la función sigmoide (Fórm
 \textit{Función sigmoide utilizada.}
 \end{center}
 
-En la Figura \ref{fig:Imagen_NLP_25} podemos observar un ejemplo de construcción de datasets para utilizar como entrenamiento: usando como función de salida softmax (parte izquierda) y sigmoide (parte derecha). De esta manera pasamos de tener un dataset donde la entrada y salida son las dos palabras, a uno donde tengamos las dos palabras como features, y la etiqueta “target” es cual es el valor que debería arrojar el modelo.
+En la Figura \ref{fig:Imagen_NLP_25} podemos observar un ejemplo de construcción de datasets para utilizar como entrenamiento: usando como función de salida softmax (parte izquierda) y sigmoide (parte derecha). De esta manera pasamos de tener un dataset donde la entrada y salida son las dos palabras, a uno donde tengamos las dos palabras como features, y la etiqueta “target” que es el valor que debería arrojar el modelo.
 
 \begin{figure}[H]    
  \centering
@@ -2146,7 +2153,7 @@ Teniendo las etiquetas de estas 3 salidas, lo que hace el modelo es calcular la 
 J(\theta) = -log P(w^{(t+j)} | w^{(t)}) = - log \; \sigma (u_{i_{t+j}}^{T} v_{i_{t}}) - \sum_{k=1, w_k \sim P(w)}^{K} \;  log \; \sigma (-u_{h_{k}}^{T} v_{i_{t}})
 \end{equation}
 \begin{center}
-\textit{Función de costo Skipgram (función salida Sigmoide y uso de negative sampling})\cite{NLP_27}.
+\textit{Función de costo Skipgram (función salida sigmoide y uso de negative sampling})\cite{NLP_27}.
 \end{center}
 
 \begin{figure}[H]    
@@ -2156,7 +2163,7 @@ J(\theta) = -log P(w^{(t+j)} | w^{(t)}) = - log \; \sigma (u_{i_{t+j}}^{T} v_{i_
  \label{fig:Imagen_NLP_29}
 \end{figure}
 
-Mientras se realiza el entrenamiento recorriendo epoch veces nuestro conjunto de datos, los embeddings continúan mejorando su representación para cada una de las palabras. Como mencionamos previamente, estos embeddings son entrenados para que las palabras que siempre están cerca, aparezcan cerca; y por lo tanto en el proceso de entrenamiento el modelo aprenda a codificar estas palabras para que se mantenga el significado de las mismas. 
+Mientras se realiza el entrenamiento recorriendo $epoch$ veces nuestro conjunto de datos, los embeddings continúan mejorando su representación para cada una de las palabras. Como mencionamos previamente, estos embeddings son entrenados para que las palabras que siempre están cerca, aparezcan cerca; y por lo tanto en el proceso de entrenamiento el modelo aprenda a codificar estas palabras para que se mantenga el significado de las mismas. 
 
 Una vez que el modelo finalizó el entrenamiento obtendremos nuestras 2 matrices / embeddings listas y lo que se hace es descartar la matriz de contexto $W’$ y \textit{usar la matriz de Embeddings de palabra central $W$ como nuestros embeddings pre-entrenados} para representar a nuestras palabras. 
 \\
@@ -2166,9 +2173,11 @@ Una vez que el modelo finalizó el entrenamiento obtendremos nuestras 2 matrices
 Existen tres grandes desventajas de utilizar embeddings obtenidos mediante Word2vec, las cuales describiremos a continuación.
 
 \begin{itemize}
-\item La primer limitación\cite{NLP_28} de Word2vec es que sus embeddings \textit{no permiten trabajar con palabras desconocidas por nuestro vocabulario} (palabras \textit{out-of-vocabulary, OVV}). De esta manera, si el embedding no contiene en su vocabulario una palabra, la misma simplemente no se tendrá en cuenta. Esta limitación puede ser solventada utilizando word embeddings obtenidos mediante el modelo \textit{FastText}, el cual es una variante de Word2Vec creada por Facebook que si permite manejar palabras OOV. Esto ocurre debido a que Word2vec considera a una palabra como una unidad que no puede ser dividida, mientras que Fasttext considera una palabra como una combinación de sub-palabras. En FastText cada palabra es dividida en n-grams (o “sub-palabras”), los cuales están compuestos por n caracteres. El valor de n define cómo se divide cada palabra en cierto número de n-gramas. Por ejemplo, si $n=3$, “apple” se divide en “app”, “ppl” y “ple”. Una vez que se obtengan los valores vectoriales de las sub-palabras, el valor vectorial de “apple” se convierte en la suma de los valores vectoriales de las sub-palabras. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_30}.
+\item La primer limitación\cite{NLP_28} de Word2vec es que sus embeddings \textit{no permiten trabajar con palabras desconocidas por nuestro vocabulario} (palabras \textit{out-of-vocabulary, OVV}). De esta manera, si el embedding no contiene en su vocabulario una palabra, la misma simplemente no se tendrá en cuenta. Esta limitación puede ser solventada utilizando word embeddings obtenidos mediante el modelo \textit{FastText}, el cual es una variante de Word2Vec creada por Facebook que si permite manejar palabras OOV. 
 
-Mediante esta técnica de entrenamiento FastText permite el manejo de palabras OOV. Por ejemplo, consideremos un caso en el que se cuentan en nuestro vocabulario de embedding las palabras “birth” (nacimiento) y “place” (lugar), pero no la palabra “birthplace” (lugar de nacimiento). En Word2vec, al no estar definido el valor del vector “birthplace”, entonces este no se podrá obtener de ninguna forma. En cambio, FastText puede calcular el valor del vector “birthplace” mediante la unión de las subpalabras “birth” y “place”, las cuales si están en nuestro vocabulario. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_31}.
+Esta limitación ocurre debido a que Word2vec considera a una palabra como una unidad que no puede ser dividida, mientras que Fasttext considera una palabra como una combinación de sub-palabras. En FastText cada palabra es dividida en n-grams (o “sub-palabras”), los cuales están compuestos por n caracteres. El valor de n define cómo se divide cada palabra en cierto número de n-gramas. Por ejemplo, si $n=3$, “apple” se divide en “app”, “ppl” y “ple”. Una vez que se obtengan los valores vectoriales de las sub-palabras, el valor vectorial de “apple” se convierte en la suma de los valores vectoriales de las sub-palabras. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_30}.
+
+Esta técnica de entrenamiento permite que utilizando FastText el modelo pueda manejar las palabras OOV. Por ejemplo, consideremos un caso en el que se cuentan en nuestro vocabulario de embedding las palabras “birth” (nacimiento) y “place” (lugar), pero no la palabra “birthplace” (lugar de nacimiento). En Word2vec, al no estar definido el valor del vector “birthplace”, entonces este no se podrá obtener de ninguna forma. En cambio, FastText puede calcular el valor del vector “birthplace” mediante la unión de las subpalabras “birth” y “place”, cuyos vectores si están definidos en nuestro vocabulario. Podemos observar este ejemplo en la Figura \ref{fig:Imagen_NLP_31}.
 
 \begin{figure}[H] %[H] es para que se ubique justo debajo del texto anterior.
 \begin{minipage}[b]{0.45\linewidth}
@@ -2203,7 +2212,7 @@ Como mencionamos previamente, las limitaciones 1 y 2 pueden solventarse utilizan
 
 \begin{itemize}
 
-\item La tercer y más importante desventaja de usar embeddings obtenidos mediante Word2Vec\cite{NLP_26}, es que las relaciones construidas entre las palabras son puramente estadísticas y únicamente reflejan la proximidad en un espacio vectorial. Esto es una desventaja, ya que el objetivo de NLP justamente es recrear complejas relaciones que dejen de lado las representaciones estadísticas. De esta manera, muchas veces no nos es útil esta representación para representar palabras que se usan en distintos contextos. Esto es debido a que Word2vec obtiene un embedding que aprende un vector \textbf{fijo} para cada palabra. El inconveniente acá es que existen palabras con diversos significados, por ejemplo la palabra ‘queen’ puede ser usada en una oración de piezas de ajedrez o en una oración de tamaños de cama. El vector para la palabra ‘queen’ debería ser distinto dependiendo el contexto, pero en el caso de word2vec solo existe un único vector ‘queen’ que, en caso de haber sido entrenado con ambas oraciones, supondrá un significado ‘promedio’ entre los 2 contextos. 
+\item La tercer y más importante desventaja de usar embeddings obtenidos mediante Word2Vec\cite{NLP_26}, es que las relaciones construidas entre las palabras son puramente estadísticas y únicamente reflejan la proximidad en un espacio vectorial. Esto es una desventaja, ya que el objetivo de NLP justamente es recrear complejas relaciones que dejen de lado las representaciones estadísticas. De esta manera, muchas veces no nos es útil esta representación para representar palabras que se usan en distintos contextos. Esto es debido a que Word2vec obtiene un embedding que aprende un vector \textbf{fijo} para cada palabra. Aquí el inconveniente es que existen palabras con diversos significados, por ejemplo la palabra ‘queen’ puede ser usada en una oración de piezas de ajedrez o en una oración de tamaños de cama. El vector para la palabra ‘queen’ debería ser distinto dependiendo el contexto, pero en el caso de Word2vec solo existe un único vector ‘queen’ que, en caso de haber sido entrenado con ambas oraciones, supondrá un significado ‘promedio’ entre los 2 contextos. 
 
 \end{itemize}
 
@@ -2214,15 +2223,15 @@ Esta tercer limitación se puede solventar mediante el uso de modelos de lenguaj
 
 El siguiente paso de nuestra aplicación NLP consiste en definir y emplear una métrica de distancia que será utilizada como nuestra medida de similitud entre los vectores numéricos obtenidos del paso anterior (sean mediante BoW, TF-IDF o Embeddings), los cuales representan nuestros textos a comparar.
 
-La medición de similitudes entre textos (text similarity measurement) es uno de los problemas más cruciales del \textit{Procesamiento del Lenguaje Natural (NLP)}. Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, information retrieval, automatic question answering, machine translation, dialogue systems, y document matching\cite{similarity_survey}.
+La medición de similitudes entre textos (text similarity measurement) es uno de los problemas más cruciales del Procesamiento del Lenguaje Natural (NLP). Encontrar similitudes entre documentos se utiliza en varios dominios de NLP, tales como en sistemas de recomendación, information retrieval, automatic question answering, machine translation, dialogue systems, y document matching\cite{similarity_survey}.
 
-Una de las primeras aplicaciones de mediciones de similitud entre textos es quizás el modelo vectorial en la recuperación de información (information retrieval, IR), donde el documento más relevante para una consulta de entrada se determina clasificando los documentos de una colección en órden inverso a su similitud con la consulta dada. Las mediciones de similitud entre textos también se utilizaron en sistemas de retroalimentación de relevancia (relevance feedback) y de clasificación de texto (text classification). También se utilizaron para tareas de desambiguación del sentido de la palabra (word sense disambiguation) y, más recientemente, para resúmenes de texto (text summarization) y para métodos de evaluación en máquinas de traducción automática (machine translation)\cite{NLP_17_18}.
+Una de las primeras aplicaciones de mediciones de similitud entre textos es quizás el modelo vectorial en la recuperación de información (information retrieval, IR), donde el documento más relevante para una consulta de entrada se determina clasificando los documentos de una colección en órden inverso a su similitud con la consulta dada. Las mediciones de similitud entre textos también se utilizan en sistemas de retroalimentación de relevancia (relevance feedback) y de clasificación de texto (text classification). También se utilizan para tareas de desambiguación del sentido de la palabra (word sense disambiguation) y, más recientemente, para resúmenes de texto (text summarization) y para métodos de evaluación en máquinas de traducción automática (machine translation)\cite{NLP_17_18}.
 
-Para realizar esta tarea de obtener las mediciones de similitud entre nuestros textos utilizaremos dos métodos: uno más convencional (Cosine Similarity, representando previamente nuestros textos con TF-IDF) y un método más actual y novedoso (WMD o Word Mover’s Distance, representando previamente nuestros textos mediante Embeddings). En la sección \textit{\nameref{cos_y_wmd}} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en \textit{\nameref{Tecnicas_Simil_textos}}, el cual detalla las numerosas técnicas existentes para obtener similitudes entre textos.
+Para realizar esta tarea de obtener las mediciones de similitud entre nuestros textos utilizaremos dos métodos: uno más convencional (Cosine Similarity, representando previamente nuestros textos con TF-IDF) y un método más actual y novedoso (WMD o Word Mover’s Distance, representando previamente nuestros textos mediante Word embeddings). En la sección \textit{\nameref{cos_y_wmd}} se detallan las razones por las cuales se decidieron elegir estos métodos; las cuales están justificadas en base al análisis realizado en la sección \textit{\nameref{Tecnicas_Simil_textos}}, el cual detalla las numerosas técnicas existentes para obtener similitudes entre textos.
 
 Como mencionamos previamente, una vez que hayamos obtenido estas mediciones de similitud usando estos dos métodos, lo que haremos es combinar dichas mediciones e ingresarlas como entradas a algoritmos de ML (en nuestro caso K-means, y luego KNN) para generar \textit{un modelo de clasificación}. Lo que hará este modelo es, en base a los valores de similitud de los curriculums vitae de nuevos candidatos, lograr clasificar qué tan similares son dichos curriculums vitae con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
-A continuación se describirán las técnicas existentes más populares para obtener mediciones de similitud entre textos, haciendo énfasis en las dos técnicas utilizadas en este proyecto. 
+A continuación se describirán las técnicas existentes más populares para obtener mediciones de similitud entre textos, haciendo énfasis en las dos técnicas utilizadas en este Proyecto. 
 \\
 
 \subsubsection{Maneras de medir la similitud entre textos.}\label{Tecnicas_Simil_textos}
@@ -2253,7 +2262,7 @@ Es por esto que este estudio\cite{similarity_survey} hace una mayor extensión y
 
 Como podemos observar en la Figura \ref{fig:Imagen_NLP_33} ambos aspectos tienen subdivisiones: la \textit{distancia entre los textos (text distance)} puede ser dividida en distancia de longitud (length distance), distancia de distribución (distribution distance), y distancia semántica (semantic distance); mientras que las \textit{representaciones de los textos (text representation)} pueden ser divididas en representaciones basadas en cadenas de texto (string based), basadas en corpus de texto (corpus based), basadas en macheos/coincidencias semánticas de texto (semantic text matching), y basadas en estructuras de grafos\footnote{Un grafo es un conjunto de objetos llamados vértices o nodos unidos por enlaces llamados aristas o arcos, que permiten representar y estudiar relaciones binarias entre elementos de un conjunto.} (graph structure based). La idea es la misma que expresamos a lo largo de este informe, luego de haber representado los textos vectorialmente se aplican las mediciones de distancias para obtener finalmente las medidas de similitud entre nuestros textos.
 
-A continuación explicaremos más detalladamente en qué consisten estas subdivisiones de \textit{distancia entre los textos (text distance)} y \textit{representaciones de los textos (text representation)}. No entraremos en detalle de cada una de las técnicas involucradas en cada categoría -a excepción de Word Mover’s Distance y Cosine Distance- ya que no entra en los objetivos de este proyecto, pero si se explicará brevemente en qué consiste cada subdivisión.
+A continuación explicaremos más detalladamente en qué consisten estas subdivisiones de \textit{distancia entre los textos (text distance)} y \textit{representaciones de los textos (text representation)}. No entraremos en detalle de cada una de las técnicas involucradas en cada categoría -a excepción de Word Mover’s Distance y Cosine Distance- ya que no entra en los objetivos de este Proyecto, pero si se explicará brevemente en qué consiste cada subdivisión.
 
 Las tres maneras de medir las \textit{distancias entre los textos (text distance)} son \cite{similarity_survey}: 
 
@@ -2287,30 +2296,30 @@ La ventaja de los métodos basados en cadenas es que son muy fáciles de impleme
 \item \textit{Representaciones basadas en corpus de texto (Corpus-Based)}: Existe una diferencia importante entre los métodos basados en corpus y basados en cadenas: el método basado en corpus utiliza la información obtenida de grandes corpus de texto para calcular la similitud del texto; esta información puede ser una característica textual o una probabilidad de co-ocurrencia. Por su parte el enfoque basado en cadenas es una comparación de texto a nivel literal. En los estudios más recientes, el método basado en corpus se mide de tres maneras diferentes, las cuales detallaremos a continuación. 
 
 \begin{itemize}
-\item 2.1. \textit{Modelos basados en Bag-of-Words (Bag-of-Words Model)}:  La idea básica del modelo BoW es representar el documento como una combinación de series de palabras sin considerar el orden en que aparecen las palabras en el documento. Los métodos basados en el modelo BoW incluyen principalmente BoW (explicado en la sección \textit{\nameref{bow}}), TF-IDF (explicado en la sección \textit{\nameref{tf_idf}}) y LSI (latent semantic indexing o indexación semántica latente).
+\item 2.1. \textit{Modelos basados en Bag-of-Words (Bag-of-Words Model)}:  La idea básica del modelo BoW es representar el documento como una combinación de series de palabras sin considerar el órden en que aparecen las palabras en el documento. Los métodos basados en el modelo BoW incluyen principalmente BoW (explicado en la sección \textit{\nameref{bow}}), TF-IDF (explicado en la sección \textit{\nameref{tf_idf}}) y LSI (latent semantic indexing o indexación semántica latente).
 
-\item 2.2. \textit{Métodos basados en ventanas poco profundas (Shallow Window-Based Methods)}: Mejor conocidos como representaciones distribuidas (Distributed Representation), estos métodos difieren de los modelos basados en BoW en un aspecto importante: BoW y TF-IDF no permiten capturar la distancia semántica entre palabras. Utilizando métodos basados en Shallow Windows nos permiten entrenar y obtener vectores de palabras de baja dimensionalidad donde las palabras similares estén más cerca en distancias, resolviendo de esta manera los problemas de la alta dimensionalidad y falta de semántica presente en los modelos basados en BoW. Estas ventajas fueron explicadas en mayor detalle en la sección \textit{\nameref{embedd}}. Un gran número de técnicas fueron desarrolladas para obtener estos vectores de palabras, por nombrar los tres principales métodos presentes en el estudio tenemos a los modelos Word2vec, glove y BERT. Word2vec es el modelo que utilizamos en este proyecto y fue detallado en la sección \textit{\nameref{word2vec}}.
+\item 2.2. \textit{Métodos basados en ventanas poco profundas (Shallow Window-Based Methods)}: Mejor conocidos como representaciones distribuidas (Distributed Representation), estos métodos difieren de los modelos basados en BoW en un aspecto importante: BoW y TF-IDF no permiten capturar la distancia semántica entre palabras. Utilizando métodos basados en Shallow Windows nos permiten entrenar y obtener vectores de palabras de baja dimensionalidad donde las palabras similares estén más cerca en distancias, resolviendo de esta manera los problemas de la alta dimensionalidad y falta de semántica presente en los modelos basados en BoW. Estas ventajas fueron explicadas en mayor detalle en la sección \textit{\nameref{embedd}}. Un gran número de técnicas fueron desarrolladas para obtener estos vectores de palabras, por nombrar los tres principales métodos presentes en el estudio tenemos a los modelos Word2vec, glove y BERT. Word2vec es el modelo que utilizamos en este Proyecto y fue detallado en la sección \textit{\nameref{word2vec}}.
 
-\item 2.3-\textit{Métodos basados en factorización de matrices (Matrix Factorization Methods)}: Los métodos de factorización matricial para generar representaciones de palabras de baja dimensionalidad tienen raíces que se remontan hasta LSA (Latent Semantic Analysis o análisis semántico latente). Estos métodos utilizan aproximaciones de bajo rango para descomponer matrices grandes que capturan información estadística sobre un corpus. El tipo particular de información capturada por dichas matrices varía según la aplicación. Los avances recientes en los métodos LSA facilitaron la investigación de los métodos LDA (Latent Dirichlet Allocation o asignación de dirichlet latente).
+\item 2.3-\textit{Métodos basados en factorización de matrices (Matrix Factorization Methods)}: Los métodos de factorización matricial para generar representaciones de palabras de baja dimensionalidad tienen raíces que se remontan hasta LSA (Latent Semantic Analysis o análisis semántico latente). Estos métodos utilizan aproximaciones de bajo rango para descomponer grandes matrices que capturan información estadística sobre un corpus. El tipo particular de información capturada por dichas matrices varía según la aplicación. Los avances recientes en los métodos LSA facilitaron la investigación de los métodos LDA (Latent Dirichlet Allocation o asignación de dirichlet latente).
 \end{itemize}
 
 \item \textit{Representaciones basadas en macheos/coincidencias semánticas de texto (Semantic Text Matching)}: Como mencionamos previamente, la similitud semántica determina la similitud entre el texto y el documento sobre la base de su significado en lugar de la coincidencia de carácter por carácter. Sobre la base de LSA, estas representaciones son extraídas mediante deep learning y permiten obtener una estructura semántica jerárquica, la cual está embebida en la consulta y el documento. Aquí el texto se codifica para extraer características, por lo que se obtiene una nueva expresión. Estas representaciones pueden ser divididas en Single Semantic Text Matching y Multi-Semantic Document Matching, cuyos métodos principales son visualizados en la Figura \ref{fig:Imagen_NLP_33}.
 
-\item \textit{Representaciones basadas en estructuras de grafos (Graph Structure-Based)}: Recientemente los grafos como una forma de datos de texto estructurado llamaron la atención de la investigación tanto académica como de la industria. Existen algoritmos basados en grafos para aprender y aplicar distribuciones semánticas en aplicaciones de NLP. La ventaja de la representación basada en grafos y el cálculo de la similitud de textos sobre estas representaciones, radica en que los vínculos (o links) entre los nodos se establecen a través de los bordes (o edges) de las estructuras de grafos para obtener un mejor grado de similitud entre los nodos. Según los diferentes tipos de grafos, principalmente se basan en la representación de grafos de conocimiento (Knowledge Graph) y en la representación de redes neuronales basadas en grafos (Graph Neural Network).
+\item \textit{Representaciones basadas en estructuras de grafos (Graph Structure-Based)}: Recientemente los grafos siendo utilizados como una forma de datos de texto estructurado llamaron la atención de la investigación académica y empresarial. Existen algoritmos basados en grafos para aprender y aplicar distribuciones semánticas en aplicaciones de NLP. La ventaja de la representación basada en grafos y el cálculo de la similitud de textos sobre estas representaciones, radica en que los vínculos (o links) entre los nodos se establecen a través de los bordes (o edges) de las estructuras de grafos para obtener un mejor grado de similitud entre los nodos. Según los diferentes tipos de grafos, principalmente se basan en la representación de grafos de conocimiento (Knowledge Graph) y en la representación de redes neuronales basadas en grafos (Graph Neural Network).
 \\
 \end{enumerate}
 
-\subsubsection{¿Por qué decidimos utilizar Cosine similarity y WMD?}\label{cos_y_wmd}
+\subsubsection{¿Por qué decidimos utilizar Cosine Similarity y WMD?}\label{cos_y_wmd}
 
-Como observamos en la sección \textit{\nameref{Tecnicas_Simil_textos}}, existen numerosas técnicas para obtener las similitudes de nuestros textos, tanto de medición de distancias como de representación de los textos. En base al análisis anterior, para el sistema desarrollado en este proyecto se decidió utilizar una combinación entre Cosine similarity y WMD para realizar la medición de la distancia entre textos. A continuación explicaremos las razones por las cuales optamos por estos métodos.
+Como observamos en la sección \textit{\nameref{Tecnicas_Simil_textos}}, existen numerosas técnicas para obtener las similitudes de nuestros textos, tanto de medición de distancias como de representación de los textos. En base al análisis anterior, para el sistema desarrollado en este Proyecto se decidió utilizar una combinación entre Cosine Similarity y WMD para realizar la medición de la distancia entre textos. A continuación explicaremos las razones por las cuales optamos por estos métodos.
 \begin{itemize}
-\item En el caso de \textit{Cosine similarity}, se utilizó dicha técnica debido a que es una de las más tradicionales y ampliamente utilizadas para medir similitudes entre textos en varias aplicaciones\cite{similarity_survey, cosine_sim_1, cosine_sim_2, cosine_sim_3}.
+\item En el caso de \textit{Cosine Similarity}, se utilizó dicha técnica debido a que es una de las más tradicionales y ampliamente utilizadas para medir similitudes entre textos en varias aplicaciones\cite{similarity_survey, cosine_sim_1, cosine_sim_2, cosine_sim_3}.
 \item En cambio, \textit{Word Mover’s Distance (WMD)} es una técnica más actual (2015)\cite{wmd_paper} que al momento del estudio publicado el 31 de Agosto del 2020\cite{similarity_survey} es la principal técnica utilizada para la medición semántica de la distancia entre textos.
 \end{itemize}
 
 A su vez, se decidieron utilizar las siguientes técnicas para representar vectorialmente los textos a comparar:
 \begin{itemize}
-\item \textit{Para Cosine Distance} previamente utilizamos \textit{TF-IDF} para representar vectorialmente nuestros textos. De igual forma esta elección es debido a TF-IDF que es una de las técnicas más tradicionales y ampliamente utilizadas para representar textos y usar en conjunto con cosine distance para medir similitudes entre textos\cite{similarity_survey}. 
+\item \textit{Para Cosine Similarity} previamente utilizamos \textit{TF-IDF} para representar vectorialmente nuestros textos. De igual forma esta elección es debido a que TF-IDF es una de las técnicas más tradicionales y ampliamente utilizadas para representar textos y usar en conjunto con Cosine Similarity para medir similitudes entre textos\cite{similarity_survey}. 
 \item \textit{Para Word Mover’s Distance (WMD)} previamente utilizamos \textit{Word embeddings} obtenidos de \textit{Word2vec} para representar vectorialmente nuestros textos. Utilizamos el modelo Word2vec para obtener los embeddings y no otro (como por ejemplo Glove, Doc2Vec o BERT)  debido a que en el paper original de WMD\cite{wmd_paper} se utilizan embeddings obtenidos mediante Word2vec, decidiendo de esta manera utilizar la misma base.
 \end{itemize}
 
@@ -2370,11 +2379,11 @@ Por ejemplo, teniendo en cuenta la Figura \ref{fig:Imagen_NLP_35} y considerando
 La distancia conocida como \textit{Word Mover’s Distance (WMD)} -también llamada \textit{distancia del transportador de palabras}- surgió en el año 2015\cite{wmd_paper} y es el principal método utilizado para determinar la similitud semántica entre textos\cite{similarity_survey}. En el cálculo de WMD una menor distancia WMD indica una mayor similitud.
 Anteriormente mencionamos que una de las limitaciones de Cosine Similarity era no tener la habilidad de reconocer si las palabras que compara son semánticamente similares. En cambio, WMD al tratarse de un algoritmo más complejo basado en mediciones de distancias entre \textit{word embeddings}, si permite mantener las relaciones semánticas entre las oraciones para obtener las similitudes entre los documentos de texto. De esta forma WMD permite encontrar el costo mínimo necesario para que las palabras (representadas como word embeddings) de un documento “viajen” a la posición de todas las palabras del otro documento intentando encontrar el “vecino más cercano” para cada una de estas palabras. Por lo tanto, las colecciones de texto que comparten muchas palabras semánticamente similares deberían tener distancias más pequeñas que las colecciones de texto con palabras muy diferentes\cite{NLP_21}.
 
-Sobre la base de representar el texto como un espacio vectorial, WMD utiliza el método de EMD (Earth Mover’s Distance, originario en 1998)\cite{WMD_3, WMD_4}. para medir la distancia mínima requerida para que una palabra en un texto se mueva hacia una palabra en otro texto en el espacio semántico, y de esta manera minimizar el costo de transportar un texto A a un texto B\cite{WMD_5}. Para calcular esta distancia mínima se utiliza la \textit{distancia euclidiana}. De esta manera, WMD es un método que utiliza la transportación sobre la base de los vectores de palabra (word embeddings), y su núcleo es la programación lineal\cite{wmd_paper}.
+Sobre la base de representar el texto como un espacio vectorial, WMD utiliza el método de EMD (Earth Mover’s Distance, originario en 1998)\cite{WMD_3, WMD_4} para medir la distancia mínima requerida para que una palabra en un texto se mueva hacia una palabra en otro texto en el espacio semántico, y de esta manera minimizar el costo de transportar un texto A a un texto B\cite{WMD_5}. Para calcular esta distancia mínima se utiliza la \textit{distancia euclidiana}. Resumidamente WMD es un método que utiliza la transportación sobre la base de los vectores de palabra (word embeddings)\cite{wmd_paper}.
 
-Veamos un ejemplo\cite{NLP_20}. Si bien word2vec es un enfoque sofisticado cuando se trata de generar word embeddings de calidad, estos vectores de palabras por sí solos no son suficientes para resolver a la tarea de comparar textos (los cuales están formados por diferentes word embeddings) y obtener la similitud entre ambos. Por ejemplo, consideremos estos dos textos / oraciones: “\textit{My smart home should turn on my favorite music when I come to my home.” y “My smart home shall play my most favored songs when I arrive at my place}”. Vemos que las oraciones transmiten básicamente la misma información. Obteniendo los word embeddings de ambos textos y colocándolos en un espacio de embedding, observaremos que algunos de sus vectores estarán cerca, especialmente si las palabras son símiles (por ejemplo, los pares $<music, songs>$  y  $<come, arrive>$  estarán cerca). La cercanía de los textos / oraciones completas,  por otro lado, no se puede representar solo en el modelo word2vec. Para superar esta escasez, surgió Word Mover's Distance (WMD) como una medida de distancia basada en palabras (word-based) para textos / oraciones completas. Basado en la creacioń previa de word embeddings (como, por ejemplo, utilizando el modelo word2vec), la distancia entre dos documentos de texto $A$ y $B$ se describe como la distancia acumulada mínima que las palabras del documento $A$ deben recorrer para coincidir exactamente con la nube de puntos del documento $B$. Con este método, WMD alcanza un alto grado de precisión estando completamente libre de hiper-parámetros y, por lo tanto, siendo fácil de usar.
+Veamos un ejemplo\cite{NLP_20}. Si bien Word2vec es un enfoque sofisticado cuando se trata de generar word embeddings de calidad, estos vectores de palabras por sí solos no son suficientes para resolver a la tarea de comparar textos (los cuales están formados por diferentes word embeddings) y obtener la similitud entre ambos. Por ejemplo, consideremos estos dos textos / oraciones: “\textit{My smart home should turn on my favorite music when I come to my home.” y “My smart home shall play my most favored songs when I arrive at my place}”. Vemos que las oraciones transmiten básicamente la misma información. Obteniendo los word embeddings de ambos textos y colocándolos en un espacio de embedding, observaremos que algunos de sus vectores estarán cerca, especialmente si las palabras son símiles (por ejemplo, los pares $<music, songs>$  y  $<come, arrive>$  estarán cerca). La cercanía de los textos / oraciones completas,  por otro lado, no se puede representar solo en el modelo Word2vec. Para superar esta escasez, surgió Word Mover's Distance (WMD) como una medida de distancia basada en palabras (word-based) para textos / oraciones completas. Basado en la creacioń previa de word embeddings (como, por ejemplo, utilizando el modelo Word2vec), la distancia entre dos documentos de texto $A$ y $B$ se describe como la distancia acumulada mínima que las palabras del documento $A$ deben recorrer para coincidir exactamente con la nube de puntos del documento $B$. Con este método, WMD alcanza un alto grado de precisión estando completamente libre de hiper-parámetros y, por lo tanto, siendo fácil de usar.
 
-Tomaremos otro ejemplo\cite{NLP_21} para explicarlo gráfica y matemáticamente. Este es un ejemplo adaptado del paper original de WMD\cite{wmd_paper}.  En laFigura \ref{fig:Imagen_NLP_36} vemos un ejemplo de ilustración de las distancias euclidianas entre word embeddings. Algo a tener en cuenta es que en este ejemplo es un espacio vectorial de 2 dimensiones únicamente por motivos ilustrativos, usualmente los vectores de palabras tienen un tamaño de entre 50 a 500 dimensiones.
+Tomaremos otro ejemplo\cite{NLP_21} para explicarlo gráfica y matemáticamente. Este es un ejemplo adaptado del paper original de WMD\cite{wmd_paper}. En la Figura \ref{fig:Imagen_NLP_36} vemos un ejemplo de ilustración de las distancias euclidianas entre word embeddings. Algo a tener en cuenta es que en este ejemplo es un espacio vectorial de 2 dimensiones únicamente por motivos ilustrativos, usualmente los vectores de palabras tienen un tamaño de entre 50 a 500 dimensiones.
 
 Cada cantidad (una por flecha) indica la contribución de ese par de palabras a la estadística general de WMD para esos dos documentos. Estas cantidades son el producto de dos números: $c(i,j)$, que es la distancia euclidiana entre las dos palabras en el espacio de embeddings n-dimensional -también llamado 'word travel cost'-, y un término de ponderación/peso $T_{ij}$ que indica cuánto de $i$ en un documento $A$ debe viajar a la palabra $j$ en el otro documento $B$. La contribución de la distancia entre “Chicago” e “Illinois” a WMD entre los documentos 1 y 2 es de $0,18$, mientras que la contribución de la distancia entre “speaks” y “greets” es ligeramente mayor, $0,24$: esto lo podemos visualizar en la Figura \ref{fig:Imagen_NLP_37}, en el cálculo de WMD$(doc1, doc2)$. Vemos que al realizar este cálculo se toma el costo acumulado de mover todas las palabras en el $Documento 1$ a las ubicaciones de las palabras en el $Documento 2$. Esta distancia WMD dió un resultado de 1.07, siendo menor que el resultado obtenido de WMD$(doc3, doc2)$: $1.63$. Esto nos indica que existe una mayor similitud entre los documentos 1 y 2 que entre los documentos 3 y 2. 
 
@@ -2420,7 +2429,7 @@ La implementación de este Sistema se trabajó en dos grandes partes:
 \begin{enumerate}
 \item Obtención del modelo de clasificación. 
 
-En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word Embeddings).
+En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word embeddings).
 
 Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
@@ -2444,7 +2453,7 @@ Este modelo se construyó en base a ...
 La implementación de este Sistema se realizó en Python...
 
 \subsubsection{Esquema.}
-Como podemos ver la figura \ref{fig:FlowCoreSystem} representa el procedimiento utilizado para la obtención de nuestro modelo de clasificación. 
+Como podemos ver la Figura \ref{fig:FlowCoreSystem} representa el procedimiento utilizado para la obtención de nuestro modelo de clasificación. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -2508,7 +2517,7 @@ Luego de aplicar preprocesamiento y limpieza de datos nos quedarán los siguient
 
 \subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}
 
-El total de 624 curriculums vitae de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word Embeddings (para el posterior cálculo de WMD).
+El total de 624 curriculums vitae de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word embeddings (para el posterior cálculo de WMD).
 
 Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-means y para entrenar a nuestro algoritmo KNN, utilizaremos únicamente una porción de nuestros datasets:
 
@@ -2517,7 +2526,7 @@ Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-mean
 \item 301 curriculums vitae de candidatos.
 \item 201 descripciones de puestos de IT.
 \end{itemize}
-Nota: No obstante, al realizar los cálculos de distancias compararemos cada curriculum vitae con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Sim.
+Nota: No obstante, al realizar los cálculos de distancias compararemos cada curriculum vitae con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Similarity.
 
 2-Para el uso de K-means y entrenamiento con KNN (eliminamos un curriculum vitae y una descripción de puesto IT que los utilizamos en '3-'):
 \begin{itemize}
@@ -2545,7 +2554,7 @@ En conclusión, al utilizar solo una porción de nuestros datasets para obtener 
 \subsection{Comparando textos y obteniendo similitudes.}
 \colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como técnicas de vectorización se utilizarán TF-IDF y Word Embeddings. 
+Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como técnicas de vectorización se utilizarán TF-IDF y Word embeddings. 
 
 \cleardoublepage
 
@@ -2614,7 +2623,7 @@ Previamente a esto explicaremos los elementos del diagrama de entidad relación:
 \begin{itemize}
 \item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo una entidad puede ser un alumno, un cliente, una empresa, etc. Dentro de las entidades estan los atributos, atributos principales o clave primaria (PK) y atributos foraneos o clave secundaria (FK).  Las entidades que necesitamos para crear nuestra BD son: Candidato, Puesto, Reclutador y Candidato\_Puesto -entidad intermedia entre Candidato y Puesto-.
 \item Unión entre entidades: pueden ser obligatorias u opcionales. En nuestro diagrama nuestras uniones son todas opcionales, ya que el reclutador puede o no CARGAR un puesto, el candidato puede o no APLICAR a un puesto y a su vez el puesto puede o no ser aplicado por un candidato. 
-\item Cardinalidad: Relación entre entidades o mapeo. La cardinalidad es el tipo de relación entre entidades. Observando la figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
+\item Cardinalidad: Relación entre entidades o mapeo. La cardinalidad es el tipo de relación entre entidades. Observando la Figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
 
 \begin{enumerate}
 \item Uno a uno: a cada entidad azul le corresponde solo una entidad naranja.
@@ -2640,7 +2649,7 @@ La cardinalidad entre nuestras entidades son:
 En cuanto a las claves pueden haber dos tipos. Por un lado está la clave primaria o atributo principal (PK)  es única y toda entidad debe tener la suya. Pueden haber múltiples PKs; estas se llaman PKs compuestas. Y por el otro está la clave secundaria o atributo foráneo (FK). Estas claves identifican a una entidad externa en otra, utilizándose para generar relaciones entre nuestras entidades. Si tenemos una clave FK en una entidad, significa que dicha clave FK es clave PK en otra entidad.
 
 
-El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la figura \ref{fig:Entity_Relation}.
+El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la Figura \ref{fig:Entity_Relation}.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -2653,7 +2662,7 @@ El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la
 
 \subsubsection{Secciones del sistema}
 
-Para registrarse o loguearse al sistema, se implementará la interfaz provista en la figura \ref{fig:Vista_Registro}.
+Para registrarse o loguearse al sistema, se implementará la interfaz provista en la Figura \ref{fig:Vista_Registro}.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -2664,7 +2673,7 @@ Para registrarse o loguearse al sistema, se implementará la interfaz provista e
 
 \colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
 
-El Candidato tendrá acceso al menú indicado en la figura \ref{fig:Vista_Candidato}. 
+El Candidato tendrá acceso al menú indicado en la Figura \ref{fig:Vista_Candidato}. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -2675,7 +2684,7 @@ El Candidato tendrá acceso al menú indicado en la figura \ref{fig:Vista_Candid
 
 \colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
 
-Por su parte, el Reclutador tendrá acceso al menú indicado en la figura \ref{fig:Vista_Reclutador}. 
+Por su parte, el Reclutador tendrá acceso al menú indicado en la Figura \ref{fig:Vista_Reclutador}. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
@@ -2711,7 +2720,7 @@ Por su parte, el Reclutador tendrá acceso al menú indicado en la figura \ref{f
 \subsection{Pipeline Flow final del Sistema.}
 \colorbox{red}{FALTA}
 
-Una vez que el reclutador dentro de la sección observada en la figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+Una vez que el reclutador dentro de la sección observada en la Figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la Figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
@@ -2913,15 +2922,15 @@ En la Figura \ref{fig:ann_7} podemos observar una lista de las funciones de acti
  \label{fig:ann_8}
 \end{figure}
 
-\footnotetext{$a$ indica el resultado luego de haber aplicado la función de entrada dentro de la neurona artificial. Como mencionamos anteriormente, la función de entrada más común es la sumatoria de las entradas ponderadas.}
+\footnotetext{ $a$ indica el resultado luego de haber aplicado la función de entrada dentro de la neurona artificial. Como mencionamos anteriormente, la función de entrada más común es la sumatoria de las entradas ponderadas.}
 
 \cleardoublepage
 
-\subsection{Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}\label{anexo_word_emb}
+\subsection{Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}\label{anexo_word_emb}
 
-Tomaremos un ejemplo del libro de O’reilly Media\cite{NLP_26} y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word Embeddings utilizando el modelo Skip-gram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
+Tomaremos un ejemplo del libro de O’reilly Media\cite{NLP_26} y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word embeddings utilizando el modelo Skipgram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
 
-El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado} \footnotetext{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
+El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado} \footnotetext{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado.} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
 
 Cabe mencionar que en este ejemplo no se preprocesaron los textos previamente a armar nuestro corpus tokenizado. Si se preprocesaran los mismos -como se realiza en nuestra implementación-, nuestro corpus tokenizado que será utilizado como entradas del modelo quedaría como [“quick”, “brown”, “fox”, “jump”,“lazy”, “dog”], y nuestro vocabulario, como no existe repetición de palabras, estarían formados por estas mismas 6 palabras / tokens.
 
@@ -2982,10 +2991,10 @@ A cotinuación detallaremos las iteraciones de entrenamiento necesarias teniendo
       
 \item El primer paso consiste en la inicialización aleatoria por única vez de las matrices de pesos, las cuales son los parámetros ($\theta$)de nuestro modelo de red neuronal. En otras palabras, esto quiere decir que se llenan con valores numéricos las matrices $W input$ (o $W$) y W output (o $W’$): los valores $W11$ a $W83$ y $W’11$ a $W’38$ respectivamente.
 \item Este paso consiste en la aplicación de forward propagation para obtener nuestra salida -\textit{y pred softmax}-. Este paso se divide en 2 sub-pasos: \textit{Paso 2.1-Forward propagation (capa de entrada a capa oculta)} y \textit{Paso 2.2-Forward propagation (capa oculta a capa de salida)}.
-Algo importante a tener en cuenta es que, debido a que estamos utilizando el algoritmo de gradiente descendiente básico y no SGD, en este paso N°2 tenemos que obtener los valores de \textit{y pred softmax de todos nuestros pares} de palabras (central, contexto) para luego, teniendo estos resultados, pasar al paso N° 3. Es por esto que, \textit{este paso N°2 (y en consecuencia los sub-pasos 2.1 y 2.2) se realizan por cada una de las 30 iteraciones que vimos en la Figura \ref{fig:2_EjSkip} } hasta obtener 30 vectores \textit{y pred softmax} (los cuales luego se compararán con los 30 vectores \textit{y true} correspondientes a la palabra de entrada de cada iteración).
+Algo importante a tener en cuenta es que, debido a que estamos utilizando el algoritmo de gradiente descendiente básico y no SGD, en este paso N°2 tenemos que obtener los valores de \textit{y pred softmax} de todos nuestros pares de palabras (central, contexto) para luego, teniendo estos resultados, pasar al paso N° 3. Es por esto que, \textit{este paso N°2 (y en consecuencia los sub-pasos 2.1 y 2.2) se realizan por cada una de las 30 iteraciones que vimos en la Figura \ref{fig:2_EjSkip} } hasta obtener 30 vectores \textit{y pred softmax} (los cuales luego se compararán con los 30 vectores \textit{y true} correspondientes a la palabra de entrada de cada iteración).
       \begin{itemize}
       
-      \item Iteración 1: Ingresa “the” como palabra central en la capa de entrada y se intenta predecir la palabra de contexto “quick” en la capa de salida. Ambas palabras son representadas como vectores one hot encoding (vectores $X$ e $y true$ respectivamente). Esto lo observamos en la Figura \ref{fig:5_EjSkip}. En la Figura \ref{fig:6_EjSkip} podemos observar un mayor detalle. 
+      \item Iteración 1: Ingresa “the” como palabra central en la capa de entrada y se intenta predecir la palabra de contexto “quick” en la capa de salida. Ambas palabras son representadas como vectores one hot encoding (vectores $X$ e \textit{y true} respectivamente). Esto lo observamos en la Figura \ref{fig:5_EjSkip}. En la Figura \ref{fig:6_EjSkip} podemos observar un mayor detalle. 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
 \centering
@@ -3040,7 +3049,7 @@ Los cálculos de $y’13$ a $y’18$ siguen la misma lógica descrita en el cál
 
 \end{itemize}
 
-\item Iteración N°2: Ingresa nuevamente “the” como palabra central en la capa de entrada. Pero ahora se intenta predecir la palabra de contexto “brown” en la capa de salida. Nuevamente ambas palabras son representadas como vectores one hot encoding (vectores $X$ e $y true$ respectivamente): ver Figura \ref{fig:7_EjSkip}. 
+\item Iteración N°2: Ingresa nuevamente “the” como palabra central en la capa de entrada. Pero ahora se intenta predecir la palabra de contexto “brown” en la capa de salida. Nuevamente ambas palabras son representadas como vectores one hot encoding (vectores $X$ e \textit{y true} respectivamente): ver Figura \ref{fig:7_EjSkip}. 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
 \centering
 \includegraphics[width=0.7\textwidth]{images/Ejemplo_Skipgram/7_EjSkip.png}
@@ -3050,7 +3059,7 @@ Los cálculos de $y’13$ a $y’18$ siguen la misma lógica descrita en el cál
 
 Para esta segunda iteración se realizan los \textit{pasos 2.1 y 2.2} descritos anteriormente para la iteración 1, obteniendo así el vector \textit{y pred softmax} correspondiente.
  
-\item Se realizarán 28 iteraciones más hasta llegar a la iteración N°30, en la cual se ingresará como entrada la palabra central “dog” y como vector y true tendremos la representación en formato one hot encoding de la palabra “lazy”. De esta manera, al finalizar el paso N°2 tendremos 30 vectores \textit{y pred softmax} y 30 vectores \textit{y true} con los que comparar.
+\item Se realizarán 28 iteraciones más hasta llegar a la iteración N°30, en la cual se ingresará como entrada la palabra central “dog” y como vector \textit{y true} tendremos la representación en formato one hot encoding de la palabra “lazy”. De esta manera, al finalizar el paso N°2 tendremos 30 vectores \textit{y pred softmax} y 30 vectores \textit{y true} con los que comparar.
 \end{itemize}
       
 \item Luego de obtener las distribuciones -\textit{y pred softmax}- (valor predicho) para cada combinación de palabras (central, contexto), estas son comparadas con los vectores de salida -\textit{y true}- correspondientes (que tienen las etiquetas reales y al igual que los vectores de entrada están codificados en formato one hot encoding), computándose de esta manera el \textit{error (o loss)} de clasificación (entre el valor predicho y el real) mediante el cálculo de la \textit{función de costo J($\theta$)} (Ver Fórmula \ref{eq:ecuacion_11_NLP}).
@@ -3069,7 +3078,7 @@ En la Figura \ref{fig:8_EjSkip} podemos observar un ejemplo numérico de cómo p
 
 \end{enumerate}
       
-Finalmente, luego de haber iterado epoch veces sobre nuestro conjunto de entrenamiento y habiendo minimizado (idealmente) la función de costo J en cada iteración, lo que haremos es \textit{obtener la matriz $W$} (de dimensión $V x N$), la cual será \textit{nuestra matriz de embeddings}: Figura \ref{fig:9_EjSkip} Observamos que, para cada fila de nuestra matriz $W$, tendremos el valor del word embedding para la palabra que tenga el mismo índice en nuestro vocabulario: por ejemplo para “the” que tiene índice 1, la 1er fila de $W$ será su representación en word embedding.
+Finalmente, luego de haber iterado epoch veces sobre nuestro conjunto de entrenamiento y habiendo minimizado (idealmente) la función de costo J en cada iteración, lo que haremos es \textit{obtener la matriz $W$} (de dimensión $V x N$), la cual será \textit{nuestra matriz de embeddings}: Figura \ref{fig:9_EjSkip}. Observamos que, para cada fila de nuestra matriz $W$, tendremos el valor del word embedding para la palabra que tenga el mismo índice en nuestro vocabulario: por ejemplo para “the” que tiene índice 1, la 1er fila de $W$ será su representación en word embedding.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
 \centering
@@ -3078,7 +3087,7 @@ Finalmente, luego de haber iterado epoch veces sobre nuestro conjunto de entrena
 \label{fig:9_EjSkip}
 \end{figure}
 
-De esta manera, entrenamos nuestra red neuronal no con el objetivo de predecir la palabra de contexto a partir de la palabra central, sino con el objetivo de tomar de esa red neuronal su matriz de pesos $W’$ ya entrenada y utilizarla como nuestra matriz de embeddings.
+De esta manera, entrenamos nuestra red neuronal \textbf{no} con el objetivo de predecir la palabra de contexto a partir de la palabra central, sino con el objetivo de tomar de esa red neuronal su matriz de pesos $W’$ ya entrenada y utilizarla como nuestra matriz de embeddings.
 
 \cleardoublepage
 

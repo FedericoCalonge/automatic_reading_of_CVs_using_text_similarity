@@ -65,7 +65,7 @@
 \BOOKMARK [4][-]{paragraph.4.5.4.3}{\277C\363mo obtener nuestros Word embeddings?}{subsubsection.4.5.4}% 65
 \BOOKMARK [4][-]{paragraph.4.5.4.4}{CBOW vs Skipgram.}{subsubsection.4.5.4}% 66
 \BOOKMARK [4][-]{paragraph.4.5.4.5}{One hot encoding.}{subsubsection.4.5.4}% 67
-\BOOKMARK [4][-]{paragraph.4.5.4.6}{Obteniendo nuestros Word Embeddings con Skipgram.}{subsubsection.4.5.4}% 68
+\BOOKMARK [4][-]{paragraph.4.5.4.6}{Obteniendo nuestros Word embeddings con Skipgram.}{subsubsection.4.5.4}% 68
 \BOOKMARK [4][-]{paragraph.4.5.4.7}{Arquitectura del modelo Skipgram.}{subsubsection.4.5.4}% 69
 \BOOKMARK [4][-]{paragraph.4.5.4.8}{Entrenamiento y funci\363n de costo con Softmax.}{subsubsection.4.5.4}% 70
 \BOOKMARK [4][-]{paragraph.4.5.4.9}{Optimizaciones: Muestreo Negativo.}{subsubsection.4.5.4}% 71
@@ -73,7 +73,7 @@
 \BOOKMARK [4][-]{paragraph.4.5.4.11}{Desventajas Word2Vec.}{subsubsection.4.5.4}% 73
 \BOOKMARK [2][-]{subsection.4.6}{Obtenci\363n de las mediciones de similitud entre textos.}{section.4}% 74
 \BOOKMARK [3][-]{subsubsection.4.6.1}{Maneras de medir la similitud entre textos.}{subsection.4.6}% 75
-\BOOKMARK [3][-]{subsubsection.4.6.2}{\277Por qu\351 decidimos utilizar Cosine similarity y WMD?}{subsection.4.6}% 76
+\BOOKMARK [3][-]{subsubsection.4.6.2}{\277Por qu\351 decidimos utilizar Cosine Similarity y WMD?}{subsection.4.6}% 76
 \BOOKMARK [3][-]{subsubsection.4.6.3}{Cosine Similarity.}{subsection.4.6}% 77
 \BOOKMARK [3][-]{subsubsection.4.6.4}{Word Mover\220s Distance \(WMD\).}{subsection.4.6}% 78
 \BOOKMARK [1][-]{section.5}{Implementaci\363n.}{}% 79
@@ -108,5 +108,5 @@
 \BOOKMARK [2][-]{subsection.7.2}{Ejemplo de funcionamiento K-means.}{section.7}% 108
 \BOOKMARK [2][-]{subsection.7.3}{Posici\363n inicial de los centroides en K-means.}{section.7}% 109
 \BOOKMARK [2][-]{subsection.7.4}{Funciones de activaci\363n.}{section.7}% 110
-\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word Embeddings mediante skipgram y softmax.}{section.7}% 111
+\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word embeddings mediante Skipgram y softmax.}{section.7}% 111
 \BOOKMARK [2][-]{subsection.7.6}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 112

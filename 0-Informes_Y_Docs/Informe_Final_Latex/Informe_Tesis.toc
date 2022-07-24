@@ -66,7 +66,7 @@
 \contentsline {paragraph}{\numberline {4.5.4.3}¿Cómo obtener nuestros Word embeddings?}{77}{paragraph.4.5.4.3}%
 \contentsline {paragraph}{\numberline {4.5.4.4}CBOW vs Skipgram.}{78}{paragraph.4.5.4.4}%
 \contentsline {paragraph}{\numberline {4.5.4.5}One hot encoding.}{80}{paragraph.4.5.4.5}%
-\contentsline {paragraph}{\numberline {4.5.4.6}Obteniendo nuestros Word Embeddings con Skipgram.}{82}{paragraph.4.5.4.6}%
+\contentsline {paragraph}{\numberline {4.5.4.6}Obteniendo nuestros Word embeddings con Skipgram.}{82}{paragraph.4.5.4.6}%
 \contentsline {paragraph}{\numberline {4.5.4.7}Arquitectura del modelo Skipgram.}{85}{paragraph.4.5.4.7}%
 \contentsline {paragraph}{\numberline {4.5.4.8}Entrenamiento y función de costo con Softmax.}{87}{paragraph.4.5.4.8}%
 \contentsline {paragraph}{\numberline {4.5.4.9}Optimizaciones: Muestreo Negativo.}{91}{paragraph.4.5.4.9}%
@@ -74,7 +74,7 @@
 \contentsline {paragraph}{\numberline {4.5.4.11}Desventajas Word2Vec.}{96}{paragraph.4.5.4.11}%
 \contentsline {subsection}{\numberline {4.6}Obtención de las mediciones de similitud entre textos.}{98}{subsection.4.6}%
 \contentsline {subsubsection}{\numberline {4.6.1}Maneras de medir la similitud entre textos.}{99}{subsubsection.4.6.1}%
-\contentsline {subsubsection}{\numberline {4.6.2}¿Por qué decidimos utilizar Cosine similarity y WMD?}{104}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2}¿Por qué decidimos utilizar Cosine Similarity y WMD?}{104}{subsubsection.4.6.2}%
 \contentsline {subsubsection}{\numberline {4.6.3}Cosine Similarity.}{105}{subsubsection.4.6.3}%
 \contentsline {subsubsection}{\numberline {4.6.4}Word Mover’s Distance (WMD).}{107}{subsubsection.4.6.4}%
 \contentsline {section}{\numberline {5}Implementación.}{110}{section.5}%
@@ -109,5 +109,5 @@
 \contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{138}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{141}{subsection.7.3}%
 \contentsline {subsection}{\numberline {7.4}Funciones de activación.}{143}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word Embeddings mediante skipgram y softmax.}{144}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{144}{subsection.7.5}%
 \contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{152}{subsection.7.6}%
