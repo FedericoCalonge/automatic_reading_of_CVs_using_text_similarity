@@ -227,7 +227,7 @@ Los objetivos específicos de este Proyecto de Tesis son:
 \subsection{Alcance del Proyecto.}
 El alcance de esta Tesis de Grado de Ingeniería incluye el desarrollo de conceptos de análisis de datos y machine learning, procesamiento de lenguaje natural, técnicas de preprocesamiento y limpieza de los datos, técnicas de vectorización y técnicas para medir la similitud entre textos, algoritmos de clasificación y clustering, integración con frameworks, visualización de datos, y gestión de Base de Datos, de acuerdo a lo enunciado en los \textit{\nameref{Obj_especif}}.
 
-\subsection{Organización.}
+\subsection{Organización.}\label{organizacion}
 Este Proyecto de Tesis fue organizado para trabajarlo en tres secciones:
 
 \begin{enumerate}
@@ -2425,13 +2425,14 @@ Donde:
 
 \section{Implementación.}\label{5.Implementacion}
 
-La implementación de este Sistema se trabajó en dos grandes partes:
+Tal como se mencionó en la sección \textit{\nameref{organizacion}}, una vez concluída la etapa de \textit{análisis e investigación}, se debe llevar a cabo la \textit{implementación del sistema}: tanto la implementación del modelo de clasificación KNN, como su integración a un Sistema Web. A continuación se describirán estas dos grandes partes en las cuales se trabajó para obtener nuestro Sistema final. 
+
 \begin{enumerate}
 \item Obtención del modelo de clasificación. 
 
 En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae de distintos candidatos y descripciones de puestos de trabajo de IT publicados por distintas empresas, para luego ser comparados y obtener similitudes entre los textos utilizando las técnicas para medir distancias y obtener dichas similitudes (WMD y Cosine Similarity) y las técnicas de vectorización (TF-IDF y Word embeddings).
 
-Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, \textbf{clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT}: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
 Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python; y sirvieron para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. \\
 
@@ -2447,77 +2448,211 @@ De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo int
 
 \subsection{Obtención del modelo de clasificación.}\label{5.1.Obtenciondelmodelopredictivo}
 
-\subsubsection{Introducción.}
-Como inicio definamos qué es un modelo. En nuestro caso, un modelo representa ....
-Este modelo se construyó en base a ...
-La implementación de este Sistema se realizó en Python...
-
 \subsubsection{Esquema.}
-Como podemos ver la Figura \ref{fig:FlowCoreSystem} representa el procedimiento utilizado para la obtención de nuestro modelo de clasificación. 
+
+En la Figura \ref{fig:FlowCoreSystem} podemos ver el procedimiento utilizado para la obtención de nuestro modelo de clasificación. Estas etapas serán explicadas en las secciones posteriores. \\
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/flow-core.png} 	%Incluyendo imagen Flow Core.
-  \caption{Pipeline Flow para la obtención del modelo de clasificación KNN}  
+  \caption{Pipeline Flow para la obtención del modelo de clasificación KNN. \\}  
   \label{fig:FlowCoreSystem}
+\end{figure}
+
+\subsubsection{Obtención de sets de datos.}\label{obtencion_set_datos}
+
+En primer lugar debemos definir qué es un set o conjunto de datos.
+Un set o conjunto de datos es una tabla de una base de datos o, matemáticamente, una matriz estadística de datos. Cada columna de la tabla representa una variable del set de datos; y cada fila representa a un miembro determinado del mismo.
+
+Para este Proyecto utilizamos dos sets de datos que se obtuvieron mediante la recolección de distintos archivos alojados en la Web. Los mismos se encuentran descritos en las secciones \textit{\nameref{cvs}} y \textit{\nameref{puestos_lab}}.
+
+Cabe destacar que estos sets de datos son necesarios para etapas posteriores: tanto para el entrenamiento y obtención de vectores mediante TF-IDF, como para el entrenamiento de Word2vec y obtención de los Word embeddings, y como para su uso en los algoritmos K-means y KNN. El detalle de las porciones de datasets utilizadas para cada método y etapa está detallado en la sección \textit{\nameref{etapas_set_datos}}.
+
+\cleardoublepage
+
+\paragraph{Curriculum Vitae.}\label{cvs}
+Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las siguientes fuentes:
+
+\begin{enumerate}
+\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/palaksood97/resume-dataset}}. Estos pdfs son candidatos de la India con experiencia en el rubro de IT. Ver Figura \ref{fig:DS_Cand_1}.
+\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle\footnote{\url{https://www.kaggle.com/snehaanbhawal/resume-dataset}}. Este CSV cuenta con curriculums vitae obtenidos del sitio web de postulación de trabajos 'livecareer.com'. Figura \ref{fig:DS_Cand_2}.
+\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/gauravduttakiit/resume-dataset}}. Este CSV cuenta con curriculums vitae repartidos en distintas categorías de IT. Figura \ref{fig:DS_Cand_3}.
+\item 10 Curriculums en formato PDF, los cuales los cuales fueron obtenidos como ejemplos mediante una recolección propia de distintos sitios web. Figura \ref{fig:DS_Cand_4}.
+\end{enumerate}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=1\textwidth]{images/Implementacion/1-DS_Candidato_1.png}}
+ \caption{Ejemplo de una página de un candidato -pdf- (izquierda) y visualización de los 228 candidatos en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Cand_1}
+\end{figure}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.95\textwidth]{images/Implementacion/2-DS_Candidato_2.png}}
+ \caption{Ejemplo de una fila de un candidato -csv- (izquierda) y visualización de los 2484 candidatos en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Cand_2}
+\end{figure}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.95\textwidth]{images/Implementacion/3-DS_Candidato_3.png}}
+ \caption{Ejemplo de una fila de un candidato -csv- y visualización de los 962 candidatos en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Cand_3}
+\end{figure}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.95\textwidth]{images/Implementacion/4-DS_Candidato_4.png}}
+ \caption{Ejemplo de una página de un candidato -pdf- (izquierda) y visualización de los 10 candidatos en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Cand_4}
 \end{figure}
 
 \cleardoublepage
 
-\subsubsection{Obtención de sets de datos.}\label{obtencion_set_datos}
-En primer lugar debemos definir qué es un set o conjunto de datos.
-Un set o conjunto de datos es una tabla de una base de datos o, matemáticamente, una matriz estadística de datos. Cada columna de la tabla representa una variable del set de datos; y cada fila representa a un miembro determinado del mismo.
-
-Para este Proyecto utilizamos dos grandes sets de datos que se obtuvieron mediante la recolección de distintos archivos alojados en la Web, los cuales estan descriptos a continuación.
-
-\paragraph{Curriculum Vitae.}
-Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las siguientes fuentes:
-
-\begin{enumerate}
-\item 228 Curriculums en formato docx y posteriormente convertidos a pdf, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/palaksood97/resume-dataset}}. Estos pdfs son candidatos de la India con experiencia en el rubro de IT.
-\item 2484 Curriculums en formato CSV, obtenidos del sitio Kagle\footnote{\url{https://www.kaggle.com/snehaanbhawal/resume-dataset}}. Este CSV cuenta con curriculums vitae obtenidos del sitio web de postulación de trabajos 'livecareer.com'.
-\item 962 Curriculumns en formato CSV, obtenidos del sitio Kaggle\footnote{\url{https://www.kaggle.com/gauravduttakiit/resume-dataset}}. Este CSV cuenta con curriculums vitae repartidos en distintas categorías de IT.
-\item 10 Curriculums en formato PDF, los cuales los cuales fueron obtenidos como ejemplos mediante una recolección propia de distintos sitios web. 
-\end{enumerate}
-
-\paragraph{Descripciones Puestos Laborales.}
+\paragraph{Descripciones Puestos Laborales.}\label{puestos_lab}
 
 Los set de datos de descripciones de puestos laborales se obtuvieron de las siguientes fuentes:
 
 \begin{enumerate}
-\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle\footnote{\url{https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom}}. El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'.
-\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed\footnote{\url{https://www.indeed.com/q-USA-jobs.html}} para puestos de trabajo de IT.
+\item 22.000 descripciones en formato CSV; obtenido del sitio Kaggle\footnote{\url{https://www.kaggle.com/PromptCloudHQ/us-technology-jobs-on-dicecom}}. El CSV cuenta con descripciones de puestos obtenidos del sitio web de USA de postulación de trabajos del rubro de IT 'Dice.com'. Ver Figura \ref{fig:DS_Job_1}.
+\item 10 descripciones en formato CSV; obtenidas como ejemplos mediante una recolección propia del sitio Indeed\footnote{\url{https://www.indeed.com/q-USA-jobs.html}} para puestos de trabajo de IT. Ver Figura \ref{fig:DS_Job_2}.
 \end{enumerate}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.95\textwidth]{images/Implementacion/6-DS_Jobs_2.png}}
+ \caption{Ejemplo de una fila de una descripción -csv- (izquierda) y visualización de las 22.000 descripciones en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Job_1}
+\end{figure}
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.95\textwidth]{images/Implementacion/5-DS_Jobs_1.png}}
+ \caption{Ejemplo de una fila de una descripción -csv- (izquierda) y visualización de las 10 descripciones en el Jupyter Notebook -sin preprocesar- (derecha).} 
+ \label{fig:DS_Job_2}
+\end{figure}
 
 \cleardoublepage
 
 \subsubsection{Preprocesamiento de textos.}
 Previamente a utilizar las técnicas para medir distancias y obtener similitudes entre textos (WMD y Cosine Similarity) y los algoritmos de aprendizaje (KNN y K-Means) necesitamos que los datos que comparemos e introduzcamos en los algoritmos estén lo más limpios posible; ya que de lo contrario las mismos podrían clasificar o predecir de forma errónea. Este análisis previo sobre los datos debe ser minucioso ya que puede haber valores incoherentes o absurdos.
 
-El procedimiento para la Limpieza de los Curriculum Vitae y las descripciones de los puestos laborales fue el siguiente:
+El procedimiento para el preprocesamiento y limpieza de los Curriculum Vitae y las descripciones de los puestos laborales de IT fue el siguiente:
 
 \begin{enumerate}
-\item Convertimos todo a minúscula.
-\item Eliminamos datos no relevantes para nuestros análisis (mails y páginas web).
-\item Eliminamos signos de puntuación y caracterés especiales (incluyendo números).
-\item Eliminamos stop words.
-\item Eliminamos common words no relevantes para nuestros análisis.
-\item Aplicamos lematización y Tokenización.
-\item Eliminamos repetidos.
+\item Eliminamos filas repetidas e innecesarias.
+\item Unimos los datasets.
+\item Limpieza inicial y normalización.
+\begin{itemize}
+	\item Codificamos nuestros textos a utf-8.
+    \item Convertimos todo a minúscula.
+    \item Eliminamos datos no relevantes para nuestros análisis (mails, páginas web y common words).
+    \item Eliminamos signos de puntuación y caracteres especiales (incluyendo números).
+    \item Eliminamos stop words.
+\end{itemize}
+\item Aplicamos Tokenización.
+\item Aplicamos Lematización.
 \item Obtenemos y usamos bi-gramas.
 \end{enumerate}
 
-Luego de aplicar preprocesamiento y limpieza de datos nos quedarán los siguientes tamaños de nuestros datasets:
-\begin{itemize}
-\item 624 curriculums vitae de candidatos (en formato pdf y csv).
-\item 20593 descripciones de puestos de IT (en formato csv).
-\end{itemize}
+Si bien en la sección Ver \textit{\nameref{Proces_textos}} se detalla en qué consiste resumidamente cada etapa, a continuación realizaremos un mayor acercamiento con ejemplos visuales de cada una de las mismas.
+
+En el primer paso, \textit{1. Eliminamos filas repetidas e innecesarias}, eliminamos los duplicados (\textit{filas repetidas}) de cada uno de los datasets. Además, en algunos casos se tuvieron que eliminar \textit{filas innecesarias}. ¿A qué llamamos \textit{filas innecesarias}?: Por ejemplo, para el caso del dataset visualizado en la Figura \ref{fig:DS_Cand_3}, además de trabajos de IT, también este dataset cuenta con candidatos que pertenecen a trabajos de arte, ventas, salud y deporte, ingeniería eléctrica, civil o mecánica, etc. Para nuestro análisis únicamente nos interesan los trabajos relacionados a IT, es por esto que filtramos únicamente las filas con curriculums que pertenezcan a trabajos de IT (los cuales eran, por ejemplo, los pertenecientes a las categorías 'Data Science', 'Web Designing', 'Java Developer', etc.).
+
+\textbf{Debido a esta manipulación y filtrado de datos la cantidad de filas de nuestros datasets se redujo significativamente}. Por ejemplo, para el caso del dataset descrito anteriormente, pasamos de las 962 filas visualizadas en la Figura \ref{fig:DS_Cand_3} a únicamente 97 filas (Figura \ref{fig:DS_Cand_3_sin_dup}). 
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=0.5\textwidth]{images/Implementacion/11-962_sin_dup.png}}
+ \caption{Dataset de 962 filas iniciales luego de eliminar filas duplicadas e innecesarias.} 
+ \label{fig:DS_Cand_3_sin_dup}
+\end{figure}
+
+Luego, en el paso \textit{2. Unimos los datasets}, lo que se hizo fue unir por un lado los 4 datasets de candidatos, y por el otro los 2 datasets de puestos de IT. De esta manera, en la Figura \ref{fig:final_antes_preproc} podemos observar los tamaños finales de nuestros datasets y sus repectivas columnas. Este paso fue necesario para simplificar la futura aplicación de las respectivas funciones de limpieza de datos.
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=1\textwidth]{images/Implementacion/12-Final_antes_preproc.png}}
+ \caption{Datasets de candidatos (izquierda) y de puestos de IT (derecha).} 
+ \label{fig:final_antes_preproc}
+\end{figure}
+
+El siguiente paso, \textit{3.Limpieza inicial y normalización}, consiste en limpiar y normalizar nuestros datos, tanto de los curriculums vitae como de las descripciones de los puestos de IT. Para esto transformamos nuestros textos codificándolos a utf-8, convertimos todos los caracteres a minúscula y eliminamos datos no relevantes para nuestros análisis (mails, páginas web y common words), signos de puntuación, caracteres especiales (incluyendo números) y stop words.
+
+En la Figura \ref{fig:common_text} podemos observar la lista de common words que eliminamos de los textos. Estas common word son palabras que no consideramos necesarias para nuestro análisis: meses y sus abreviaciones, secciones comunes de los curriculums como 'education', 'work experience', etc. 
+    
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=1\textwidth]{images/Implementacion/9-common_text.png}}
+ \caption{Palabras comunes eliminadas de los textos.} 
+ \label{fig:common_text}
+\end{figure}
+
+Luego aplicamos en conjunto los pasos \textit{4.Aplicamos Tokenización.}\footnote{Al tokenizar dividimos los textos en palabras (tokens). En nuestra implementación utilizamos el tokenizador provisto por la libreria NLTK \detokenize{'work_tokenize'}.} y \textit{5.Aplicamos Lematización.}\footnote{Como mencionamos anteriormente, algunas palabras con diferentes significados (por ejemplo 'population' y 'populated') pueden tener la misma raíz ('popul'), y si aplicamos \textit{stemming} nos devolverá esta raíz para ambas palabras (algo que sería incorrecto ya que son palabras con significados distintos). Es por esto que en nuestra implementación utilizamos \textit{lemmatization} en lugar de \textit{stemming}: los ‘lemas’ tienen como objetivo transmitir una idea con una palabra real en lugar de una raíz básica (‘stem’) sin un significado definido, corrigiendo el problema de tener dos conceptos diferentes con la misma raíz.}. Como ejemplo visual vamos a tomar como referencia el pdf del candidato de la Figura \ref{fig:DS_Cand_4}. En la Figura \ref{fig:tokens_obt} observamos los tokens obtenidos después de realizar los pasos 3-5 sobre el mismo. 
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=1\textwidth]{images/Implementacion/13-Tokens.png}}
+ \caption{Candidato luego de aplicar pasos 3-5.} 
+ \label{fig:tokens_obt}
+\end{figure}
+
+Podemos observar que debido al paso \textit{3.Limpieza inicial y normalización} pasaron a minúsculas todas las palabras, se eliminaron los signos de puntuación y carácteres especiales (paréntesis, comas, puntos, números, etc.), stop words ('he', 'has', 'in', 'and', etc.), common words (las vistas en la Figura \ref{fig:common_text}), nombre de los candidatos (en este caso 'Calonge Federico Matias'), y páginas web ('https://github.com/FedericoCalonge/')\footnote{Las páginas webs y correos se eliminaron mediante expresiones regulares.}.
+
+Tambien podemos visualizar algunos lemmas que se obtuvieron, notando mayormente en este caso que las palabras en plural pasaron a su forma/lema singular: 'tools' a 'tool', 'projects' a 'project', etc.
+
+Por último, en la etapa \textit{6.Obtenemos y usamos bi-gramas}, se decidió asociar 2 palabras que ocurren frecuentemente como 1 sola palabra utilizando bi-grams (como por ejemplo \detokenize{machine_learning}, \detokenize{data_science}, etc.) con el objetivo de enriquecer nuestro vocabulario. Esto nuevamente se aplicó en los textos de ambos datasets. Siguiendo con el ejemplo de la Figura \ref{fig:tokens_obt}, al aplicar bi-grams obtuvimos los tokens visualizados en la Figura \ref{fig:bigrams_obt}.
+
+\begin{figure}[H] 
+ \centering
+ \noindent\makebox[\textwidth]{%
+ \includegraphics[width=1\textwidth]{images/Implementacion/14-bi-grams.png}}
+ \caption{Candidato luego de aplicar bi-gramas.} 
+ \label{fig:bigrams_obt}
+\end{figure}
+
+En las Figuras \ref{fig:Cand_clean} y \ref{fig:Desc_clean} podemos observar el resultado final de los datasets de candidatos y descripciones de puestos de IT respectivamente, una vez que se completó el preprocesamiento de textos (desde el paso 1 al 6).
+
+Podemos observar un gran contraste al compararlo con los mismos datasets antes de pasar por la etapa \textit{3.Limpieza inicial y normalización}: Figura \ref{fig:final_antes_preproc}.
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/Implementacion/8-DS_Cand_Clean.png}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption{Dataset de candidatos luego de realizar el preprocesamiento.}
+ \label{fig:Cand_clean}
+\end{figure}
+
+\begin{figure}[H]    
+ \centering
+ \includegraphics[width=1\textwidth]{images/Implementacion/7-DS_Jobs_Clean}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption{Dataset de descripciones de puestos luego de realizar el preprocesamiento.}
+ \label{fig:Desc_clean}
+\end{figure}
 
 \cleardoublepage
 
-\subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}
+\subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}\label{etapas_set_datos}
 
-El total de 624 curriculums vitae de candidatos y 20593 descripciones de duestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word embeddings (para el posterior cálculo de WMD).
+Una vez habiendo realizado la etapa de preprocesamiento y limpieza de datos nos quedaron los siguientes tamaños de nuestros datasets:
+\begin{itemize}
+\item 624 curriculums vitae de candidatos (en formato pdf y csv). Ver Figura \ref{fig:Cand_clean}.
+\item 20593 descripciones de puestos de IT (en formato csv). Ver Figura \ref{fig:Desc_clean}.
+\end{itemize}
+
+El total de 624 curriculums vitae de candidatos y 20593 descripciones de puestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word embeddings (para el posterior cálculo de WMD).
 
 Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-means y para entrenar a nuestro algoritmo KNN, utilizaremos únicamente una porción de nuestros datasets:
 
