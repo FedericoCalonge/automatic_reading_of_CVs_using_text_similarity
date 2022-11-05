@@ -1833,7 +1833,7 @@ Entonces, ¿qué nos conviene elegir: CBOW o Skipgram?. Para responder a esto de
 \item \textit{CBOW} funciona más rápido (ya que por lo que vimos anteriormente hace menos cuentas, solo una productoria) y tiene una mejor representación para palabras más frecuentes.
 \end{itemize}
 
-Es por esto que para nuestra implementación \textbf{se optó por utilizar Skipgram}; debido a que nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, como mencionamos previamente, otra punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
+Es por esto que para nuestra implementación \textbf{se optó por utilizar Skipgram}; debido a que nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, como mencionamos previamente, otro punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
 
 El funcionamiento del modelo Skipgram para obtener nuestros word embeddings está detallado en la sección \textit{\nameref{obt_skip}}. Previamente a esto, explicaremos el concepto de vectores de tipo \textit{one hot encoding}, concepto necesario para entender el modelo Skipgram.
 \\
@@ -2062,7 +2062,7 @@ Como podemos observar en la Figura \ref{fig:Imagen_NLP_24}, anteriormente utiliz
  \label{fig:Imagen_NLP_24}
 \end{figure}
 
-De esta manera, mediante muestreo negativo pasamos de usar la Fórmula \ref{eq:ecuacion_15_NLP} para calcular la probabilidad de la palabra $w_o$ dada $w_c$ (que representa la probabilidad $P(w^{(t+j)} | w^{(t)}; \theta)$), a utilizar la Fórmula \ref{eq:ecuacion_17_NLP}, la cual calcula la probabilidad de que la salida sea 1, dadas las 2 palabras $w_c$ y $w_o$. 
+De esta manera, mediante muestreo negativo pasamos de usar la Fórmula \ref{eq:ecuacion_15_NLP} para calcular la probabilidad de la palabra $w_o$ dada $w_c$ (que representa la probabilidad $P(w^{(t+j)} | w^{(t)}; \theta)$), a utilizar la Fórmula \ref{eq:ecuacion_17_NLP}, la cual calcula la probabilidad de que la salida sea 1, dadas las 2 palabras $w_c$ y $w_o$.  
 
 \begin{equation}\label{eq:ecuacion_17_NLP}
 P(D=1 | w_c, w_o) = \sigma (u_{o}^{T} v_c)    \qquad \text{(Ver \cite{NLP_27})}
@@ -2434,7 +2434,7 @@ En esta primera parte se obtuvieron y preprocesaron datasets de Curriculum Vitae
 
 Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizaron para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentan a un modelo de clasificación KNN. Finalmente, con este modelo KNN logramos, en base a los valores de similitud de nuevos candidatos, \textbf{clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT}: similitud escasa, similitud media, similitud alta, similitud muy alta.
 
-Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python; y sirvieron para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. \\
+Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Python, y sirvieron para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes para luego ser utilizados en la siguiente etapa. \\
 
 \item Integración al Sistema Web. 
 
@@ -2547,24 +2547,24 @@ Previamente a utilizar las técnicas para medir distancias y obtener similitudes
 El procedimiento para el preprocesamiento y limpieza de los Curriculum Vitae y las descripciones de los puestos laborales de IT fue el siguiente:
 
 \begin{enumerate}
-\item Eliminamos filas repetidas e innecesarias.
-\item Unimos los datasets.
+\item Eliminación de filas repetidas e innecesarias.
+\item Unión los datasets.
 \item Limpieza inicial y normalización.
 \begin{itemize}
-	\item Codificamos nuestros textos a utf-8.
-    \item Convertimos todo a minúscula.
-    \item Eliminamos datos no relevantes para nuestros análisis (mails, páginas web y common words).
-    \item Eliminamos signos de puntuación y caracteres especiales (incluyendo números).
-    \item Eliminamos stop words.
+	\item Codificación de nuestros textos a utf-8.
+    \item Conversión a minúscula.
+    \item Eliminación de datos no relevantes para nuestros análisis (mails, páginas web y common words).
+    \item Eliminación de signos de puntuación y caracteres especiales (incluyendo números).
+    \item Eliminaación de stop words.
 \end{itemize}
-\item Aplicamos Tokenización.
-\item Aplicamos Lematización.
-\item Obtenemos y usamos bi-gramas.
+\item Aplicación de Tokenización.
+\item Aplicación de Lematización.
+\item Obtención y uso de bi-gramas.
 \end{enumerate}
 
-Si bien en la sección Ver \textit{\nameref{Proces_textos}} se detalla en qué consiste resumidamente cada etapa, a continuación realizaremos un mayor acercamiento con ejemplos visuales de cada una de las mismas.
+Si bien en la sección \textit{\nameref{Proces_textos}} se detalla en qué consiste resumidamente cada etapa, a continuación realizaremos un mayor acercamiento con ejemplos visuales de cada una de las mismas.
 
-En el primer paso, \textit{1. Eliminamos filas repetidas e innecesarias}, eliminamos los duplicados (\textit{filas repetidas}) de cada uno de los datasets. Además, en algunos casos se tuvieron que eliminar \textit{filas innecesarias}. ¿A qué llamamos \textit{filas innecesarias}?: Por ejemplo, para el caso del dataset visualizado en la Figura \ref{fig:DS_Cand_3}, además de trabajos de IT, también este dataset cuenta con candidatos que pertenecen a trabajos de arte, ventas, salud y deporte, ingeniería eléctrica, civil o mecánica, etc. Para nuestro análisis únicamente nos interesan los trabajos relacionados a IT, es por esto que filtramos únicamente las filas con curriculums que pertenezcan a trabajos de IT (los cuales eran, por ejemplo, los pertenecientes a las categorías 'Data Science', 'Web Designing', 'Java Developer', etc.).
+En el primer paso, \textit{1. Eliminación de filas repetidas e innecesarias}, eliminamos los registros duplicados (\textit{filas repetidas}) de cada uno de los datasets. Además, en algunos casos se tuvieron que eliminar \textit{filas innecesarias}: por ejemplo, para el caso del dataset visualizado en la Figura \ref{fig:DS_Cand_3}, además de trabajos de IT, también este dataset cuenta con candidatos que pertenecen a trabajos de arte, ventas, salud y deporte, ingeniería eléctrica, civil o mecánica, etc. Para nuestro análisis únicamente nos interesan los trabajos relacionados a IT, es por esto que filtramos únicamente las filas con curriculums que pertenezcan a trabajos de IT (los cuales eran, por ejemplo, los pertenecientes a las categorías 'Data Science', 'Web Designing', 'Java Developer', etc.).
 
 \textbf{Debido a esta manipulación y filtrado de datos la cantidad de filas de nuestros datasets se redujo significativamente}. Por ejemplo, para el caso del dataset descrito anteriormente, pasamos de las 962 filas visualizadas en la Figura \ref{fig:DS_Cand_3} a únicamente 97 filas (Figura \ref{fig:DS_Cand_3_sin_dup}). 
 
@@ -2576,7 +2576,7 @@ En el primer paso, \textit{1. Eliminamos filas repetidas e innecesarias}, elimin
  \label{fig:DS_Cand_3_sin_dup}
 \end{figure}
 
-Luego, en el paso \textit{2. Unimos los datasets}, lo que se hizo fue unir por un lado los 4 datasets de candidatos, y por el otro los 2 datasets de puestos de IT. De esta manera, en la Figura \ref{fig:final_antes_preproc} podemos observar los tamaños finales de nuestros datasets y sus repectivas columnas. Este paso fue necesario para simplificar la futura aplicación de las respectivas funciones de limpieza de datos.
+Luego, en el paso \textit{2. Unión los datasets}, lo que se hizo fue unir por un lado los 4 datasets de candidatos, y por el otro los 2 datasets de puestos de IT. De esta manera, en la Figura \ref{fig:final_antes_preproc} podemos observar los tamaños finales de nuestros datasets y sus repectivas columnas. Este paso fue necesario para simplificar la futura aplicación de las respectivas funciones de limpieza de datos.
 
 \begin{figure}[H] 
  \centering
@@ -2586,7 +2586,7 @@ Luego, en el paso \textit{2. Unimos los datasets}, lo que se hizo fue unir por u
  \label{fig:final_antes_preproc}
 \end{figure}
 
-El siguiente paso, \textit{3.Limpieza inicial y normalización}, consiste en limpiar y normalizar nuestros datos, tanto de los curriculums vitae como de las descripciones de los puestos de IT. Para esto transformamos nuestros textos codificándolos a utf-8, convertimos todos los caracteres a minúscula y eliminamos datos no relevantes para nuestros análisis (mails, páginas web y common words), signos de puntuación, caracteres especiales (incluyendo números) y stop words.
+El siguiente paso, \textit{3. Limpieza inicial y normalización}, consiste en limpiar y normalizar nuestros datos, tanto de los curriculums vitae como de las descripciones de los puestos de IT. Para esto transformamos nuestros textos codificándolos a utf-8, pasamos todas las letras a minúscula y eliminamos datos no relevantes para nuestros análisis (mails, páginas web y common words)\footnote{Las páginas webs y los correos se eliminaron mediante expresiones regulares.}, signos de puntuación, caracteres especiales (paréntesis, comas, puntos, números, etc.) y stop words.
 
 En la Figura \ref{fig:common_text} podemos observar la lista de common words que eliminamos de los textos. Estas common word son palabras que no consideramos necesarias para nuestro análisis: meses y sus abreviaciones, secciones comunes de los curriculums como 'education', 'work experience', etc. 
     
@@ -2598,7 +2598,7 @@ En la Figura \ref{fig:common_text} podemos observar la lista de common words que
  \label{fig:common_text}
 \end{figure}
 
-Luego aplicamos en conjunto los pasos \textit{4.Aplicamos Tokenización.}\footnote{Al tokenizar dividimos los textos en palabras (tokens). En nuestra implementación utilizamos el tokenizador provisto por la libreria NLTK \detokenize{'work_tokenize'}.} y \textit{5.Aplicamos Lematización.}\footnote{Como mencionamos anteriormente, algunas palabras con diferentes significados (por ejemplo 'population' y 'populated') pueden tener la misma raíz ('popul'), y si aplicamos \textit{stemming} nos devolverá esta raíz para ambas palabras (algo que sería incorrecto ya que son palabras con significados distintos). Es por esto que en nuestra implementación utilizamos \textit{lemmatization} en lugar de \textit{stemming}: los ‘lemas’ tienen como objetivo transmitir una idea con una palabra real en lugar de una raíz básica (‘stem’) sin un significado definido, corrigiendo el problema de tener dos conceptos diferentes con la misma raíz.}. Como ejemplo visual vamos a tomar como referencia el pdf del candidato de la Figura \ref{fig:DS_Cand_4}. En la Figura \ref{fig:tokens_obt} observamos los tokens obtenidos después de realizar los pasos 3-5 sobre el mismo. 
+Luego aplicamos en conjunto los pasos \textit{4. Aplicación de Tokenización}\footnote{Al tokenizar dividimos los textos en palabras (tokens). En nuestra implementación utilizamos el tokenizador provisto por la libreria NLTK \detokenize{'work_tokenize'}.} y \textit{5. Aplicación de Lematización}\footnote{Como mencionamos anteriormente, algunas palabras con diferentes significados (por ejemplo 'population' y 'populated') pueden tener la misma raíz ('popul'), y si aplicamos \textit{stemming} nos devolverá esta raíz para ambas palabras (algo que sería incorrecto ya que son palabras con significados distintos). Es por esto que en nuestra implementación utilizamos \textit{lemmatization} en lugar de \textit{stemming}: los ‘lemas’ tienen como objetivo transmitir una idea con una palabra real en lugar de una raíz básica (‘stem’) sin un significado definido, corrigiendo el problema de tener dos conceptos diferentes con la misma raíz.}. Como ejemplo visual vamos a tomar como referencia el pdf del candidato de la Figura \ref{fig:DS_Cand_4}. En la Figura \ref{fig:tokens_obt} observamos los tokens obtenidos después de realizar los pasos 3-5 sobre el mismo. 
 
 \begin{figure}[H] 
  \centering
@@ -2608,11 +2608,9 @@ Luego aplicamos en conjunto los pasos \textit{4.Aplicamos Tokenización.}\footno
  \label{fig:tokens_obt}
 \end{figure}
 
-Podemos observar que debido al paso \textit{3.Limpieza inicial y normalización} pasaron a minúsculas todas las palabras, se eliminaron los signos de puntuación y carácteres especiales (paréntesis, comas, puntos, números, etc.), stop words ('he', 'has', 'in', 'and', etc.), common words (las vistas en la Figura \ref{fig:common_text}), nombre de los candidatos (en este caso 'Calonge Federico Matias'), y páginas web ('https://github.com/FedericoCalonge/')\footnote{Las páginas webs y correos se eliminaron mediante expresiones regulares.}.
+Podemos visualizar algunos lemmas que se obtuvieron, notando mayormente en este caso que las palabras en plural pasaron a su forma/lema singular: 'tools' a 'tool', 'projects' a 'project', etc.
 
-Tambien podemos visualizar algunos lemmas que se obtuvieron, notando mayormente en este caso que las palabras en plural pasaron a su forma/lema singular: 'tools' a 'tool', 'projects' a 'project', etc.
-
-Por último, en la etapa \textit{6.Obtenemos y usamos bi-gramas}, se decidió asociar 2 palabras que ocurren frecuentemente como 1 sola palabra utilizando bi-grams (como por ejemplo \detokenize{machine_learning}, \detokenize{data_science}, etc.) con el objetivo de enriquecer nuestro vocabulario. Esto nuevamente se aplicó en los textos de ambos datasets. Siguiendo con el ejemplo de la Figura \ref{fig:tokens_obt}, al aplicar bi-grams obtuvimos los tokens visualizados en la Figura \ref{fig:bigrams_obt}.
+Por último, en la etapa \textit{6. Obtención y uso de bi-gramas}, se decidió asociar 2 palabras que ocurren frecuentemente como 1 sola palabra utilizando bi-grams (como por ejemplo \detokenize{machine_learning}, \detokenize{data_science}, etc.) con el objetivo de enriquecer nuestro vocabulario. Esto nuevamente se aplicó en los textos de ambos datasets. Siguiendo con el ejemplo de la Figura \ref{fig:tokens_obt}, al aplicar bi-grams obtuvimos los tokens visualizados en la Figura \ref{fig:bigrams_obt}.
 
 \begin{figure}[H] 
  \centering
@@ -2646,7 +2644,7 @@ Podemos observar un gran contraste al compararlo con los mismos datasets antes d
 
 \subsubsection{Cantidad final del set de datos y su uso en las distintas etapas.}\label{etapas_set_datos}
 
-Una vez habiendo realizado la etapa de preprocesamiento y limpieza de datos nos quedaron los siguientes tamaños de nuestros datasets:
+Una vez realizada la etapa de preprocesamiento y limpieza de datos nos quedaron los siguientes tamaños de nuestros datasets:
 \begin{itemize}
 \item 624 curriculums vitae de candidatos (en formato pdf y csv). Ver Figura \ref{fig:Cand_clean}.
 \item 20593 descripciones de puestos de IT (en formato csv). Ver Figura \ref{fig:Desc_clean}.
@@ -2654,61 +2652,215 @@ Una vez habiendo realizado la etapa de preprocesamiento y limpieza de datos nos 
 
 El total de 624 curriculums vitae de candidatos y 20593 descripciones de puestos de IT que mencionamos previamente, serán utilizados para el entrenamiento y obtención de vectores mediante TF-IDF (para el posterior cálculo de Cosine Similarity) y para el entrenamiento de Word2Vec y obtención de los Word embeddings (para el posterior cálculo de WMD).
 
-Por otro lado, para calcular Cosine Similarity y WMD, para utilizarlos en K-means y para entrenar a nuestro algoritmo KNN, utilizaremos únicamente una porción de nuestros datasets:
+Por otro lado, para calcular los valores de Cosine Similarity y WMD, los cuales serán utilizados posteriormente para la aplicación de K-means y KNN, utilizaremos únicamente una porción de nuestros datasets:
 
 1-Para el cálculo de Cosine Similarity y WMD:
 \begin{itemize}
-\item 301 curriculums vitae de candidatos.
-\item 201 descripciones de puestos de IT.
+\item 101 curriculums vitae de candidatos.
+\item 31 descripciones de puestos de IT.
 \end{itemize}
-Nota: No obstante, al realizar los cálculos de distancias compararemos cada curriculum vitae con cada Job Description, obteniendo un dataframe total de 3131 filas con sus respectivo valores de WMD y Cosine Similarity.
+\textit{Nota: No obstante, al realizar los cálculos de distancias compararemos cada curriculum vitae con cada Job Description, por lo que obtendremos un dataframe final de \textbf{3131} filas con sus respectivos valores de WMD y Cosine Similarity.}
 
 2-Para el uso de K-means y entrenamiento con KNN (eliminamos un curriculum vitae y una descripción de puesto IT que los utilizamos en '3-'):
 \begin{itemize}
-\item 300 curriculums vitae de candidatos.
-\item 200 descripciones de puestos de IT.
+\item 100 curriculums vitae de candidatos.
+\item 30 descripciones de puestos de IT.
 \end{itemize}        
-Nota: como se comentó previamente, nos quedarán 3000 filas / puntos para usar en K-means y entrenar KNN; llegando a representar estos 3000 puntos en un plano de 2 dimensiones.
+\textit{Nota: como se comentó previamente, nos quedarán \textbf{3000} filas / puntos para usar en K-means y entrenar KNN; llegando a representar estos 3000 puntos en un plano de 2 dimensiones.}
 
 3-Para la clasificación de nuevas muestras mediante KNN:
 \begin{itemize}
 \item 1 curriculum vitae de candidatos.
 \item 1 descripción de puesto de IT.
 \end{itemize}
-Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.
+\textit{Nota: como se comentó previamente, nos quedarán 131 filas para clasificar.}
 
-¿Por qué utilizamos solo una porción de nuestros datasets?: Esto es debido a los drawbacks de WMD y KNN.
+\cleardoublepage
+
+\textbf{¿Por qué utilizamos solo una porción de nuestros datasets?: Esto es debido a los drawbacks de WMD y KNN.}
 \begin{itemize}
-\item WMD: posee una alta complejidad en el cálculo de la distancia, teniendo un tiempo de ejecución muy elevado. Como ejemplo, al correrlo localmente, el cálculo de WMD para 3131 filas tardó 7 horas; frente a los 3 segundos que tardó el cálculo de Cosine Similarity para la misma cantidad de filas.
-\item KNN: KNN es una gran opción para datasets pequeños con pocas variables de entrada; pero tiene problemas cuando la cantidad de entradas es muy grande. En grandes dimensiones, los puntos que pueden ser similares pueden tener distancias muy grandes. Además, cada vez que se va a hacer una predicción con KNN, busca al vecino más cercano en el conjunto de entrenamiento completo. Por esto, se debe utilizar un dataset pequeño para que el clasificador KNN complete su ejecución rápidamente.
+\item \textit{WMD} posee una alta complejidad en el cálculo de la distancia, teniendo un tiempo de ejecución muy elevado. Como ejemplo, al correrlo localmente, el cálculo de WMD para 3131 filas tardó 7 horas; frente a los 3 segundos que tardó el cálculo de Cosine Similarity para la misma cantidad de filas.
+\item \textit{KNN} es una gran opción para datasets pequeños con pocas variables de entrada; pero tiene problemas cuando la cantidad de entradas es muy grande. En grandes dimensiones, los puntos que pueden ser similares pueden tener distancias muy grandes. Además, cada vez que se va a hacer una predicción con KNN, busca al vecino más cercano en el conjunto de entrenamiento completo. Por esto, se debe utilizar un dataset pequeño para que el clasificador KNN complete su ejecución rápidamente.
 \end{itemize}
 En conclusión, al utilizar solo una porción de nuestros datasets para obtener los distintos cálculos de distancias y entrenar KNN, el cálculo de WMD se podrá realizar en un tiempo finito, y nuestro clasificador KNN funcionará rápida y eficientemente al realizar predicciones.
 
 \cleardoublepage
 
 \subsection{Comparando textos y obteniendo similitudes.}
-\colorbox{red}{FALTA}
 
-Previamente a utilizar Cosine Similarity y WMD para obtener las medidas de similitud entre los textos, se debe emplear alguna técnica de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera.  Como mencionamos previamente, como técnicas de vectorización se utilizarán TF-IDF y Word embeddings. 
+Una vez teniendo nuestros datos preprocesados (Curriculum Vitae y descripciones de puestos laborales de IT), utilizaremos las técnicas WMD y Cosine Similarity para medir las distancias y obtener las similitudes entre los textos. 
 
-\cleardoublepage
+Previamente a utilizar estas técnicas, se debe emplear algun método de vectorización que permita representar las palabras de nuestros textos a un espacio vectorial. De esta forma Cosine Similarity y WMD podrán interpretarlos de la mejor manera. Como mencionamos previamente, como métodos de vectorización se utilizarán TF-IDF y Word embeddings. 
 
 \subsubsection{TF-IDF \& Cosine Similarity.}
-adgadaha
-\cleardoublepage
+
+Como se mencionó en la sección \textit{\nameref{etapas_set_datos}}, utilizaremos los 624 curriculums vitae de candidatos y 20593 descripciones de puestos de IT para el entrenamiento y obtención de vectores mediante TF-IDF (\textbf{21217} filas en total).
+
+Luego, para el cálculo de las distancias mediante Cosine Similarity utilizaremos 101 curriculums vitae de candidatos y 31 descripciones de puestos de IT (\textbf{3131} filas en total, ya que comparamos cada uno de los curriculums con cada una de las descripciones).
+
+Para el cálculo de TF-IDF y Cosine Similarity se utilizaron clases y métodos provistos por la libreria \textit{Scikit Learn}. Para el caso de TF-IDF se utilizó la clase \textit{TfidfVectorizer}\footnote{Clase \textit{TfidVectorizer}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html} (Consultado el 5 de abril de 2022).}, y para el caso de Cosine Similarity se utilizó el método \textit{paired\_cosine\_distances}\footnote{Método \textit{paired\_cosine\_distances}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.paired_cosine_distances.html} (Consultado el 5 de abril de 2022).}.
+
+Para tener una mejor comprensión del procedimiento a realizar se procederá a detallar un ejemplo. En el cuadro de la Imagen \ref{fig:1_TF_IDF} podemos observar el cálculo de valores de score TF-IDF luego de entrenar y aplicarse sobre 3 textos: las descripciones del CV de la Candidata \textit{Karla Lewis} (la cual tiene experiencia sobre trabajos de Data Science) y sobre las descripciones de los puestos \textit{Data Scientist} y \textit{Security Scpecialist}. En este caso nuestro vocabulario resultante fue de 381 palabras (por lo que nuestra matriz resultante tiene la misma cantidad de columnas). 
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/1_TF_IDF.png}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption{Valores de ejemplo de TF-IDF luego de entrenar y aplicarse sobre 3 documentos / textos.} 
+ \label{fig:1_TF_IDF}
+\end{figure}
+
+Siguiendo con el ejemplo anterior, una vez que tenemos nuestra matriz TF-IDF lo que hacemos es comparar cada CV con cada Job Description aplicando Similitud del coseno (cuyos cálculos para dos vectores están descritos en la sección \textit{\nameref{cosine}}). En este caso calculamos la similitud del coseno entre los vectores V1 y V2, y entre V1 y V3, dándonos como resultado los valores 0.06 y 0.01 respectivamente: Ver Imagen \ref{fig:2_TF_IDF}.Esto es algo esperable, existiendo mayor score de similitud entre \textit{Karla Lewis} (que trabajó previamente en Data Science) y la posición de \textit{Data Scientist}, que al compararla con la posición de \textit{Security Specialist}. 
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/2_TF_IDF.png}
+ \captionsetup{justification=centering,margin=3cm}
+ \caption{Obtención de ejemplo de Similitud del Coseno luego de calcular TF-IDF.} 
+ \label{fig:2_TF_IDF}
+\end{figure}
+
+La diferencia de este ejemplo con nuestro caso, es simplemente que TF-IDF se calcula y se aplica para todo nuestro set completo de CVs y descripciones de trabajo (21.217 documentos / textos en lugar de los 3 documentos / textos del ejemplo anterior). En estos 21.217 textos se encontraron 124.141 tokens / palabras únicas (en lugar de los 381 del ejemplo anterior). Es por esto que nuestra matriz TF-IDF resultante es de tamaño 21.217 x 124.141.
+
+Una vez que obtuvimos esta matriz TF-IDF, se calcula la similitud del coseno para una porción de estos vectores TF-IDF: para los vectores de los primeros 101 CVs y de los primeros 31 puestos de trabajo. De esta manera, finalmente obtenemos el dataset de 3131 filas visualizado en la Imagen \ref{fig:3_TF_IDF}, el cual cuenta en la última columna con el score de similitud del coseno luego de aplicar y calcular TF-IDF entre los 101 CVs y los 31 puestos de trabajo.
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/3_TF_IDF.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Obtención final de Similitud del Coseno luego de calcular TF-IDF.} 
+ \label{fig:3_TF_IDF}
+\end{figure}
 
 \subsubsection{Word embeddings (Word2vec) \& WMD.}\label{Implementacion_word_emb_y_wmd}
-dagagad
-\cleardoublepage
+
+Como se mencionó en la sección \textit{\nameref{etapas_set_datos}}, utilizaremos los 624 curriculums vitae de candidatos y 20593 descripciones de puestos de IT para el entrenamiento y obtención de word embeddings mediante Word2vec (\textbf{21217} filas en total).
+
+Luego, para el cálculo de las distancias mediante WMD utilizaremos 101 curriculums vitae de candidatos y 31 descripciones de puestos de IT (\textbf{3131} filas en total, ya que comparamos cada uno de los curriculums con cada una de las descripciones).
+
+En primer lugar se debe obtener la matriz de embeddings, la cual contiene para cada fila el vector word embedding de cada una de las palabras de nuestro vocabulario\footnote{Cabe destacar que nuestro vocabulario es de 124.141 palabras, pero en el modelo de Word2vec omitimos las palabras de nuestros documentos (curriculums de los candidatos y descripciones de los puestos de IT) que tienen menor frecuencia a 2 quedándonos un vocabulario final de 60713 palabras: Ver hiper-parámetro '$min\_count$' en la sección \textit{\nameref{hiper_par_word2vec}}.}. 
+
+Como mencionamos anteriormente, elegimos entrenar nuestros propios word embeddings en lugar de utilizar word embeddings pre-entrenados, ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT.
+
+Para la obtención de nuestra matriz de embeddings empleamos el modelo de red neuronal Word2vec utilizando la arquitectura Skipgram en conjunto con el método de Muestreo Negativo. Cabe destacar que estos son algunos de los hiper-parámetros de nuestro modelo, los cuales detallaremos en la sección \textit{\nameref{hiper_par_word2vec}}.
+
+Posteriormente a la obtención de los word embeddings se debe calcular WMD, algo que se detallará en la sección \textit{\nameref{calculo_wmd}}.
+
+Para la implementación de Word2Vec y los cálculos de WMD se utilizaron modelos y métodos provistos por la librería \textit{Gensim}. Para la obtención de los Word Embeddings mediante Word2vec se utilizó el módulo \textit{word2vec}\footnote{Módulo \textit{word2vec}. \url{https://radimrehurek.com/gensim/models/word2vec.html}. (Consultado el 5 de abril de 2022).}; mientras que para el cálculo de WMD se utilizó el método \textit{wmdistance} provisto por dicho módulo\footnote{Método \textit{wmdistance}. \url{https://radimrehurek.com/gensim/auto_examples/tutorials/run_wmd.html}. (Consultado el 5 de abril de 2022).}.
+\\
 
 \paragraph{Elección de hiper-parámetros Word2vec.}\label{hiper_par_word2vec}
-adgadg
+
+Algo muy importante a tener en cuenta en la construcción de nuestro modelo Word2vec es la elección de los hiper-parámetros\cite{NLP_26}. Estos juegan un rol crucial en la calidad final de la representación de nuestro modelo. A continuación mencionaremos los hiper-parámetros que utilizamos en la implementación en código de nuestro modelo Word2vec mediante la librería Gensim.
+
+En la Imagen \ref{fig:4_Implementacion_Word2vec} podemos observar cada uno de los hiper-parámetros de nuestra implementación de Word2vec, junto con los valores que le colocamos\footnote{La única variable que no es un hiper-parámetro es \textit{sentences}. En \textit{sentences} colocamos el vector \textit{$lista\_corpus\_tokenizado\_final$} el cual contiene todas las palabras de nuestro vocabulario (de todos los documentos: curriculums de candidatos y descripciones de puestos), las cuales serán usadas para el entrenamiento del modelo Word2vec.}.
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/implementacion_5/4_Implementacion_Word2vec.png}
+ \caption{Hiper-parámetros al implementar Word2vec.} 
+ \label{fig:4_Implementacion_Word2vec}
+\end{figure}
+
+A continuación tomaremos como referencia los nombres de los hiper-parámetros de la Imagen \ref{fig:4_Implementacion_Word2vec} detallando tanto sus significados como la elección de los valores para los mismos mediante Gensim. Contamos con 7 hiper-parámetros propios del modelo Word2vec\cite{Implem_3} (\textit{alpha}, \textit{epochs}, \textit{$vector\_size$}, \textit{window}, \textit{sg}, \textit{hs}, \textit{negative}) y 1 hiper-parámetro adicional por la propia implementación realizada en Gensim (\textit{$min\_count$}), los cuales podemos modificar de acuerdo a nuestra tarea\footnote{Ejemplos de seteos de hiper-parámetros en Gensim. \url{https://radimrehurek.com/gensim/auto_examples/tutorials/run_word2vec.html}. (Consultado el 5 de abril de 2022).}.
+
+\begin{enumerate}
+
+\item \textit{$min\_count$}: hiper-parámetro propio de la implementación de Gensim que nos permite setear la cantidad mínima de apariciones de una palabra para considerarla o no en nuestro vocabulario y posterior entrenamiento. De esta manera, ignora todas las palabras (no las agrega a nuestro vocabulario) cuando la frecuencia de cada palabra es menor a \textit{$min\_count$}. Si queremos añadir todas las palabras en nuestro corpus colocaremos un valor de '1'. Al colocarle un valor de ‘2’ este hiper-parámetro es el responsable de que nuestro vocabulario sea de 60713 palabras en lugar de 124.141 palabras (este sería el caso si \textit{$min\_count$} = 1). Decidimos utilizar un valor mayor a 1 ya que las palabras que aparecen una sola vez es probable que sean errores tipográficos poco interesantes. Además, no existen suficientes datos para realizar un entrenamiento significativo sobre esas palabras, por lo que es mejor ignorarlas.
+
+\item \textit{window}: permite setear el tamaño de la ventana de contexto: ver Imagen \ref{fig:5_Window}.
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=0.5\textwidth]{images/implementacion_5/5_Window.png}
+\captionsetup{justification=centering,margin=2cm}
+ \caption{Hiper-parámetro Ventana de Contexto\cite{datitos_nlp}.}
+ \label{fig:5_Window}
+\end{figure}
+
+Como mencionamos previamente, la ventana de contexto (o Context Window, “C”) es una ventana de tamaño $m$ que podemos colocar en cualquier parte de nuestro corpus de texto, y define qué tan largo o corto tomamos el contexto (palabras de contexto) para realizar el entrenamiento de nuestro modelo y obtener nuestra representación vectorial\cite{NLP_26}. Dicho de otra forma, nos permite controlar el número de palabras que serán consideradas como contexto para representar a una palabra individual ‘target’. Diferentes tamaños de ventana sirven mejor para diferentes tareas\cite{datitos_nlp}:
+\begin{itemize}
+\item En la práctica se vió que un tamaño de ventana pequeño (2-15) permite construir embeddings donde las puntuaciones más altas de similitud entre dos filas de embeddings indican que las palabras son intercambiables en la frase. Dicho de otra forma, permite encontrar palabras intercambiables, es decir, las palabras que son muy similares en realidad son palabras que son muy intercambiables en una frase, como que están siempre en el mismo lugar en una frase; esto no quiere decir que sean sinónimos, ya que si nos fijamos los antónimos, aunque sean opuestos, generalmente ocupan el mismo lugar en la frase: “esta película es muy mala” y “esta película es muy buena”, podemos reemplazar “mala” por “buena” y la frase sigue teniendo sentido aunque no quieran decir lo mismo). En conclusión, con una ventana pequeña logramos que solo se fije en lo que ocurre exactamente alrededor de las palabras. 
+\item Los tamaños de ventana más grandes (15-50, o incluso más) producen embeddings donde la similitud es más indicativa de la relación de las palabras. Dicho de otra forma, permiten analizar más frases que utilizando un tamaño de ventana pequeño. Siguiendo con el ejemplo anterior, la frase “esta película es muy buena” seguramente va a estar asociada a otras frases anteriores o siguientes que quizás sigan alabando a la película; y la frase “esta película es muy mala” generalmente va a estar rodeada de otras frases con críticas a la película. De esta manera, ahí el modelo aprendería que “mala” y “buena”, aunque estén rodeadas de las mismas palabras, generalmente tienen otro significado. 
+\end{itemize}
+
+Otros estudios\cite{Implem_1,Implem_2} encontraron que generalmente se utilizan ventanas grandes al entrenar sobre textos con oraciones largas que contienen estructuras de cláusulas complejas (por ejemplo, literatura biomédica). Además, se demostró que el tamaño de la ventana influye en los tipos de semántica de palabras que captura el modelo: un tamaño de ventana más grande permite capturar información de tópicos / dominio de las palabras: ¿que otras palabras son usadas en tópicos / dominios similares?; en cambio, un tamaño de ventana más pequeño permite capturar más acerca de la funcionalidad de la palabra en sí: ¿qué otras palabras son funcionalmente similares?. Este último caso es mejor, por ejemplo, para encontrar sinónimos de palabras.
+
+En nuestro caso le colocamos a esta variable 15. De esta manera el modelo al entrenar tomará 15 palabras de contexto a la izquierda y otras 15 a la derecha de la palabra target. Se decidió tomar 15 por ser un valor “intermedio” entre las ventanas de tamaño pequeño y grande, y así obtener un balance entre las ventajas de poder capturar tanto los tópicos de las palabras como la funcionalidad de la misma. 
+
+\item \textit{$vector\_size$}: es lo que se conoce como dimensionalidad. Representa el tamaño / dimensión de nuestros words embeddings resultantes (o el tamaño / número de neuronas de la capa oculta). Dicho de otra forma es el número de dimensiones (N) del espacio N-dimensional en donde Wor2vec mapea sus palabras. 
+
+Grandes valores de dimensionalidad requieren más datos de entrenamiento, pero pueden producir mejores modelos (con mayor accuracy) al poder capturar mayor información de las palabras. Lo negativo de usar grandes valores de dimensionalidad es que su entrenamiento es más costoso computacionalmente\cite{Implem_2}. Generalmente se usa un valor de 100 o 50\cite{NLP_26}. En nuestro caso utilizamos su valor por defecto (100) ya que no queremos obtener word embeddings muy extensos debido a su futuro uso en WMD (cuyos cálculos requieren mucho tiempo de procesamiento, y más aún si tenemos word embeddings de grandes dimensiones).  
+
+\item \textit{sg}: indica el algoritmo/modelo de entrenamiento que se utilizará (CBoW o Skip-gram). El valor por defecto en Gensim es 0 (lo que significa que se usará CBOW); pero como nosotros utilizaremos Skip Gram colocamos este valor en 1.
+
+Elegimos SKip-Gram sobre CBOW por lo mencionado en la sección \textit{\nameref{cbow_vs_skip}}: nuestro dataset de entrenamiento no es muy grande (nuestro vocabulario consiste en 60713 palabras) y necesitamos utilizar esta arquitectura que funciona mejor para pocos datos. Además, otro punto a favor de Skipgram es que {nos permite representar mejor palabras “raras” o infrecuentes}, y esto es una ventaja en IT ya que cada vez más cantidad de lenguajes y tecnologías van apareciendo, por lo que aunque una palabra aparezca pocas veces en nuestros corpus de texto, hay que tenerlas en cuenta y tratar de representarlas lo mejor posible.
+
+\item \textit{hs}: si el valor es 0 (como en nuestro caso) indica que se utiliza Negative Sampling como optimización para entrenar a nuestro modelo: explicado en la sección \textit{\nameref{neg_samp}}.
+
+\item \textit{negative}: especifica el número de muestras negativas (cuántas palabras / muestras negativas agregamos al dataset por cada palabra / muestra positiva para el proceso de entrenamiento): ver Imagen \ref{fig:6_Neg_samples}.
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/implementacion_5/6_Neg_samples.png}
+\captionsetup{justification=centering,margin=2cm}
+ \caption{Hiper-parámetro Número de muestras negativas.\cite{datitos_nlp}.}
+ \label{fig:6_Neg_samples}
+\end{figure}
+
+Este hiper-parámetro se elige de acuerdo a la cantidad de datos que tengamos\cite{datitos_nlp}:
+\begin{itemize}
+\item Si tenemos muchos datos no hace falta que metamos tantos ejemplos negativos por cada uno de los positivos. En cambio, si tenemos pocos datos podemos utilizar los ejemplos negativos para tener un dataset más grande y ayudar a nuestro modelo a que aprenda mejor. 
+\item El paper original de Word2vec\cite{NLP_11} prescribe 5-20 como un buen número de muestras negativas. También establece que 2-5 parece ser suficiente cuando tiene un conjunto de datos lo suficientemente grande.
+\end{itemize}
+
+El valor por defecto en Gensim es 5, pero en nuestra implementación le colocamos un valor de 10. Esto es debido a que nuestro vocabulario no es tan grande, y es mejor agrandar nuestro dataset de entrenamiento colocando más ejemplos.
+
+\item \textit{alpha}: Este es uno de los hiper-parámetros más comunes que ajustamos al implementar redes neuronales artificiales. Como Word2vec es un modelo de red neuronal, también podemos modificar este hiper-parámetro. alpha hace referencia al learning rate (o tasa de aprendizaje), el cual detallamos en la sección \textit{\nameref{hiper_n}}. Seteamos este valor en 0.025, su valor por defecto en la implementación de Gensim.
+
+\item \textit{epochs}: Este es otro de los hiper-parámetros más comunes en redes neuronales artificiales. Como mencionamos anteriormente, cada epoch en una ANN representa una iteración sobre nuestros datos de entrenamiento / corpus de texto completo. Esta iteración incluye el cálculo de los forward propagation y back propagation correspondientes. Seteamos este valor en 5, su valor por defecto en la implementación de Gensim.
+
+\end{enumerate}
+
+Una vez definidos los hiper-parámetros de nuestro modelo Word2vec, se debe entrenar al mismo con nuestro vocabulario de 60.713 palabras/tokens. Este entrenamiento en la implementación se realiza al correr el código explicado anteriormente en la Imagen \ref{fig:4_Implementacion_Word2vec}. El proceso de entrenamiento que sigue nuestro modelo fue explicado en la sección \textit{\nameref{ent_costo_sigmoide}}. Una vez entrenado nuestro modelo tendremos para cada una de las 60.713 palabras que componen nuestro vocabulario, un word embedding de 100 dimensiones que la representa y que nos permitirá realizar los futuros cálculos de WMD. 
+
 \cleardoublepage
 
-\paragraph{Word Mover's Distance (WMD).}
-dagadga
+\paragraph{Word Mover's Distance (WMD).}\label{calculo_wmd}
+
+Una vez obtenido los word embeddings de nuestros documentos aplicaremos WMD para obtener otra medida de similitud (además de la calculada previamente con TF-IDF \& Cosine Similarity) entre los candidatos y los puestos.
+
+Para ello primero se debe armar un vector para cada uno de los documentos a comparar (para los 101 CVs y 31 descripciones de puestos de trabajo) que contendrá para cada posición (para cada palabra del documento), -y si es que la palabra pertenece al vocabulario-, una referencia al vector word embedding correspondiente de la matriz de word embeddings calculada previamente. Este paso lo hace internamente la implementación de WMD de Gensim.
+
+Posteriormente estos vectores se utilizan para poder aplicar WMD entre cada uno de los CVs y cada una de las posiciones de trabajo. De esta manera anexaremos el resultado de WMD al dataset obtenido anteriormente en la Imagen \ref{fig:3_TF_IDF}, quedándonos finalmente como la Imagen \ref{fig:7_Calculo_WMD}.
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/7_Calculo_WMD.png}
+\captionsetup{justification=centering,margin=3cm}
+ \caption{Obtención final de WMD.} 
+ \label{fig:7_Calculo_WMD}
+\end{figure}
+
 \cleardoublepage
 
+Por ejemplo, para la Candidata de la primer fila de la Imagen \ref{fig:7_Calculo_WMD} (\textit{Karla Lewis}), su vector resultante será: \textit{[word embedding de ‘$data\_scientist$’, word embedding de ‘brooklyn’, word embedding de ‘ny’, word embedding de ‘$data\_scientist$’, (...)]}. 
+
+En la Imagen \ref{fig:8_Word_emb} podemos observar la representación del word embedding ‘$data\_scientist$’, el cual tiene como mencionamos previamente una dimensión de 100. 
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/implementacion_5/8_Word_emb.png}
+\captionsetup{justification=centering,margin=3cm}
+ \caption{Word embedding del 2-gram ‘$data\_scientist$’.} 
+ \label{fig:8_Word_emb}
+\end{figure}
+
+En cambio, para la descripción de trabajo de la primera fila (\textit{Data Scientist}) el vector resultante sería: \textit{[word embedding de ‘$master\_degree$', word embedding de ‘stem‘, word embedding de ‘field‘, word embedding de ‘$including\_limited$‘, (...)]}. 
+
+De dicha forma se puede calcular el WMD para esta Candidata y Descripción de trabajo utilizando estos vectores y los word embeddings de sus palabras\footnote{El cálculo de WMD que se realiza entre 2 vectores fue descrito en la sección \textit{\nameref{wmd}}.}, dándonos como resultado una medida de similitud entre los mismos: visto previamente en la Imagen \ref{fig:7_Calculo_WMD}.
+
+\cleardoublepage
 
 \subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
 \colorbox{red}{FALTA}
@@ -3065,7 +3217,7 @@ En la Figura \ref{fig:ann_7} podemos observar una lista de las funciones de acti
 
 Tomaremos un ejemplo del libro de O’reilly Media\cite{NLP_26} y explicaremos resumidamente los pasos que debemos realizar para obtener nuestros Word embeddings utilizando el modelo Skipgram con función de salida softmax y utilizando el algoritmo de gradiente descendiente básico.
 
-El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado} \footnotetext{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado.} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
+El \textit{corpus de texto} con el que nuestro algoritmo entrenará será la oración “The quick brown fox jumps over the lazy dog”. Previamente a que ingrese al modelo, este corpus debe ser tokenizado, obteniendo el siguiente \textit{corpus tokenizado}\footnote{El corpus tokenizado son todas las palabras de nuestro corpus que serán utilizadas para entrenar y evaluar nuestro modelo.}: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “the”,“lazy”, “dog”]. Nuestro \textit{vocabulario}\footnote{El vocabulario es el set de palabras únicas -sin repetir- obtenidas de nuestro corpus tokenizado.} será el siguiente: [“the”, “quick”, “brown”, “fox”, “jumps”, “over”, “lazy”, “dog”]. Observamos que el tamaño del \textit{corpus tokenizado} es 9, mientras que el tamaño del \textit{vocabulario} es 8: uno menos debido a la repetición de la palabra “the”. 
 
 Cabe mencionar que en este ejemplo no se preprocesaron los textos previamente a armar nuestro corpus tokenizado. Si se preprocesaran los mismos -como se realiza en nuestra implementación-, nuestro corpus tokenizado que será utilizado como entradas del modelo quedaría como [“quick”, “brown”, “fox”, “jump”,“lazy”, “dog”], y nuestro vocabulario, como no existe repetición de palabras, estarían formados por estas mismas 6 palabras / tokens.
 
@@ -3487,6 +3639,16 @@ Yossi Rubner, Carlo Tomasi, \& Leonidas J. Guibas. (2000). \textit{The Earth Mov
 
 \bibitem{WMD_5} 
 Lingfei Wu, Ian E.H. Yen, Kun Xu, Fangli Xu, Avinash Balakrishnan, Pin-Yu Chen, Pradeep Ravikumar, \& Michael J. Witbrock. (2018, Octubre). \textit{Word mover’s embedding: From word2vec to document embedding}. (pp. 1-9).
+
+\bibitem{Implem_1} 
+Omer Levy, \& Yoav Goldberg. (2014, Junio). \textit{Dependency-Based Word Embeddings}. In Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics. 2. (pp. 302–308).
+
+\bibitem{Implem_2} 
+Billy Chiu, \& Simon Baker. (2020, Diciembre). \textit{Word embeddings for biomedical natural language processing: A survey}. Language and Linguistics Compass. 14(12). (pp. 1-43).
+
+\bibitem{Implem_3}
+Tosin P. Adewumi, Foteini Liwicki, \& Marcus Liwicki. (2022, Marzo). \textit{Word2Vec: Optimal hyper-parameters and their impact on NLP downstream tasks}. Open Computer Science. 12(1). (pp. 134-141).
+
 
 \end{thebibliography}
 
