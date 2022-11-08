@@ -90,23 +90,27 @@
 \contentsline {subsubsection}{\numberline {5.2.2}Word embeddings (Word2vec) \& WMD.}{123}{subsubsection.5.2.2}%
 \contentsline {paragraph}{\numberline {5.2.2.1}Elección de hiper-parámetros Word2vec.}{124}{paragraph.5.2.2.1}%
 \contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{129}{paragraph.5.2.2.2}%
-\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{131}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{132}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{133}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{134}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{136}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{139}{subsubsection.5.5.3}%
-\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{140}{paragraph.5.5.3.1}%
-\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{141}{paragraph.5.5.3.2}%
-\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{142}{paragraph.5.5.3.3}%
-\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{143}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Caso de Uso.}{144}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Limitaciones del sistema.}{145}{subsection.5.8}%
-\contentsline {section}{\numberline {6}Conclusiones.}{146}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{147}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{147}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{148}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{151}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{153}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{154}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{162}{subsection.7.6}%
+\contentsline {paragraph}{\numberline {5.2.2.3}Observaciones valores de Cosine Similarity y WMD.}{131}{paragraph.5.2.2.3}%
+\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{133}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Preparación de los datos.}{133}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}K-means.}{135}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}KNN.}{138}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{143}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{145}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Base de datos.}{146}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Secciones del sistema}{148}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Manejo de los datos.}{151}{subsubsection.5.5.3}%
+\contentsline {paragraph}{\numberline {5.5.3.1}Modelado.}{152}{paragraph.5.5.3.1}%
+\contentsline {paragraph}{\numberline {5.5.3.2}Filtrado.}{153}{paragraph.5.5.3.2}%
+\contentsline {paragraph}{\numberline {5.5.3.3}Visualización.}{154}{paragraph.5.5.3.3}%
+\contentsline {subsection}{\numberline {5.6}Pipeline Flow final del Sistema.}{155}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Caso de Uso.}{156}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Limitaciones del sistema.}{157}{subsection.5.8}%
+\contentsline {section}{\numberline {6}Conclusiones.}{158}{section.6}%
+\contentsline {section}{\numberline {7}Anexos.}{159}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{159}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{160}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{163}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{165}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{166}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{174}{subsection.7.6}%

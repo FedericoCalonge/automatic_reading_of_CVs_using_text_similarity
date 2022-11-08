@@ -573,7 +573,7 @@ Es importante que el conjunto de datos de prueba tenga un volumen suficiente com
 
 
 \cleardoublepage
-\subsubsection{¿Cómo implementar un modelo de ML?}
+\subsubsection{¿Cómo implementar un modelo de ML?}\label{implementar_mod_ML}
 
 Resumidamente, los pasos a seguir para implementar un modelo de ML y utilizarlo para realizar predicciones sobre los datos son los siguientes:
 \begin{itemize}
@@ -738,7 +738,7 @@ Por lo tanto, podemos decir que el modelo óptimo es aquel que tiene la compleji
 
 \cleardoublepage
 
-\subsection{K-Nearest Neighbor (KNN).}
+\subsection{K-Nearest Neighbor (KNN).}\label{knn_teoria}
 
 K-Nearest Neighbor o K Vecinos más cercanos (KNN), es un algoritmo ML que se puede usar tanto en tareas de regresión como de clasificación. En nuestra implementación, lo usaremos para resolver un problema de clasificación (ver \textit{\nameref{clasificacion}}). Como mencionamos anteriormente, en los problemas de clasificación la variable que se intenta predecir es discreta. En este tipo de problemas contamos con un set de entrenamiento en el cual para cada dato conocemos la clase a la cual pertenece el mismo, y queremos construir un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos.
 
@@ -883,12 +883,14 @@ En resumen:
 En definitiva, el $k$ óptimo en KNN es aquel que nos de un buen desempeño en cuanto a la precisión de clasificación para el mayor k posible. Una de las mejores formas para seleccionar nuestro $k$ óptimo, es utilizando el método de \textbf{Cross Validation} (ó validación cruzada): ver \textit{\nameref{Cross Validation}}.
 
 \cleardoublepage
-\subsection{K-means.}
+\subsection{K-means.}\label{k_means_3_4}
 K-means o K-medias, o también conocido como algoritmo de Lloyd, es un algoritmo de ML de clustering (ver \textit{\nameref{agrupacion}}). Como mencionamos anteriormente, en problemas de clustering contamos con datos que queremos dividir en grupos de forma automática. Estos datos no tienen etiquetas, no sabemos a qué grupo pertenecen. K-means nos permite encontrar cómo repartir m puntos en n dimensiones dentro de k clusters.
 
 El nombre de K-means viene porque representa cada uno de los clusters por la media de sus puntos, es decir, por su centroide. Cada clúster, por tanto, es caracterizado por su centroide que se encuentra en el centro de los elementos que componen el clúster.
 
-Para este algoritmo, el único hiper-parámetro que se necesita definir previamente es k, el número de clusters. Este k se puede obtener de distintas formas, en nuestra implementación utilizaremos el \textit{método del codo} para calcularlo. Antes de explicar en qué consiste este método, detallaremos el funcionamiento de k-means, su objetivo, sus desventajas y las mejoras que se pueden aplicar.
+Para este algoritmo, el único hiper-parámetro que se necesita definir previamente es k, el número de clusters. Este k se puede obtener de distintas formas, en nuestra implementación utilizaremos el \textit{método del codo} para calcularlo. 
+
+A continuación explicaremos en qué consiste este método, detallando el funcionamiento de k-means, su objetivo, sus desventajas y las mejoras que se pueden aplicar.
 
 \subsubsection{Funcionamiento y ejemplo de K-means.}\label{K_means_funcionamiento}
 
@@ -940,7 +942,7 @@ J = Inertia = WCSS = \sum_{C_{j}}^{C_{k}}  ( \sum_{xi \in C_{j}}^{x_{m}}||x_{i}-
 
 Donde $k$ = número de centroides ó clusters, $m$ = cantidad de puntos de nuestro set de datos, $C_{j}$ = centroide de cluster $j$, y $x_{i}$ = punto $i$ de nuestro set de datos asignado a $C_{j}$. Además, el término $||x_{i}-C_{j}||$ se corresponde a la distancia euclidiana entre cada punto del set de datos, $x_{i}$, y el centroide que tiene asignado, $C_{j}$. Este cálculo se corresponde a la Fórmula \ref{eq:ecuacion_4} que obtuvimos anteriormente.
 
-Considerando una inicialización aleatoria de nuestros centroides, y por ejemplo, definiendo que nuestro número de clusters es 3 ($k$ en kmeans = 3), entonces la Fórmula \ref{eq:ecuacion_6} se podría reescribir como la Fórmula \ref{eq:ecuacion_7}. Podemos observar que al variar la inicialización de nuestros centroides, las posiciones de nuestros $C_{j}$ cambiarían, por lo que nuestra $WSS$ sería distinta. 
+Considerando una inicialización aleatoria de nuestros centroides, y por ejemplo, definiendo que nuestro número de clusters es 3 ($k$ en kmeans = 3), entonces la Fórmula \ref{eq:ecuacion_6} se podría reescribir como la Fórmula \ref{eq:ecuacion_7}. Podemos observar que al variar la inicialización de nuestros centroides, las posiciones de nuestros $C_{j}$ cambiarían, por lo que nuestra $WCSS$ sería distinta. 
 
 \begin{equation}\label{eq:ecuacion_7}
 WCSS =  \sum_{x_{i} \in C_{1}}||x_{i}-C_{1}||^2 + \sum_{x_{i} \in C_{2}}||x_{i}-C_{2}||^2 + \sum_{x_{i} \in C_{3}}||x_{i}-C_{3}||^2     \qquad  \text{(Ver \cite{K_means_elbow})}
@@ -954,7 +956,7 @@ Obtener el mínimo valor de nuestro $WCSS$, o que es lo mismo que encontrar el m
 Es de destacar que, suponiendo que tenemos $m$ puntos de datos y especificamos que este $m$ sea nuestro número de clusters ($k$ = $m$), entonces $WCSS$ será 0 ya que cada punto de nuestros datos actuará como centroide de sí mismo y la distancia euclidiana entre ellos será nula. De esta forma, cada cluster contendrá solo un punto. Esto idealmente es un cluster perfecto, pero no tiene ningún sentido tener tantos clusters como puntos de datos tengamos. Por lo tanto, existe un valor de umbral para $k$ que podemos encontrar utilizando el \textit{método del codo}, el cual veremos más adelante en \textit{\nameref{Elbow_Met}}).
 
 \cleardoublepage
-\subsubsection{Limitaciones K-means.}
+\subsubsection{Limitaciones K-means.}\label{limit_kmeans}
 
 K-means tiene tres principales limitaciones, las cuales describiremos a continuación.
 
@@ -1031,7 +1033,7 @@ K-Means++\cite{K_means_plus_plus} es una variante de K-Means en donde lo único 
 De esta manera, habiendo predefinido nuestro $k$, los pasos para inicializar nuestros centroides con k-means++ son:
 
 \begin{enumerate}
-\item Se elige un punto al azar como primer centroide. Este paso es el mismo que ocurre en k-means, solo que en este caso únicamente el primer centroide será elegido al azar.
+\item Se elige un punto al azar perteneciente a nuestros datos como primer centroide. Este paso es el mismo que ocurre en k-means, solo que en este caso únicamente el primer centroide será elegido al azar.
 \item Calculamos la distancia $D(x)$ entre cada punto de nuestros datos $x$ y su centroide. 
 \item Uno de nuestros puntos de datos $x$ será elegido como el nuevo centroide. Este nuevo centroide será el que tenga la mayor distancia al cuadrado $D(x)^2$ con respecto a su centroide, es decir, el punto $x$ que tenga la distancia más lejana con su centroide. 
 \item Repetimos los pasos 2 y 3 hasta que nuestros $k$ centroides sean asignados.
@@ -2862,16 +2864,303 @@ De dicha forma se puede calcular el WMD para esta Candidata y Descripción de tr
 
 \cleardoublepage
 
-\subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
-\colorbox{red}{FALTA}
+\paragraph{Observaciones valores de Cosine Similarity y WMD.}\label{Obs_cos_y_wmd}
 
-Una vez obtenidas estas mediciones de similitud entre los Curriculum Vitae de los candidatos y las descripciones de los puestos laborales de IT, estos valores se utilizarán para alimentar un algoritmo de clustering K-means que a su vez, con sus datos de salida (4 clusters), alimentarán a un modelo de clasificación KNN. Finalmente, con este modelo KNN lograremos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+A continuación observaremos algunos ejemplos de los valores de Cosine Similarity y WMD obtenidos para un candidato y descripción en particular, con el objetivo de corroborar que los candidatos posean altos valores de similitud en los puestos donde hayan tenido mayor experiencia y/o donde posean los skills que, a priori, sean los esperables para esa posición.
+
+Tomaremos como ejemplo al candidato \textit{$MLEngineer\_Bradly\_Johnston$}, el cual tiene experiencia previa en varios puestos de Machine Learning y skills de esta área de conocimiento, por lo que a priori es esperable que tenga mayor similitud con puestos de Machine Learning o Data Science. 
+
+En la Imagen \ref{fig:Valores_para_Bradly_Johnson} podemos visualizar un TOP 5 de las descripciones de puestos más y menos similares al Candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
+\\
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/Valores_para_Bradly_Johnson.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{Posiciones más y menos similares para el Candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
+ \label{fig:Valores_para_Bradly_Johnson}
+\end{figure}
+
+Observamos similares resultados al aplicar tanto para la métrica WMD como TF-IDF \& Cosine Similarity: altos valores de similitud para los puestos \textit{Machine Learning Engineer 2}, \textit{Machine Learning Engineer}, \textit{Data Scientist}, \textit{Data Scientist 2}. Esto como mencionamos previamente, es algo esperable. Además, observamos bajos valores para puestos que no están relacionados a Machine Learning, como por ejemplo \textit{SAP FICO Architect}, \textit{Test Lead / Test Manager}, \textit{DevOps Engineer}, \textit{Project Manager}, etc. Esto también es algo esperable.
+
+\cleardoublepage
+
+Ahora, tomaremos como ejemplo al puesto \textit{Security Specialist 2}. A priori es esperable que este puesto tenga mayor similitud con los CVs de los candidatos que hayan trabajado previamente o tengan skills para el área de seguridad informática. 
+
+En la Imagen \ref{fig:Valores_para_security_spec_2} podemos visualizar un TOP 5 de los CVs de Candidatos más similares al puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
+
+\begin{figure}[H] 
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_5/Valores_para_security_spec_2.png}
+ \captionsetup{justification=centering,margin=2cm}
+ \caption{CVs de Candidatos más similares para el la descripción del puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
+ \label{fig:Valores_para_security_spec_2}
+\end{figure}
+
+Nuevamente se corrobora con este ejemplo nuestra suposición inicial: los curriculums de los candidatos que tienen expertise en seguridad informática (como \textit{Ahmed Wayne} y \textit{Denis Banik}) tienen mayor similitud con el puesto \textit{Security Specialist 2}.
+
+\cleardoublepage
+
+\subsection{Armado del modelo de clasificación KNN.}\label{IMP_Modelo_clasificacion_KNN}
+
+Una vez obtenidas nuestras mediciones de similitud (tanto de TF-IDF \& Cosine Similarity como de WMD) entre nuestras 3131 combinaciones de Curriculum Vitae de candidatos y las descripciones de los puestos laborales de IT, tenemos que encontrar alguna manera de utilizar estas mediciones en conjunto: para esto utilizamos KNN en conjunto con K-means.
+
+De esta manera estos valores de similitud funcionarán como features alimentando al algoritmo de clustering K-means, el cual a su vez con sus datos de salida (4 clusters), alimentará a un modelo de clasificación KNN. Finalmente, con este modelo KNN lograremos, en base a los valores de similitud de nuevos candidatos, clasificar qué tan similares son dichos candidatos con respecto a la descripción de un puesto de IT: similitud escasa, similitud media, similitud alta, similitud muy alta.
+
+Para la implementación de K-means y KNN se utilizaron métodos y clases provistas por la librería \textit{Scikit Learn}. Para el caso de K-means se utilizó la Clase \textit{KMeans}\footnote{Clase \textit{KMeans}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html} (Consultado el 5 de abril de 2022).}, y para el caso de KNN se utilizó la Clase \textit{KNeighborsClassifier}\footnote{Clase \textit{KNeighborsClassifier}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html} (Consultado el 5 de abril de 2022).} junto al método \textit{$cross\_val\_score$}\footnote{Método \textit{$cross\_val\_score$}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html} (Consultado el 5 de abril de 2022).} para realizar la evaluación mediante cross-validation. \\
+
+\subsubsection{Preparación de los datos.}\label{prep_datosd}
+
+Previamente a utilizar K-means y KNN vamos a eliminar de nuestro dataset obtenido en \ref{fig:7_Calculo_WMD} 1 Curriculum Vitae de un candidato y 1 descripción de puesto laboral (que representan un total de 131 filas del dataset). Estos datos los utilizaremos en la sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}} para realizar predicciones mediante KNN utilizando dichos Candidatos y Descripciones de Puestos que tienen los valores de WMD y Cosine Similarity calculados. Cabe destacar que esta no es una división de datos de entrenamiento y datos de evaluación, esta es realizada en la sección \textit{\nameref{imp_knn}} utilizando Cross Validation. Esta división se realizó únicamente para simular una predicción para nuevos ejemplos (1 CV y 1 puesto) ya teniendo nuestro modelo de KNN entrenado y evaluado, y analizar estos resultados. 
+
+\cleardoublepage
+
+De esta manera nos quedarán los siguientes datasets\footnote{Adicionalmente nos quedamos únicamente con las columnas necesarias ($‘Candidate\_Name’$, $‘Job\_Title’$, $‘tfidf\_cosine’$ y ‘WMD’) eliminando del dataset de la Imagen \ref{fig:7_Calculo_WMD} las columnas que no nos sirven más ($‘clean\_Content_CV’$, $‘tokens\_Content_CV’$, $‘clean\_Job\_Description’$ y $‘tokens\_Job\_Description’$)}:
+
+\begin{itemize}
+
+\item Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras mencionada previamente: Imagen \ref{fig:eliminacion_hcm_2_y_denis}. Este dataset está formado por las 101 filas correspondientes a la posición \textit{HCM Consultant 2} y las 30 filas correspondientes al candidato \textit{Denis Banik}, las cuales fueron eliminadas del dataset que se utilizará en K-means.
+
+\end{itemize}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/eliminacion_hcm_2_y_denis.png}
+\caption{Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras: 101 filas referentes a la posición \textit{HCM Consultant 2} (izquierda) y 30 filas referentes al candidato \textit{Denis Banik} (derecha).}
+\label{fig:eliminacion_hcm_2_y_denis}
+\end{figure}
+
+\begin{itemize}
+
+\item Dataset de 3000 filas / puntos para utilizar en K-means y KNN: Imagen \ref{fig:dataset_kmeans_knn_final}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.7\textwidth]{images/implementacion_5/dataset_kmeans_knn_final.png}
+\caption{Dataset de 3000 filas / puntos para utilizar en K-means y KNN.}
+\label{fig:dataset_kmeans_knn_final}
+\end{figure}
+
+\end{itemize}
+
+\cleardoublepage
+
+\subsubsection{K-means.}\label{imp_kmeans}
+
+Como mencionamos previamente en la sección \textit{\nameref{k_means_3_4}}, K-means es un algoritmo de clustering que nos sirve para dividir nuestros datos (los cuales no tienen etiquetas) en grupos / clusters. Este algoritmo cuenta con un único hiper-parámetro que debemos definir previamente, el cual es k, o número de clusters.
+
+Como detallamos en la sección \textit{\nameref{limit_kmeans}}, este algoritmo tiene 3 principales limitaciones: los outliers, la determinación del hiper-parámetro k y la inicialización de los centroides. Estos problemas fueron resueltos en nuestra implementación, la cual se detalla a continuación. 
+
+Como primera medida, para el problema de los outliers lo que se hizo es aplicar un pre-procesamiento de datos adicional (que incluye una eliminación de dichos outliers) previamente a utilizar los valores de las métricas de similitud en k-means. 
+
+Inicialmente realizamos un gráfico de dispersión tomando como dimensiones / features a las columnas correspondiente al valor de WMD y el valor de Cosine Similarity (\textit{WMD} que será nuestro eje Y, y \textit{$tfidf\_cosine$} que será nuestro eje X), para visualizar la disposición de nuestros puntos de datos en dos dimensiones: Imagen \ref{fig:dispersion}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.7\textwidth]{images/implementacion_5/dispersion.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Gráfico de dispersión con nuestros valores de similitud como dimensiones.}
+\label{fig:dispersion}
+\end{figure}
+
+Visualizando el gráfico podemos detectar a simple vista que hay valores que se escapan del “grupo medio”: estos son nuestros outliers, los cuales eliminaremos para que no perjudique al aprendizaje del modelo de ML posterior (KNN). Para eliminarlos vamos a aplicar un límite / condición que filtre los puntos que tengan un Cosine Similarity (eje x) mayor a 0.26. De esta manera se eliminan 7 puntos de datos de nuestro dataset, quedándonos 2993 filas: ver Imagen \ref{fig:detec_elim_outliers}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/detec_elim_outliers.png}
+\caption{Detección (izquierda) y eliminación (derecha) de outliers.}
+\label{fig:detec_elim_outliers}
+\end{figure}
+
+Nuestro próximo paso es determinar el número de k clusters (nuestra segunda problemática en k-means). Para esto aplicamos el \textit{método del codo} (o \textit{elbow method}) explicado en la sección \textit{\nameref{Elbow_Met}}, graficando la Inertia\footnote{Recordando lo visto anteriormente, Inertia es la distancia entre cada punto del cluster y el centroide que tiene asignado, la cual se busca minimizar en K-means. A este criterio de Inertia también se lo considera como la función de coste J en K-means.} en función de k. De esta manera iteramos valores de k desde 1 a 9 y calculamos los valores de Inertia para cada valor de k dentro de ese rango, obteniendo el gráfico de la Figura \ref{fig:elbow_method_inertia}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.6\textwidth]{images/implementacion_5/elbow_method_inertia.png}
+\caption{Método del codo usando Inertia.}
+\label{fig:elbow_method_inertia}
+\end{figure}
+
+Viendo este gráfico concluimos que, para nuestros datos, el punto “del codo” está en k=4, siendo 4 nuestro k óptimo. A partir de k=4 la Inertia comienza a disminuir de forma lineal, o dicho de otra forma, después de k=4, el cambio en la disminución del valor de la Inertia no es significativo. 
+
+\cleardoublepage
+
+Una vez obtenido nuestro k óptimo, pasaremos a calcular y asignar los centroides para dichos clusters. En la Imagen \ref{fig:codigo_k-means} podemos observar la implementación en código mediante la librería \textit{Sklearn} para el cálculo de la ubicación de los centroides en k-means. Aquí vemos que se define \textit{init = ‘k-means ++’}, lo que quiere decir que se utiliza k-means ++ como método de inicialización de nuestros centroides. K-means ++ es uno de los métodos estándar de inicialización, el cual fue detallado en la sección \textit{\nameref{k_means_plus_plus}}. Utilizando este método logramos una asignación de centroides más espaciada, solucionando la tercer y última limitación / problema de k-means: la inicialización de los centroides.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.9\textwidth]{images/implementacion_5/codigo_k-means.png}
+\captionsetup{justification=centering,margin=3cm}
+\caption{Código K-means y obtención de las coordenadas de los centroides.}
+\label{fig:codigo_k-means}
+\end{figure}
+
+En la Imagen \ref{fig:final_groups} podemos observar como quedó la distribución de los centroides en nuestros puntos de datos (izquierda) y como quedó la asignación de los labels para los cuatro clusters (derecha). 
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/final_groups.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Distribución de centroides (izquierda) y asignación final de los clusters (derecha).}
+\label{fig:final_groups}
+\end{figure}
+
+De esta manera, los clusters / grupos obtenidos expresan lo siguiente:
+\begin{itemize}
+\item Cluster 1: un punto que pertenezca a este cluster indica que existe un nivel bajo de similitud entre el Curriculum Vitae candidato y el la descripción del puesto.
+\item Cluster 2: indica un nivel medio de similitud.
+\item Cluster 3: indica un nivel alto de similitud.
+\item Cluster 4: indica un nivel muy alto de similitud. 
+\end{itemize}
+
+Quedándonos como dataset final que utilizaremos en KNN el visualizado en la Imagen \ref{fig:to_knn}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.8\textwidth]{images/implementacion_5/to_knn.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Dataset base para entrenar y evaluar KNN.\\}
+\label{fig:to_knn}
+\end{figure}
+
+\subsubsection{KNN.}\label{imp_knn}
+
+Como mencionamos previamente en la sección \textit{\nameref{knn_teoria}}, KNN es un algoritmo de ML que utilizamos para resolver un problema de clasificación: construiremos un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos. La variable a predecir en KNN es discreta, y para nuestro caso es el label correspondiente al cluster -1, 2, 3 o 4- obtenidos previamente en k-means. De esta manera, nuestro set de entrenamiento será una parte del dataset base descrito en la Imagen \ref{fig:dataset_kmeans_knn_final} (la otra parte funcionará como set de evaluación), para el cual conocemos la clase a la que pertenecen nuestros datos (1, 2, 3 o 4).
+
+En nuestro caso es un modelo sencillo: en base a valores nuevos de WMD y Cosine Similarity entre un Candidato y una descripción, nuestro modelo predecirá en qué clase caerá este punto en 2 dimensiones: dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta). 
+
+Para poder utilizar KNN tenemos que definir previamente dos hiper-parámetros: la métrica a usar para calcular las distancias, y el valor de k (cuantos vecinos vamos a considerar). Como métrica de cálculo de distancias se utilizó la distancia euclidiana, ampliamente utilizada en modelos de KNN; mientras que el valor de k fue determinado mediante el procedimiento detallado a continuación. 
+
+Como vimos en la sección \textit{\nameref{implementar_mod_ML}} contamos con una fase de entrenamiento del modelo, otra de evaluación del mismo y otra etapa de \textit{Parameter Tuning}. Para cada fase se utilizan distintas porciones de nuestro dataset, lo que nos permitirá no caer en Overfitting. 
+
+En nuestro caso, lo primero que haremos es encontrar el valor del hiper-parámetro k, para esto realizaremos la etapa de \textit{Parameter Tuning} (la cual internamente realiza una serie de entrenamientos y evaluaciones). Una vez hallado nuestro k pasaremos a la fase de entrenamiento de nuestro modelo con dicho valor de k y por último a la fase de evaluación. 
+
+En un primer momento para hallar nuestro k decidimos se pensó en utilizar un esquema simple de validación, el cual es detallado en la sección \textit{\nameref{implementar_mod_ML}}. Este esquema consistía en dividir nuestro set de entrenamiento en dos: un nuevo set de entrenamiento y un set de validación, y realizar la evaluación sobre este último set de test.
+
+Para este esquema las etapas a seguir serían las siguientes (Ver Imagen \ref{fig:esquema_1_validacion}):
+
+\begin{itemize}
+\item Etapa 1- Encontramos nuestro el hiperparámetro k más adecuado en KNN (el que nos dé el mejor accuracy para las predicciones) entrenando y evaluando nuestro algoritmo utilizando \textit{Train Set 2} y \textit{Validation Set}.
+
+\item Etapa 2- Realizamos la clásica fase de entrenamiento y evaluación utilizando \textit{Train Set} y \textit{Test Set} con el K obtenido en la Etapa 1 para obtener el accuracy final de nuestro modelo.
+
+\item Etapa 3- Realizamos una predicción final utilizando los datos \textit{Prediction Final Set} (dataset de la Imagen \ref{fig:eliminacion_hcm_2_y_denis}). 
+\end{itemize}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/esquema_1_validacion.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Esquema inicial y división de datos para el entrenamiento y evaluación del modelo KNN.}
+\label{fig:esquema_1_validacion}
+\end{figure}
+
+Sin embargo, debido a los problemas que puedan llegar a ocurrir y que detallamos en la sección \textit{\nameref{implementar_mod_ML} (Paso 6: Parameter Tuning o configuración de parámetros)}, se optó por utilizar cross validation para realizar la validación del modelo iterando sobre los k hiper-parámetros para llegar al k mas optimo, método descrito en la sección \textit{\nameref{Cross Validation}}.
+
+\cleardoublepage
+
+Para este esquema las etapas a seguir fueron las siguientes (Ver Imagen \ref{fig:esquema_2_cross_val}):
+
+\begin{itemize}
+\item Etapa 1- Evaluamos nuestro algoritmo utilizando únicamente el \textit{Train Set} mediante Cross Validation (el Set de test es \textit{dinámico} y vive dentro de este \textit{Train Set}). De esta manera encontramos el hiperparámetro k más adecuado en KNN (el que nos dé el mejor accuracy para las predicciones).
+
+\item Etapa 2- Realizamos la clásica fase de entrenamiento y evaluación utilizando \textit{Train Set} y \textit{Test Set} con el K obtenido en 1 para obtener el accuracy final de nuestro modelo. 
+
+\item Etapa 3- Realizamos una predicción final utilizando los datos \textit{Prediction Final Set} (dataset de la Imagen \ref{fig:eliminacion_hcm_2_y_denis}). Este es el paso detallado en la sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}.
+
+\end{itemize}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/esquema_2_cross_val.png}
+\captionsetup{justification=centering,margin=1cm}
+\caption{Esquema final y división de datos para el entrenamiento y evaluación del modelo KNN utilizando Cross Validation.}
+\label{fig:esquema_2_cross_val}
+\end{figure}
+
+Cabe destacar que como métrica de evaluación (tanto para la etapa 1 y 2) elegimos al \textit{accuracy}, la cual mide el \% de aciertos: es el ratio de las predicciones correctas sobre el número total de instancias evaluadas. Si alcanzamos un 90\% o más de accuracy podremos tener una buena confianza en los resultados que nos otorga el modelo. Utilizamos accuracy ya que es la métrica más simple e intuitiva. Además, tal como se menciona en el Paper\cite{Implem_4} si nuestro dataset está bien distribuido / balanceado entre las distintas clases (tal como ocurre en nuestro caso) es aceptable utilizar esta métrica de evaluación. Otras métricas que podríamos llegar a utilizar como alternativa son las descritas al inicio del informe en la Tabla \ref{table:1}. 
+
+\cleardoublepage
+
+A continuación mencionaremos más en detalle los resultados de las Etapas 1, 2 y 3.
+
+En la Etapa 1 entrenamos y evaluamos nuestro algoritmo utilizando únicamente el \textit{Train Set} mediante Cross Validation\footnote{¿Por qué usamos solo nuestro set de entrenamiento (\textit{Train Set}) en Cross Validation y no todo el dataset sin particionar en train y test (\textit{Base Set})?: Esto es debido a la independencia de los datasets. Debemos entrenar nuestro modelo con unos datos de entrenamiento y luego aplicar nuestro modelo a datos de prueba (con datos que no se vieron durante el entrenamiento). Esto es para asegurarnos que nuestro modelo generaliza bien y no aprende “de memoria”, evitando así el overfitting. Si entrenamos y evaluamos usando solo un dataset, es muy posible que se caiga en overfitting y nuestro modelo no generalice bien.}. Para esto realizamos 2 iteraciones (ver código descrito en la Imagen \ref{fig:cross_val_code}): la primera iteración es sobre los 50 valores de k (para luego elegir el k que dé mejor accuracy) y dentro de esta se realiza una segunda iteración sobre los 5 k-fold pertenecientes al proceso de evaluación mediante cross validation. El resultado gráfico de estas dos iteraciones lo encontramos en la Imagen \ref{fig:Cross_val_accuracy}.
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=1\textwidth]{images/implementacion_5/cross_val_code.png}
+\caption[Código implementación Cross Validation en KNN con 5-fold.]{Código implementación Cross Validation en KNN con 5-fold\protect\footnotemark}
+\label{fig:cross_val_code}
+\end{figure}
+
+\footnotetext{En la función \textit{$cross\_val\_score$} se realiza un entrenamiento, evaluación y obtención de accuracy de predicción del modelo (contando el número de predicciones incorrectas en el conjunto de datos de prueba) para cada uno de los 5-folds. Y se retorna el promedio de estos 5 accuracy obtenidos. Todo esto, debido al primer \textit{for}, se realiza K veces (donde K=50).}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.6\textwidth]{images/implementacion_5/Cross_val_accuracy.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Valores de accuracy obtenidos mediante Cross Validation para cada valor de K.}
+\label{fig:Cross_val_accuracy}
+\end{figure}
+
+En la Imagen \ref{fig:Cross_val_accuracy} podemos observar que entre 6 - 10 son buenos valores de K, luego el accuracy del modelo cae debido al underfitting. En nuestro caso elegimos K=8, ya que el accuracy en este punto es el mayor, 0.9937. 
+Una vez finalizada la Etapa 1, en la Etapa 2 realizamos las clásicas fases de entrenamiento y evaluación utilizando \textit{Train Set} y \textit{Test Set} con el hiper-parámetro K obtenido en la Etapa 1 (K=8) para obtener el accuracy final de nuestro modelo (ver código descrito en la Imagen \ref{fig:train_knn_con_k_8}).
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.9\textwidth]{images/implementacion_5/train_knn_con_k_8.png}
+\caption{Código entrenamiento y evaluación final en KNN con k=8.}
+\label{fig:train_knn_con_k_8}
+\end{figure}
+
+Observamos que nos dió un accuracy final de 0.98998, por lo que \textbf{podemos confiar que un 98.99\% de las veces, en base a valores de WMD y Cosine Similarity entre un Candidato y una descripción, nuestro modelo predecirá correctamente si este punto en 2 dimensiones caería dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta)}. 
+
+Algo a destacar es que, tal como mencionamos en la sección \textit{\nameref{knn_teoria}}, KNN es un tipo de aprendizaje basado en la memoria, también llamado aprendizaje basado en instancias, que pertenece al aprendizaje perezoso (“lazy learning”). Esto quiere decir que KNN \textbf{no tiene una fase de entrenamiento}. De esta manera, en referencia al código de la Imagen \ref{fig:train_knn_con_k_8}):
+
+\begin{itemize}
+
+\item En \textit{knn.fit} lo que hacemos es simplemente almacenar nuestros datos de entrenamiento mediante árboles kd (\textit{KD tree}) o árboles de bolas (\textit{Ball tree}) para minimizar los futuros cálculos de medición de distancias. 
+
+\item En \textit{knn.predict} lo que hacemos es usar los datos de entrenamiento almacenados anteriormente para clasificar nuestros datos del set de pruebas. De esta manera, la implementación de sklearn para \textit{predict()} en KNN no calcula las distancias con “Fuerza bruta” (calculando las distancias de cada punto en nuestros datos no vistos a todos los puntos de nuestro set de entrenamiento). Para que el algoritmo sea computacionalmente barato, en lugar de esto, utiliza las estructuras BallTree o KDTree comentadas previamente, para lograr encontrar a los N vecinos más cercanos. Es por esto que previamente al \textit{predict()} se necesita realizar un \textit{fit()}.
+
+\end{itemize}
+
+Por último, ya teniendo nuestro modelo KNN entrenado y evaluado mediante Cross Validation, en la Etapa 3 realizaremos una predicción final con este modelo utilizando las 131 filas de \textit{Prediction Final Set} (dataset de la Imagen \ref{fig:eliminacion_hcm_2_y_denis}). Este es el paso detallado en la sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}.
 
 \cleardoublepage
 
 \subsection{Clasificación de nuevas muestras y resultados obtenidos.}\label{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}
 
-\colorbox{red}{FALTA}
+Como mencionamos previamente, en este paso realizaremos una predicción final con nuestro modelo KNN utilizando las 131 filas de \textit{Prediction Final Set} (dataset de la Imagen \ref{fig:eliminacion_hcm_2_y_denis}). En esta predicción se clasificaron las nuevas muestras de acuerdo a las 4 categorías que creamos con k-means.
+De esta manera obtendremos:
+\begin{itemize}
+\item Las predicciones del candidato \textit{$SecuritySpecialist\_Denis\_Banik$} para todas las posiciones del DF.
+\item Y las predicciones de la Posición \textit{HCM Consultant 2} para todos los candidatos del DF.
+\end{itemize}
+
+Las predicciones las realizamos únicamente llamando a la función \textit{knn.predict} utilizando el modelo obtenido previamente. Para la predicción se utilizan las features $tfidf\_cosine$ y WMD. De esta manera, predecimos la columna \textit{Result KNN} (que serían nuestras 4 clases). 
+
+En la Imagen \ref{fig:Pred_HCM_Consultant_2} observamos las predicciones realizadas para el puesto \textit{HCM Consultant 2}, mientras que en la Imagen \ref{fig:prediccion_denis} observamos las predicciones realizadas por el modelo KNN para el Candidato \textit{Denis Banik} (el cual tiene expertise en posiciones de \textit{Security Specialist}).
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.9\textwidth]{images/implementacion_5/Pred_HCM_Consultant_2.png}
+\caption{Predicción del modelo KNN para el puesto HCM Consultant 2.}
+\label{fig:Pred_HCM_Consultant_2}
+\end{figure}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.9\textwidth]{images/implementacion_5/prediccion_denis.png}
+\caption{Predicción del modelo KNN para el Candidato Denis Banik (Security Specialist).}
+\label{fig:prediccion_denis}
+\end{figure}
+
+En conclusión, las predicciones arrojadas por el modelo para las nuevas muestras fueron las esperadas:
+\begin{itemize}
+\item Para el Candidato \textit{$SecuritySpecialist\_Denis\_Banik$} obtuvimos altos valores de predicción (columna \textit{Result KNN}) para puestos relacionados a Seguridad (algo esperable).
+\item Para la Posición \textit{HCM Consultant 2} obtuvimos un alto nivel de predicción (columna \textit{Result KNN}) para el candidato \textit{$HCM\_Federico\_Calonge$} (Algo esperable).
+\end{itemize}
 
 \cleardoublepage
 
@@ -3649,6 +3938,8 @@ Billy Chiu, \& Simon Baker. (2020, Diciembre). \textit{Word embeddings for biome
 \bibitem{Implem_3}
 Tosin P. Adewumi, Foteini Liwicki, \& Marcus Liwicki. (2022, Marzo). \textit{Word2Vec: Optimal hyper-parameters and their impact on NLP downstream tasks}. Open Computer Science. 12(1). (pp. 134-141).
 
+\bibitem{Implem_4}
+Nathalie Japkowicz. (2006, Mayo). \textit{Why Question Machine Learning Evaluation Methods (An Illustrative Review of the Shortcomings of Current Methods)}. (pp. 2).
 
 \end{thebibliography}
 
