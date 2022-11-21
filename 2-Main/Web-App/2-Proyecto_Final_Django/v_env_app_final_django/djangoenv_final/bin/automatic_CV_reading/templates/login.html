@@ -1,0 +1,60 @@
+<!doctype html>
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}"> 
+
+    <title>LOGIN - Sistema de RRHH</title>
+     
+     {% include "head_css.html" %}    <!--cargamos / heredamos el head_css.html para usarlo acá, ya que se usa en toda la página-->
+
+   <style>
+        .jumbotron{
+            position: relative;
+            top: 100px;
+            height: 300px;
+        }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+        <div class="jumbotron text-center">
+            <div class="login-form">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label>Nombre de usuario</label>
+                        <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Constraseña</label>
+                        <input type="password" class="form-control" placeholder="Constraseña" name="password">
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">LOGIN</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+      {% include "javascript.html" %}    <!--cargamos / heredamos el javascript.html para usarlo acá, ya que se usa en toda la página-->
+
+  </body>
+
+</html>
+
+
+
+

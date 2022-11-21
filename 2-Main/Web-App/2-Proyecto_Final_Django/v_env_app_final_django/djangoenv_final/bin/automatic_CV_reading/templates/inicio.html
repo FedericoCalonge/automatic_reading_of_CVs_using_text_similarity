@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<!--action no le ponemos nada para que se quede en la misma página-->
+<!--multipart/form-data es porque sino me tiraba que el CV a subir era requerido aún habiendolo subido-->
+
+{% block content %}
+
+	<div class="jumbotron">    
+		    <p class="lead">{{el_titulo}}. 
+		    </p>
+		    <p>Proyecto de Tesis basado en la lectura automática de Curriculum Vitae y su comparación con descripciones de puestos laborales de IT utilizando técnicas de medición de similitud entre textos (Cosine Similarity y Word Mover's Distance -WMD-). 
+			<br>
+			De esta manera, entre todos los candidatos disponibles que subieron su CV, se obtendrá el mejor de estos (de acuerdo a dichas mediciones de similitud) para el puesto que el reclutador requiera analizar. 
+			</p>
+	</div>
+
+	<div class="text-center">
+	    	<img class="thumbnail img-fluid" src='{% static "img/undav.jpg" %}' style="max-width:15%;"/>
+	</div>
+    
+{% endblock %}

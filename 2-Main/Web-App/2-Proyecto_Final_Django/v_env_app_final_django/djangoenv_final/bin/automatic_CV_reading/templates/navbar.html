@@ -1,0 +1,37 @@
+{% load static %}
+
+ <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 sticky-top">  
+      <a class="navbar-brand" href="{% url 'inicio' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Candidatos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'form_candidate' %}">Agregar</a>
+              <a class="dropdown-item" href="{% url 'list_cand' %}">Listar</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Puestos IT
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'form_job' %}">Agregar</a>
+              <a class="dropdown-item" href="{% url 'list_jobs' %}">Listar</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'best_match' %}">Búsqueda del mejor candidato</a>
+          </li>
+        </ul>
+        <a class="btn btn-primary" href="{% url 'logout' %}" role="button" type="submit">Logout</a>
+      </div>
+</nav>

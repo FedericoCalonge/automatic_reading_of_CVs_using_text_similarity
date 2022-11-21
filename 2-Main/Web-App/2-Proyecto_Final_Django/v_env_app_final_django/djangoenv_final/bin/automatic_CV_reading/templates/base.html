@@ -1,0 +1,33 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}"> 
+
+    <title>Sistema de RRHH</title>
+     
+     {% include "head_css.html" %}    <!--cargamos / heredamos el head_css.html para usarlo acá, ya que se usa en toda la página-->
+
+  </head>
+
+  <body>
+
+   {% include "navbar.html" %}    <!--cargamos / heredamos el navbar.html para usarlo acá, ya que se usa en toda la página-->
+
+   <div class="container">
+    {% block content %}
+    <!-- Acá va el contenido que ponemos en otros htmls dentro de sus "% block content", todo esto mientras hereden de base.html: "% extends base.html": por ejemplo en inicio.html, vemos que dentro del "& block content" está la descripción del proyecto e imagen-->
+    {% endblock %}
+   </div>
+
+  {% include "javascript.html" %}    <!--cargamos / heredamos el javascript.html para usarlo acá, ya que se usa en toda la página-->
+
+  {% include "footer.html" %}    <!--cargamos / heredamos el footer.html para usarlo acá, ya que se usa en toda la página-->
+
+  </body>
+</html>
