@@ -2,8 +2,39 @@
 
 {% block content %}
    
-   <div class="jumbotron text-center">
-   		<p>LISTAR</p>
-   </div>
+   <table id="truncateMe" class="table table-bordered table-striped table-hover table-sm">
+      <caption>*Ordenados por fecha de creación.</caption>
+
+      <thead class="thead-dark">
+         <tr> 
+            <th style="width:5%"><i>N°</i></th>
+            <th style="width:10%"><i>Título</i></th>
+            <th><i>Descripción</i></th>
+            <th style="width:10%"><i>Ubicación</i></th>
+            <th style="width:10%"><i>Creación</i></th>
+            <th style="width:10%"><i>Última Modificación</i></th>
+         </tr>
+      </thead>
+      
+      <tbody>
+         {% for puesto in puestos %}
+            <tr> 
+               <td>{{ forloop.counter }}</td>
+               <td> <strong> {{ puesto.titulo }} </strong> </td>
+               <td>{{puesto.descripcion}}</td>
+               <td>{{puesto.ubicacion}}</td>
+               <td>{{puesto.creado_a}}</td>
+               <td>{{puesto.modificado_a}}</td> 
+            </tr>
+      {% endfor %}
+   </tbody>
+
+   </table>
+
+   <!--Puestos por superposicion con el navbar-->
+   <br>
+   <br>
+   <br>
 
 {% endblock %}
+

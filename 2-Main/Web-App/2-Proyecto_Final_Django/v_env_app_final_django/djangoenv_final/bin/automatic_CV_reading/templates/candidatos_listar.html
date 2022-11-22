@@ -1,9 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-   
-    <div class="jumbotron text-center">
-     		<p>LISTAR</p>
-    </div>
+
+   <table class="table table-bordered table-striped table-hover table-sm">
+    <caption>*Ordenados por fecha de creación.</caption>
+
+    <thead class="thead-dark">
+        <tr>
+            <th style="width:5%"><i>N°</i></th>
+            <th style="width:20%"><i>Nombre</i></th>
+            <th style="width:10%"><i>Fecha de Nac.</i></th>
+            <th style="width:5%"><i>Sexo</i></th>
+            <th style="width:10%"><i>Teléfono</i></th>
+            <th style="width:20%"><i>Email</i></th>
+            <th style="width:10%"><i>Ruta CV</i></th>
+            <th style="width:10%"><i>Creación</i></th>
+            <th style="width:10%"><i>Modificación</i></th>
+        </tr>
+    </thead>
+
+    <tbody>
+      {% for candidato in candidatos %}
+        <tr> 
+            <td>{{ forloop.counter }}</td>
+            <td> <strong> {{ candidato.nombre_y_apellido }} </strong> </td>
+            <td>{{candidato.fecha_de_nacimiento}}</td>
+            <td>
+            {% if candidato.sexo == 'MASCULINO' %}
+                M
+            {% endif %}
+            {% if candidato.sexo == 'FEMENINO' %}
+                F
+            {% endif %}
+            {% if candidato.sexo == 'OTRO' %}
+                O
+            {% endif %}
+            </td>
+            <td>{{candidato.telefono}}</td>
+            <td>{{candidato.email}}</td>
+            <td>{{candidato.CV_pdf}}</td>
+            <td>{{candidato.creado_a}}</td>
+            <td>{{candidato.modificado_a}}</td> 
+        </tr>
+      {% endfor %}
+    </tbody>
+
+   </table>
+
+   <!--Puestos por superposicion con el navbar-->
+   <br>
+   <br>
+   <br>
 
 {% endblock %}

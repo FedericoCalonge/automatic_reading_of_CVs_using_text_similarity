@@ -96,28 +96,34 @@ def form_job(request):
 ##################################################################################################################################################
 
 @login_required
-def listar_puestos(request):
-	titulo = "Bienvenido/a %s" %(request.user)
-
+def listar_puestos(request):	
+	#Esto es por si queremos imprimir los datos de los puestos por pantalla, pero lo hacemos directamente sobre el html.
+	#contador_puestos = 0
+	#for obj_puesto in (Puesto.objects.all()): #Puesto.objects.all()) me da todos los objetos guardados en la BD mediante este Modelo:		
+	#	print(obj_puesto.titulo)  #titulo es un atributo dentro de models.py (todo lo que podemos imprimir está ahi: descripcion, ubicacion, creado_a, modificado_a)
+	#	contador_puestos=contador_puestos+1
+	#print("Número de Puestos totales: " + str(contador_puestos))
+	
+	queryset = Puesto.objects.all().order_by("creado_a")  #si pongo "-creado_a" es descendente.
 	#Esto es lo que enviamos al html:
 	context = {
-		"el_titulo":titulo,
+		"puestos": queryset,   #"puestos" lo uso en el html que renderizo (ver abajo).
 	}
 
-	return render(request,"puestos_it_listar.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'inicio.html'.
+	return render(request,"puestos_it_listar.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'puestos_it_listar.html'.
 
 ##################################################################################################################################################
 
 @login_required
 def listar_cand(request):
-	titulo = "Bienvenido/a %s" %(request.user)
-
+	
+	queryset = Candidato.objects.all().order_by("creado_a")
 	#Esto es lo que enviamos al html:
 	context = {
-		"el_titulo":titulo,
+		"candidatos": queryset, 
 	}
 
-	return render(request,"candidatos_listar.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'inicio.html'.
+	return render(request,"candidatos_listar.html",context) 
 
 ##################################################################################################################################################
 
