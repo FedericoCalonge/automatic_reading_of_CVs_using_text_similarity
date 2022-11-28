@@ -3,13 +3,17 @@ from .forms import CandidateForm, RecruiterForm  #Importamos los 2 formularios (
 # Create your views here.
 from django.shortcuts import redirect
 from django.http import HttpResponse #Importamos el objeto / clase HttpResponse que usamos abajo.
-from .models import Candidato, Puesto #Importamos Candidato de models.py
+from .models import Candidato, Puesto, Similitud_Cand_Puesto #Importamos Candidato y Puesto de models.py
 
 from django.contrib.auth.models import Permission
 from django.contrib.auth.models import User
 
 #Acá creamos nuestras vistas / controladores:
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
+
+from .textos_y_ML.preprocesamiento_pdf_y_job_desc import preprocesamiento_pdf, preprocesamiento_job_desc
+from .textos_y_ML.vectorizacion_y_medicion_sim import tf_idf_and_cosine_sim, word2vec_and_wmd
+from .textos_y_ML.knn import calculo_knn
 
 ##################################################################################################################################################
 
@@ -54,7 +58,17 @@ def form_candidate(request):
 		f_CV_pdf = form_data.get("CV_pdf")
 		
 		#Acá creamos el objeto con las variables de arriba que se guardará nuestro en nuestro modelo:
-		obj = Candidato.objects.create(nombre_y_apellido=f_nombre_y_apellido, fecha_de_nacimiento=f_fecha_de_nacimiento, sexo=f_sexo, telefono=f_telefono, email=f_email, CV_pdf=f_CV_pdf)
+		obj = Candidato.objects.create(nombre_y_apellido=f_nombre_y_apellido, fecha_de_nacimiento=f_fecha_de_nacimiento, sexo=f_sexo, telefono=f_telefono, email=f_email, CV_pdf=f_CV_pdf, CV_clean_content='-', CV_tokens='-')
+		#Cuando se guarda en el modelo es que se carga el PDF en /uploads/CVs. Entonces, una vez guardado, realizamos la función de preprocesamiento:
+
+		(clean_cv, tokens_CV) = preprocesamiento_pdf(f_CV_pdf) 		#Acá realizamos la función para limpiar el PDF reutilizando lo de los jupyter notebooks:
+
+		#Ahora hacemos un update del objeto de nuestro modelo con que tenga el último ID (que es autoincremental) con nuestros 2 campos:
+		last_cand_id=Candidato.objects.last().id
+		Candidato.objects.filter(id=last_cand_id).update(
+    			CV_clean_content=clean_cv,
+    			CV_tokens=tokens_CV
+		)
 
 		return redirect(listar_cand, permanent=False)   #Una vez que el formulario es valido (o sea se submiteó) acá directamente redirijimos a la función listar_cand de abajo, que carga el htlm que dice en su 'return render...'
 
@@ -83,6 +97,16 @@ def form_job(request):
 		f_ubicacion = form_data_2.get("ubicacion")
 
 		obj_2 = Puesto.objects.create(titulo=f_titulo, descripcion=f_descripcion, ubicacion=f_ubicacion)
+
+		#Una vez guardado el modelo usamos el campo 'f_descripcion' para sacar su preprocesamiento 'limpio' y los tokens:
+		(clean_job, tokens_job) = preprocesamiento_job_desc(f_descripcion) 	
+
+		#Ahora hacemos un update del objeto de nuestro modelo con que tenga el último ID (que es autoincremental) con nuestros 2 campos:
+		last_job_id=Puesto.objects.last().id
+		Puesto.objects.filter(id=last_job_id).update(
+    			job_clean_content=clean_job,
+    			job_tokens=tokens_job
+		)
 
 		return redirect(listar_puestos, permanent=False)  #Una vez que el formulario es valido (o sea se submiteó) acá directamente redirijimos a la función listar_puestos de abajo, que carga el htlm que dice en su 'return render...'
 
@@ -129,11 +153,44 @@ def listar_cand(request):
 
 @login_required
 def best_matching(request): 
-	titulo = "Bienvenido/a %s" %(request.user)
+	
+	#Me llega el ID del job, y saco todos los ids de los puestos y para todas las combinaciones hago tf_idf_and_cosine_sim(x,y) y word2vec_and_wmd(x,y) y las salidas calculo_knn(salida,salida_3) y esa salida la guardo en la columna correspondiente. 
 
+	#Y por último muestro la tabla final.
+
+	##################
+	#VER COMO HACER PARA CARGAR 1 SOLA VEZ LOS MODELOS Y APLICAR LAS MENOS POSIBLES VECES LAS TÉCNICAS.
+	##################
+
+	#SI SE AÑADE UN CANDIDATO, ENTONCES TRAEMOS EL QUERYSET CON TODOS LOS JOBS Y LOS AÑADIMOS AL CANDIDATO COMO RELACIÓN EN LA M-M
+	#Y SI SE AÑADE UN JOB AL REVES, TRAEMOS EL QUERYSET CON TODOS LOS CANDIDATOS Y LOS AÑADIMOS AL JOB COMO RELACIÓN EN LA M-M
+	#El único problema acá creo que es al principio, si añado un candidato y no hay ningún puesto... VER
+	#Y en los cálculos de distancias tendría que ver si hay alguna combinación de null y solo esa calcular nuevam,ente... para no recalcular todos los valores de los que ya calculé previamente.
+
+	#ANDA esto de abajo, pero es uno por uno:
+	'''
+	salida = tf_idf_and_cosine_sim(57,17)
+	print('%.3f'%(salida[0]))
+
+	salida_2 = tf_idf_and_cosine_sim(57,18)
+	print('%.3f'%(salida_2[0]))
+
+	salida_3 = word2vec_and_wmd(57,17)
+	print(salida_3)
+
+	salida_4 = word2vec_and_wmd(57,18)
+	print(salida_4)
+
+	salida_final = 
+	print(salida_final)
+	'''
+
+	#Acá enviariamos la lista con los candidatos y sus calificaciones:
+	queryset = Similitud_Cand_Puesto.objects.all().order_by("clasif_knn")
 	#Esto es lo que enviamos al html:
 	context = {
-		"el_titulo":titulo,
+		"similitudes": queryset,   #"similitudes" lo uso en el html que renderizo (ver abajo).
 	}
 
-	return render(request,"busqueda_mejor_cand.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'inicio.html'.
+	return render(request,"busqueda_mejor_cand.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'busqueda_mejor_cand.html'.
+

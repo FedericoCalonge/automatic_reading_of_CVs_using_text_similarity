@@ -1,8 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="jumbotron text-center">
-   		<p>COMPLETAR</p>
-   </div>
+   
+   <table id="truncateMe" class="table table-bordered table-striped table-hover table-sm">
+      <caption>*Ordenados por score de similitud.</caption>
+
+      <thead class="thead-dark">
+         <tr> 
+            <th style="width:50%"><i>Candidato</i></th>
+            <th style="width:50%"><i>Similitud</i> </th>
+         </tr>
+      </thead>
+      
+      <tbody>
+         {% for similitud in similitudes %}
+            <tr> 
+                <td>{{similitud.candidato_id}}</td>
+                <td> 
+                <strong> 
+                {% if similitud.clasif_knn == 0 %}
+                ☆☆☆
+                {% endif %}
+            
+                {% if similitud.clasif_knn == 1 %}
+                ★☆☆
+                {% endif %}
+
+                {% if similitud.clasif_knn == 2 %}
+                ★★☆
+                {% endif %}
+
+                {% if similitud.clasif_knn == 3 %}
+                ★★★
+                {% endif %}
+                </strong>
+                </div> </td>
+            </tr>
+      {% endfor %}
+   </tbody>
+
+   </table>
+
+   <!--Puestos por superposicion con el navbar-->
+   <br>
+   <br>
+   <br>
 
 {% endblock %}
