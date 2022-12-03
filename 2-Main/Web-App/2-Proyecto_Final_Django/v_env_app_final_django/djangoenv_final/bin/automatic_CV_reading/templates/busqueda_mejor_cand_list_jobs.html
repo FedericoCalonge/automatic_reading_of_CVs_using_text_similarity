@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+   
+   <table class="table table-bordered table-striped table-hover table-sm">
+      <caption>*Ordenados por fecha de creación.</caption>
+
+      <thead class="thead-dark">
+         <tr> 
+            <th style="width:3%"><i>N°</i></th>
+            <th style="width:10%"><i>Título</i></th>
+
+         </tr>
+      </thead>
+      
+      <tbody>
+         {% for puesto in puestos %}
+            <tr> 
+               <td class='text-center'>
+                    <form method='get'>
+                        <input type='submit' name='internal-id' value='{{puesto.id}}'>
+                    </form>
+                </td>
+               <td> <strong> {{puesto.titulo}} </strong> </td>
+               
+            </tr>
+      {% endfor %}
+   </tbody>
+
+   </table>
+
+   <!--Puestos por superposicion con el navbar-->
+   <br>
+   <br>
+   <br>
+
+{% endblock %}

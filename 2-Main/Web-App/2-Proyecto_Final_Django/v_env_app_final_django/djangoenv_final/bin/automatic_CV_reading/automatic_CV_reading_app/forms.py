@@ -19,7 +19,6 @@ class CandidateForm(forms.Form):
 	#creado_a= forms.DateTimeField(auto_now_add=True)  #Después ver.
 	#modificado_a= forms.DateTimeField(auto_now=True)  #Después ver.
 
-#FALTA MODIFICAR ESTA:
 class RecruiterForm(forms.Form):
 	titulo= forms.CharField(max_length=30)  
 	descripcion=forms.CharField(widget=forms.Textarea)

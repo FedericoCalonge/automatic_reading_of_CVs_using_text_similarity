@@ -14,6 +14,11 @@ from django.contrib.auth.decorators import login_required, user_passes_test, per
 from .textos_y_ML.preprocesamiento_pdf_y_job_desc import preprocesamiento_pdf, preprocesamiento_job_desc
 from .textos_y_ML.vectorizacion_y_medicion_sim import tf_idf_and_cosine_sim, word2vec_and_wmd
 from .textos_y_ML.knn import calculo_knn
+from .textos_y_ML.calculo_sim_final import calculo_similitudes
+
+#Para ocultar warnings de tipo "futuros" (que ahora no afectan pero pueden afectar en versiones de librerias posteriores):
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 ##################################################################################################################################################
 
@@ -151,46 +156,90 @@ def listar_cand(request):
 
 ##################################################################################################################################################
 
+#LÓGICA:
+#En 'best_matching_select' me llega el ID del job (id_job) a partir del formulario del html (seleccionando el número en la tabla), y le pasamos este id a 'best_matching_show'. Ahi agarramos a TODOS los ids de los candidatos (lista_ids_todos_candidatos). 
+#En base a los ids de lista_ids_todos_candidatos veo en la tabla de similitudes intermedia: 
+	#IF está el id del job y el id del candidato en esta tabla intermedia: es que ya se calculó la similitud y no hay que calcularla nuevamente.
+	#ELSE, se calcula la similitud y se agrega el registro correspondiente a ese job y a ese candidato con la similitud calculada. 
+
+#Saco todos los ids de los puestos y para todas las combinaciones hago tf_idf_and_cosine_sim(x,y) y word2vec_and_wmd(x,y) y las salidas calculo_knn(salida,salida_3) y esa salida la guardo en la columna correspondiente. 
+
+#Y por último muestro la tabla final.
+
+##################
+#VER COMO HACER PARA CARGAR 1 SOLA VEZ LOS MODELOS Y APLICAR LAS MENOS POSIBLES VECES LAS TÉCNICAS.
+##################
+
+#SI SE AÑADE UN CANDIDATO, ENTONCES TRAEMOS EL QUERYSET CON TODOS LOS JOBS Y LOS AÑADIMOS AL CANDIDATO COMO RELACIÓN EN LA M-M
+#Y SI SE AÑADE UN JOB AL REVES, TRAEMOS EL QUERYSET CON TODOS LOS CANDIDATOS Y LOS AÑADIMOS AL JOB COMO RELACIÓN EN LA M-M
+#El único problema acá creo que es al principio, si añado un candidato y no hay ningún puesto... VER
+#Y en los cálculos de distancias tendría que ver si hay alguna combinación de null y solo esa calcular nuevam,ente... para no recalcular todos los valores de los que ya calculé previamente.
+
 @login_required
-def best_matching(request): 
+def best_matching_select(request): 
+
+	#Enviamos la lista de puestos para seleccionar el que queremos:
+	queryset_2 = Puesto.objects.all().order_by("creado_a")  #si pongo "-creado_a" es descendente.
+
+	#Esto es lo que enviamos al html:
+	context = { 
+		"puestos": queryset_2, #"puestos" lo usamos en el html que renderizo (ver abajo).  
+	}
+	#print(request.GET.get('internal-id'))
 	
-	#Me llega el ID del job, y saco todos los ids de los puestos y para todas las combinaciones hago tf_idf_and_cosine_sim(x,y) y word2vec_and_wmd(x,y) y las salidas calculo_knn(salida,salida_3) y esa salida la guardo en la columna correspondiente. 
+	if request.method == 'GET' and str(request.GET.get('internal-id'))!='None':
+		id_job = request.GET.get('internal-id')
+		return redirect(best_matching_show, id=id_job, permanent=False)  #Le pasamos el id para que lo muestre en la URL (/"best_match/<id>/")
+	else: 
+		return render(request,"busqueda_mejor_cand_list_jobs.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'busqueda_mejor_cand.html'.
 
-	#Y por último muestro la tabla final.
+@login_required
+def best_matching_show(request, id): #id = id del puesto.
+	
+	queryset_candidatos = Candidato.objects.all()
+	lista_ids_todos_candidatos = queryset_candidatos.values_list('id', flat=True) #Agarramos todos los ids de los candidatos.
+	#Sin el flat me lo imprimia como: <QuerySet [(1,), (2,),...']>. En cambio con el flat es una lista: [1, 2, 3, ...]
+	#print(len(lista_ids_todos_candidatos))  #imprime cantidad de cantidatos totales.
+	#print(type(lista_ids_todos_candidatos)) #<class 'django.db.models.query.QuerySet'>
 
-	##################
-	#VER COMO HACER PARA CARGAR 1 SOLA VEZ LOS MODELOS Y APLICAR LAS MENOS POSIBLES VECES LAS TÉCNICAS.
-	##################
+	queryset_sim = Similitud_Cand_Puesto.objects.filter(puesto_id = id) #Obtengo solo las filas del modelo con nuestro puesto_id = id ingresado.
+	lista_ids_cand_del_puesto_ya_calculados = queryset_sim.values_list('candidato_id', flat=True) #Obtengo lista con los ids de los candidatos donde su similitud ya fue calculada para ese puesto.
 
-	#SI SE AÑADE UN CANDIDATO, ENTONCES TRAEMOS EL QUERYSET CON TODOS LOS JOBS Y LOS AÑADIMOS AL CANDIDATO COMO RELACIÓN EN LA M-M
-	#Y SI SE AÑADE UN JOB AL REVES, TRAEMOS EL QUERYSET CON TODOS LOS CANDIDATOS Y LOS AÑADIMOS AL JOB COMO RELACIÓN EN LA M-M
-	#El único problema acá creo que es al principio, si añado un candidato y no hay ningún puesto... VER
-	#Y en los cálculos de distancias tendría que ver si hay alguna combinación de null y solo esa calcular nuevam,ente... para no recalcular todos los valores de los que ya calculé previamente.
+	#En base a los ids de lista_ids_todos_candidatos veo en la tabla de similitudes intermedia: 
+		#IF está el id del job y el id del candidato en esta tabla intermedia: es que ya se calculó la similitud y no hay que calcularla nuevamente.
+		#ELSE, se calcula la similitud y se agrega el registro correspondiente a ese job y a ese candidato con la similitud calculada. 
+	
+	if queryset_sim:  #Me fijo si alguna vez se calculó algo en Similitud_Cand_Puesto, en caso contrario (else abajo) calculo para TODOS.
+		#Recorro los candidatos (queryset_candidatos):
+		for candidato in queryset_candidatos:
+			#Si el candidato aparece en esta lista, es que ya fue calculado para ese puesto y no calculamos nada, solo mostramos un print:
+			if (candidato.id) in lista_ids_cand_del_puesto_ya_calculados: 	
+				print("La similitud para el candidato "+ str(candidato.id) +" y el puesto "+ str(id) +" ya fue calculada.") 
+			#Sino, entonces lo calculamos. 
+			else:
+				(tf_idf_cos_sim_format, w2v_wmd, knn_final) = calculo_similitudes(candidato.id,id)
+				#Agregamos los resultados a nuestro modelo Similitud_Cand_Puesto:
+				objeto_sim_cand_puesto = Similitud_Cand_Puesto.objects.create(cos_sim=tf_idf_cos_sim_format, wmd_sim=w2v_wmd, clasif_knn=knn_final, candidato_id=candidato.id, puesto_id=id)
+				objeto_sim_cand_puesto.save()
 
-	#ANDA esto de abajo, pero es uno por uno:
-	'''
-	salida = tf_idf_and_cosine_sim(57,17)
-	print('%.3f'%(salida[0]))
-
-	salida_2 = tf_idf_and_cosine_sim(57,18)
-	print('%.3f'%(salida_2[0]))
-
-	salida_3 = word2vec_and_wmd(57,17)
-	print(salida_3)
-
-	salida_4 = word2vec_and_wmd(57,18)
-	print(salida_4)
-
-	salida_final = 
-	print(salida_final)
-	'''
+	else: 
+		print("Calculando similitud para todos los candidatos.")
+		for candidato in queryset_candidatos: 		#Recorro los candidatos (queryset_candidatos)
+			(tf_idf_cos_sim_format, w2v_wmd, knn_final) = calculo_similitudes(candidato.id,id)
+			#Agregamos los resultados a nuestro modelo Similitud_Cand_Puesto:
+			objeto_sim_cand_puesto = Similitud_Cand_Puesto.objects.create(cos_sim=tf_idf_cos_sim_format, wmd_sim=w2v_wmd, clasif_knn=knn_final, candidato_id=candidato.id, puesto_id=id)
+			objeto_sim_cand_puesto.save()
 
 	#Acá enviariamos la lista con los candidatos y sus calificaciones:
-	queryset = Similitud_Cand_Puesto.objects.all().order_by("clasif_knn")
+	queryset_sim_2 = Similitud_Cand_Puesto.objects.filter(puesto_id = id).order_by("clasif_knn")
+	queryset_puesto = Puesto.objects.filter(id = id)
+	titulo_puesto = queryset_puesto.values()[0]['titulo'] #El '0' es porque QuerySet es un diccionario y agarramos el primer valor (en nuestro caso con el filtro de arriba sioempre agarramos igualmente el primer valor, pero es una nueva validación de python para asegurarse que hay un solo valor)
+	
 	#Esto es lo que enviamos al html:
-	context = {
-		"similitudes": queryset,   #"similitudes" lo uso en el html que renderizo (ver abajo).
+	context = { 
+		"similitudes": queryset_sim_2, #"similitudes" lo usamos en el html que renderizo (ver abajo).
+		"candidatos":queryset_candidatos, 
+		"puesto": titulo_puesto,
 	}
 
-	return render(request,"busqueda_mejor_cand.html",context) #Acá le enviamos el diccionario 'context' a nuestro 'busqueda_mejor_cand.html'.
-
+	return render(request, "busqueda_mejor_cand_show.html", context)

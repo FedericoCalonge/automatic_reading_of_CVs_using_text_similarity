@@ -32,6 +32,7 @@ urlpatterns = [
     path('agregar/puesto/', aut_cv_read_view.form_job, name='form_job'),
     path('listar/puestos/', aut_cv_read_view.listar_puestos, name='list_jobs'),
     path('listar/candidatos/', aut_cv_read_view.listar_cand, name='list_cand'),
-    path('best_match/', aut_cv_read_view.best_matching, name='best_match'),
+    path('best_match/', aut_cv_read_view.best_matching_select, name='best_match'),
+    path('best_match/<int:id>/', aut_cv_read_view.best_matching_show, name='best_match_2'),
     path('logout/', LogoutView.as_view(), name="logout"),
 ]
