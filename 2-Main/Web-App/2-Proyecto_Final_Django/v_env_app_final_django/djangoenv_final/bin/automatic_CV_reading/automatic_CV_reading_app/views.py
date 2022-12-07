@@ -21,7 +21,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 ##################################################################################################################################################
-
+@login_required
 def inicio(request): #Página Inicial.
 	titulo = "Bienvenido/a %s" %(request.user)
 
@@ -51,8 +51,8 @@ def form_candidate(request):
 		print("*********************************")
 
 		#Sino otra forma para printear por consola es iterando:
-		for parametro, valor in form_data.items():
-			print(parametro, valor)
+		#for parametro, valor in form_data.items():
+		#	print(parametro, valor)
 
 		#Creamos distintas variables para guardar en nuestro modelo 'Candidato' (que importamos arriba) lo que se ingresa por el formulario (puse "f_" para referenciar a formulario y para no confundir con las variables de más abajo):
 		f_nombre_y_apellido = form_data.get("nombre_y_apellido")
@@ -66,7 +66,7 @@ def form_candidate(request):
 		obj = Candidato.objects.create(nombre_y_apellido=f_nombre_y_apellido, fecha_de_nacimiento=f_fecha_de_nacimiento, sexo=f_sexo, telefono=f_telefono, email=f_email, CV_pdf=f_CV_pdf, CV_clean_content='-', CV_tokens='-')
 		#Cuando se guarda en el modelo es que se carga el PDF en /uploads/CVs. Entonces, una vez guardado, realizamos la función de preprocesamiento:
 
-		(clean_cv, tokens_CV) = preprocesamiento_pdf(f_CV_pdf) 		#Acá realizamos la función para limpiar el PDF reutilizando lo de los jupyter notebooks:
+		(clean_cv, tokens_CV) = preprocesamiento_pdf(f_CV_pdf,f_nombre_y_apellido) 		#Acá realizamos la función para limpiar el PDF reutilizando lo de los jupyter notebooks:
 
 		#Ahora hacemos un update del objeto de nuestro modelo con que tenga el último ID (que es autoincremental) con nuestros 2 campos:
 		last_cand_id=Candidato.objects.last().id
@@ -89,9 +89,6 @@ def form_candidate(request):
 @login_required
 def form_job(request): 
 	form_2=RecruiterForm(request.POST or None, request.FILES or None)        #nuestro formulario hecho en forms.py.
-	#Para imprimir los permisos:
-	#permissions = Permission.objects.filter(user=request.user)
-	#print(permissions)
 
 	#Formulario.
 	if form_2.is_valid():
@@ -157,23 +154,13 @@ def listar_cand(request):
 ##################################################################################################################################################
 
 #LÓGICA:
-#En 'best_matching_select' me llega el ID del job (id_job) a partir del formulario del html (seleccionando el número en la tabla), y le pasamos este id a 'best_matching_show'. Ahi agarramos a TODOS los ids de los candidatos (lista_ids_todos_candidatos). 
-#En base a los ids de lista_ids_todos_candidatos veo en la tabla de similitudes intermedia: 
+#En 'best_matching_select' mostramos un formulario / tabla con los puestos disponibles (html: busqueda_mejor_cand_list_jobs) para calcular la similitud. La idea es seleccionar un número de esta tabla (que sería el ID del job) y pasar este id a 'best_matching_show'. Ahi agarramos a TODOS los ids de los candidatos (lista_ids_todos_candidatos), y, en base a los ids de esta lista, nos fijamos en la tabla de similitudes intermedia: 
 	#IF está el id del job y el id del candidato en esta tabla intermedia: es que ya se calculó la similitud y no hay que calcularla nuevamente.
 	#ELSE, se calcula la similitud y se agrega el registro correspondiente a ese job y a ese candidato con la similitud calculada. 
 
-#Saco todos los ids de los puestos y para todas las combinaciones hago tf_idf_and_cosine_sim(x,y) y word2vec_and_wmd(x,y) y las salidas calculo_knn(salida,salida_3) y esa salida la guardo en la columna correspondiente. 
+#Y por último mostramos la tabla final (html: busqueda_mejor_cand_show)
 
-#Y por último muestro la tabla final.
-
-##################
-#VER COMO HACER PARA CARGAR 1 SOLA VEZ LOS MODELOS Y APLICAR LAS MENOS POSIBLES VECES LAS TÉCNICAS.
-##################
-
-#SI SE AÑADE UN CANDIDATO, ENTONCES TRAEMOS EL QUERYSET CON TODOS LOS JOBS Y LOS AÑADIMOS AL CANDIDATO COMO RELACIÓN EN LA M-M
-#Y SI SE AÑADE UN JOB AL REVES, TRAEMOS EL QUERYSET CON TODOS LOS CANDIDATOS Y LOS AÑADIMOS AL JOB COMO RELACIÓN EN LA M-M
-#El único problema acá creo que es al principio, si añado un candidato y no hay ningún puesto... VER
-#Y en los cálculos de distancias tendría que ver si hay alguna combinación de null y solo esa calcular nuevam,ente... para no recalcular todos los valores de los que ya calculé previamente.
+#¿Qué es "calcular la similitud"? --> Es aplicar tf_idf_and_cosine_sim(x,y), luego word2vec_and_wmd(x,y) y por último esas salidas llevarlas a calculo_knn(salida_1,salida_2). Todas estas salidas se guardan en la BD en 'similitud_cand_puesto'. 
 
 @login_required
 def best_matching_select(request): 
@@ -231,13 +218,13 @@ def best_matching_show(request, id): #id = id del puesto.
 			objeto_sim_cand_puesto.save()
 
 	#Acá enviariamos la lista con los candidatos y sus calificaciones:
-	queryset_sim_2 = Similitud_Cand_Puesto.objects.filter(puesto_id = id).order_by("clasif_knn")
+	queryset_sim_2 = Similitud_Cand_Puesto.objects.filter(puesto_id = id).order_by("-clasif_knn") #- es orden asc.
 	queryset_puesto = Puesto.objects.filter(id = id)
 	titulo_puesto = queryset_puesto.values()[0]['titulo'] #El '0' es porque QuerySet es un diccionario y agarramos el primer valor (en nuestro caso con el filtro de arriba sioempre agarramos igualmente el primer valor, pero es una nueva validación de python para asegurarse que hay un solo valor)
-	
+
 	#Esto es lo que enviamos al html:
 	context = { 
-		"similitudes": queryset_sim_2, #"similitudes" lo usamos en el html que renderizo (ver abajo).
+		"similitudes": queryset_sim_2,
 		"candidatos":queryset_candidatos, 
 		"puesto": titulo_puesto,
 	}

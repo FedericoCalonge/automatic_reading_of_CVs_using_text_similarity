@@ -8,12 +8,11 @@
       <thead class="thead-dark">
          <tr> 
             <th style="width:3%"><i>N°</i></th>
-            <th style="width:10%"><i>Título</i></th>
-            <th style="width:27%"><i>Descripción</i></th>
+            <th style="width:15%"><i>Título</i></th>
             <th style="width:10%"><i>Ubicación</i></th>
-            <th style="width:30%"><i>Tokens Puesto</i></th>
+            <th style="width:30%"><i>Descripción</i></th>
+            <th style="width:32%"><i>Tokens Puesto</i></th>
             <th style="width:10%"><i>Creación</i></th>
-            <th style="width:10%"><i>Última Modificación</i></th>
          </tr>
       </thead>
       
@@ -22,11 +21,10 @@
             <tr> 
                <td>{{puesto.id}}</td>
                <td> <strong> {{puesto.titulo}} </strong> </td>
-               <td>{{puesto.descripcion}}</td>
                <td>{{puesto.ubicacion}}</td>
+               <td>{{puesto.descripcion}}</td>
                <td>{{puesto.job_tokens}}</td>
                <td>{{puesto.creado_a}}</td>
-               <td>{{puesto.modificado_a}}</td> 
             </tr>
       {% endfor %}
    </tbody>

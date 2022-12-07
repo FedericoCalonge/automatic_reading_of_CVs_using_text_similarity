@@ -65,6 +65,13 @@ profile
 city
 state
 etc
+personal
+dni
+age
+old
+mobile 
+com
+present
 a
 â
 b

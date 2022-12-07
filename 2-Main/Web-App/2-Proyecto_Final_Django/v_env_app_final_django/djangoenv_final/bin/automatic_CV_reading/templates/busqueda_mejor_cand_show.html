@@ -2,41 +2,48 @@
 
 {% block content %}
    
-   <table class="table table-bordered table-striped table-hover table-sm">
+   <table class="table table-bordered table-hover table-sm">
       Obtención de similitudes para el puesto <strong>{{puesto}}</strong>. 
       <caption>*Ordenados por score de similitud.</caption>
 
       <thead class="thead-dark">
          <tr> 
-            <th style="width:50%"><i>Candidato</i></th>
+            <th style="width:50%"><i>Candidato ID - Nombre</i></th>
             <th style="width:50%"><i>Similitud</i> </th>
          </tr>
       </thead>
       
       <tbody>
          {% for similitud in similitudes %}
+         	{% for candidato in candidatos %}
             <tr> 
-                <td>{{similitud.candidato_id}}</td>
-                <td> 
-                <strong> 
-                {% if similitud.clasif_knn == 0 %}
-                ☆☆☆
-                {% endif %}
+            	{% if candidato.id == similitud.candidato_id%}
+                
+	                <td>{{candidato.nombre_y_apellido}} (ID {{similitud.candidato_id}})</td>
+	                <td> 
+	                <strong> 
+	                {% if similitud.clasif_knn == 0 %}
+	                ☆☆☆
+	                {% endif %}
+	            
+	                {% if similitud.clasif_knn == 1 %}
+	                ★☆☆
+	                {% endif %}
+
+	                {% if similitud.clasif_knn == 2 %}
+	                ★★☆
+	                {% endif %}
+
+	                {% if similitud.clasif_knn == 3 %}
+	                ★★★
+	                {% endif %}
+	                </strong>
+	                </div> </td>
             
-                {% if similitud.clasif_knn == 1 %}
-                ★☆☆
-                {% endif %}
+            	{% endif %}
 
-                {% if similitud.clasif_knn == 2 %}
-                ★★☆
-                {% endif %}
-
-                {% if similitud.clasif_knn == 3 %}
-                ★★★
-                {% endif %}
-                </strong>
-                </div> </td>
             </tr>
+            {% endfor %}
       {% endfor %}
    </tbody>
 

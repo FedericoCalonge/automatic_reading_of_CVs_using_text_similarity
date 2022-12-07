@@ -122,7 +122,15 @@ def extract_text(file):
 #3.2. Funciones para el preprocesamiento en si:
 ##########################################################################
 
-def preprocesamiento_pdf(CV_path):
+def preprocesamiento_pdf(CV_path, nombre_y_apellido):
+    
+    #Antes que nada añadimos el nombre_y_apellido colocado en el formulario en candidates_names.txt para que se elimine en el posterior procesamiento.
+    path_txt_cand_names =Path('txts_adicionales/candidate_names.txt') 
+    file_txt = open(path_txt_cand_names, "a")  # append mode (insertamos a lo último)
+    file_txt.write(nombre_y_apellido.lower() + "\n")
+    file_txt.close()
+    
+    #Ahora si procedemos con el preprocesamiento del pdf:
     CV_path_without_spaces = str(CV_path).replace(' ', '_')    #Es necesaria esta función porque al guardar el CV luego del formulario me agrega "_" en los espacios en blanco del nombre del PDF.
 
     file =Path('uploads/CVs/'+CV_path_without_spaces)    #Tengo que enviarle un objeto Path, no un string.
@@ -155,12 +163,12 @@ def preprocesamiento_pdf(CV_path):
     df_Candidato['clean_Content_CV'] = df_Candidato['tokens_Content_CV'].apply(lambda x: ' '.join(map(str, x))) #Convertimos la lista de nuestros bigramas (columna 'tokens_Content_CV') a string y lo colocamos en la columna 'clean_Content_CV'.
     df_Candidato.drop('Content_CV', axis=1, inplace=True)   # Borramos la columna 'Content_CV' que no la necesitamos más.
 
-    print("**************DF_CLEAN_CANDIDATO******************")    
+    #print("**************DF_CLEAN_CANDIDATO******************")    
     clean_cv = df_Candidato['clean_Content_CV'].iloc[0]
     tokens_CV = df_Candidato['tokens_Content_CV'].iloc[0]
-    print(clean_cv)  #hcm technical consultant working oracle tool p...
-    print(tokens_CV)  #[hcm, technical, consultant, working, oracle, ...
-    print("*********************************")
+    #print(clean_cv)  #hcm technical consultant working oracle tool p...
+    #print(tokens_CV)  #[hcm, technical, consultant, working, oracle, ...
+    #print("*********************************")
 
     return(clean_cv, tokens_CV)
 
@@ -193,11 +201,11 @@ def preprocesamiento_job_desc(campo_descripcion_job):
     df_Job['clean_Content_Job'] = df_Job['tokens_Content_Job'].apply(lambda x: ' '.join(map(str, x))) #Convertimos la lista de nuestros bigramas (columna 'tokens_Content_Job') a string y lo colocamos en la columna 'clean_Content_Job'.
     df_Job.drop('Content_Job', axis=1, inplace=True)        # Borramos la columna 'Content_Job' que no la necesitamos más.
 
-    print("**************DF_CLEAN_JOB******************")    
+    #print("**************DF_CLEAN_JOB******************")    
     clean_job = df_Job['clean_Content_Job'].iloc[0]
     tokens_job = df_Job['tokens_Content_Job'].iloc[0]
-    print(clean_job)  #hcm technical consultant working oracle tool p...
-    print(tokens_job)  #[hcm, technical, consultant, working, oracle, ...
-    print("*********************************")
+    #print(clean_job)  #hcm technical consultant working oracle tool p...
+    #print(tokens_job)  #[hcm, technical, consultant, working, oracle, ...
+    #print("*********************************")
 
     return(clean_job, tokens_job)

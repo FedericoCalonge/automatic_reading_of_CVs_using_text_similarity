@@ -277,7 +277,7 @@ Esta sección abarca el capítulo \textit{\nameref{5.Implementacion}} (desde \te
 
 \item Integración al sistema web.
 
-Esta última sección hace referencia a la reutilización de las funciones que contienen la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo este conjunto en el sistema web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN. 
+Esta última sección hace referencia a la reutilización de las funciones que contienen la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la sección 2, para integrar todo este conjunto en el sistema web que, a su vez, esta integrado a una base de datos relacional. De esta manera, el sistema cuenta con una interfaz gráfica que permite al reclutador cargar los Curriculums Vitae de los candidatos y los puestos que tenga disponible, y principalmente obtener un listado con los candidatos más similes a un puesto determinado, ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 Los items principales de esta sección son:
 \begin{itemize}
@@ -419,7 +419,7 @@ Como métricas de medición de similitud se utilizó una de las más comúnmente
 
 Una vez utilizadas estas mediciones de similitud se utilizaron algoritmos de machine learning: un algoritmo de clustering K-means, y luego un modelo de clasificación KNN. 
 
-Además del uso de \textit{Word Mover's Distance}, otro aspecto distintivo de este sistema es que se realizó una \textbf{integración a una interfaz web}, la cual la mayoría de los sistemas descriptos anteriormente no poseen. De esta manera, mediante la interfaz web se logra una interacción entre usuarios candidatos y reclutadores y, principalmente, permite que el reclutador sea capaz de visualizar un listado con los N candidatos más similes a un puesto determinado.
+Además del uso de \textit{Word Mover's Distance}, otro aspecto distintivo de este sistema es que se realizó una \textbf{integración a una interfaz web}, la cual la mayoría de los sistemas descriptos anteriormente no poseen. De esta manera, mediante la interfaz web se logra que el reclutador sea capaz de visualizar un listado con los candidatos más similes a un puesto determinado.
 
 Por último, cabe destacar que los trabajos anteriormente mencionados no tienen un fácil acceso a los datasets ni al código que utilizaron para dichos sistemas, por lo que seguir el trabajo de ellos aplicando las mejoras que mencionan en sus artículos es una tarea casi imposible. En cambio, \textbf{este sistema será de código abierto}: los datasets, modelos y códigos utilizados estarán disponibles en Github y Git LFS\footnote{\url{https://github.com/FedericoCalonge/automatic_reading_of_CVs_using_text_similarity}}.
 
@@ -2453,9 +2453,9 @@ Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Pytho
 
 \item Integración al Sistema Web. 
 
-Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django \footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
+Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django\footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional en MySQL\footnote{Sistema de gestión de bases de datos relacionales (RDBMS) de código abierto respaldado por Oracle y basado en el lenguaje de consulta estructurado (SQL).} que contiene la información de los Curiculum Vitae y Puestos que hayan cargado, junto con las mediciones de similitud que hayan sido realizadas. 
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+De esta manera, nuestro sistema cuenta con una interfaz gráfica que permita al reclutador cargar los Curriculums Vitae de los candidatos y los puestos que tenga disponible, y principalmente obtener un listado con los candidatos más similes a un puesto determinado, ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 \end{enumerate}
 
@@ -2470,7 +2470,7 @@ En la Figura \ref{fig:FlowCoreSystem} podemos ver el procedimiento utilizado par
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/flow-core.png} 	%Incluyendo imagen Flow Core.
-  \caption{Pipeline Flow para la obtención del modelo de clasificación KNN. \\}  
+  \caption{Workflow para la obtención del modelo de clasificación KNN. \\}  
   \label{fig:FlowCoreSystem}
 \end{figure}
 
@@ -3306,16 +3306,16 @@ Por su parte, el Reclutador tendrá acceso al menú indicado en la Figura \ref{f
 
 \cleardoublepage
 
-\subsection{Pipeline Flow final del Sistema.}
+\subsection{Workflow final del Sistema.}
 \colorbox{red}{FALTA}
 
-Una vez que el reclutador dentro de la sección observada en la Figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el pipeline indicado en la Figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+Una vez que el reclutador dentro de la sección observada en la Figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el workflow indicado en la Figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
   \centering
   \includegraphics[width=1\textwidth]{images/Pipeline_Final.png}
-  \caption{Pipeline Flow final del Sistema.}  
+  \caption{Workflow final del Sistema.}  
   \label{fig:Pipeline_Final}
 \end{figure}
 

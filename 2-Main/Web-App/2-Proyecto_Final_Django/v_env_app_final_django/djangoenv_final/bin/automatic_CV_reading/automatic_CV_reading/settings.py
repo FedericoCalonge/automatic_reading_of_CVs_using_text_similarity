@@ -119,6 +119,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True     #si queremos usar internacionalización.
 USE_L10N = True     #si queremos usar localización.
 USE_TZ = True   #si queremos usar lo de time zone.
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
