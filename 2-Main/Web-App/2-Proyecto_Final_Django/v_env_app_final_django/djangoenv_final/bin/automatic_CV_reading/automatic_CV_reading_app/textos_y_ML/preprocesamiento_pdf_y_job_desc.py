@@ -155,6 +155,8 @@ def preprocesamiento_pdf(CV_path, nombre_y_apellido):
 
     #####################################################################################################################
     #Bi grams:  #Lo que hacemos acá es obtener en la columna 'tokens_Content_CV' palabras bigramas como: machine_learning, big_Data deep_learning.
+    #Para esto usaremos el modelo Phraser del análisis previo en Jupyters (que contiene los bigrams luego de haber analizado TODOS los Cvs y todas las descripciones de los puestos: bigrams_cvs_model.pkl y bigrams_jobs_model.pkl respectivamente) 
+    #y como resultado final actualizaremos la columna ‘'tokens_Content_CV'’ reemplazando las palabras que se detectaron como bigramas. Por ej. si antes habían 2 palabras (“machine”, “learning”) y el modelo detectó que “machine_learning” era un bi-grama, entonces se reemplazan estas 2 palabras por el bi-grama (“machine_learning”). 
     ######################################################################################################################
     #Carga del modelo Phraser del análisis previo en Jupyters (que contiene los bigrams luego de haber analizado TODOS los Cvs):
     bigram = Phrases.load("modelos/bigrams_cvs_model.pkl")

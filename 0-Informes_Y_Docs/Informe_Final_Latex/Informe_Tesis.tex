@@ -907,7 +907,7 @@ A continuación explicaremos en qué consiste este método, detallando el funcio
 
 \subsubsection{Funcionamiento y ejemplo de K-means.}\label{K_means_funcionamiento}
 
-Resumidamente, habiendo definido previamente nuestro k, el número de clusters, y teniendo como entrada nuestros puntos de datos $x_{1},...,x_{m}$, el funcionamiento de K-means consta de los siguientes 4 pasos \cite{K_means_review}:
+Resumidamente, habiendo definido previamente nuestro k, el número de clusters, y teniendo como entrada nuestros puntos de datos $x_{1},...,x_{m}$, el funcionamiento de K-means consta de los siguientes 4 pasos\cite{K_means_review}:
 
 \begin{itemize}
 \item Paso 1: Se inicializan aleatoriamente los centroides $C_{1},...,C_{k}$ colocándose en posiciones al azar. Cada centroide $C_{j}$ pertenece a un cluster $j$ específico. 
@@ -2453,7 +2453,7 @@ Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Pytho
 
 \item Integración al Sistema Web. 
 
-Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema Web. Este sistema web está realizado en Django\footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional en MySQL\footnote{Sistema de gestión de bases de datos relacionales (RDBMS) de código abierto respaldado por Oracle y basado en el lenguaje de consulta estructurado (SQL).} que contiene la información de los Curiculum Vitae y Puestos que hayan cargado, junto con las mediciones de similitud que hayan sido realizadas. 
+Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema web. Este sistema web está realizado en Django\footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional en MySQL\footnote{Sistema de gestión de bases de datos relacionales (RDBMS) de código abierto respaldado por Oracle y basado en el lenguaje de consulta estructurado (SQL).} que contiene la información de los Curiculum Vitae y Puestos que hayan cargado, junto con las mediciones de similitud que hayan sido realizadas. 
 
 De esta manera, nuestro sistema cuenta con una interfaz gráfica que permita al reclutador cargar los Curriculums Vitae de los candidatos y los puestos que tenga disponible, y principalmente obtener un listado con los candidatos más similes a un puesto determinado, ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
@@ -3178,23 +3178,60 @@ En conclusión, las predicciones arrojadas por el modelo para las nuevas muestra
 \cleardoublepage
 
 \subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
-\colorbox{red}{FALTA}
 
-Anteriormente lo que se hizo fue un análisis mediate documentos en Jupyter Notebooks para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos de medición de similitudes. 
 
-Al observar que los resultados fueron los esperables, lo que se hizo en esta última etapa fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos en la fase previa, para integrar todo esto en el sistema Web. 
+\subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
 
-Como mencionamos previamente, este sistema web está realizado en Django, y cuenta con una base de datos relacional que contiene la información de los candidatos y reclutadores junto con los Curiculum Vitae y puestos que hayan cargado. 
+Anteriormente se realizó un análisis mediante documentos en Jupyter Notebook para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos y técnicas para medir similitudes entre nuestros textos.
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica permitiendo interactuar entre candidatos y reclutadores y, principalmente, permitiendo que el reclutador sea capaz de obtener un listado los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+Al observar que los resultados fueron los esperables, en esta última etapa se reutilizaron las funciones que contenían la lógica de los distintos algoritmos utilizados junto con los distintos modelos obtenidos en la fase previa (modelo de clasificación KNN, modelo Word2vec, modelo TF-IDF, modelos de bi-gramas), para integrar todo este conjunto en el sistema web.
 
-El sistema web contará con 2 tipos de usuario: 
+Como mencionamos previamente, este sistema web está realizado en \textbf{Django}, y cuenta con una base de datos relacional en \textbf{MySQL} que contiene la información de los Candidatos y Puestos que se hayan cargado, junto con las mediciones de similitud que hayan sido realizadas.
+
+Adicionalmente, en el desarrollo front-end de nuestro sitio utilizamos \textbf{Bootstrap}\footnote{\url{https://getbootstrap.com/} (Consultado el 10 de diciembre de 2022).}, el cual nos permitió desarrollar un sitio web responsive (orientado a todo tipo de dispositivo) y con un elegante aspecto visual.
+
+De esta manera, nuestro sistema cuenta con una interfaz gráfica que permite al reclutador cargar los datos de los candidatos (incluído sus Curriculums Vitae) y de los puestos de IT (incluído sus descripciones) que tenga disponible, y principalmente \textbf{obtener un listado con los candidatos más similes a un puesto determinado}, ordenados de mayor a menor de acuerdo a dicha \textit{similitud}. Esta \textit{similitud} representa el resultado obtenido de la clasificación de nuestro modelo KNN.\\
+
+El sistema web cuenta con 2 tipos de usuario: 
 \begin{itemize}
-\item Candidato: quienes cargarán en el sistema sus Curriculum Vitae y aplicarán a los distintos puestos disponibles.
-\item Reclutador: quienes cargarán en el sistema los puestos de trabajo que tengan disponibles y podrán consultar, entre otras cosas, un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}.
+\item admin: Este es el administrador del sitio web. Es capaz de eliminar y modificar registros (tanto de los candidatos como de los puestos agregados a la base de datos) y podrá crear los users. Todo esto accediendo a url/admin (donde url es la url de nuestro sitio web).
+\item user: Estos usuarios representan a los reclutadores, los cuales pueden loguearse con el user y pass que el admin les otorgó ingresando a url/login. No tienen permisos para acceder a url/admin. Son los usuarios que mediante la interfaz del sistema web realizan la carga de los puestos de trabajo y de los candidatos junto con sus curriculums vitae; además son los que pueden consultar el listado con los candidatos más similes a un puesto determinado de acuerdo al cálculo de similitudes descrito anteriormente.
 \end{itemize}
 
 \cleardoublepage
+
+\subsubsection{Django.}
+
+Django es el framework -enfocado en el lado de servidor (backend)- que utilizamos para desarrollar nuestro sistema web. Aunque esté enfocado en el backend, también tiene integrado un motor de plantillas para que el cliente interactúe (frontend). Django es de código abierto, está escrito en Python y permite un desarrollo rápido de sitios web seguros y mantenibles\cite{Mozila}.
+
+\paragraph{Ventajas de Django.}
+
+Se decidió utilizar Django por la familiaridad con el lenguaje de programación Python y además por las amplias ventajas que ofrece\cite{Mozila}: 
+\begin{itemize}
+\item Es completo: Django provee casi todo lo que un desarrollador necesita ``de fábrica'', siguiendo principios de diseño consistentes y teniendo una amplia y actualizada documentación\footnote{\url{https://docs.djangoproject.com/en/3.1/} - Sitio Web consultado el 10 de diciembre de 2022}.
+\item Es versátil: Django es usado para construir casi cualquier tipo de sitio web, desde manejadores de contenido y wikis, hasta redes sociales y sitios de noticias. Permite devolver contenido en casi cualquier formato: HTML, JSON, XML, etc. Además, internamente ofrece múltiples opciones para casi cualquier funcionalidad que deseemos: distintos motores de bases de datos, motores de plantillas, etc. 
+\item Es seguro: Django provee un framework diseñado para ``hacer lo correcto'' automáticamente en cuanto a la protección del sitio web. Por ejemplo, Django proporciona una manera segura de administrar cuentas de usuario y contraseñas utilizando hashes, y permite protección contra algunas vulnerabilidades de forma predeterminada: como por ejemplo inyecciones SQL, falsificación de solicitudes entre sitios, etc. 
+\item Es escalable:  Django usa un componente basado en la arquitectura ``shared-nothing'' (cada parte de la arquitectura es independiente de las otras, y por lo tanto puede ser reemplazado o cambiado si es necesario). Esta separación entre las diferentes partes permite que la app pueda escalar para aumentar el tráfico al agregar hardware en cualquier nivel: servidores de cache, servidores de bases de datos o servidores de aplicación.
+\item Es mantenible: El código de Django está escrito usando principios y patrones de diseño para fomentar la creación de código mantenible y reutilizable, utilizando el principio ``Don't Repeat Yourself'' (DRY) para que no exista una duplicación innecesaria, reduciendo la cantidad de código. Django también promueve la agrupación de funcionalidades agrupando código relacionado en módulos, siguiendo el patrón ``Model View Contoller'' (MVC). 
+\item Es portable: Esto es debido a que está escrito en Python, el cual se ejecuta en muchas plataformas. Lo que significa que no está sujeto a ninguna plataforma en particular, y puede ejecutar sus aplicaciones en muchas distribuciones de Linux, Windows y Mac OS X. Además, Django cuenta con el respaldo de muchos proveedores de alojamiento web, y que a menudo proporcionan una infraestructura específica y documentación para el alojamiento de sitios de Django.\\
+\end{itemize}
+
+\paragraph{Arquitectura en Django.}
+
+Una aplicación web tradicional basada en datos espera peticiones HTTP del cliente (navegador web) y, cuando se recibe una petición, la aplicación elabora lo que se necesita basándose en la URL y posiblemente en la información incluida en los datos POST o GET. Dependiendo de qué se necesita podría leer o escribir información desde una base de datos o realizar otras tareas requeridas para satisfacer la petición. A continuación la aplicación devolverá una respuesta al navegador web, con frecuencia creando dinámicamente una página HTML para que el explorador la presente insertando los datos que fueron recuperados previamente de la base de datos dentro de una plantilla HTML.
+Las aplicaciones web de Django agrupan el código que gestiona cada uno de estos pasos en módulos separados.  Esta modularidad representa una arquitectura de tipo \textbf{Modelo Vista Plantilla ``Model View Template (MVT)’’}, la cual tiene muchas similaridades con la arquitectura más familiar ``Model View Controller (MVC)''. A continuación mencionaremos dichos módulos\cite{Mozila}:
+\begin{itemize}
+\item \textbf{URLs}: Django utiliza un mapeador URL para redirigir las peticiones HTTP a la vista apropiada basándose en la URL de la petición. El mapeador URL se usa para redirigir las peticiones HTTP a la vista apropiada basándose en la URL de la petición. El mapeador URL puede también emparejar patrones de cadenas o dígitos específicos que aparecen en una URL y los pasan a la función de visualización como datos. 
+\item \textbf{Vista (View)}: Una Vista es una función de gestión de peticiones que recibe peticiones HTTP y devuelve respuestas HTTP. Las vistas acceden a los datos que necesitan para satisfacer las peticiones por medio de modelos, y delegan el formateo de la respuesta a las plantillas (``templates’’).
+\item \textbf{Modelos (Models)}: Los Modelos son objetos de Python que definen la estructura de los datos de una aplicación y proporcionan mecanismos para gestionar (añadir, modificar y borrar) y consultar registros en la base de datos. 
+\item \textbf{Plantillas (Templates)}: una Plantilla (template) es un fichero de texto que define la estructura o diagrama de otro fichero. Generalmente son archivos HTML, permitiéndonos representar visualmente el contenido de la aplicación. 
+\end{itemize}
+
+En conclusión,en ‘URLs’ se definen las urls a las que se podrá acceder de la aplicación, y dependiendo de esta url a qué función dentro de las ‘Vistas’ deberá llamar. Estas Vistas nos permiten crear dinámicamente páginas usando una plantilla, rellenándola con datos de un modelo.
+
+\cleardoublepage
+
+ACÁ SEGUIR!!!!!!!!!!!!!!
 
 \subsubsection{Base de datos.}
 
@@ -3953,6 +3990,9 @@ Tosin P. Adewumi, Foteini Liwicki, \& Marcus Liwicki. (2022, Marzo). \textit{Wor
 
 \bibitem{Implem_4}
 Nathalie Japkowicz. (2006, Mayo). \textit{Why Question Machine Learning Evaluation Methods (An Illustrative Review of the Shortcomings of Current Methods)}. (pp. 2).
+
+\bibitem{Mozila}
+Artículo sobre Django. Sitio Web de Mozila consultado el 10 de diciembre de 2022: \url{https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Introduction}.
 
 \end{thebibliography}
 
