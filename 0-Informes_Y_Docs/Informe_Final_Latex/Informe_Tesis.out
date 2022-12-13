@@ -102,18 +102,13 @@
 \BOOKMARK [4][-]{paragraph.5.6.1.2}{Arquitectura en Django.}{subsubsection.5.6.1}% 102
 \BOOKMARK [3][-]{subsubsection.5.6.2}{Base de datos.}{subsection.5.6}% 103
 \BOOKMARK [3][-]{subsubsection.5.6.3}{Secciones del sistema}{subsection.5.6}% 104
-\BOOKMARK [3][-]{subsubsection.5.6.4}{Manejo de los datos.}{subsection.5.6}% 105
-\BOOKMARK [4][-]{paragraph.5.6.4.1}{Modelado.}{subsubsection.5.6.4}% 106
-\BOOKMARK [4][-]{paragraph.5.6.4.2}{Filtrado.}{subsubsection.5.6.4}% 107
-\BOOKMARK [4][-]{paragraph.5.6.4.3}{Visualizaci\363n.}{subsubsection.5.6.4}% 108
-\BOOKMARK [2][-]{subsection.5.7}{Workflow final del Sistema.}{section.5}% 109
-\BOOKMARK [2][-]{subsection.5.8}{Caso de Uso.}{section.5}% 110
-\BOOKMARK [2][-]{subsection.5.9}{Limitaciones del sistema.}{section.5}% 111
-\BOOKMARK [1][-]{section.6}{Conclusiones.}{}% 112
-\BOOKMARK [1][-]{section.7}{Anexos.}{}% 113
-\BOOKMARK [2][-]{subsection.7.1}{Ejemplo de funcionamiento KNN.}{section.7}% 114
-\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de funcionamiento K-means.}{section.7}% 115
-\BOOKMARK [2][-]{subsection.7.3}{Posici\363n inicial de los centroides en K-means.}{section.7}% 116
-\BOOKMARK [2][-]{subsection.7.4}{Funciones de activaci\363n.}{section.7}% 117
-\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word embeddings mediante Skipgram y softmax.}{section.7}% 118
-\BOOKMARK [2][-]{subsection.7.6}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 119
+\BOOKMARK [3][-]{subsubsection.5.6.4}{Workflow y l\363gica final del Sistema.}{subsection.5.6}% 105
+\BOOKMARK [4][-]{paragraph.5.6.4.1}{Caso de Uso.}{subsubsection.5.6.4}% 106
+\BOOKMARK [1][-]{section.6}{Conclusiones.}{}% 107
+\BOOKMARK [1][-]{section.7}{Anexos.}{}% 108
+\BOOKMARK [2][-]{subsection.7.1}{Ejemplo de funcionamiento KNN.}{section.7}% 109
+\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de funcionamiento K-means.}{section.7}% 110
+\BOOKMARK [2][-]{subsection.7.3}{Posici\363n inicial de los centroides en K-means.}{section.7}% 111
+\BOOKMARK [2][-]{subsection.7.4}{Funciones de activaci\363n.}{section.7}% 112
+\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word embeddings mediante Skipgram y softmax.}{section.7}% 113
+\BOOKMARK [2][-]{subsection.7.6}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 114

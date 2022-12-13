@@ -3216,7 +3216,7 @@ Se decidió utilizar Django por la familiaridad con el lenguaje de programación
 \item Es portable: Esto es debido a que está escrito en Python, el cual se ejecuta en muchas plataformas. Lo que significa que no está sujeto a ninguna plataforma en particular, y puede ejecutar sus aplicaciones en muchas distribuciones de Linux, Windows y Mac OS X. Además, Django cuenta con el respaldo de muchos proveedores de alojamiento web, y que a menudo proporcionan una infraestructura específica y documentación para el alojamiento de sitios de Django.\\
 \end{itemize}
 
-\paragraph{Arquitectura en Django.}
+\paragraph{Arquitectura en Django.}\label{arq_django}
 
 Una aplicación web tradicional basada en datos espera peticiones HTTP del cliente (navegador web) y, cuando se recibe una petición, la aplicación elabora lo que se necesita basándose en la URL y posiblemente en la información incluida en los datos POST o GET. Dependiendo de qué se necesita podría leer o escribir información desde una base de datos o realizar otras tareas requeridas para satisfacer la petición. A continuación la aplicación devolverá una respuesta al navegador web, con frecuencia creando dinámicamente una página HTML para que el explorador la presente insertando los datos que fueron recuperados previamente de la base de datos dentro de una plantilla HTML.
 Las aplicaciones web de Django agrupan el código que gestiona cada uno de estos pasos en módulos separados.  Esta modularidad representa una arquitectura de tipo \textbf{Modelo Vista Plantilla ``Model View Template (MVT)’’}, la cual tiene muchas similaridades con la arquitectura más familiar ``Model View Controller (MVC)''. A continuación mencionaremos dichos módulos\cite{Mozila}:
@@ -3231,144 +3231,226 @@ En conclusión,en ‘URLs’ se definen las urls a las que se podrá acceder de 
 
 \cleardoublepage
 
-ACÁ SEGUIR!!!!!!!!!!!!!!
-
 \subsubsection{Base de datos.}
 
-Nuestros datos los almacenaremos en una base de datos \colorbox{red}{FALTA definir cual}. 
+Nuestros datos (tanto de los candidatos, puestos y resultados de las mediciones de similitudes) los almacenaremos en una base de datos relacional\footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.} MySQL.
 
-Para modelar y gestionar nuestros datos utilizamos el modelo relacional \footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.}.
-
-\colorbox{red}{Sacar la mayoría del documento modelo-entidad-relacion-case-method-richar-barker.pdf} 
-
-Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación \footnote{Un modelo entidad-relación es una herramienta para el modelo de datos, la cual facilita la representación de entidades de una base de datos.}.
-Previamente a esto explicaremos los elementos del diagrama de entidad relación: 
-
-\colorbox{red}{FALTA PONER IMAGEN CON LOS ELEMENTOS: Entidad rectángulo, Unión entre entidades son} \\ \colorbox{red}{las lineas que puede ser obligatoria u opcional, cardinalidad son los 1:M / 1:1 / M:M}
+Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación (DER o ERD en inglés) \footnote{Un modelo entidad-relación es una herramienta que nos facilita la representación de entidades de una base de datos.}. Explicaremos los elementos del diagrama de entidad relación \cite{mod_ent_relacion_barker}:
 
 \begin{itemize}
-\item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo una entidad puede ser un alumno, un cliente, una empresa, etc. Dentro de las entidades estan los atributos, atributos principales o clave primaria (PK) y atributos foraneos o clave secundaria (FK).  Las entidades que necesitamos para crear nuestra BD son: Candidato, Puesto, Reclutador y Candidato\_Puesto -entidad intermedia entre Candidato y Puesto-.
-\item Unión entre entidades: pueden ser obligatorias u opcionales. En nuestro diagrama nuestras uniones son todas opcionales, ya que el reclutador puede o no CARGAR un puesto, el candidato puede o no APLICAR a un puesto y a su vez el puesto puede o no ser aplicado por un candidato. 
-\item Cardinalidad: Relación entre entidades o mapeo. La cardinalidad es el tipo de relación entre entidades. Observando la Figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
+\item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo, una entidad puede ser un alumno, un cliente, etc. 
+\item Atributos: permiten definir o identificar las características de la entidad (es el contenido de la entidad). Cada entidad contiene distintos atributos, que dan información sobre esta entidad. Estos atributos pueden ser de distintos tipos (numéricos, texto, fecha, etc.).
+\item Claves: Es un atributo distinguido de una entidad. Existen dos tipos:
 
 \begin{enumerate}
-\item Uno a uno: a cada entidad azul le corresponde solo una entidad naranja.
-\item Uno a muchos: a cada entidad azul le corresponde una o varias entidades naranjas.
-\item Muchos a uno: a cada entidad naranja le corresponde una o varias entidades azules.
-\item Muchos a muchos: las entidades azules pueden tener varias entidades naranjas y las entidades naranjas también pueden tener varias entidades azules.
+\item Clave primaria (o atributo principal, \textbf{PK}): es única y toda entidad debe tener la suya. Pueden haber múltiples PKs; estas se llaman PKs compuestas. 
+\item Clave secundaria (o atributo foráneo, \textbf{FK}): identifica a una entidad externa en otra, utilizándose para generar relaciones entre nuestras entidades. Si tenemos una clave FK en una entidad, significa que dicha clave FK es clave PK en otra entidad.
 \end{enumerate}
-\end{itemize}
 
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/Cardinalidad.png}
-  \caption{Tipos de cardinalidad.}  
-  \label{fig:Cardinalidad}
+\item Cardinalidad: Tipo de relación o mapeo entre entidades. Observando la Figura \ref{fig:Cardinalidad} y considerando que los rectángulos azules son una entidad y los naranjas son otra entidad observamos que pueden haber 4 tipos de cardinalidades posibles:
+
+\begin{enumerate}
+\item Uno a uno (1-1): a cada entidad azul le corresponde solo una entidad naranja.
+\item Uno a muchos (1-M): a cada entidad azul le corresponde una o varias entidades naranjas.
+\item Muchos a uno (M-1): a cada entidad naranja le corresponde una o varias entidades azules.
+\item Muchos a muchos (M-M): las entidades azules pueden tener varias entidades naranjas y las entidades naranjas también pueden tener varias entidades azules.
+\end{enumerate}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/Cardinalidad.png}
+ \caption{Tipos de cardinalidad.} 
+ \label{fig:Cardinalidad}
 \end{figure}
 
-La cardinalidad entre nuestras entidades son:
+\item Unión entre entidades: pueden ser obligatorias u opcionales.
+\end{itemize}
+
+En nuestro caso, las entidades que necesitamos para crear nuestra BD son: \textbf{Candidato} y \textbf{Puesto}. En cuanto a la cardinalidad, entre la entidad Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un candidato puede aplicar a M puestos y un puesto puede ser aplicado por M candidatos. Las relaciones M-M no son válidas para implementar en los sistemas de bases de datos relacionales\cite{mod_ent_relacion_barker}, es por esto que se creó otra entidad intermedia \textbf{Similitud\_Candidato\_Puesto} que conlleva dos relaciones uno a muchos (1:M) con Puesto y con Candidato. 
+
+En cuanto a la unión entre entidades, tanto entre el Candidato y la tabla intermedia, y el Puesto y la tabla intermedia, son uniones opcionales (representadas en un DER con lineas punteadas): ya que el Candidato puede tener o no una medición de similitud asociada al Puesto, y el Puesto también puede tener o no una medición de similitud asociada al Candidato (se pueden cargar Candidatos y Puestos sin necesidad de medir similitudes y poblar la tabla intermedia).
+
+El DER que utilizamos para nuestra aplicación web lo observamos en la Figura \ref{fig:Entity_Relation}.\\
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.8\textwidth]{images/BD_Entity_Relation.png}
+ \caption{DER utilizado.} 
+ \label{fig:Entity_Relation}
+\end{figure}
+
+\cleardoublepage
+
+A continuación mencionaremos algunos detalles con respecto a nuestras tablas y atributos a tener en cuenta.
+
 \begin{itemize}
-\item Entre Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un candidato puede aplicar a M puestos y un puesto puede ser aplicado por M candidatos. Es por esto que se creó la tabla intermedia Candidato\_Puesto conllevando dos relaciones uno a muchos (1:M) con Puesto y Candidato.
-\item Entre Reclutador y Puesto existe una relación de uno a muchos (1:M), ya que un reclutador puede cargar M puestos, y un puesto pertenece a un solo reclutador.
+\item Para la tabla \textbf{Candidato} todos los atributos / campos son generados al llenar y enviar el formulario de carga del Candidato. Las diferencias que hay son:
+
+\begin{itemize}
+\item ‘nombre\_y\_apellido’, ‘fecha\_de\_nacimiento’, ‘sexo’, ‘telefono’, ‘email’ y ‘CV\_pdf’\footnote{El campo 'CV\_pdf' de la tabla Candidato almacena únicamente un string que detalla la ubicación del objeto del CV en formato PDF.} son cargados manualmente en el formulario por el reclutador.
+\item ‘creado\_a’ y ‘modificado\_a’ se generan automáticamente con el día y hora de creación del objeto.
+\item ‘ID\_Candidato’ es nuestra PK autoincremental y también se genera automáticamente al crearse el objeto. 
+\item ‘CV\_clean\_content’ y ‘CV\_tokens’ son cargados luego de realizar un preprocesamiento del Curriculum Vitae del candidato (realizado internamente luego de enviar el formulario). Estos campos se utilizan posteriormente para obtener la similitud del candidato con el puesto. 
 \end{itemize}
 
-En cuanto a las claves pueden haber dos tipos. Por un lado está la clave primaria o atributo principal (PK)  es única y toda entidad debe tener la suya. Pueden haber múltiples PKs; estas se llaman PKs compuestas. Y por el otro está la clave secundaria o atributo foráneo (FK). Estas claves identifican a una entidad externa en otra, utilizándose para generar relaciones entre nuestras entidades. Si tenemos una clave FK en una entidad, significa que dicha clave FK es clave PK en otra entidad.
+\item Para la tabla \textbf{Puesto} sucede lo mismo, todos los atributos / campos son generados al llenar y enviar el formulario de carga del Puesto. En este caso las diferencias son:
 
+\begin{itemize}
+\item ‘titulo’, ‘descripcion’, ‘ubicacion’ son cargados manualmente en el formulario por el reclutador.
+\item ‘creado\_a’ y ‘modificado\_a’ se generan automáticamente con el día y hora de creación del objeto.
+\item ‘ID\_Puesto’ es nuestra PK autoincremental y también se genera automáticamente al crearse el objeto. 
+\item ‘job\_clean\_content’ y ‘job\_tokens’ son cargados luego de realizar un preprocesamiento de la descripción del puesto (realizado internamente luego de enviar el formulario). Estos campos se utilizan posteriormente para obtener la similitud del candidato con el puesto. 
+\end{itemize}
 
-El diagrama de relación que utilizamos para nuestro trabajo lo observamos en la Figura \ref{fig:Entity_Relation}.
+\item En cambio, la tabla \textbf{Similitud\_Candidato\_Puesto} se utiliza en la fase posterior para encontrar a los mejores candidatos para el puesto seleccionado (una vez que se hayan registrado los candidatos y puestos necesarios). De esta manera, si se añadieron 2 candidatos y 3 puestos y se realizó la búsqueda del mejor candidato para los 3 puestos (que internamente realiza los cálculos de similitudes entre dichos puestos y candidatos), entonces se añadirán un total de 6 filas / registros a esta tabla, habiéndose completado todos sus atributos con los resultados de los cálculos de similitud correspondiente: primero se obtiene el valor de ‘Cosine\_Sim’ y ‘WMD\_Simil’, y estos se envían a una función que nos devuelve el valor de ‘Clasif\_KNN’ (el cual utiliza el Modelo KNN entrenado en los análisis previos). 
 
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/BD_Entity_Relation.png}
-  \caption{Diagrama de relación utilizado.}  
-  \label{fig:Entity_Relation}
-\end{figure}
+\end{itemize}
+
+\cleardoublepage
+
+Además, algo muy importante es entender cómo se relacionan nuestras tablas definidas en la base de datos con Django: esto es posible mediante nuestros Modelos. Como mencionamos en la sección \textit{\nameref{arq_django}}, los Modelos en Django son objetos de Python que definen la estructura de los datos de una aplicación y proporcionan mecanismos para gestionar y consultar registros en la base de datos. Dicho de otra forma, los modelos que nosotros definimos mediante Django en el archivo ``models.py’’, son creados y mapeados automáticamente en nuestra base de datos. Todo esto es posible mediante el ORM (Object Relational Mapper) que utiliza Django\footnote{El objetivo principal del ORM es permitir el envío / interacción de datos entre nuestra base de datos y los modelos de nuestra aplicación de una forma sencilla. Permite mapear una relación entre las tablas de nuestra base de datos y nuestros modelos. De esta manera ORM mapea los atributos de los objetos en nuestro ‘models.py’ a los campos de nuestra tabla en nuestra base de datos. La ventaja de usar ORMs es que hace más sencillo y rápido el proceso de desarrollo eliminando la necesidad de de escribir código SQL.}. \textbf{De esta manera cada atributo de nuestro modelo representa un campo en nuestra base de datos}. 
 
 \cleardoublepage
 
 \subsubsection{Secciones del sistema}
 
-Para registrarse o loguearse al sistema, se implementará la interfaz provista en la Figura \ref{fig:Vista_Registro}.
+En la Tabla \ref{table:secciones_sistema} se detallan las secciones de nuestro sistema junto con las URLs de acceso.
 
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/Vista_Registro.png}
-  \caption{Logueo y Registración.}  
-  \label{fig:Vista_Registro}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}||p{6cm}|p{5cm}|p{1.7cm}|}
+\hline
+\centering \textbf{Sección} & \textbf{Descripción} & \textbf{URL} & \textbf{Imagen de Ref.}  \\ [1ex]
+\hline
+Administración & Sitio de administración en Django para nuestra aplicación & /admin & Imagen \ref{fig:impl_web_0} \\
+\hline
+Login & Logueo de los usuarios previamente creados en Administración & /login/ & Imagen \ref{fig:impl_web_1}  \\
+\hline
+Inicio & Página de bienvenida / home de nuestra aplicación. & /inicio/ & Imagen \ref{fig:impl_web_2}  \\
+\hline
+Agregar Candidato & Formulario para registrar un nuevo candidato en el sistema / home de nuestra aplicación. & /agregar/candidato/ & Imagen \ref{fig:impl_web_3}  \\
+\hline
+Agregar Puesto & Formulario para registrar un nuevo puesto en el sistema & /agregar/puesto/ & Imagen \ref{fig:impl_web_4}  \\
+\hline
+Listar Candidatos & Tabla que muestra un listado con los candidatos registrados en el sistema & /listar/puestos/ & Imagen \ref{fig:caso_uso_paso_1} \\
+\hline
+Listar Puestos & Tabla que muestra un listado con los puestos registrados en el sistema & /listar/candidatos/ & Imagen \ref{fig:caso_uso_paso_1_2} \\
+\hline
+Búsqueda del mejor candidato & Tabla que muestra un listado con todos los puestos registrados en el sistema para seleccionar uno de estos y obtener las similitudes con todos los candidatos registrados & /best\_match/ & Imagen \ref{fig:caso_uso_paso_2} \\
+\hline
+Resultado de la búsqueda del mejor candidato & Obtención de la tabla final con las similitudes de ese puesto con cada uno de los candidatos & /best\_match/id\_puesto/ & Imagen \ref{fig:caso_uso_paso_2_2} \\
+\hline
+\end{tabular}
+\caption{Secciones y URLs de nuestro sistema.}
+\label{table:secciones_sistema}
+\end{table}
+
+Algo a tener en cuenta es que el usuario, una vez logueado (en /login/), podrá acceder a todas las demás secciones, las cuales son accesibles mediante los botones ubicados en la barra de navegación superior.
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/implementacion_web/impl_web_0.png}
+ \caption{Administración} 
+ \label{fig:impl_web_0}
 \end{figure}
 
-\colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
-
-El Candidato tendrá acceso al menú indicado en la Figura \ref{fig:Vista_Candidato}. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/Vista_Candidato.png}
-  \caption{Vista del Candidato.}  
-  \label{fig:Vista_Candidato}
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/impl_web_1.png}
+ \caption{Login.} 
+ \label{fig:impl_web_1}
 \end{figure}
 
-\colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
-
-Por su parte, el Reclutador tendrá acceso al menú indicado en la Figura \ref{fig:Vista_Reclutador}. 
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/Vista_Reclutador.png}
-  \caption{Vista del Reclutador.}  
-  \label{fig:Vista_Reclutador}
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/impl_web_2.png}
+ \caption{Inicio.} 
+ \label{fig:impl_web_2}
 \end{figure}
 
-\colorbox{red}{ES UN BOCETO, FALTA PONER LA IMAGEN REAL}
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/impl_web_3.png}
+ \caption{Agregar Candidato.} 
+ \label{fig:impl_web_3}
+\end{figure}
 
-\cleardoublepage
-
-\subsubsection{Manejo de los datos.}
-\colorbox{red}{FALTA}
-
-\cleardoublepage
-
-\paragraph{Modelado.}
-\colorbox{red}{FALTA}
-
-\cleardoublepage
-
-\paragraph{Filtrado.}
-\colorbox{red}{FALTA}
-
-\cleardoublepage
-
-\paragraph{Visualización.}
-\colorbox{red}{FALTA}
-
-\cleardoublepage
-
-\subsection{Workflow final del Sistema.}
-\colorbox{red}{FALTA}
-
-Una vez que el reclutador dentro de la sección observada en la Figura \ref{fig:Vista_Reclutador} haga click en "Analizar", el sistema reflejará el workflow indicado en la Figura \ref{fig:Pipeline_Final} para obtener como resultado un listado con los N candidatos más similes a un puesto determinado, y ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
-
-
-\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior. 
-  \centering
-  \includegraphics[width=1\textwidth]{images/Pipeline_Final.png}
-  \caption{Workflow final del Sistema.}  
-  \label{fig:Pipeline_Final}
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/impl_web_4.png}
+ \caption{Agregar Puesto.} 
+ \label{fig:impl_web_4}
 \end{figure}
 
 \cleardoublepage
 
-\subsection{Caso de Uso.}
-\colorbox{red}{FALTA}
+
+\subsubsection{Workflow y lógica final del Sistema.}
+
+
+
+
 \cleardoublepage
 
-\subsection{Limitaciones del sistema.}
-Las limitaciones del sistema son las siguientes:
-\begin{itemize}
-\item Solo acepta curriculums en formato PDF.
-\item Curriculums y Puestos de trabajo en idioma inglés. 
-\item Curriculums y Puestos de trabajo de IT. 
-\end{itemize}
+\paragraph{Caso de Uso.}
+
+BLALBABLA... y dejar estas figuras que ya las inserte:
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_1.png}
+ \caption{Listando los candidatos.} 
+ \label{fig:caso_uso_paso_1}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_1_2.png}
+ \caption{Listando los puestos.} 
+ \label{fig:caso_uso_paso_1_2}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_2.png}
+ \caption{Búsqueda del mejor candidato.} 
+ \label{fig:caso_uso_paso_2}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/implementacion_web/caso_uso_paso_2_1.png}
+ \caption{Consola al medir similitudes para buscar al mejor candidato.} 
+ \label{fig:caso_uso_paso_2_1}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_2_2.png}
+ \caption{Resultado de la búsqueda del mejor candidato para HCM Consultant 2.} 
+ \label{fig:caso_uso_paso_2_2}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4.png}
+ \caption{Resultado de la búsqueda del mejor candidato para Security Specialist.} 
+ \label{fig:caso_uso_paso_4}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4_1.png}
+ \caption{Resultado de la búsqueda del mejor candidato para Security Specialist 2.} 
+ \label{fig:caso_uso_paso_4_1}
+\end{figure}
+
+\begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
+ \centering
+ \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4_2.png}
+ \caption{Resultado de la búsqueda del mejor candidato para Data Science (Linkedin).} 
+ \label{fig:caso_uso_paso_4_2}
+\end{figure}
 
 \cleardoublepage
 
@@ -3993,6 +4075,9 @@ Nathalie Japkowicz. (2006, Mayo). \textit{Why Question Machine Learning Evaluati
 
 \bibitem{Mozila}
 Artículo sobre Django. Sitio Web de Mozila consultado el 10 de diciembre de 2022: \url{https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Introduction}.
+
+\bibitem{mod_ent_relacion_barker}
+Richard Barker (Original). Isabel Morales Jareño, \& Virgilio Yague Galaup (Traducción en español). (1994). \textit{El modelo entidad-relación: CASE * METHOD}. Oracle. Addison-Wesley Iberoamericana S.A. (pp. 1-4, 21-37, 49-61, 82, 149-151). 
 
 \end{thebibliography}
 
