@@ -1790,7 +1790,7 @@ Existen 2 manera de obtener nuestros word embeddings\cite{NLP_26}:
 
 \end{enumerate}
 
-En nuestra implementación no utilizamos word embeddings pre-entrenados ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT.
+En nuestra implementación no utilizamos word embeddings pre-entrenados ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o descripciones de puestos de IT.
 \\
 
 \paragraph{CBOW vs Skipgram.}\label{cbow_vs_skip}
@@ -2453,9 +2453,9 @@ Estos análisis se realizaron en documentos de Jupyter Notebook utilizando Pytho
 
 \item Integración al Sistema Web. 
 
-Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema web. Este sistema web está realizado en Django\footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional en MySQL\footnote{Sistema de gestión de bases de datos relacionales (RDBMS) de código abierto respaldado por Oracle y basado en el lenguaje de consulta estructurado (SQL).} que contiene la información de los Curiculum Vitae y Puestos que hayan cargado, junto con las mediciones de similitud que hayan sido realizadas. 
+Etapa posterior a la primera parte. Una vez observado que los resultados fueron los esperables, lo que se hizo fue reutilizar las funciones que contenian la lógica de los distintos algoritmos utilizados junto con el modelo de clasificación KNN obtenidos previamente en la parte 1, para integrar todo esto en el sistema web. Este sistema web está realizado en Django\footnote{Framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador.}, y cuenta con una base de datos relacional en MySQL\footnote{Sistema de gestión de bases de datos relacionales (RDBMS) de código abierto respaldado por Oracle y basado en el lenguaje de consulta estructurado (SQL).} que contiene la información de los Curiculum Vitae y puestos que hayan cargado, junto con las mediciones de similitud que hayan sido realizadas. 
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica que permita al reclutador cargar los Curriculums Vitae de los candidatos y los puestos que tenga disponible, y principalmente obtener un listado con los candidatos más similes a un puesto determinado, ordenados de mayor a menor de acuerdo a esta \textit{similitud}. Dicha \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
+De esta manera, nuestro sistema cuenta con una interfaz gráfica que permite al reclutador cargar los datos de los candidatos (incluído sus Curriculums Vitae) y de los puestos de IT (incluído sus descripciones) que tenga disponible, y principalmente \textbf{obtener un listado con los candidatos más similes a un puesto determinado}, ordenados de mayor a menor de acuerdo a dicha \textit{similitud}. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.
 
 \end{enumerate}
 
@@ -2529,7 +2529,7 @@ Los set de datos de Curriculum Vitae de los candidatos se obtuvieron de las sigu
 
 \cleardoublepage
 
-\paragraph{Descripciones Puestos Laborales.}\label{puestos_lab}
+\paragraph{Descripciones puestos laborales.}\label{puestos_lab}
 
 Los set de datos de descripciones de puestos laborales se obtuvieron de las siguientes fuentes:
 
@@ -2579,7 +2579,7 @@ El procedimiento para el preprocesamiento y limpieza de los Curriculum Vitae y l
 
 Si bien en la sección \textit{\nameref{Proces_textos}} se detalla en qué consiste resumidamente cada etapa, a continuación realizaremos un mayor acercamiento con ejemplos visuales de cada una de las mismas.
 
-En el primer paso, \textit{1. Eliminación de filas repetidas e innecesarias}, eliminamos los registros duplicados (\textit{filas repetidas}) de cada uno de los datasets. Además, en algunos casos se tuvieron que eliminar \textit{filas innecesarias}: por ejemplo, para el caso del dataset visualizado en la Figura \ref{fig:DS_Cand_3}, además de trabajos de IT, también este dataset cuenta con candidatos que pertenecen a trabajos de arte, ventas, salud y deporte, ingeniería eléctrica, civil o mecánica, etc. Para nuestro análisis únicamente nos interesan los trabajos relacionados a IT, es por esto que filtramos únicamente las filas con curriculums que pertenezcan a trabajos de IT (los cuales eran, por ejemplo, los pertenecientes a las categorías 'Data Science', 'Web Designing', 'Java Developer', etc.).
+En el primer paso, \textit{1. Eliminación de filas repetidas e innecesarias}, eliminamos los registros duplicados (\textit{filas repetidas}) de cada uno de los datasets. Además, en algunos casos se tuvieron que eliminar \textit{filas innecesarias}: por ejemplo, para el caso del dataset visualizado en la Figura \ref{fig:DS_Cand_3}, además de puestos de IT, también este dataset cuenta con candidatos que pertenecen a puestos de arte, ventas, salud y deporte, ingeniería eléctrica, civil o mecánica, etc. Para nuestro análisis únicamente nos interesan los puestos relacionados a IT, es por esto que filtramos únicamente las filas con curriculums que pertenezcan a puestos de IT (los cuales eran, por ejemplo, los pertenecientes a las categorías 'Data Science', 'Web Designing', 'Java Developer', etc.).
 
 \textbf{Debido a esta manipulación y filtrado de datos la cantidad de filas de nuestros datasets se redujo significativamente}. Por ejemplo, para el caso del dataset descrito anteriormente, pasamos de las 962 filas visualizadas en la Figura \ref{fig:DS_Cand_3} a únicamente 97 filas (Figura \ref{fig:DS_Cand_3_sin_dup}). 
 
@@ -2715,7 +2715,7 @@ Luego, para el cálculo de las distancias mediante Cosine Similarity utilizaremo
 
 Para el cálculo de TF-IDF y Cosine Similarity se utilizaron clases y métodos provistos por la libreria \textit{Scikit Learn}. Para el caso de TF-IDF se utilizó la clase \textit{TfidfVectorizer}\footnote{Clase \textit{TfidVectorizer}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html} (Consultado el 5 de abril de 2022).}, y para el caso de Cosine Similarity se utilizó el método \textit{paired\_cosine\_distances}\footnote{Método \textit{paired\_cosine\_distances}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.paired_cosine_distances.html} (Consultado el 5 de abril de 2022).}.
 
-Para tener una mejor comprensión del procedimiento a realizar se procederá a detallar un ejemplo. En el cuadro de la Imagen \ref{fig:1_TF_IDF} podemos observar el cálculo de valores de score TF-IDF luego de entrenar y aplicarse sobre 3 textos: las descripciones del CV de la Candidata \textit{Karla Lewis} (la cual tiene experiencia sobre trabajos de Data Science) y sobre las descripciones de los puestos \textit{Data Scientist} y \textit{Security Scpecialist}. En este caso nuestro vocabulario resultante fue de 381 palabras (por lo que nuestra matriz resultante tiene la misma cantidad de columnas). 
+Para tener una mejor comprensión del procedimiento a realizar se procederá a detallar un ejemplo. En el cuadro de la Imagen \ref{fig:1_TF_IDF} podemos observar el cálculo de valores de score TF-IDF luego de entrenar y aplicarse sobre 3 textos: las descripciones del CV de la candidata \textit{Karla Lewis} (la cual tiene experiencia sobre puestos de Data Science) y sobre las descripciones de los puestos \textit{Data Scientist} y \textit{Security Scpecialist}. En este caso nuestro vocabulario resultante fue de 381 palabras (por lo que nuestra matriz resultante tiene la misma cantidad de columnas). 
 
 \begin{figure}[H] 
  \centering
@@ -2725,7 +2725,7 @@ Para tener una mejor comprensión del procedimiento a realizar se procederá a d
  \label{fig:1_TF_IDF}
 \end{figure}
 
-Siguiendo con el ejemplo anterior, una vez que tenemos nuestra matriz TF-IDF lo que hacemos es comparar cada CV con cada Job Description aplicando Similitud del coseno (cuyos cálculos para dos vectores están descritos en la sección \textit{\nameref{cosine}}). En este caso calculamos la similitud del coseno entre los vectores V1 y V2, y entre V1 y V3, dándonos como resultado los valores 0.06 y 0.01 respectivamente: Ver Imagen \ref{fig:2_TF_IDF}.Esto es algo esperable, existiendo mayor score de similitud entre \textit{Karla Lewis} (que trabajó previamente en Data Science) y la posición de \textit{Data Scientist}, que al compararla con la posición de \textit{Security Specialist}. 
+Siguiendo con el ejemplo anterior, una vez que tenemos nuestra matriz TF-IDF lo que hacemos es comparar cada CV con cada Job Description aplicando Similitud del coseno (cuyos cálculos para dos vectores están descritos en la sección \textit{\nameref{cosine}}). En este caso calculamos la similitud del coseno entre los vectores V1 y V2, y entre V1 y V3, dándonos como resultado los valores 0.06 y 0.01 respectivamente: Ver Imagen \ref{fig:2_TF_IDF}.Esto es algo esperable, existiendo mayor score de similitud entre \textit{Karla Lewis} (que trabajó previamente en Data Science) y el puesto de \textit{Data Scientist}, que al compararlo con el puesto de \textit{Security Specialist}. 
 
 \begin{figure}[H] 
  \centering
@@ -2735,7 +2735,7 @@ Siguiendo con el ejemplo anterior, una vez que tenemos nuestra matriz TF-IDF lo 
  \label{fig:2_TF_IDF}
 \end{figure}
 
-La diferencia de este ejemplo con nuestro caso, es simplemente que TF-IDF se calcula y se aplica para todo nuestro set completo de CVs y descripciones de trabajo (21.217 documentos / textos en lugar de los 3 documentos / textos del ejemplo anterior). En estos 21.217 textos se encontraron 124.141 tokens / palabras únicas (en lugar de los 381 del ejemplo anterior). Es por esto que nuestra matriz TF-IDF resultante es de tamaño 21.217 x 124.141.
+La diferencia de este ejemplo con nuestro caso, es simplemente que TF-IDF se calcula y se aplica para todo nuestro set completo de CVs y descripciones de puestos (21.217 documentos / textos en lugar de los 3 documentos / textos del ejemplo anterior). En estos 21.217 textos se encontraron 124.141 tokens / palabras únicas (en lugar de los 381 del ejemplo anterior). Es por esto que nuestra matriz TF-IDF resultante es de tamaño 21.217 x 124.141.
 
 Una vez que obtuvimos esta matriz TF-IDF, se calcula la similitud del coseno para una porción de estos vectores TF-IDF: para los vectores de los primeros 101 CVs y de los primeros 31 puestos de trabajo. De esta manera, finalmente obtenemos el dataset de 3131 filas visualizado en la Imagen \ref{fig:3_TF_IDF}, el cual cuenta en la última columna con el score de similitud del coseno luego de aplicar y calcular TF-IDF entre los 101 CVs y los 31 puestos de trabajo.
 
@@ -2755,7 +2755,7 @@ Luego, para el cálculo de las distancias mediante WMD utilizaremos 101 curricul
 
 En primer lugar se debe obtener la matriz de embeddings, la cual contiene para cada fila el vector word embedding de cada una de las palabras de nuestro vocabulario\footnote{Cabe destacar que nuestro vocabulario es de 124.141 palabras, pero en el modelo de Word2vec omitimos las palabras de nuestros documentos (curriculums de los candidatos y descripciones de los puestos de IT) que tienen menor frecuencia a 2 quedándonos un vocabulario final de 60713 palabras: Ver hiper-parámetro '$min\_count$' en la sección \textit{\nameref{hiper_par_word2vec}}.}. 
 
-Como mencionamos anteriormente, elegimos entrenar nuestros propios word embeddings en lugar de utilizar word embeddings pre-entrenados, ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o Descripciones de puestos de IT.
+Como mencionamos anteriormente, elegimos entrenar nuestros propios word embeddings en lugar de utilizar word embeddings pre-entrenados, ya que verificamos que no existían varias palabras en el vocabulario de dichos embeddings (también llamadas palabras \textit{out-of-vocabulary, OOV}): como por ejemplo, palabras de 2-grams como data\_scientist, $machine\_learning$, $software\_engineer$; o palabras específicas de lenguajes de programación como Python o Java. Por esta razón decidimos entrenar nuestros propios word embeddings utilizando todo el Corpus disponible de nuestros CVs de candidatos y descripciones de puestos de IT. De esta manera se tendrán en cuenta las relaciones entre palabras como $data\_science$, $machine\_learning$ y demás palabras que estén presentes en nuestros CVs o descripciones de puestos de IT.
 
 Para la obtención de nuestra matriz de embeddings empleamos el modelo de red neuronal Word2vec utilizando la arquitectura Skipgram en conjunto con el método de Muestreo Negativo. Cabe destacar que estos son algunos de los hiper-parámetros de nuestro modelo, los cuales detallaremos en la sección \textit{\nameref{hiper_par_word2vec}}.
 
@@ -2839,15 +2839,13 @@ El valor por defecto en Gensim es 5, pero en nuestra implementación le colocamo
 
 Una vez definidos los hiper-parámetros de nuestro modelo Word2vec, se debe entrenar al mismo con nuestro vocabulario de 60.713 palabras/tokens. Este entrenamiento en la implementación se realiza al correr el código explicado anteriormente en la Imagen \ref{fig:4_Implementacion_Word2vec}. El proceso de entrenamiento que sigue nuestro modelo fue explicado en la sección \textit{\nameref{ent_costo_sigmoide}}. Una vez entrenado nuestro modelo tendremos para cada una de las 60.713 palabras que componen nuestro vocabulario, un word embedding de 100 dimensiones que la representa y que nos permitirá realizar los futuros cálculos de WMD. 
 
-\cleardoublepage
-
 \paragraph{Word Mover's Distance (WMD).}\label{calculo_wmd}
 
 Una vez obtenido los word embeddings de nuestros documentos aplicaremos WMD para obtener otra medida de similitud (además de la calculada previamente con TF-IDF \& Cosine Similarity) entre los candidatos y los puestos.
 
 Para ello primero se debe armar un vector para cada uno de los documentos a comparar (para los 101 CVs y 31 descripciones de puestos de trabajo) que contendrá para cada posición (para cada palabra del documento), -y si es que la palabra pertenece al vocabulario-, una referencia al vector word embedding correspondiente de la matriz de word embeddings calculada previamente. Este paso lo hace internamente la implementación de WMD de Gensim.
 
-Posteriormente estos vectores se utilizan para poder aplicar WMD entre cada uno de los CVs y cada una de las posiciones de trabajo. De esta manera anexaremos el resultado de WMD al dataset obtenido anteriormente en la Imagen \ref{fig:3_TF_IDF}, quedándonos finalmente como la Imagen \ref{fig:7_Calculo_WMD}.
+Posteriormente estos vectores se utilizan para poder aplicar WMD entre cada uno de los CVs y cada uno de los puestos de trabajo. De esta manera anexaremos el resultado de WMD al dataset obtenido anteriormente en la Imagen \ref{fig:3_TF_IDF}, quedándonos finalmente como la Imagen \ref{fig:7_Calculo_WMD}.
 
 \begin{figure}[H] 
  \centering
@@ -2859,7 +2857,7 @@ Posteriormente estos vectores se utilizan para poder aplicar WMD entre cada uno 
 
 \cleardoublepage
 
-Por ejemplo, para la Candidata de la primer fila de la Imagen \ref{fig:7_Calculo_WMD} (\textit{Karla Lewis}), su vector resultante será: \textit{[word embedding de ‘$data\_scientist$’, word embedding de ‘brooklyn’, word embedding de ‘ny’, word embedding de ‘$data\_scientist$’, (...)]}. 
+Por ejemplo, para la candidata de la primer fila de la Imagen \ref{fig:7_Calculo_WMD} (\textit{Karla Lewis}), su vector resultante será: \textit{[word embedding de ‘$data\_scientist$’, word embedding de ‘brooklyn’, word embedding de ‘ny’, word embedding de ‘$data\_scientist$’, (...)]}. 
 
 En la Imagen \ref{fig:8_Word_emb} podemos observar la representación del word embedding ‘$data\_scientist$’, el cual tiene como mencionamos previamente una dimensión de 100. 
 
@@ -2871,42 +2869,38 @@ En la Imagen \ref{fig:8_Word_emb} podemos observar la representación del word e
  \label{fig:8_Word_emb}
 \end{figure}
 
-En cambio, para la descripción de trabajo de la primera fila (\textit{Data Scientist}) el vector resultante sería: \textit{[word embedding de ‘$master\_degree$', word embedding de ‘stem‘, word embedding de ‘field‘, word embedding de ‘$including\_limited$‘, (...)]}. 
+En cambio, para la descripción del puesto de la primera fila (\textit{Data Scientist}) el vector resultante sería: \textit{[word embedding de ‘$master\_degree$', word embedding de ‘stem‘, word embedding de ‘field‘, word embedding de ‘$including\_limited$‘, (...)]}. 
 
-De dicha forma se puede calcular el WMD para esta Candidata y Descripción de trabajo utilizando estos vectores y los word embeddings de sus palabras\footnote{El cálculo de WMD que se realiza entre 2 vectores fue descrito en la sección \textit{\nameref{wmd}}.}, dándonos como resultado una medida de similitud entre los mismos: visto previamente en la Imagen \ref{fig:7_Calculo_WMD}.
-
-\cleardoublepage
+De esta forma se puede calcular el WMD para esta candidata y descripción del puesto utilizando estos vectores y los word embeddings de sus palabras\footnote{El cálculo de WMD que se realiza entre 2 vectores fue descrito en la sección \textit{\nameref{wmd}}.}, dándonos como resultado una medida de similitud entre los mismos: visto previamente en la Imagen \ref{fig:7_Calculo_WMD}.
 
 \paragraph{Observaciones valores de Cosine Similarity y WMD.}\label{Obs_cos_y_wmd}
 
-A continuación observaremos algunos ejemplos de los valores de Cosine Similarity y WMD obtenidos para un candidato y descripción en particular, con el objetivo de corroborar que los candidatos posean altos valores de similitud en los puestos donde hayan tenido mayor experiencia y/o donde posean los skills que, a priori, sean los esperables para esa posición.
+A continuación observaremos algunos ejemplos de los valores de Cosine Similarity y WMD obtenidos para un candidato y descripción en particular, con el objetivo de corroborar que los candidatos posean altos valores de similitud en los puestos donde hayan tenido mayor experiencia y/o donde posean los skills que, a priori, sean los esperables para ese puesto.
 
 Tomaremos como ejemplo al candidato \textit{$MLEngineer\_Bradly\_Johnston$}, el cual tiene experiencia previa en varios puestos de Machine Learning y skills de esta área de conocimiento, por lo que a priori es esperable que tenga mayor similitud con puestos de Machine Learning o Data Science. 
 
-En la Imagen \ref{fig:Valores_para_Bradly_Johnson} podemos visualizar un TOP 5 de las descripciones de puestos más y menos similares al Candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
+En la Imagen \ref{fig:Valores_para_Bradly_Johnson} podemos visualizar un TOP 5 de las descripciones de puestos más y menos similares al candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
 \\
 
 \begin{figure}[H] 
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_5/Valores_para_Bradly_Johnson.png}
  \captionsetup{justification=centering,margin=2cm}
- \caption{Posiciones más y menos similares para el Candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
+ \caption{Puestos más y menos similares para el candidato \textit{$MLEngineer\_Bradly\_Johnston$} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
  \label{fig:Valores_para_Bradly_Johnson}
 \end{figure}
 
 Observamos similares resultados al aplicar tanto para la métrica WMD como TF-IDF \& Cosine Similarity: altos valores de similitud para los puestos \textit{Machine Learning Engineer 2}, \textit{Machine Learning Engineer}, \textit{Data Scientist}, \textit{Data Scientist 2}. Esto como mencionamos previamente, es algo esperable. Además, observamos bajos valores para puestos que no están relacionados a Machine Learning, como por ejemplo \textit{SAP FICO Architect}, \textit{Test Lead / Test Manager}, \textit{DevOps Engineer}, \textit{Project Manager}, etc. Esto también es algo esperable.
 
-\cleardoublepage
-
 Ahora, tomaremos como ejemplo al puesto \textit{Security Specialist 2}. A priori es esperable que este puesto tenga mayor similitud con los CVs de los candidatos que hayan trabajado previamente o tengan skills para el área de seguridad informática. 
 
-En la Imagen \ref{fig:Valores_para_security_spec_2} podemos visualizar un TOP 5 de los CVs de Candidatos más similares al puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
+En la Imagen \ref{fig:Valores_para_security_spec_2} podemos visualizar un TOP 5 de los CVs de candidatos más similares al puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (WMD y TF-IDF \& Cosine).
 
 \begin{figure}[H] 
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_5/Valores_para_security_spec_2.png}
  \captionsetup{justification=centering,margin=2cm}
- \caption{CVs de Candidatos más similares para el la descripción del puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
+ \caption{CVs de candidatos más similares para el la descripción del puesto \textit{Security Specialist 2} de acuerdo a nuestras métricas (TF-IDF \& Cosine a la izquierda y WMD a la derecha).} 
  \label{fig:Valores_para_security_spec_2}
 \end{figure}
 
@@ -2924,7 +2918,7 @@ Para la implementación de K-means y KNN se utilizaron métodos y clases provist
 
 \subsubsection{Preparación de los datos.}\label{prep_datosd}
 
-Previamente a utilizar K-means y KNN vamos a eliminar de nuestro dataset obtenido en \ref{fig:7_Calculo_WMD} 1 Curriculum Vitae de un candidato y 1 descripción de puesto laboral (que representan un total de 131 filas del dataset). Estos datos los utilizaremos en la sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}} para realizar predicciones mediante KNN utilizando dichos Candidatos y Descripciones de Puestos que tienen los valores de WMD y Cosine Similarity calculados. Cabe destacar que esta no es una división de datos de entrenamiento y datos de evaluación, esta es realizada en la sección \textit{\nameref{imp_knn}} utilizando Cross Validation. Esta división se realizó únicamente para simular una predicción para nuevos ejemplos (1 CV y 1 puesto) ya teniendo nuestro modelo de KNN entrenado y evaluado, y analizar estos resultados. 
+Previamente a utilizar K-means y KNN vamos a eliminar de nuestro dataset obtenido en \ref{fig:7_Calculo_WMD} 1 Curriculum Vitae de un candidato y 1 descripción de puesto laboral (que representan un total de 131 filas del dataset). Estos datos los utilizaremos en la sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}} para realizar predicciones mediante KNN utilizando dichos candidatos y descripciones de puestos que tienen los valores de WMD y Cosine Similarity calculados. Cabe destacar que esta no es una división de datos de entrenamiento y datos de evaluación, esta es realizada en la sección \textit{\nameref{imp_knn}} utilizando Cross Validation. Esta división se realizó únicamente para simular una predicción para nuevos ejemplos (1 CV y 1 puesto) ya teniendo nuestro modelo de KNN entrenado y evaluado, y analizar estos resultados. 
 
 \cleardoublepage
 
@@ -2932,14 +2926,14 @@ De esta manera nos quedarán los siguientes datasets\footnote{Adicionalmente nos
 
 \begin{itemize}
 
-\item Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras mencionada previamente: Imagen \ref{fig:eliminacion_hcm_2_y_denis}. Este dataset está formado por las 101 filas correspondientes a la posición \textit{HCM Consultant 2} y las 30 filas correspondientes al candidato \textit{Denis Banik}, las cuales fueron eliminadas del dataset que se utilizará en K-means.
+\item Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras mencionada previamente: Imagen \ref{fig:eliminacion_hcm_2_y_denis}. Este dataset está formado por las 101 filas correspondientes al puesto \textit{HCM Consultant 2} y las 30 filas correspondientes al candidato \textit{Denis Banik}, las cuales fueron eliminadas del dataset que se utilizará en K-means.
 
 \end{itemize}
 
 \begin{figure}[H]   
 \centering
 \includegraphics[width=1\textwidth]{images/implementacion_5/eliminacion_hcm_2_y_denis.png}
-\caption{Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras: 101 filas referentes a la posición \textit{HCM Consultant 2} (izquierda) y 30 filas referentes al candidato \textit{Denis Banik} (derecha).}
+\caption{Dataset de 131 filas / puntos para realizar la clasificación de nuevas muestras: 101 filas referentes al puesto \textit{HCM Consultant 2} (izquierda) y 30 filas referentes al candidato \textit{Denis Banik} (derecha).}
 \label{fig:eliminacion_hcm_2_y_denis}
 \end{figure}
 
@@ -2976,7 +2970,7 @@ Inicialmente realizamos un gráfico de dispersión tomando como dimensiones / fe
 \label{fig:dispersion}
 \end{figure}
 
-Visualizando el gráfico podemos detectar a simple vista que hay valores que se escapan del “grupo medio”: estos son nuestros outliers, los cuales eliminaremos para que no perjudique al aprendizaje del modelo de ML posterior (KNN). Para eliminarlos vamos a aplicar un límite / condición que filtre los puntos que tengan un Cosine Similarity (eje x) mayor a 0.26. De esta manera se eliminan 7 puntos de datos de nuestro dataset, quedándonos 2993 filas: ver Imagen \ref{fig:detec_elim_outliers}.
+Visualizando el gráfico podemos detectar a simple vista que hay valores que se escapan del “grupo medio”: estos son nuestros outliers, los cuales eliminaremos para que no perjudique al aprendizaje del modelo de ML posterior (KNN). Para eliminarlos vamos a aplicar un límite / condición que filtre los puntos que tengan un Cosine Similarity (eje x) mayor a 0.26. De esta manera se eliminan 7 puntos de datos de nuestro dataset, quedándonos 2993 filas: ver Imagenes \ref{fig:detec_elim_outliers} y \ref{fig:to_knn}.
 
 \begin{figure}[H]   
 \centering
@@ -3040,7 +3034,7 @@ Quedándonos como dataset final que utilizaremos en KNN el visualizado en la Ima
 
 Como mencionamos previamente en la sección \textit{\nameref{knn_teoria}}, KNN es un algoritmo de ML que utilizamos para resolver un problema de clasificación: construiremos un modelo que nos permita clasificar automáticamente datos nuevos cuya clase desconocemos. La variable a predecir en KNN es discreta, y para nuestro caso es el label correspondiente al cluster -1, 2, 3 o 4- obtenidos previamente en k-means. De esta manera, nuestro set de entrenamiento será una parte del dataset base descrito en la Imagen \ref{fig:dataset_kmeans_knn_final} (la otra parte funcionará como set de evaluación), para el cual conocemos la clase a la que pertenecen nuestros datos (1, 2, 3 o 4).
 
-En nuestro caso es un modelo sencillo: en base a valores nuevos de WMD y Cosine Similarity entre un Candidato y una descripción, nuestro modelo predecirá en qué clase caerá este punto en 2 dimensiones: dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta). 
+En nuestro caso es un modelo sencillo: en base a valores nuevos de WMD y Cosine Similarity entre un candidato y una descripción, nuestro modelo predecirá en qué clase caerá este punto en 2 dimensiones: dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta). 
 
 Para poder utilizar KNN tenemos que definir previamente dos hiper-parámetros: la métrica a usar para calcular las distancias, y el valor de k (cuantos vecinos vamos a considerar). Como métrica de cálculo de distancias se utilizó la distancia euclidiana, ampliamente utilizada en modelos de KNN; mientras que el valor de k fue determinado mediante el procedimiento detallado a continuación. 
 
@@ -3126,7 +3120,7 @@ Una vez finalizada la Etapa 1, en la Etapa 2 realizamos las clásicas fases de e
 \label{fig:train_knn_con_k_8}
 \end{figure}
 
-Observamos que nos dió un accuracy final de 0.98998, por lo que \textbf{podemos confiar que un 98.99\% de las veces, en base a valores de WMD y Cosine Similarity entre un Candidato y una descripción, nuestro modelo predecirá correctamente si este punto en 2 dimensiones caería dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta)}. 
+Observamos que nos dió un accuracy final de 0.98998, por lo que \textbf{podemos confiar que un 98.99\% de las veces, en base a valores de WMD y Cosine Similarity entre un candidato y una descripción, nuestro modelo predecirá correctamente si este punto en 2 dimensiones caería dentro de las clases 0 (baja similitud), 1 (similitud media), 2 (similitud alta) o 3 (similitud muy alta)}. 
 
 Algo a destacar es que, tal como mencionamos en la sección \textit{\nameref{knn_teoria}}, KNN es un tipo de aprendizaje basado en la memoria, también llamado aprendizaje basado en instancias, que pertenece al aprendizaje perezoso (“lazy learning”). Esto quiere decir que KNN \textbf{no tiene una fase de entrenamiento}. De esta manera, en referencia al código de la Imagen \ref{fig:train_knn_con_k_8}):
 
@@ -3147,13 +3141,13 @@ Por último, ya teniendo nuestro modelo KNN entrenado y evaluado mediante Cross 
 Como mencionamos previamente, en este paso realizaremos una predicción final con nuestro modelo KNN utilizando las 131 filas de \textit{Prediction Final Set} (dataset de la Imagen \ref{fig:eliminacion_hcm_2_y_denis}). En esta predicción se clasificaron las nuevas muestras de acuerdo a las 4 categorías que creamos con k-means.
 De esta manera obtendremos:
 \begin{itemize}
-\item Las predicciones del candidato \textit{$SecuritySpecialist\_Denis\_Banik$} para todas las posiciones del DF.
-\item Y las predicciones de la Posición \textit{HCM Consultant 2} para todos los candidatos del DF.
+\item Las predicciones del candidato \textit{$SecuritySpecialist\_Denis\_Banik$} para todos los puestos del DF.
+\item Y las predicciones del puesto \textit{HCM Consultant 2} para todos los candidatos del DF.
 \end{itemize}
 
 Las predicciones las realizamos únicamente llamando a la función \textit{knn.predict} utilizando el modelo obtenido previamente. Para la predicción se utilizan las features $tfidf\_cosine$ y WMD. De esta manera, predecimos la columna \textit{Result KNN} (que serían nuestras 4 clases). 
 
-En la Imagen \ref{fig:Pred_HCM_Consultant_2} observamos las predicciones realizadas para el puesto \textit{HCM Consultant 2}, mientras que en la Imagen \ref{fig:prediccion_denis} observamos las predicciones realizadas por el modelo KNN para el Candidato \textit{Denis Banik} (el cual tiene expertise en posiciones de \textit{Security Specialist}).
+En la Imagen \ref{fig:Pred_HCM_Consultant_2} observamos 10 de las 101 predicciones realizadas para el puesto \textit{HCM Consultant 2}, mientras que en la Imagen \ref{fig:prediccion_denis} observamos las 30 predicciones realizadas por el modelo KNN para el candidato \textit{Denis Banik} (el cual tiene expertise en puestos de \textit{Security Specialist}).
 
 \begin{figure}[H]   
 \centering
@@ -3165,14 +3159,14 @@ En la Imagen \ref{fig:Pred_HCM_Consultant_2} observamos las predicciones realiza
 \begin{figure}[H]   
 \centering
 \includegraphics[width=0.9\textwidth]{images/implementacion_5/prediccion_denis.png}
-\caption{Predicción del modelo KNN para el Candidato Denis Banik (Security Specialist).}
+\caption{Predicción del modelo KNN para el candidato Denis Banik (Security Specialist).}
 \label{fig:prediccion_denis}
 \end{figure}
 
 En conclusión, las predicciones arrojadas por el modelo para las nuevas muestras fueron las esperadas:
 \begin{itemize}
-\item Para el Candidato \textit{$SecuritySpecialist\_Denis\_Banik$} obtuvimos altos valores de predicción (columna \textit{Result KNN}) para puestos relacionados a Seguridad (algo esperable).
-\item Para la Posición \textit{HCM Consultant 2} obtuvimos un alto nivel de predicción (columna \textit{Result KNN}) para el candidato \textit{$HCM\_Federico\_Calonge$} (Algo esperable).
+\item Para el candidato \textit{$SecuritySpecialist\_Denis\_Banik$} obtuvimos altos valores de predicción (columna \textit{Result KNN}) para puestos relacionados a Seguridad (algo esperable).
+\item Para el puesto \textit{HCM Consultant 2} obtuvimos un alto nivel de predicción (columna \textit{Result KNN}) para el candidato \textit{$HCM\_Federico\_Calonge$} (Algo esperable).
 \end{itemize}
 
 \cleardoublepage
@@ -3183,11 +3177,11 @@ Anteriormente se realizó un análisis mediante documentos en Jupyter Notebook p
 
 Al observar que los resultados fueron los esperables, en esta última etapa se reutilizaron las funciones que contenían la lógica de los distintos algoritmos utilizados junto con los distintos modelos obtenidos en la fase previa (modelo de clasificación KNN, modelo Word2vec, modelo TF-IDF, modelos de bi-gramas), para integrar todo este conjunto en el sistema web.
 
-Como mencionamos previamente, este sistema web está realizado en \textbf{Django}, y cuenta con una base de datos relacional en \textbf{MySQL} que contiene la información de los Candidatos y Puestos que se hayan cargado, junto con las mediciones de similitud que hayan sido realizadas.
+Como mencionamos previamente, este sistema web está realizado en \textbf{Django}, y cuenta con una base de datos relacional en \textbf{MySQL} que contiene la información de los candidatos y puestos que se hayan cargado, junto con las mediciones de similitud que hayan sido realizadas.
 
 Adicionalmente, en el desarrollo front-end de nuestro sitio utilizamos \textbf{Bootstrap}\footnote{\url{https://getbootstrap.com/} (Consultado el 10 de diciembre de 2022).}, el cual nos permitió desarrollar un sitio web responsive (orientado a todo tipo de dispositivo) y con un elegante aspecto visual.
 
-De esta manera, nuestro sistema cuenta con una interfaz gráfica que permite al reclutador cargar los datos de los candidatos (incluído sus Curriculums Vitae) y de los puestos de IT (incluído sus descripciones) que tenga disponible, y principalmente \textbf{obtener un listado con los candidatos más similes a un puesto determinado}, ordenados de mayor a menor de acuerdo a dicha \textit{similitud}. Esta \textit{similitud} representa el resultado obtenido de la clasificación de nuestro modelo KNN.\\
+De esta manera, nuestro sistema cuenta con una interfaz gráfica que permite al reclutador cargar los datos de los candidatos (incluído sus Curriculums Vitae) y de los puestos de IT (incluído sus descripciones) que tenga disponible, y principalmente \textbf{obtener un listado con los candidatos más similes a un puesto determinado}, ordenados de mayor a menor de acuerdo a dicha \textit{similitud}. Esta \textit{similitud} representa el resultado obtenido de la clasificación por nuestro modelo KNN.\\
 
 El sistema web cuenta con 2 tipos de usuario: 
 \begin{itemize}
@@ -3207,10 +3201,10 @@ Se decidió utilizar Django por la familiaridad con el lenguaje de programación
 \begin{itemize}
 \item Es completo: Django provee casi todo lo que un desarrollador necesita ``de fábrica'', siguiendo principios de diseño consistentes y teniendo una amplia y actualizada documentación\footnote{\url{https://docs.djangoproject.com/en/3.1/} - Sitio Web consultado el 10 de diciembre de 2022}.
 \item Es versátil: Django es usado para construir casi cualquier tipo de sitio web, desde manejadores de contenido y wikis, hasta redes sociales y sitios de noticias. Permite devolver contenido en casi cualquier formato: HTML, JSON, XML, etc. Además, internamente ofrece múltiples opciones para casi cualquier funcionalidad que deseemos: distintos motores de bases de datos, motores de plantillas, etc. 
-\item Es seguro: Django provee un framework diseñado para ``hacer lo correcto'' automáticamente en cuanto a la protección del sitio web. Por ejemplo, Django proporciona una manera segura de administrar cuentas de usuario y contraseñas utilizando hashes, y permite protección contra algunas vulnerabilidades de forma predeterminada: como por ejemplo inyecciones SQL, falsificación de solicitudes entre sitios, etc. 
-\item Es escalable:  Django usa un componente basado en la arquitectura ``shared-nothing'' (cada parte de la arquitectura es independiente de las otras, y por lo tanto puede ser reemplazado o cambiado si es necesario). Esta separación entre las diferentes partes permite que la app pueda escalar para aumentar el tráfico al agregar hardware en cualquier nivel: servidores de cache, servidores de bases de datos o servidores de aplicación.
+\item Es seguro: Django provee un framework diseñado para ``hacer lo correcto'' automáticamente en cuanto a la protección del sitio web. Por ejemplo Django proporciona una manera segura de administrar cuentas de usuario y contraseñas mediante hashes, y permite protección contra algunas vulnerabilidades de forma predeterminada: inyecciones SQL, falsificación de solicitudes entre sitios, etc. 
+\item Es escalable: Django usa un componente basado en la arquitectura ``shared-nothing'', donde cada parte es independiente de las otras, y por lo tanto puede ser reemplazada o cambiada si es necesario. Esta separación entre las diferentes partes permite que la app pueda escalar para aumentar el tráfico al agregar hardware en cualquier nivel: servidores de cache, servidores de bases de datos o servidores de aplicación.
 \item Es mantenible: El código de Django está escrito usando principios y patrones de diseño para fomentar la creación de código mantenible y reutilizable, utilizando el principio ``Don't Repeat Yourself'' (DRY) para que no exista una duplicación innecesaria, reduciendo la cantidad de código. Django también promueve la agrupación de funcionalidades agrupando código relacionado en módulos, siguiendo el patrón ``Model View Contoller'' (MVC). 
-\item Es portable: Esto es debido a que está escrito en Python, el cual se ejecuta en muchas plataformas. Lo que significa que no está sujeto a ninguna plataforma en particular, y puede ejecutar sus aplicaciones en muchas distribuciones de Linux, Windows y Mac OS X. Además, Django cuenta con el respaldo de muchos proveedores de alojamiento web, y que a menudo proporcionan una infraestructura específica y documentación para el alojamiento de sitios de Django.\\
+\item Es portable: Esto es debido a que está escrito en Python, el cual se ejecuta en muchas plataformas (ya se en distribuciones Linux, Windows o Mac OS X), permitiendo que no este sujeto a ninguna plataforma en particular. Además, Django cuenta con el respaldo de muchos proveedores de alojamiento web, y que a menudo proporcionan una infraestructura específica y documentación para el alojamiento de sitios de Django.\\
 \end{itemize}
 
 \paragraph{Arquitectura en Django.}\label{arq_django}
@@ -3218,13 +3212,13 @@ Se decidió utilizar Django por la familiaridad con el lenguaje de programación
 Una aplicación web tradicional basada en datos espera peticiones HTTP del cliente (navegador web) y, cuando se recibe una petición, la aplicación elabora lo que se necesita basándose en la URL y posiblemente en la información incluida en los datos POST o GET. Dependiendo de qué se necesita podría leer o escribir información desde una base de datos o realizar otras tareas requeridas para satisfacer la petición. A continuación la aplicación devolverá una respuesta al navegador web, con frecuencia creando dinámicamente una página HTML para que el explorador la presente insertando los datos que fueron recuperados previamente de la base de datos dentro de una plantilla HTML.
 Las aplicaciones web de Django agrupan el código que gestiona cada uno de estos pasos en módulos separados.  Esta modularidad representa una arquitectura de tipo \textbf{Modelo Vista Plantilla ``Model View Template (MVT)’’}, la cual tiene muchas similaridades con la arquitectura más familiar ``Model View Controller (MVC)''. A continuación mencionaremos dichos módulos\cite{Mozila}:
 \begin{itemize}
-\item \textbf{URLs}: Django utiliza un mapeador URL para redirigir las peticiones HTTP a la vista apropiada basándose en la URL de la petición. El mapeador URL se usa para redirigir las peticiones HTTP a la vista apropiada basándose en la URL de la petición. El mapeador URL puede también emparejar patrones de cadenas o dígitos específicos que aparecen en una URL y los pasan a la función de visualización como datos. 
-\item \textbf{Vista (View)}: Una Vista es una función de gestión de peticiones que recibe peticiones HTTP y devuelve respuestas HTTP. Las vistas acceden a los datos que necesitan para satisfacer las peticiones por medio de modelos, y delegan el formateo de la respuesta a las plantillas (``templates’’).
-\item \textbf{Modelos (Models)}: Los Modelos son objetos de Python que definen la estructura de los datos de una aplicación y proporcionan mecanismos para gestionar (añadir, modificar y borrar) y consultar registros en la base de datos. 
-\item \textbf{Plantillas (Templates)}: una Plantilla (template) es un fichero de texto que define la estructura o diagrama de otro fichero. Generalmente son archivos HTML, permitiéndonos representar visualmente el contenido de la aplicación. 
+\item \textbf{URLs}: Django utiliza un mapeador URL para redirigir las peticiones HTTP a la vista apropiada basándose en la URL de la petición. El mapeador URL puede también emparejar patrones de cadenas o dígitos específicos que aparecen en una URL y los pasan a la función de visualización como datos. 
+\item \textbf{Vistas (Views)}: Funciones que permiten gestionar las peticiones HTTP que se reciben y devolver respuestas HTTP. Las vistas acceden a los datos que necesitan para satisfacer las peticiones por medio de modelos, y delegan el formateo de la respuesta a las plantillas/templates.
+\item \textbf{Modelos (Models)}: Objetos de Python que definen la estructura de los datos de una aplicación y proporcionan mecanismos para gestionar (añadir, modificar y borrar) y consultar registros en la base de datos. 
+\item \textbf{Plantillas (Templates)}: Ficheros de texto que definen la estructura o diagrama de otros ficheros. Generalmente son archivos HTML, permitiéndonos representar visualmente el contenido de la aplicación. 
 \end{itemize}
 
-En conclusión,en ‘URLs’ se definen las urls a las que se podrá acceder de la aplicación, y dependiendo de esta url a qué función dentro de las ‘Vistas’ deberá llamar. Estas Vistas nos permiten crear dinámicamente páginas usando una plantilla, rellenándola con datos de un modelo.
+En conclusión, en \textbf{URLs} se definen las urls a las que se podrá acceder de la aplicación, y dependiendo de esta url a qué función dentro de las \textbf{vistas} deberá llamar. Estas vistas nos permiten crear dinámicamente páginas usando \textbf{plantillas}, rellenándolas con datos de un \textbf{modelo}.
 
 \cleardoublepage
 
@@ -3232,7 +3226,7 @@ En conclusión,en ‘URLs’ se definen las urls a las que se podrá acceder de 
 
 Nuestros datos (tanto de los candidatos, puestos y resultados de las mediciones de similitudes) los almacenaremos en una base de datos relacional\footnote{Una base de datos relacional es un conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común.} MySQL.
 
-Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación (DER o ERD en inglés) \footnote{Un modelo entidad-relación es una herramienta que nos facilita la representación de entidades de una base de datos.}. Explicaremos los elementos del diagrama de entidad relación \cite{mod_ent_relacion_barker}:
+Para comprender los datos que se almacenan en dicha base de datos, los representaremos utilizando un diagrama entidad relación (DER o ERD en inglés)\footnote{Un modelo entidad-relación es una herramienta que nos facilita la representación de entidades de una base de datos.}. A continuación detallaremos los elementos de un DER: \cite{mod_ent_relacion_barker}:
 
 \begin{itemize}
 \item Entidad: objeto concreto o abstracto que figura en nuestra base de datos. Por ejemplo, una entidad puede ser un alumno, un cliente, etc. 
@@ -3265,7 +3259,7 @@ Para comprender los datos que se almacenan en dicha base de datos, los represent
 
 En nuestro caso, las entidades que necesitamos para crear nuestra BD son: \textbf{Candidato} y \textbf{Puesto}. En cuanto a la cardinalidad, entre la entidad Candidato y Puesto existe una relación muchos a muchos (M:M), ya que un candidato puede aplicar a M puestos y un puesto puede ser aplicado por M candidatos. Las relaciones M-M no son válidas para implementar en los sistemas de bases de datos relacionales\cite{mod_ent_relacion_barker}, es por esto que se creó otra entidad intermedia \textbf{Similitud\_Candidato\_Puesto} que conlleva dos relaciones uno a muchos (1:M) con Puesto y con Candidato. 
 
-En cuanto a la unión entre entidades, tanto entre el Candidato y la tabla intermedia, y el Puesto y la tabla intermedia, son uniones opcionales (representadas en un DER con lineas punteadas): ya que el Candidato puede tener o no una medición de similitud asociada al Puesto, y el Puesto también puede tener o no una medición de similitud asociada al Candidato (se pueden cargar Candidatos y Puestos sin necesidad de medir similitudes y poblar la tabla intermedia).
+En cuanto a la unión entre entidades, tanto entre el Candidato y la tabla intermedia, y el Puesto y la tabla intermedia, son uniones opcionales (representadas en un DER con lineas punteadas): ya que el Candidato puede tener o no una medición de similitud asociada al Puesto, y el Puesto también puede tener o no una medición de similitud asociada al Candidato (se pueden cargar candidatos y puestos sin necesidad de medir similitudes y poblar la tabla intermedia).
 
 El DER que utilizamos para nuestra aplicación web lo observamos en la Figura \ref{fig:Entity_Relation}.\\
 
@@ -3281,7 +3275,7 @@ El DER que utilizamos para nuestra aplicación web lo observamos en la Figura \r
 A continuación mencionaremos algunos detalles con respecto a nuestras tablas y atributos a tener en cuenta.
 
 \begin{itemize}
-\item Para la tabla \textbf{Candidato} todos los atributos / campos son generados al llenar y enviar el formulario de carga del Candidato. Las diferencias que hay son:
+\item Para la tabla \textbf{Candidato} todos los atributos / campos son generados al llenar y enviar el formulario de carga del candidato. Las diferencias que hay son:
 
 \begin{itemize}
 \item ‘nombre\_y\_apellido’, ‘fecha\_de\_nacimiento’, ‘sexo’, ‘telefono’, ‘email’ y ‘CV\_pdf’\footnote{El campo 'CV\_pdf' de la tabla Candidato almacena únicamente un string que detalla la ubicación del objeto del CV en formato PDF.} son cargados manualmente en el formulario por el reclutador.
@@ -3290,7 +3284,7 @@ A continuación mencionaremos algunos detalles con respecto a nuestras tablas y 
 \item ‘CV\_clean\_content’ y ‘CV\_tokens’ son cargados luego de realizar un preprocesamiento del Curriculum Vitae del candidato (realizado internamente luego de enviar el formulario). Estos campos se utilizan posteriormente para obtener la similitud del candidato con el puesto. 
 \end{itemize}
 
-\item Para la tabla \textbf{Puesto} sucede lo mismo, todos los atributos / campos son generados al llenar y enviar el formulario de carga del Puesto. En este caso las diferencias son:
+\item Para la tabla \textbf{Puesto} sucede lo mismo, todos los atributos / campos son generados al llenar y enviar el formulario de carga del puesto. En este caso las diferencias son:
 
 \begin{itemize}
 \item ‘titulo’, ‘descripcion’, ‘ubicacion’ son cargados manualmente en el formulario por el reclutador.
@@ -3307,8 +3301,6 @@ A continuación mencionaremos algunos detalles con respecto a nuestras tablas y 
 
 Además, algo muy importante es entender cómo se relacionan nuestras tablas definidas en la base de datos con Django: esto es posible mediante nuestros Modelos. Como mencionamos en la sección \textit{\nameref{arq_django}}, los Modelos en Django son objetos de Python que definen la estructura de los datos de una aplicación y proporcionan mecanismos para gestionar y consultar registros en la base de datos. Dicho de otra forma, los modelos que nosotros definimos mediante Django en el archivo ``models.py’’, son creados y mapeados automáticamente en nuestra base de datos. Todo esto es posible mediante el ORM (Object Relational Mapper) que utiliza Django\footnote{El objetivo principal del ORM es permitir el envío / interacción de datos entre nuestra base de datos y los modelos de nuestra aplicación de una forma sencilla. Permite mapear una relación entre las tablas de nuestra base de datos y nuestros modelos. De esta manera ORM mapea los atributos de los objetos en nuestro ‘models.py’ a los campos de nuestra tabla en nuestra base de datos. La ventaja de usar ORMs es que hace más sencillo y rápido el proceso de desarrollo eliminando la necesidad de de escribir código SQL.}. \textbf{De esta manera cada atributo de nuestro modelo representa un campo en nuestra base de datos}. 
 
-\cleardoublepage
-
 \subsubsection{Secciones del sistema}
 
 En la Tabla \ref{table:secciones_sistema} se detallan las secciones de nuestro sistema junto con las URLs de acceso.
@@ -3321,17 +3313,17 @@ En la Tabla \ref{table:secciones_sistema} se detallan las secciones de nuestro s
 \hline
 Administración & Sitio de administración en Django para nuestra aplicación & /admin & Imagen \ref{fig:impl_web_0} \\
 \hline
-Login & Logueo de los usuarios previamente creados en Administración & /login/ & Imagen \ref{fig:impl_web_1}  \\
+Login & Logueo de usuarios previamente creados en la Sección de Administración & /login/ & Imagen \ref{fig:impl_web_1}  \\
 \hline
-Inicio & Página de bienvenida / home de nuestra aplicación. & /inicio/ & Imagen \ref{fig:impl_web_2}  \\
+Inicio & Página de bienvenida / home de nuestra aplicación & /inicio/ & Imagen \ref{fig:impl_web_2}  \\
 \hline
-Agregar Candidato & Formulario para registrar un nuevo candidato en el sistema / home de nuestra aplicación. & /agregar/candidato/ & Imagen \ref{fig:impl_web_3}  \\
+Agregar Candidato & Formulario para registrar un nuevo candidato en el sistema. & /agregar/candidato/ & Imagen \ref{fig:impl_web_3}  \\
 \hline
 Agregar Puesto & Formulario para registrar un nuevo puesto en el sistema & /agregar/puesto/ & Imagen \ref{fig:impl_web_4}  \\
 \hline
-Listar Candidatos & Tabla que muestra un listado con los candidatos registrados en el sistema & /listar/puestos/ & Imagen \ref{fig:caso_uso_paso_1} \\
+Listar Candidatos & Tabla que muestra un listado con los candidatos registrados & /listar/puestos/ & Imagen \ref{fig:caso_uso_paso_1} \\
 \hline
-Listar Puestos & Tabla que muestra un listado con los puestos registrados en el sistema & /listar/candidatos/ & Imagen \ref{fig:caso_uso_paso_1_2} \\
+Listar Puestos & Tabla que muestra un listado con los puestos registrados  & /listar/candidatos/ & Imagen \ref{fig:caso_uso_paso_1_2} \\
 \hline
 Búsqueda del mejor candidato & Tabla que muestra un listado con todos los puestos registrados en el sistema para seleccionar uno de estos y obtener las similitudes con todos los candidatos registrados & /best\_match/ & Imagen \ref{fig:caso_uso_paso_2} \\
 \hline
@@ -3342,7 +3334,7 @@ Resultados finales & Obtención de la tabla final con las similitudes de ese pue
 \label{table:secciones_sistema}
 \end{table}
 
-Algo a tener en cuenta es que el usuario, una vez logueado (en /login/), podrá acceder a todas las demás secciones, las cuales son accesibles mediante los botones ubicados en la barra de navegación superior.
+Algo a tener en cuenta es que el usuario, una vez logueado (mediante /login/), podrá acceder a todas las demás secciones, las cuales son accesibles mediante los botones ubicados en la barra de navegación superior.
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -3392,15 +3384,15 @@ Una vez que el reclutador esté logueado en la aplicación mediante la Sección 
 ¿Qué sucede al ingresar estos datos?:
 
 \begin{itemize}
-\item Al ingresar el CV del candidato mediante el formulario, internamente se realiza un preprocesamiento del texto. Antes de iniciar con este proceso se añade el campo ‘nombre\_y\_apellido’ colocado en el formulario en el archivo candidates\_names.txt para que se elimine su nombre del texto del CV en la etapa posterior. Luego se inician las etapas del preprocesamiento del texto, las cuales incluyen lo visto resumidamente en la sección \textit{\nameref{Proces_textos}} y más detalladamente en la sección \textit{\nameref{preproc_practica}}. La diferencia es que para este caso no es necesario realizar la etapa 1 y 2; únicamente se realizan las etapas 3 (Limpieza inicial y normalización), 4 (Aplicación de Tokenización), 5 (Aplicación de Lematización) y 6 (Obtención y uso de bi-gramas). Otra diferencia es que en este caso para el paso 6 se utiliza el modelo de bi-gramas previamente creado (no se genera uno nuevo), el cual ya contiene los bi-gramas obtenidos del análisis anterior en Jupyter sobre los miles de CVs y descripciones de puestos, y únicamente se reemplazan estos bi-gramas en nuestros textos. Por ej. si tenemos estos 2 tokens / palabras: ``machine’’, ``learning’’; y el modelo identificó previamente a ``machine\_learning’’ como un bi-grama, entonces se reemplazan estos 2 tokens por 1 solo que contiene nuestro bi-grama: ``machine\_learning’’. 
+\item Al ingresar el CV del candidato mediante el formulario, internamente se realiza un preprocesamiento del texto. Antes de iniciar con este proceso se añade el campo ‘nombre\_y\_apellido’ colocado en el formulario en el archivo candidates\_names.txt para que se elimine su nombre del texto del CV en la etapa posterior. Luego se inician las etapas del preprocesamiento del texto, las cuales incluyen lo visto resumidamente en la sección \textit{\nameref{Proces_textos}} y más detalladamente en la sección \textit{\nameref{preproc_practica}}. La diferencia es que para este caso no es necesario realizar la etapa 1 y 2; únicamente se realizan las etapas 3 (Limpieza inicial y normalización), 4 (Aplicación de Tokenización), 5 (Aplicación de Lematización) y 6 (Obtención y uso de bi-gramas). Otra diferencia es que en este caso para el paso 6 se utiliza el modelo de bi-gramas previamente creado (no se genera uno nuevo), el cual ya contiene los bi-gramas obtenidos del análisis anterior en Jupyter sobre los miles de CVs y descripciones de puestos, y únicamente se reemplazan estos bi-gramas en nuestros textos. Por ejemplo si tenemos estos 2 tokens / palabras: ``machine’’, ``learning’’; y el modelo identificó previamente a ``machine\_learning’’ como un bi-grama, entonces se reemplazan estos 2 tokens por 1 solo que contiene nuestro bi-grama: ``machine\_learning’’. 
 \item Al ingresar la descripción del puesto mediante el formulario sucede lo mismo, internamente se realiza un preprocesamiento de texto el cual incluye las partes 3, 4, 5 y 6 vistas en la sección \textit{\nameref{Proces_textos}}. Y nuevamente para el paso 6 utilizamos el modelo de bi-gramas creado en los análisis previos mediante Jupyter Notebooks. 
 \end{itemize}
 
 \cleardoublepage
 
-De esta forma se poblarán los campos en nuestra BD para las tablas ‘Puesto’ y ‘Candidato’, con 2 registros para Candidatos y 1 registro para Puestos.  
+De esta forma se poblarán los campos en nuestra BD para las tablas ‘Puesto’ y ‘Candidato’, con 2 registros para ‘Candidato’ y 1 registro para ‘Puesto’.  
 
-Posteriormente el reclutador se dirigirá a la Sección \textbf{Búsqueda del mejor candidato} donde seleccionará el ID del Puesto que deseará obtener las similitudes sobre todos los candidatos registrados (en nuestro caso 2). El sistema calculará para este puesto y los 2 candidatos registrados, los valores de TF-IDF \& Cosine Sim y de Word2vec \& WMD (mediante las funciones ‘tf\_idf\_and\_cosine\_sim(x,y)’ y ‘word2vec\_and\_wmd(x,y)’), los cuales  posteriormente utilizará nuestro backend como entradas a otra función llamada ‘calculo\_knn(salida\_1,salida\_2)’ para obtener el resultado final de la predicción usando nuestro modelo de clasificación KNN previamente entrenado. 
+Posteriormente el reclutador se dirigirá a la Sección \textbf{Búsqueda del mejor candidato} donde seleccionará el ID del puesto que deseará obtener las similitudes sobre todos los candidatos registrados (en nuestro caso 2). El sistema calculará para este puesto y los 2 candidatos registrados, los valores de TF-IDF \& Cosine Sim y de Word2vec \& WMD (mediante las funciones ‘tf\_idf\_and\_cosine\_sim(x,y)’ y ‘word2vec\_and\_wmd(x,y)’), los cuales  posteriormente utilizará nuestro backend como entradas a otra función llamada ‘calculo\_knn(salida\_1,salida\_2)’ para obtener el resultado final de la predicción usando nuestro modelo de clasificación KNN previamente entrenado. 
 
 De esta manera se poblarán los campos en nuestra BD para la la tabla ‘Similitud\_Candidato\_Puesto’ con 2 registros: uno correspondiente a la medición de similitud entre el primer candidato y el puesto, y otro correspondiente a la medición entre el segundo candidato y el puesto. 
 
@@ -3444,7 +3436,7 @@ Nuestros 4 pasos iniciales consistirán en corroborar que los análisis previos 
 
 \item Paso 2 (Imagenes \ref{fig:caso_uso_paso_2}, \ref{fig:caso_uso_paso_2_1} y \ref{fig:caso_uso_paso_2_2}): Calculamos las similitudes para este puesto y dichos candidatos para corroborar que el resultado sea similar al calculado en el análisis previo: alto valor para Federico y bajo valor de similitud para Karla y Rahul.  
 
-\item Paso 3: Tal como hicimos en la Figura \ref{fig:prediccion_denis}, añadiremos al candidato Denis Banik y 2 posiciones (las cuales no fueron vistas por nuestro modelo KNN: Security Specialist y Security Specialist 2).
+\item Paso 3: Tal como hicimos en la Figura \ref{fig:prediccion_denis}, añadiremos al candidato Denis Banik y 2 puestos (las cuales no fueron vistos por nuestro modelo KNN: Security Specialist y Security Specialist 2).
 
 \item Paso 4 (Imagenes \ref{fig:caso_uso_paso_4} y \ref{fig:caso_uso_paso_4_1}): Calculamos las similitudes para corroborar que hayan altas similitudes para Denis Banik para los puestos Security Specialist y Security Specialist 2.
 
@@ -3499,7 +3491,7 @@ Nuestros 4 pasos iniciales consistirán en corroborar que los análisis previos 
  \label{fig:caso_uso_paso_4_1}
 \end{figure}
 
-De esta manera corroboramos que los resultados son similares a los calculados para los análisis previos en Jupyter Notebooks: tanto altos valores para Federico y bajos para Karla y Rahul (para la posición HCM Consultant 2) correspondientes al paso 2, como altos valores para Denis Banik (para las posiciones Security Specialist y Security Specialist 2) correspondiente al paso 4.
+De esta manera corroboramos que los resultados son similares a los calculados para los análisis previos en Jupyter Notebooks: tanto altos valores para Federico y bajos para Karla y Rahul (para el puesto HCM Consultant 2) correspondientes al paso 2, como altos valores para Denis Banik (para los puestos Security Specialist y Security Specialist 2) correspondiente al paso 4.
 
 Sin embargo, para estos CVs y descripciones de puestos especificados en los pasos 1-4, aunque nuestro modelo KNN no los haya visto, si fueron utilizados para entrenar nuestros bigramas y nuestros modelos Word2vec y TF-IDF. Es por esto que utilizaremos un nuevo CV y una nueva descripción de puesto, añadiendo los siguientes pasos:
 
@@ -3507,7 +3499,7 @@ Sin embargo, para estos CVs y descripciones de puestos especificados en los paso
 
 \item Paso 5: Modificamos el CV del candidato Federico Calonge agregándole nueva experiencia para tareas realizadas en puestos de Data Science, por lo que teóricamente, nos debería arrojar un alto score de similitud en puestos de Data Science. Este nuevo candidato, al cual llamaremos Federico Calonge2, lo añadimos mediante el formulario de Agregar Candidato.
 
-\item Paso 6: Mediante el formulario de Agregar Puesto agregamos una nueva posición de Data Science encontrada aleatoriamente en Linkedin.
+\item Paso 6: Mediante el formulario de Agregar Puesto agregamos un nuevo puesto de Data Science encontrado aleatoriamente en Linkedin.
 
 \item  Paso 7 (Imagen \ref{fig:caso_uso_paso_4_2}): Calculamos las similitudes para corroborar que haya una alta similitud de Federico Calonge2 con dicho puesto de Data Science.
 
@@ -3520,7 +3512,7 @@ Sin embargo, para estos CVs y descripciones de puestos especificados en los paso
  \label{fig:caso_uso_paso_4_2}
 \end{figure}
 
-De esta manera podemos observar que para el puesto de Data Science se obtuvieron similitudes altas con Karla Lewis, Rahul Mailik y Federico Calonge, y una similitud muy alta con Federico Calonge2. Este resultado fue el esperado.\footnote{Con Karla Lewis y Rahul Mailik se obtuvieron similitudes altas debido a que en sus CVs tambien cuentan experiencia con tareas / skills relacionadas a Machine Learning y Data Science. Con Federico Calonge también se obtuvo una similitud alta con la posición de Data Science debido a que en su CV figuran actividades relacionadas a Machine Learning y Data Science, pero no es una similitud tan fuerte como con Federico Calonge2.}
+De esta manera podemos observar que para el puesto de Data Science se obtuvieron similitudes altas con Karla Lewis, Rahul Mailik y Federico Calonge, y una similitud muy alta con Federico Calonge2. Este resultado fue el esperado.\footnote{Con Karla Lewis y Rahul Mailik se obtuvieron similitudes altas debido a que en sus CVs tambien cuentan experiencia con tareas / skills relacionadas a Machine Learning y Data Science. Con Federico Calonge también se obtuvo una similitud alta con el puesto de Data Science debido a que en su CV figuran actividades relacionadas a Machine Learning y Data Science, pero no es una similitud tan fuerte como con Federico Calonge2.}
 
 \cleardoublepage
 
@@ -3528,8 +3520,8 @@ De esta manera podemos observar que para el puesto de Data Science se obtuvieron
 Las limitaciones del sistema son las siguientes:
 \begin{itemize}
 \item Únicamente acepta curriculums en formato PDF.
-\item Curriculums y Puestos de trabajo en idioma inglés.
-\item Curriculums y Puestos de trabajo relacionados a IT.
+\item Curriculums y puestos de trabajo en idioma inglés.
+\item Curriculums y puestos de trabajo relacionados a IT.
 \item Para calcular la similitud de 1 puesto con 1 candidato se tarda aproximadamente medio segundo. Esto puede ser una limitación en cuanto a tiempos dependiendo de la utilidad del sistema y el volumen de candidatos y puestos que se quiera comparar. El aspecto positivo en este caso es que una vez que se calculó la similitud entre 1 puesto y 1 candidato, no se vuelve a recalcular. 
 \end{itemize}
 

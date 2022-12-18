@@ -82,34 +82,34 @@
 \contentsline {subsubsection}{\numberline {5.1.1}Esquema.}{111}{subsubsection.5.1.1}%
 \contentsline {subsubsection}{\numberline {5.1.2}Obtención de sets de datos.}{111}{subsubsection.5.1.2}%
 \contentsline {paragraph}{\numberline {5.1.2.1}Curriculum Vitae.}{112}{paragraph.5.1.2.1}%
-\contentsline {paragraph}{\numberline {5.1.2.2}Descripciones Puestos Laborales.}{114}{paragraph.5.1.2.2}%
+\contentsline {paragraph}{\numberline {5.1.2.2}Descripciones puestos laborales.}{114}{paragraph.5.1.2.2}%
 \contentsline {subsubsection}{\numberline {5.1.3}Preprocesamiento de textos.}{115}{subsubsection.5.1.3}%
 \contentsline {subsubsection}{\numberline {5.1.4}Cantidad final del set de datos y su uso en las distintas etapas.}{119}{subsubsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.2}Comparando textos y obteniendo similitudes.}{121}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}TF-IDF \& Cosine Similarity.}{121}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Word embeddings (Word2vec) \& WMD.}{123}{subsubsection.5.2.2}%
 \contentsline {paragraph}{\numberline {5.2.2.1}Elección de hiper-parámetros Word2vec.}{124}{paragraph.5.2.2.1}%
-\contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{129}{paragraph.5.2.2.2}%
-\contentsline {paragraph}{\numberline {5.2.2.3}Observaciones valores de Cosine Similarity y WMD.}{131}{paragraph.5.2.2.3}%
-\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{133}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Preparación de los datos.}{133}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}K-means.}{135}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}KNN.}{138}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{143}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{145}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Django.}{146}{subsubsection.5.5.1}%
-\contentsline {paragraph}{\numberline {5.5.1.1}Ventajas de Django.}{146}{paragraph.5.5.1.1}%
-\contentsline {paragraph}{\numberline {5.5.1.2}Arquitectura en Django.}{147}{paragraph.5.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.5.2}Base de datos.}{148}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Secciones del sistema}{152}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Workflow y lógica final del Sistema.}{155}{subsubsection.5.5.4}%
-\contentsline {paragraph}{\numberline {5.5.4.1}Caso de Uso.}{158}{paragraph.5.5.4.1}%
-\contentsline {subsection}{\numberline {5.6}Limitaciones del sistema.}{162}{subsection.5.6}%
-\contentsline {section}{\numberline {6}Conclusiones.}{163}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{164}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{164}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{165}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{168}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{170}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{171}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{179}{subsection.7.6}%
+\contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{128}{paragraph.5.2.2.2}%
+\contentsline {paragraph}{\numberline {5.2.2.3}Observaciones valores de Cosine Similarity y WMD.}{129}{paragraph.5.2.2.3}%
+\contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{131}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Preparación de los datos.}{131}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}K-means.}{133}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}KNN.}{136}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{141}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{143}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Django.}{144}{subsubsection.5.5.1}%
+\contentsline {paragraph}{\numberline {5.5.1.1}Ventajas de Django.}{144}{paragraph.5.5.1.1}%
+\contentsline {paragraph}{\numberline {5.5.1.2}Arquitectura en Django.}{145}{paragraph.5.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.5.2}Base de datos.}{146}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Secciones del sistema}{149}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Workflow y lógica final del Sistema.}{152}{subsubsection.5.5.4}%
+\contentsline {paragraph}{\numberline {5.5.4.1}Caso de Uso.}{155}{paragraph.5.5.4.1}%
+\contentsline {subsection}{\numberline {5.6}Limitaciones del sistema.}{159}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Conclusiones.}{160}{section.6}%
+\contentsline {section}{\numberline {7}Anexos.}{161}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{161}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{162}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{165}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{167}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{168}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{176}{subsection.7.6}%
