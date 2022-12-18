@@ -32,64 +32,89 @@ El proyecto consiste en 2 partes:
 
 **Nota: Todos estos pasos fueron detallados utilizando Ubuntu, pero son similares en Windows y Mac debido a que Python es multiplataforma.**
 
-* Para el caso de los análisis en Jupyter Notebooks (carpeta "2-Main/Jupyter_Notebooks"):
+#### Para el caso de los análisis en Jupyter Notebooks (carpeta "2-Main/Jupyter_Notebooks"):
 
 Se debe descargar anaconda (versión 4.10.1) y python (versión 3.8.8) y activar el entorno virtual **conda** y descargar las librerías necesarias (archivo 'requirements_conda.txt' ubicado en '2-Main/Jupyter_Notebooks') mediante el comando:
+
 	> pip install -r requirements_conda.txt
+	
 Otra opción es previamente a crear el entorno virtual, correr el comando (ubicado previamente en '2-Main/Jupyter_Notebooks'):
+
 	> conda create --name <conda_env> --file requirements_conda.txt
+	
 Y utilizar conda_env como nuestro entorno virtual. 
 
-* Para el caso del sistema web realizado en Django (carpeta "2-Main/Web-App/"):
+#### Para el caso del sistema web realizado en Django (carpeta "2-Main/Web-App/"):
 
-Paso 1: Configuración de MySQL y creación de la BD. 
+**Paso 1:** Configuración de MySQL y creación de la BD. 
 
 Como primer paso instalamos MySQL Workbench (GUI de MySQL, que en nuestro caso utilizamos como complemento para visualizar nuestra BD). Esto se puede hacer desde el catálogo de aplicaciones de Ubuntu (la versión utilizada en este proyecto fue la 8.0.29 - Community).
 
 Luego instalamos mysql server en nuestro sistema:
+
 	> sudo apt install mysql-server
 
 Vemos la versión de mysql (en mi caso devolvió 'mysql Ver 8.0.31-0ubuntu0.20.04.1 for Linux on x86_64 ((Ubuntu))'):
+
 	> mysql --version
 
 Chequeamos que esté corriendo:
+
 	> sudo systemctl status mysql
 
 Nos logeamos: 
+
 	> sudo mysql -u root -p
 
 Para poder logearnos por MySQL Workbench:
+
 	> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'COMPLETAR_CONTRASEÑA';
 
 Ahora si creamos la BD:
+
 	> CREATE DATABASE db_candidates_and_jobs;
 
 Y salimos:
+
 	> exit
 
 Luego abrimos Workbench y creamos una nueva conexión ingresando como root y la password indicada anteriormente ('COMPLETAR_CONTRASEÑA') y ya podremos entrar y ver mediante la UI la BD 'db_candidates_and_jobs' creada. En un futuro paso debemos verificar que los candidatos y puestos registrados en la app se inserten en la BD para corroborar el correcto funcionamiento de la misma.
 
-Paso 2: Creación del entorno virtual e instalación de requirements.
+**Paso 2:** Creación del entorno virtual e instalación de requirements.
 
-Luego de tener nuestra BD se debe instanciar un entorno virtual de python (supongamos que se llama 'djangoenv_final') y descargar las librerías necesarias (archivo 'requirements.txt' ubicado en '2-Main/Web-App/2-Proyecto_Final_Django/v_env_app_final_django/djangoenv_final/bin/automatic_CV_reading') mediante el comando 'pip install -r requirements.txt'.
+Instanciamos un entorno virtual de python (al cual llamaremos 'djangoenv_final'). Para esto nos ubicamos primero en la carpeta donde queremos crear nuestro entorno virtual, en nuestro caso fue en:
 
-Nos ubicamos en la carpeta donde este nuestro entorno virtual, por ejemplo:
 	> cd automatic_reading_of_CVs_using_text_similarity/2-Main/Web-App/2-Proyecto_Final_Django/v_env_app_final_django
+	
+Ahora instanciamos nuestro djangoenv_final:
+	
+	> python3 -m venv djangoenv_final
 
-Activamos el entorno virtual 'djangoenv_final':
+Lo activamos:
+
 	> source djangoenv_final/bin/activate
 
+Descargamos las librerías necesarias (archivo 'requirements.txt' ubicado en '2-Main/Web-App/2-Proyecto_Final_Django/v_env_app_final_django/djangoenv_final/bin/automatic_CV_reading') -ubicandonos con >cd previamente ahí-:
+
+	>pip install -r requirements.txt
+
+**Paso 3:** Interacción con manage.py para correr la app y realizar migraciones de la BD.
+
 Nos ubicamos en la carpeta donde está el archivo manage.py: 
+
 	> cd djangoenv_final/bin/automatic_CV_reading
 
 Creamos un super-usuario administrador (en caso que no lo hayamos creado previamente): 
+
 	> python manage.py createsuperuser
 
 Y ejecutamos los siguientes comandos (los cuales verifican si hay cambios en la BD -si colocamos algo nuevo en 'models.py'-, y actualizan la BD si esto sucedió):
+
 	> python manage.py makemigrations 
 	> python manage.py migrate
 
 Corremos el server:
+
 	> python manage.py runserver
 
 Ahora podremos acceder por primera vez mediante nuestro navegador favorito a **localhost:8000/admin** logeandonos con el super-usuario administrador de Django previamente creado. 
@@ -98,11 +123,13 @@ Una vez dentro de **localhost:8000/admin** se debe crear un usuario (el cual ser
 
 >NOTA 1:
 En caso que en el Paso 1 o 2 tire en algún momento algún error de MySQL una posible solución es ejecutar los comandos (fuera del entorno virtual): 
+
 	> sudo apt-get install python3 python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev
 	> sudo apt install libmysqlclient-dev
 
 >NOTA 2:
 Comandos para resetear los ids de las tablas en caso que sea necesario (mediante MySQL Workbench):
+
 	> ALTER TABLE `db_candidates_and_jobs`.`automatic_CV_reading_app_candidato` AUTO_INCREMENT=0
 	> ALTER TABLE `db_candidates_and_jobs`.`automatic_CV_reading_app_puesto` AUTO_INCREMENT=0
 	> ALTER TABLE `db_candidates_and_jobs`.`automatic_CV_reading_app_similitud_cand_puesto` AUTO_INCREMENT=0
