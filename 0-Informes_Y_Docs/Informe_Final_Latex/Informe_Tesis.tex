@@ -2556,7 +2556,7 @@ Los set de datos de descripciones de puestos laborales se obtuvieron de las sigu
 
 \cleardoublepage
 
-\subsubsection{Preprocesamiento de textos.}
+\subsubsection{Preprocesamiento de textos.}\label{preproc_practica}
 Previamente a utilizar las técnicas para medir distancias y obtener similitudes entre textos (WMD y Cosine Similarity) y los algoritmos de aprendizaje (KNN y K-Means) necesitamos que los datos que comparemos e introduzcamos en los algoritmos estén lo más limpios posible; ya que de lo contrario las mismos podrían clasificar o predecir de forma errónea. Este análisis previo sobre los datos debe ser minucioso ya que puede haber valores incoherentes o absurdos.
 
 El procedimiento para el preprocesamiento y limpieza de los Curriculum Vitae y las descripciones de los puestos laborales de IT fue el siguiente:
@@ -2928,7 +2928,7 @@ Previamente a utilizar K-means y KNN vamos a eliminar de nuestro dataset obtenid
 
 \cleardoublepage
 
-De esta manera nos quedarán los siguientes datasets\footnote{Adicionalmente nos quedamos únicamente con las columnas necesarias ($‘Candidate\_Name’$, $‘Job\_Title’$, $‘tfidf\_cosine’$ y ‘WMD’) eliminando del dataset de la Imagen \ref{fig:7_Calculo_WMD} las columnas que no nos sirven más ($‘clean\_Content_CV’$, $‘tokens\_Content_CV’$, $‘clean\_Job\_Description’$ y $‘tokens\_Job\_Description’$)}:
+De esta manera nos quedarán los siguientes datasets\footnote{Adicionalmente nos quedamos únicamente con las columnas necesarias (‘Candidate\_Name’, ‘Job\_Title’, ‘tfidf\_cosine’ y ‘WMD’) eliminando del dataset de la Imagen \ref{fig:7_Calculo_WMD} las columnas que no nos sirven más (‘clean\_Content\_CV’, ‘tokens\_Content\_CV’, ‘clean\_Job\_Description’ y ‘tokens\_Job\_Description’)}:
 
 \begin{itemize}
 
@@ -3179,9 +3179,6 @@ En conclusión, las predicciones arrojadas por el modelo para las nuevas muestra
 
 \subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
 
-
-\subsection{Integración al Sistema Web.}\label{5.5.IntegracionalSistemaWeb}
-
 Anteriormente se realizó un análisis mediante documentos en Jupyter Notebook para evaluar el comportamiento del modelo de clasificación y los distintos algoritmos y técnicas para medir similitudes entre nuestros textos.
 
 Al observar que los resultados fueron los esperables, en esta última etapa se reutilizaron las funciones que contenían la lógica de los distintos algoritmos utilizados junto con los distintos modelos obtenidos en la fase previa (modelo de clasificación KNN, modelo Word2vec, modelo TF-IDF, modelos de bi-gramas), para integrar todo este conjunto en el sistema web.
@@ -3338,7 +3335,7 @@ Listar Puestos & Tabla que muestra un listado con los puestos registrados en el 
 \hline
 Búsqueda del mejor candidato & Tabla que muestra un listado con todos los puestos registrados en el sistema para seleccionar uno de estos y obtener las similitudes con todos los candidatos registrados & /best\_match/ & Imagen \ref{fig:caso_uso_paso_2} \\
 \hline
-Resultado de la búsqueda del mejor candidato & Obtención de la tabla final con las similitudes de ese puesto con cada uno de los candidatos & /best\_match/id\_puesto/ & Imagen \ref{fig:caso_uso_paso_2_2} \\
+Resultados finales & Obtención de la tabla final con las similitudes de ese puesto con cada uno de los candidatos registrados & /best\_match/id\_puesto/ & Imagen \ref{fig:caso_uso_paso_2_2} \\
 \hline
 \end{tabular}
 \caption{Secciones y URLs de nuestro sistema.}
@@ -3384,17 +3381,74 @@ Algo a tener en cuenta es que el usuario, una vez logueado (en /login/), podrá 
 
 \cleardoublepage
 
-
 \subsubsection{Workflow y lógica final del Sistema.}
 
+A continuación detallaremos el workflow de nuestro sistema web para explicar la lógica del mismo con el objetivo de \textbf{obtener el resultado de similitud para 2 candidatos sobre 1 puesto específico}.
 
+Como mencionamos previamente, el reclutador será quien cargue los datos de los candidatos (incluído sus curriculum vitae) y de los puestos de IT (incluído sus descripciones), y además será el que consulte las similitudes obtenidas para todos los candidatos (en este caso 2) sobre un puesto en específico.
 
+Una vez que el reclutador esté logueado en la aplicación mediante la Sección \textbf{Login}, será redirigido a la Sección \textbf{Inicio}. Luego mediante los formularios de las secciones \textbf{Agregar Candidato} y \textbf{Agregar Puesto}, el reclutador cargará los datos de los 2 candidatos junto a sus CVs en pdf, y del puesto de IT junto con su descripción respectivamente. \\
+
+¿Qué sucede al ingresar estos datos?:
+
+\begin{itemize}
+\item Al ingresar el CV del candidato mediante el formulario, internamente se realiza un preprocesamiento del texto. Antes de iniciar con este proceso se añade el campo ‘nombre\_y\_apellido’ colocado en el formulario en el archivo candidates\_names.txt para que se elimine su nombre del texto del CV en la etapa posterior. Luego se inician las etapas del preprocesamiento del texto, las cuales incluyen lo visto resumidamente en la sección \textit{\nameref{Proces_textos}} y más detalladamente en la sección \textit{\nameref{preproc_practica}}. La diferencia es que para este caso no es necesario realizar la etapa 1 y 2; únicamente se realizan las etapas 3 (Limpieza inicial y normalización), 4 (Aplicación de Tokenización), 5 (Aplicación de Lematización) y 6 (Obtención y uso de bi-gramas). Otra diferencia es que en este caso para el paso 6 se utiliza el modelo de bi-gramas previamente creado (no se genera uno nuevo), el cual ya contiene los bi-gramas obtenidos del análisis anterior en Jupyter sobre los miles de CVs y descripciones de puestos, y únicamente se reemplazan estos bi-gramas en nuestros textos. Por ej. si tenemos estos 2 tokens / palabras: ``machine’’, ``learning’’; y el modelo identificó previamente a ``machine\_learning’’ como un bi-grama, entonces se reemplazan estos 2 tokens por 1 solo que contiene nuestro bi-grama: ``machine\_learning’’. 
+\item Al ingresar la descripción del puesto mediante el formulario sucede lo mismo, internamente se realiza un preprocesamiento de texto el cual incluye las partes 3, 4, 5 y 6 vistas en la sección \textit{\nameref{Proces_textos}}. Y nuevamente para el paso 6 utilizamos el modelo de bi-gramas creado en los análisis previos mediante Jupyter Notebooks. 
+\end{itemize}
+
+\cleardoublepage
+
+De esta forma se poblarán los campos en nuestra BD para las tablas ‘Puesto’ y ‘Candidato’, con 2 registros para Candidatos y 1 registro para Puestos.  
+
+Posteriormente el reclutador se dirigirá a la Sección \textbf{Búsqueda del mejor candidato} donde seleccionará el ID del Puesto que deseará obtener las similitudes sobre todos los candidatos registrados (en nuestro caso 2). El sistema calculará para este puesto y los 2 candidatos registrados, los valores de TF-IDF \& Cosine Sim y de Word2vec \& WMD (mediante las funciones ‘tf\_idf\_and\_cosine\_sim(x,y)’ y ‘word2vec\_and\_wmd(x,y)’), los cuales  posteriormente utilizará nuestro backend como entradas a otra función llamada ‘calculo\_knn(salida\_1,salida\_2)’ para obtener el resultado final de la predicción usando nuestro modelo de clasificación KNN previamente entrenado. 
+
+De esta manera se poblarán los campos en nuestra BD para la la tabla ‘Similitud\_Candidato\_Puesto’ con 2 registros: uno correspondiente a la medición de similitud entre el primer candidato y el puesto, y otro correspondiente a la medición entre el segundo candidato y el puesto. 
+
+Por último, una vez calculados los resultados finales de similitud, el sistema redirigirá al reclutador automáticamente a la Sección \textbf{Resultado final}. Aquí se visualizará una tabla con los candidatos más similes al puesto especificado, ordenados de mayor a menor de acuerdo a dicha \textit{similitud}. 
+
+De esta manera logramos obtener el resultado de similitud de 2 candidatos sobre 1 puesto.
+
+Algo a tener en cuenta es que, en caso de agregar un tercer candidato y nuevamente querer obtener las similitudes para el puesto considerado anteriormente, para no realizar cálculos de similitud innecesariamente, el sistema reconoce que se calculó la similitud de ese puesto para los dos anteriores candidatos, por lo que únicamente calcularán las similitudes para el tercer candidato con dicho puesto. Esta es una información que arroja internamente nuestro sistema por consola, y que podemos observar en la Figura \ref{fig:similitudes_calculadas}.
+
+\begin{figure}[H]  
+\centering
+\includegraphics[width=0.7\textwidth]{images/implementacion_web/similitudes_calculadas.png}
+\captionsetup{justification=centering,margin=2cm}
+\caption{Resultados por consola al calcular la similitud de un puesto con dos candidatos nuevos (candidatos 4 y 5) y tres ya calculados (candidatos 1, 2 y 3).}
+\label{fig:similitudes_calculadas}
+\end{figure}
+
+\cleardoublepage
+
+El workflow completo y lógica del sistema ejemplificado previamente podemos detallarlo mediante el esquema de la Figura \ref{fig:workflow_final}.
+
+\begin{figure}[H]  
+\centering
+\noindent\makebox[\textwidth]{%
+\includegraphics[width=1\textwidth]{images/implementacion_web/workflow_final_v2.png}}
+\caption{Workflow y lógica final del sistema.}
+\label{fig:workflow_final}
+\end{figure}
 
 \cleardoublepage
 
 \paragraph{Caso de Uso.}
 
-BLALBABLA... y dejar estas figuras que ya las inserte:
+A continuación detallaremos un caso de uso con el objetivo de corroborar las salidas / mediciones de similitud que arroja nuestro sistema.
+
+Nuestros 4 pasos iniciales consistirán en corroborar que los análisis previos en Jupyter Notebooks (sección \textit{\nameref{5.4.Predicciondenuevasmuestrasyresultadosobtenidos}}) arrojen resultados similares para el sistema web ya desarrollado\footnote{Resultados similares y no iguales ya que fueron afectadas las listas de ‘common\_words.txt’ y ‘candidate\_names.txt’ en esta versión final del sistema web a medida que se añadieron nuevos puestos y candidatos; pero los modelos utilizados tanto de bigramas, Word2vec, TF-IDF y KNN son los mismos}: 
+
+\begin{itemize}
+
+\item  Paso 1 (Imagenes \ref{fig:caso_uso_paso_1} y \ref{fig:caso_uso_paso_1_2}): Tal como hicimos en la Figura \ref{fig:Pred_HCM_Consultant_2}, añadiremos las 3 primeras filas (las cuales no fueron vistas por nuestro modelo KNN). Dicho de otra forma, añadimos 3 candidatos (Karla Lewis, Rahul Mailik y Federico Calonge) y 1 puesto (HCM Consultant 2).
+
+\item Paso 2 (Imagenes \ref{fig:caso_uso_paso_2}, \ref{fig:caso_uso_paso_2_1} y \ref{fig:caso_uso_paso_2_2}): Calculamos las similitudes para este puesto y dichos candidatos para corroborar que el resultado sea similar al calculado en el análisis previo: alto valor para Federico y bajo valor de similitud para Karla y Rahul.  
+
+\item Paso 3: Tal como hicimos en la Figura \ref{fig:prediccion_denis}, añadiremos al candidato Denis Banik y 2 posiciones (las cuales no fueron vistas por nuestro modelo KNN: Security Specialist y Security Specialist 2).
+
+\item Paso 4 (Imagenes \ref{fig:caso_uso_paso_4} y \ref{fig:caso_uso_paso_4_1}): Calculamos las similitudes para corroborar que hayan altas similitudes para Denis Banik para los puestos Security Specialist y Security Specialist 2.
+
+\end{itemize}
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
@@ -3427,30 +3481,57 @@ BLALBABLA... y dejar estas figuras que ya las inserte:
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_2_2.png}
- \caption{Resultado de la búsqueda del mejor candidato para HCM Consultant 2.} 
+ \caption{Resultados finales para HCM Consultant 2.} 
  \label{fig:caso_uso_paso_2_2}
 \end{figure}
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4.png}
- \caption{Resultado de la búsqueda del mejor candidato para Security Specialist.} 
+ \caption{Resultados finales para Security Specialist.} 
  \label{fig:caso_uso_paso_4}
 \end{figure}
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4_1.png}
- \caption{Resultado de la búsqueda del mejor candidato para Security Specialist 2.} 
+ \caption{Resultados finales para Security Specialist 2.} 
  \label{fig:caso_uso_paso_4_1}
 \end{figure}
+
+De esta manera corroboramos que los resultados son similares a los calculados para los análisis previos en Jupyter Notebooks: tanto altos valores para Federico y bajos para Karla y Rahul (para la posición HCM Consultant 2) correspondientes al paso 2, como altos valores para Denis Banik (para las posiciones Security Specialist y Security Specialist 2) correspondiente al paso 4.
+
+Sin embargo, para estos CVs y descripciones de puestos especificados en los pasos 1-4, aunque nuestro modelo KNN no los haya visto, si fueron utilizados para entrenar nuestros bigramas y nuestros modelos Word2vec y TF-IDF. Es por esto que utilizaremos un nuevo CV y una nueva descripción de puesto, añadiendo los siguientes pasos:
+
+\begin{itemize}
+
+\item Paso 5: Modificamos el CV del candidato Federico Calonge agregándole nueva experiencia para tareas realizadas en puestos de Data Science, por lo que teóricamente, nos debería arrojar un alto score de similitud en puestos de Data Science. Este nuevo candidato, al cual llamaremos Federico Calonge2, lo añadimos mediante el formulario de Agregar Candidato.
+
+\item Paso 6: Mediante el formulario de Agregar Puesto agregamos una nueva posición de Data Science encontrada aleatoriamente en Linkedin.
+
+\item  Paso 7 (Imagen \ref{fig:caso_uso_paso_4_2}): Calculamos las similitudes para corroborar que haya una alta similitud de Federico Calonge2 con dicho puesto de Data Science.
+
+\end{itemize}
 
 \begin{figure}[H]    %[H] es para que se ubique justo debajo del texto anterior.
  \centering
  \includegraphics[width=1\textwidth]{images/implementacion_web/caso_uso_paso_4_2.png}
- \caption{Resultado de la búsqueda del mejor candidato para Data Science (Linkedin).} 
+ \caption{Resultados finales para Data Science (Linkedin).} 
  \label{fig:caso_uso_paso_4_2}
 \end{figure}
+
+De esta manera podemos observar que para el puesto de Data Science se obtuvieron similitudes altas con Karla Lewis, Rahul Mailik y Federico Calonge, y una similitud muy alta con Federico Calonge2. Este resultado fue el esperado.\footnote{Con Karla Lewis y Rahul Mailik se obtuvieron similitudes altas debido a que en sus CVs tambien cuentan experiencia con tareas / skills relacionadas a Machine Learning y Data Science. Con Federico Calonge también se obtuvo una similitud alta con la posición de Data Science debido a que en su CV figuran actividades relacionadas a Machine Learning y Data Science, pero no es una similitud tan fuerte como con Federico Calonge2.}
+
+\cleardoublepage
+
+\subsection{Limitaciones del sistema.}
+Las limitaciones del sistema son las siguientes:
+\begin{itemize}
+\item Únicamente acepta curriculums en formato PDF.
+\item Curriculums y Puestos de trabajo en idioma inglés.
+\item Curriculums y Puestos de trabajo relacionados a IT.
+\item Para calcular la similitud de 1 puesto con 1 candidato se tarda aproximadamente medio segundo. Esto puede ser una limitación en cuanto a tiempos dependiendo de la utilidad del sistema y el volumen de candidatos y puestos que se quiera comparar. El aspecto positivo en este caso es que una vez que se calculó la similitud entre 1 puesto y 1 candidato, no se vuelve a recalcular. 
+\end{itemize}
 
 \cleardoublepage
 

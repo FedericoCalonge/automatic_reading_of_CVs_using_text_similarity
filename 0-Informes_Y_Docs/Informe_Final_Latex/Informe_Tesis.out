@@ -96,14 +96,14 @@
 \BOOKMARK [3][-]{subsubsection.5.3.3}{KNN.}{subsection.5.3}% 96
 \BOOKMARK [2][-]{subsection.5.4}{Clasificaci\363n de nuevas muestras y resultados obtenidos.}{section.5}% 97
 \BOOKMARK [2][-]{subsection.5.5}{Integraci\363n al Sistema Web.}{section.5}% 98
-\BOOKMARK [2][-]{subsection.5.6}{Integraci\363n al Sistema Web.}{section.5}% 99
-\BOOKMARK [3][-]{subsubsection.5.6.1}{Django.}{subsection.5.6}% 100
-\BOOKMARK [4][-]{paragraph.5.6.1.1}{Ventajas de Django.}{subsubsection.5.6.1}% 101
-\BOOKMARK [4][-]{paragraph.5.6.1.2}{Arquitectura en Django.}{subsubsection.5.6.1}% 102
-\BOOKMARK [3][-]{subsubsection.5.6.2}{Base de datos.}{subsection.5.6}% 103
-\BOOKMARK [3][-]{subsubsection.5.6.3}{Secciones del sistema}{subsection.5.6}% 104
-\BOOKMARK [3][-]{subsubsection.5.6.4}{Workflow y l\363gica final del Sistema.}{subsection.5.6}% 105
-\BOOKMARK [4][-]{paragraph.5.6.4.1}{Caso de Uso.}{subsubsection.5.6.4}% 106
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Django.}{subsection.5.5}% 99
+\BOOKMARK [4][-]{paragraph.5.5.1.1}{Ventajas de Django.}{subsubsection.5.5.1}% 100
+\BOOKMARK [4][-]{paragraph.5.5.1.2}{Arquitectura en Django.}{subsubsection.5.5.1}% 101
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Base de datos.}{subsection.5.5}% 102
+\BOOKMARK [3][-]{subsubsection.5.5.3}{Secciones del sistema}{subsection.5.5}% 103
+\BOOKMARK [3][-]{subsubsection.5.5.4}{Workflow y l\363gica final del Sistema.}{subsection.5.5}% 104
+\BOOKMARK [4][-]{paragraph.5.5.4.1}{Caso de Uso.}{subsubsection.5.5.4}% 105
+\BOOKMARK [2][-]{subsection.5.6}{Limitaciones del sistema.}{section.5}% 106
 \BOOKMARK [1][-]{section.6}{Conclusiones.}{}% 107
 \BOOKMARK [1][-]{section.7}{Anexos.}{}% 108
 \BOOKMARK [2][-]{subsection.7.1}{Ejemplo de funcionamiento KNN.}{section.7}% 109

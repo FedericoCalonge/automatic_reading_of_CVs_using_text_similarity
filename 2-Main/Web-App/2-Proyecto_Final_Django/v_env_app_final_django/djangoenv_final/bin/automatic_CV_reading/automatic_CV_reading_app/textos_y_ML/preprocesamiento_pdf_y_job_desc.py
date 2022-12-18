@@ -77,6 +77,7 @@ def tokenize_and_lemmatization(text_column):
     return list(lemmatized_tokens)
 
 def cleaning_DF(DF,column_to_clean,flag_candidate): #Si es un candidato (flag_candidate=True) entonces eliminamos todas las apariciones del Nombre en el CV.
+                                                    #Si es una descripción de un puesto entonces no es necesario.
     clean_column='clean_'+column_to_clean
     DF[clean_column]=DF[column_to_clean]            #Copiamos el contenido de 'column_to_clean' en 'clean_column' para utilizarla en las funciones posteriores.
     lower_text(DF,clean_column)
@@ -187,7 +188,7 @@ def preprocesamiento_job_desc(campo_descripcion_job):
     #####################################################################################################################
     #Limpieza DF
     ######################################################################################################################
-    cleaning_DF(df_Job,'Content_Job',True)
+    cleaning_DF(df_Job,'Content_Job',False)
     tokenize_and_lemmatize(df_Job,'Content_Job')
 
     #Acá usamos df_all_Jobs porque los bi-gramas los obtenemos a partir de todo el corpus de Jobs, no solo el que ingresa al sistema:

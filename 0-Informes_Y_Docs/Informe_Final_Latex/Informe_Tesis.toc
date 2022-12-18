@@ -97,19 +97,19 @@
 \contentsline {subsubsection}{\numberline {5.3.3}KNN.}{138}{subsubsection.5.3.3}%
 \contentsline {subsection}{\numberline {5.4}Clasificación de nuevas muestras y resultados obtenidos.}{143}{subsection.5.4}%
 \contentsline {subsection}{\numberline {5.5}Integración al Sistema Web.}{145}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Integración al Sistema Web.}{145}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Django.}{146}{subsubsection.5.6.1}%
-\contentsline {paragraph}{\numberline {5.6.1.1}Ventajas de Django.}{146}{paragraph.5.6.1.1}%
-\contentsline {paragraph}{\numberline {5.6.1.2}Arquitectura en Django.}{147}{paragraph.5.6.1.2}%
-\contentsline {subsubsection}{\numberline {5.6.2}Base de datos.}{148}{subsubsection.5.6.2}%
-\contentsline {subsubsection}{\numberline {5.6.3}Secciones del sistema}{152}{subsubsection.5.6.3}%
-\contentsline {subsubsection}{\numberline {5.6.4}Workflow y lógica final del Sistema.}{155}{subsubsection.5.6.4}%
-\contentsline {paragraph}{\numberline {5.6.4.1}Caso de Uso.}{156}{paragraph.5.6.4.1}%
-\contentsline {section}{\numberline {6}Conclusiones.}{159}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{160}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{160}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{161}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{164}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{166}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{167}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{175}{subsection.7.6}%
+\contentsline {subsubsection}{\numberline {5.5.1}Django.}{146}{subsubsection.5.5.1}%
+\contentsline {paragraph}{\numberline {5.5.1.1}Ventajas de Django.}{146}{paragraph.5.5.1.1}%
+\contentsline {paragraph}{\numberline {5.5.1.2}Arquitectura en Django.}{147}{paragraph.5.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.5.2}Base de datos.}{148}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Secciones del sistema}{152}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Workflow y lógica final del Sistema.}{155}{subsubsection.5.5.4}%
+\contentsline {paragraph}{\numberline {5.5.4.1}Caso de Uso.}{158}{paragraph.5.5.4.1}%
+\contentsline {subsection}{\numberline {5.6}Limitaciones del sistema.}{162}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Conclusiones.}{163}{section.6}%
+\contentsline {section}{\numberline {7}Anexos.}{164}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{164}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{165}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{168}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{170}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{171}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{179}{subsection.7.6}%
