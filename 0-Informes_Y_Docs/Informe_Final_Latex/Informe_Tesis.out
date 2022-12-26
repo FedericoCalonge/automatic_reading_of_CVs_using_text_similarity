@@ -7,10 +7,10 @@
 \BOOKMARK [2][-]{subsection.1.4}{Organizaci\363n.}{section.1}% 7
 \BOOKMARK [1][-]{section.2}{Reclutamiento y selecci\363n laboral.}{}% 8
 \BOOKMARK [2][-]{subsection.2.1}{Introducci\363n.}{section.2}% 9
-\BOOKMARK [2][-]{subsection.2.2}{Reclutamiento vs selecci\363n.}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.2}{Reclutamiento vs. selecci\363n.}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.3}{Evoluci\363n de los procesos de reclutamiento y selecci\363n laboral.}{section.2}% 11
 \BOOKMARK [2][-]{subsection.2.4}{Cribado o screening.}{section.2}% 12
-\BOOKMARK [3][-]{subsubsection.2.4.1}{Screening manual vs screening automatizado}{subsection.2.4}% 13
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Screening manual vs. screening automatizado}{subsection.2.4}% 13
 \BOOKMARK [2][-]{subsection.2.5}{Sistemas de screening: Estado del arte.}{section.2}% 14
 \BOOKMARK [2][-]{subsection.2.6}{Enfoque del Proyecto.}{section.2}% 15
 \BOOKMARK [1][-]{section.3}{Algoritmos de Machine Learning.}{}% 16
@@ -63,7 +63,7 @@
 \BOOKMARK [4][-]{paragraph.4.5.4.1}{Embeddings.}{subsubsection.4.5.4}% 63
 \BOOKMARK [4][-]{paragraph.4.5.4.2}{Word2vec.}{subsubsection.4.5.4}% 64
 \BOOKMARK [4][-]{paragraph.4.5.4.3}{\277C\363mo obtener nuestros Word embeddings?}{subsubsection.4.5.4}% 65
-\BOOKMARK [4][-]{paragraph.4.5.4.4}{CBOW vs Skipgram.}{subsubsection.4.5.4}% 66
+\BOOKMARK [4][-]{paragraph.4.5.4.4}{CBOW vs. Skipgram.}{subsubsection.4.5.4}% 66
 \BOOKMARK [4][-]{paragraph.4.5.4.5}{One hot encoding.}{subsubsection.4.5.4}% 67
 \BOOKMARK [4][-]{paragraph.4.5.4.6}{Obteniendo nuestros Word embeddings con Skipgram.}{subsubsection.4.5.4}% 68
 \BOOKMARK [4][-]{paragraph.4.5.4.7}{Arquitectura del modelo Skipgram.}{subsubsection.4.5.4}% 69
@@ -89,7 +89,7 @@
 \BOOKMARK [3][-]{subsubsection.5.2.2}{Word embeddings \(Word2vec\) \046 WMD.}{subsection.5.2}% 89
 \BOOKMARK [4][-]{paragraph.5.2.2.1}{Elecci\363n de hiper-par\341metros Word2vec.}{subsubsection.5.2.2}% 90
 \BOOKMARK [4][-]{paragraph.5.2.2.2}{Word Mover's Distance \(WMD\).}{subsubsection.5.2.2}% 91
-\BOOKMARK [4][-]{paragraph.5.2.2.3}{Observaciones valores de Cosine Similarity y WMD.}{subsubsection.5.2.2}% 92
+\BOOKMARK [4][-]{paragraph.5.2.2.3}{Observaci\363n de los valores de Cosine Similarity y WMD.}{subsubsection.5.2.2}% 92
 \BOOKMARK [2][-]{subsection.5.3}{Armado del modelo de clasificaci\363n KNN.}{section.5}% 93
 \BOOKMARK [3][-]{subsubsection.5.3.1}{Preparaci\363n de los datos.}{subsection.5.3}% 94
 \BOOKMARK [3][-]{subsubsection.5.3.2}{K-means.}{subsection.5.3}% 95
@@ -104,11 +104,13 @@
 \BOOKMARK [3][-]{subsubsection.5.5.4}{Workflow y l\363gica final del Sistema.}{subsection.5.5}% 104
 \BOOKMARK [4][-]{paragraph.5.5.4.1}{Caso de Uso.}{subsubsection.5.5.4}% 105
 \BOOKMARK [2][-]{subsection.5.6}{Limitaciones del sistema.}{section.5}% 106
-\BOOKMARK [1][-]{section.6}{Conclusiones.}{}% 107
-\BOOKMARK [1][-]{section.7}{Anexos.}{}% 108
-\BOOKMARK [2][-]{subsection.7.1}{Ejemplo de funcionamiento KNN.}{section.7}% 109
-\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de funcionamiento K-means.}{section.7}% 110
-\BOOKMARK [2][-]{subsection.7.3}{Posici\363n inicial de los centroides en K-means.}{section.7}% 111
-\BOOKMARK [2][-]{subsection.7.4}{Funciones de activaci\363n.}{section.7}% 112
-\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word embeddings mediante Skipgram y softmax.}{section.7}% 113
-\BOOKMARK [2][-]{subsection.7.6}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 114
+\BOOKMARK [1][-]{section.6}{Conclusiones y Mejoras a Futuro.}{}% 107
+\BOOKMARK [2][-]{subsection.6.1}{Conclusiones.}{section.6}% 108
+\BOOKMARK [2][-]{subsection.6.2}{Mejoras a Futuro.}{section.6}% 109
+\BOOKMARK [1][-]{section.7}{Anexos.}{}% 110
+\BOOKMARK [2][-]{subsection.7.1}{Ejemplo de funcionamiento KNN.}{section.7}% 111
+\BOOKMARK [2][-]{subsection.7.2}{Ejemplo de funcionamiento K-means.}{section.7}% 112
+\BOOKMARK [2][-]{subsection.7.3}{Posici\363n inicial de los centroides en K-means.}{section.7}% 113
+\BOOKMARK [2][-]{subsection.7.4}{Funciones de activaci\363n.}{section.7}% 114
+\BOOKMARK [2][-]{subsection.7.5}{Ejemplo de obtenci\363n de Word embeddings mediante Skipgram y softmax.}{section.7}% 115
+\BOOKMARK [2][-]{subsection.7.6}{Palabras repetidas en nuestro Corpus y palabras polis\351micas.}{section.7}% 116

@@ -8,10 +8,10 @@
 \contentsline {subsection}{\numberline {1.4}Organización.}{11}{subsection.1.4}%
 \contentsline {section}{\numberline {2}Reclutamiento y selección laboral.}{13}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Introducción.}{13}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Reclutamiento vs selección.}{13}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Reclutamiento vs. selección.}{13}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Evolución de los procesos de reclutamiento y selección laboral.}{15}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Cribado o screening.}{16}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Screening manual vs screening automatizado}{16}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.1}Screening manual vs. screening automatizado}{16}{subsubsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.5}Sistemas de screening: Estado del arte.}{17}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Enfoque del Proyecto.}{19}{subsection.2.6}%
 \contentsline {section}{\numberline {3}Algoritmos de Machine Learning.}{20}{section.3}%
@@ -64,7 +64,7 @@
 \contentsline {paragraph}{\numberline {4.5.4.1}Embeddings.}{73}{paragraph.4.5.4.1}%
 \contentsline {paragraph}{\numberline {4.5.4.2}Word2vec.}{75}{paragraph.4.5.4.2}%
 \contentsline {paragraph}{\numberline {4.5.4.3}¿Cómo obtener nuestros Word embeddings?}{77}{paragraph.4.5.4.3}%
-\contentsline {paragraph}{\numberline {4.5.4.4}CBOW vs Skipgram.}{78}{paragraph.4.5.4.4}%
+\contentsline {paragraph}{\numberline {4.5.4.4}CBOW vs. Skipgram.}{78}{paragraph.4.5.4.4}%
 \contentsline {paragraph}{\numberline {4.5.4.5}One hot encoding.}{80}{paragraph.4.5.4.5}%
 \contentsline {paragraph}{\numberline {4.5.4.6}Obteniendo nuestros Word embeddings con Skipgram.}{82}{paragraph.4.5.4.6}%
 \contentsline {paragraph}{\numberline {4.5.4.7}Arquitectura del modelo Skipgram.}{85}{paragraph.4.5.4.7}%
@@ -90,7 +90,7 @@
 \contentsline {subsubsection}{\numberline {5.2.2}Word embeddings (Word2vec) \& WMD.}{123}{subsubsection.5.2.2}%
 \contentsline {paragraph}{\numberline {5.2.2.1}Elección de hiper-parámetros Word2vec.}{124}{paragraph.5.2.2.1}%
 \contentsline {paragraph}{\numberline {5.2.2.2}Word Mover's Distance (WMD).}{128}{paragraph.5.2.2.2}%
-\contentsline {paragraph}{\numberline {5.2.2.3}Observaciones valores de Cosine Similarity y WMD.}{129}{paragraph.5.2.2.3}%
+\contentsline {paragraph}{\numberline {5.2.2.3}Observación de los valores de Cosine Similarity y WMD.}{129}{paragraph.5.2.2.3}%
 \contentsline {subsection}{\numberline {5.3}Armado del modelo de clasificación KNN.}{131}{subsection.5.3}%
 \contentsline {subsubsection}{\numberline {5.3.1}Preparación de los datos.}{131}{subsubsection.5.3.1}%
 \contentsline {subsubsection}{\numberline {5.3.2}K-means.}{133}{subsubsection.5.3.2}%
@@ -105,11 +105,13 @@
 \contentsline {subsubsection}{\numberline {5.5.4}Workflow y lógica final del Sistema.}{152}{subsubsection.5.5.4}%
 \contentsline {paragraph}{\numberline {5.5.4.1}Caso de Uso.}{155}{paragraph.5.5.4.1}%
 \contentsline {subsection}{\numberline {5.6}Limitaciones del sistema.}{159}{subsection.5.6}%
-\contentsline {section}{\numberline {6}Conclusiones.}{160}{section.6}%
-\contentsline {section}{\numberline {7}Anexos.}{161}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{161}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{162}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{165}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{167}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{168}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{176}{subsection.7.6}%
+\contentsline {section}{\numberline {6}Conclusiones y Mejoras a Futuro.}{160}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Conclusiones.}{160}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Mejoras a Futuro.}{162}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Anexos.}{164}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ejemplo de funcionamiento KNN.}{164}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo de funcionamiento K-means.}{165}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Posición inicial de los centroides en K-means.}{168}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Funciones de activación.}{170}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Ejemplo de obtención de Word embeddings mediante Skipgram y softmax.}{171}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Palabras repetidas en nuestro Corpus y palabras polisémicas.}{178}{subsection.7.6}%
